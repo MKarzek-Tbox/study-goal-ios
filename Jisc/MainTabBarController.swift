@@ -24,6 +24,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 		selectedIndex = getHomeScreenTab().rawValue
 		tabBar.frame = CGRect(x: tabBar.frame.origin.x, y: tabBar.frame.origin.y, width: tabBar.frame.size.width, height: 45)
 		self.delegate = self
+
 		
 		if let user = dataManager.currentStudent {
 			UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
@@ -36,7 +37,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 	
 	func createdViewControllers() -> [UIViewController]? {
 		feedViewController.tabBarItem = tabBarItem("Feed")
-		checkinViewController.tabBarItem = tabBarItem("Checkin")
+		checkinViewController.tabBarItem = tabBarItem("Check-in")
+
 		statsViewController.tabBarItem = tabBarItem("Stats")
 		logViewController.tabBarItem = tabBarItem("Log")
 		targetViewController.tabBarItem = tabBarItem("Target")
@@ -56,6 +58,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 		
 		let navigationController1 = UINavigationController(rootViewController: feedViewController)
 		navigationController1.isNavigationBarHidden = true
+
 		let navigationController2 = UINavigationController(rootViewController: checkinViewController)
 		navigationController2.isNavigationBarHidden = true
 		let navigationController3 = UINavigationController(rootViewController: statsViewController)

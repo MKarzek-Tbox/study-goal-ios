@@ -11,7 +11,7 @@ import UIKit
 let minNotesHeight:CGFloat = 80.0
 let saveNoteHeight:CGFloat = 33.0
 
-class ActivityDetailsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UITextViewDelegate {
+class ActivityDetailsVC: BaseViewController, UIAlertViewDelegate, UITextViewDelegate {
 	
 	@IBOutlet weak var titleLabel:UILabel!
 	@IBOutlet weak var contentScroll:UIScrollView!
@@ -23,11 +23,6 @@ class ActivityDetailsVC: BaseViewController, UITableViewDataSource, UITableViewD
 	@IBOutlet weak var noteTextView:UITextView!
 	@IBOutlet weak var noteTextViewHeight:NSLayoutConstraint!
 	@IBOutlet weak var scrollViewBottomSpace:NSLayoutConstraint!
-	@IBOutlet weak var availableTrophiesTable:UITableView!
-	@IBOutlet weak var myTrophiesTable:UITableView!
-	@IBOutlet weak var availableTrophiesButton:UIButton!
-	@IBOutlet weak var myTrophiesButton:UIButton!
-	@IBOutlet weak var trophiesTablesHeight:NSLayoutConstraint!
 	@IBOutlet weak var saveNoteButtonHeight:NSLayoutConstraint!
 	var theActivity:ActivityLog
 	var initialNote:String = ""
@@ -35,18 +30,11 @@ class ActivityDetailsVC: BaseViewController, UITableViewDataSource, UITableViewD
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		refresh()
-		availableTrophiesTable.register(UINib(nibName: kActivityTrophyCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kActivityTrophyCellIdentifier)
-		myTrophiesTable.register(UINib(nibName: kActivityTrophyCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kActivityTrophyCellIdentifier)
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		refresh()
-		availableTrophiesTable.reloadData()
-		myTrophiesTable.reloadData()
-		view.layoutIfNeeded()
-		trophiesTablesHeight.constant = availableTrophiesTable.contentSize.height
-		view.layoutIfNeeded()
 	}
 	
 	func refresh() {
@@ -118,50 +106,6 @@ class ActivityDetailsVC: BaseViewController, UITableViewDataSource, UITableViewD
 		navigationController?.pushViewController(vc, animated: true)
 	}
 	
-	@IBAction func availableTrophies(_ sender:UIButton) {
-		availableTrophiesButton.isSelected = true
-		myTrophiesButton.isSelected = false
-		trophiesTablesHeight.constant = availableTrophiesTable.contentSize.height
-		view.layoutIfNeeded()
-		UIView.animate(withDuration: 0.25, animations: { () -> Void in
-			self.availableTrophiesTable.alpha = 1.0
-			self.myTrophiesTable.alpha = 0.0
-		}) 
-	}
-	
-	@IBAction func myTrophies(_ sender:UIButton) {
-		availableTrophiesButton.isSelected = false
-		myTrophiesButton.isSelected = true
-		trophiesTablesHeight.constant = myTrophiesTable.contentSize.height
-		view.layoutIfNeeded()
-		UIView.animate(withDuration: 0.25, animations: { () -> Void in
-			self.availableTrophiesTable.alpha = 0.0
-			self.myTrophiesTable.alpha = 1.0
-		}) 
-	}
-	
-	func availableTrophies() -> [Trophy] {
-		var array:[Trophy] = [Trophy]()
-		let allTrophies = dataManager.availableTrophies()
-		for (_, item) in allTrophies.enumerated() {
-			if (item.activityName == theActivity.activity.englishName) {
-				array.append(item)
-			}
-		}
-		return array
-	}
-	
-	func myTrophies() -> [Trophy] {
-		var array:[Trophy] = [Trophy]()
-		let allTrophies = dataManager.myTrophies()
-		for (_, item) in allTrophies.enumerated() {
-			if (item.trophy.activityName == theActivity.activity.englishName) {
-				array.append(item.trophy)
-			}
-		}
-		return array
-	}
-	
 	@IBAction func editLog(_ sender:UIButton!) {
 		if demo() {
 			let alert = UIAlertController(title: "", message: localized("demo_mode_editactivitylog"), preferredStyle: .alert)
@@ -224,57 +168,6 @@ class ActivityDetailsVC: BaseViewController, UITableViewDataSource, UITableViewD
 				}
 			}
 		}
-	}
-	
-	//MARK: UITableView Datasource
-	
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		var nrRows = 0
-		switch (tableView) {
-		case availableTrophiesTable:
-			nrRows = availableTrophies().count
-			break
-		case myTrophiesTable:
-			nrRows = myTrophies().count
-			break
-		default:break
-		}
-		return nrRows
-	}
-	
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		var theCell = tableView.dequeueReusableCell(withIdentifier: kActivityTrophyCellIdentifier)
-		if (theCell == nil) {
-			theCell = UITableViewCell()
-		}
-		return theCell!
-	}
-	
-	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 112.0
-	}
-	
-	//MARK: UITableView Delegate
-	
-	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-		let theCell:ActivityTrophyCell? = cell as? ActivityTrophyCell
-		if (theCell != nil) {
-			switch (tableView) {
-			case availableTrophiesTable:
-				let trophy = availableTrophies()[indexPath.row]
-				theCell!.loadTrophy(trophy)
-				break
-			case myTrophiesTable:
-				let trophy = myTrophies()[indexPath.row]
-				theCell!.loadTrophy(trophy)
-				break
-			default:break
-			}
-		}
-	}
-	
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		
 	}
 	
 	//MARK: Close TextView

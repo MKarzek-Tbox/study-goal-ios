@@ -10,44 +10,45 @@ import UIKit
 
 class TargetPieChart: UIView {
 	
-	@IBOutlet weak var stretchPieChartContainer:UIView!
-	@IBOutlet weak var targetPieChartContainer:UIView!
+	@IBOutlet weak var chartWebview:UIWebView!
 	@IBOutlet weak var progressLabel:UILabel!
 	@IBOutlet weak var starContainerView:UIView!
 	@IBOutlet weak var completeLabel:UILabel!
 	
-	var piechart:UIView?
-	var stretchPiechart:UIView?
 	var theTarget:Target?
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		translatesAutoresizingMaskIntoConstraints = false
+//		chartWebview.scrollView.isScrollEnabled = false
 	}
-
+	
+	override func willMove(toSuperview newSuperview: UIView?) {
+		chartWebview.loadHTMLString("", baseURL: nil)
+	}
+	
 	func loadTarget(_ target:Target?) {
-		piechart?.removeFromSuperview()
-		stretchPiechart?.removeFromSuperview()
+		let graphWidth = chartWebview.frame.size.width
+		let graphHeight = chartWebview.frame.size.height
 		theTarget = target
-		if (theTarget != nil) {
-			let progress = theTarget!.calculateProgress(false)
-			progressLabel.text = theTarget!.progressText(progress)
-			completeLabel.text = theTarget!.progressText(progress)
-			
-			let pieFrame = targetPieChartContainer.bounds
-			piechart = GraphGenerator.drawPieChartInView(targetPieChartContainer, frame: pieFrame, fillValue: progress.completionPercentage, animationDuration: 0.0, color: appPurpleColor)
-			
+		if let theTarget = theTarget {
+			let progress = theTarget.calculateProgress(false)
+			var hasStretch = false
 			if (progress.completionPercentage >= 1.0) {
-				let stretchTarget = dataManager.getStretchTargetForTarget(theTarget!)
+				let stretchTarget = dataManager.getStretchTargetForTarget(theTarget)
 				if (stretchTarget != nil) {
-					let frame = stretchPieChartContainer.bounds
+					hasStretch = true
 					let fillValue = stretchTarget!.calculateProgress()
-					let color = appPurpleColor.withAlphaComponent(0.75)
-					stretchPiechart = GraphGenerator.drawPieChartInView(stretchPieChartContainer, frame: frame, fillValue: fillValue, animationDuration: 0.0, color: color)
-					progressLabel.text = theTarget!.progressText(progress)
-					completeLabel.text = theTarget!.progressText(progress)
+					let htmlString = ChartHTMLManager.stretchTargetChartWithPercentage(fillValue, graphWidth: graphWidth, graphHeight: graphHeight)
+					chartWebview.loadHTMLString(htmlString, baseURL: nil)
 				}
 			}
+			if !hasStretch {
+				let htmlString = ChartHTMLManager.simpleTargetChartWithPercentage(progress.completionPercentage, graphWidth: graphWidth, graphHeight: graphHeight)
+				chartWebview.loadHTMLString(htmlString, baseURL: nil)
+			}
+			progressLabel.text = theTarget.progressText(progress)
+			completeLabel.text = theTarget.progressText(progress)
 		}
 	}
 	

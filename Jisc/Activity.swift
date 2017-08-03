@@ -47,7 +47,7 @@ class Activity: NSManagedObject {
 		return activity
 	}
 	
-	func iconName(_ big:Bool) -> String {
+	func iconName(big:Bool) -> String {
 		var iconName = ""
 		if (big) {
 			iconName = "activity_icon_big_\(id)"

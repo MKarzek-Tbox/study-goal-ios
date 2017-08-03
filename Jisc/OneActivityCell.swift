@@ -78,7 +78,7 @@ class OneActivityCell: UITableViewCell, UIAlertViewDelegate {
 	
 	func loadActivity(_ activity:ActivityLog, navigationController:UINavigationController?, tableView:UITableView?) {
 		theActivity = activity
-		let imageName = activity.activity.iconName(false)
+		let imageName = activity.activity.iconName(big: true)
 		activityTypeIcon.image = UIImage(named: imageName)
 		activityTextLabel.text = activity.textForDisplay()
 		if (activity.isRunning.boolValue) {
@@ -151,12 +151,12 @@ class OneActivityCell: UITableViewCell, UIAlertViewDelegate {
 			let currentPoint = sender.location(in: self)
 			var difference = panStartPoint.x - currentPoint.x
 			if (optionsState == .open) {
-				difference += 100.0
+				difference += kButtonsWidth
 			}
 			if (difference < 0.0) {
 				difference = 0.0
-			} else if (difference > 100.0) {
-				difference = 100.0
+			} else if (difference > kButtonsWidth) {
+				difference = kButtonsWidth
 			}
 			contentTrailingConstraint.constant = difference
 			layoutIfNeeded()
@@ -168,7 +168,7 @@ class OneActivityCell: UITableViewCell, UIAlertViewDelegate {
 		NotificationCenter.default.post(name: Notification.Name(rawValue: kAnotherActivityCellOpenedOptions), object: self)
 		optionsState = .open
 		UIView.animate(withDuration: 0.25, animations: { () -> Void in
-			self.contentTrailingConstraint.constant = 100.0
+			self.contentTrailingConstraint.constant = kButtonsWidth
 			self.layoutIfNeeded()
 			}, completion: { (done) -> Void in
 				NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeActivityCellSelectedStyleOff), object: nil)

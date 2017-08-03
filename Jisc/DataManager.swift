@@ -298,7 +298,7 @@ class DataManager: NSObject {
 			}
 		}
 		runningActivititesTimer.invalidate()
-		DELEGATE.mainController?.feedViewController.refreshTimer?.invalidate()
+		//DELEGATE.mainController?.feedViewController.refreshTimer?.invalidate()
 		dataManager.currentStudent = nil
 		dataManager.firstTrophyCheck = true
 		clearXAPIToken()

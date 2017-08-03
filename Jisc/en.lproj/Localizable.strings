@@ -319,7 +319,7 @@
 "saved_successfully" = "Saved Successfully";
 "time_spent_max" = "Time spent cannot be more than %@ hours.";
 "choose_interval" = "Choose Interval";
-"are_you_sure_you_want_you_log_out" = "Are you sure you want you log out?";
+"are_you_sure_you_want_to_log_out" = "Are you sure you want to log out?";
 "set" = "Set";
 "add_a_reason_to_keep_this_target" = "Add a reason to keep this target";
 "empty_feed_page_message" = "Welcome to Jisc.\nThis page will be populated with your feeds.";
@@ -337,10 +337,10 @@
 "bottom" = "bottom";
 "no_module" = "No module";
 "connection_problem" = "Connection problem";
-"check_internet" = "Check your internet connection and try again later";
+"check_internet" = "Connection issue. Please check your internet connection and restart your app.";
 "friend_privacy_settings" = "Friend Privacy Settings";
 "graphs" = "Graphs";
-"consent" = "Consent";
+"consent" = "Privacy Statement";
 "consent_what_we_want" = "We want to ensure we're giving you the best experience with this app that we can, so we're collecting information on how you're using the app. We're looking at:";
 "consent_log" = "Log section: We want to know how much time you spend on activities, and what sort of activities you're doing.";
 "consent_targets" = "Targets section: We want to know how many targets you're setting yourself, how often you're meeting them and whether you're setting stretch goals.";
@@ -379,10 +379,10 @@
 "dont_show_again" = "Don't show again";
 "institution_not_listed" = "My institution is not listed here";
 "checkin" = "Check-in";
-"send_pin" = "Send pin";
+"send_pin" = "Send PIN";
 "checkin_staff_message" = "Check-in section is for demonstration purposes, and your PIN was not validated. This section is active for student users.";
 "enter_pin" = "Please enter a pin code";
-"alert_invalid_pin" = "Oops. PIN wasn't recognised. Please try again.";
+"alert_invalid_pin" = "Invalid code - please check with your tutor that you have the correct code and are enrolled in the module.";
 "alert_valid_pin" = "Thanks. You've just successfully checked in.";
 "social_login_error" = "This email is already registered in our system. Please try again with a different social platform!";
 "demo_mode_post_message" = "Login to start posting messages.";

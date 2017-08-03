@@ -19,7 +19,10 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		targetsTableView.register(UINib(nibName: kTargetCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kTargetCellIdentifier)
-		targetsTableView.contentInset = UIEdgeInsetsMake(35.0, 0, 35.0, 0)
+		targetsTableView.contentInset = UIEdgeInsetsMake(20.0, 0, 20.0, 0)
+        //London Developer July 24,2017
+        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-main&contentName=MainTargetsPage"
+        xAPIManager().checkMod(testUrl:urlString)
 	}
 	
 	override var preferredStatusBarStyle : UIStatusBarStyle {
@@ -29,6 +32,10 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		targetsTableView.reloadData()
+	}
+	
+	@IBAction func openMenu(_ sender:UIButton?) {
+		DELEGATE.menuView?.open()
 	}
 	
 	@IBAction func settings(_ sender:UIButton) {
@@ -91,6 +98,7 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 			let target = dataManager.targets()[indexPath.row]
 			let vc = TargetDetailsVC(target: target, index: indexPath.row)
 			navigationController?.pushViewController(vc, animated: true)
+
 		}
 	}
 }

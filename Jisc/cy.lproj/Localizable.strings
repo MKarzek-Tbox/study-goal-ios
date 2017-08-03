@@ -319,7 +319,7 @@
 "saved_successfully" = "Wedi Cadw";
 "time_spent_max" = "Amser wedi ei gwario ar y mwyaf";
 "choose_interval" = "Dewis egwyl";
-"are_you_sure_you_want_you_log_out" = "Ydych yn siwr eich bod eisio all-gofnodi?";
+"are_you_sure_you_want_to_log_out" = "Ydych yn siwr eich bod eisio all-gofnodi?";
 "set" = "Creu";
 "add_a_reason_to_keep_this_target" = "Adio rheswm i gadw'r targed yma";
 "empty_feed_page_message" = "Croeso i Jisc.\nBydd y tudalen yma yn cynnwys eich porthiannau";
@@ -379,7 +379,7 @@
 "dont_show_again" = "Don't show again";
 "institution_not_listed" = "My institution is not listed here";
 "checkin" = "Check-in";
-"send_pin" = "Send pin";
+"send_pin" = "Send PIN";
 "checkin_staff_message" = "Check-in section is for demonstration purposes, and your PIN was not validated. This section is active for student users.";
 "enter_pin" = "Please enter a pin code";
 "alert_invalid_pin" = "Oops. PIN wasn't recognised. Please try again.";

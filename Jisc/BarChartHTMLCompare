@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<style type="text/css">
+			${demo.css}
+		</style>
+	</head>
+	<body>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		<div id="container" style="width:_graph_width_px;height:_graph_height_px;margin:0;padding:0;"> </div>
+		<script type="text/javascript">
+			Highcharts.chart('container', {
+				chart: {
+					type: 'column'
+				},
+				credits: {
+					enabled: false
+				},
+				title: {
+					text: ''
+				},
+				subtitle: {
+					text: ''
+				},
+				exporting: {
+					enabled: false
+				},
+				yAxis: {
+					min: 0,
+					labels: {
+						overflow: 'justify'
+					},
+					title: {
+						text:null
+					}
+				},
+				plotOptions: {
+					column: {
+						dataLabels: {
+							enabled: true
+						}
+					}
+				},
+				legend: {
+					layout: 'horizontal',
+					align: 'left',
+					verticalAlign: 'bottom',
+					x: 0,
+					y: 20,
+					floating: true,
+					borderWidth: 0,
+					backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF')
+				},
+				xAxis: {
+					categories: [
+						_column_names_
+					],
+					title: {
+						text:null
+					}
+				},
+				series: [{
+					name: '_my_name_',
+					data: _my_values_
+				}, {
+					name: '_other_name_',
+					data: _other_values_
+				}]
+			});
+			</script>
+	</body>
+</html>

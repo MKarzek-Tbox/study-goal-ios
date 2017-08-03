@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -47,7 +47,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Startup Screen" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxM-8Y-ihq" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="117" y="28" width="142" height="22"/>
+                            <rect key="frame" x="117.5" y="28" width="141.5" height="22"/>
                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="22"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -110,7 +110,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FEED" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUY-VE-zbZ" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="19" width="48" height="22"/>
+                                    <rect key="frame" x="20" y="19" width="47.5" height="22"/>
                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="22"/>
                                     <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -119,8 +119,8 @@
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="uppercase" value="YES"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="purpleCheckmark" translatesAutoresizingMaskIntoConstraints="NO" id="FJO-iN-z7v">
-                                    <rect key="frame" x="339" y="24" width="16" height="13"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="purpleCheckmark" translatesAutoresizingMaskIntoConstraints="NO" id="FJO-iN-z7v">
+                                    <rect key="frame" x="339" y="24.5" width="16" height="12"/>
                                 </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGk-w6-TWK">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -154,8 +154,8 @@
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="uppercase" value="YES"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="purpleCheckmark" translatesAutoresizingMaskIntoConstraints="NO" id="FRt-oe-oKy">
-                                    <rect key="frame" x="339" y="24" width="16" height="13"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="purpleCheckmark" translatesAutoresizingMaskIntoConstraints="NO" id="FRt-oe-oKy">
+                                    <rect key="frame" x="339" y="24.5" width="16" height="12"/>
                                 </imageView>
                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIU-Rp-Rwu">
                                     <rect key="frame" x="0.0" y="1" width="375" height="59"/>
@@ -189,8 +189,8 @@
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="uppercase" value="YES"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="purpleCheckmark" translatesAutoresizingMaskIntoConstraints="NO" id="7o1-7t-xV7">
-                                    <rect key="frame" x="339" y="24" width="16" height="13"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="purpleCheckmark" translatesAutoresizingMaskIntoConstraints="NO" id="7o1-7t-xV7">
+                                    <rect key="frame" x="339" y="24.5" width="16" height="12"/>
                                 </imageView>
                                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qMN-jG-dCK">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -224,8 +224,8 @@
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="uppercase" value="YES"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="purpleCheckmark" translatesAutoresizingMaskIntoConstraints="NO" id="dhx-H8-4el">
-                                    <rect key="frame" x="339" y="24" width="16" height="13"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="purpleCheckmark" translatesAutoresizingMaskIntoConstraints="NO" id="dhx-H8-4el">
+                                    <rect key="frame" x="339" y="24.5" width="16" height="12"/>
                                 </imageView>
                                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4P-pF-oOU">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -278,7 +278,7 @@
                     <rect key="frame" x="0.0" y="60" width="375" height="72"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select startup screen" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRH-gT-Hta" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="101" y="26" width="174" height="20"/>
+                            <rect key="frame" x="101" y="26.5" width="174" height="20"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
                             <color key="textColor" red="0.61742734909057617" green="0.61742734909057617" blue="0.61742734909057617" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>

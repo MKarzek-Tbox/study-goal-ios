@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+            <style type="text/css">
+                ${demo.css}
+                </style>
+            </head>
+    <body bgcolor="#FBFBFB">
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/highcharts-more.js"></script>
+        <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+        
+        <div id="container" style="width:300px;height:220px;margin:0;padding:0;"></div>
+        
+        
+        <script type="text/javascript">
+            // Build the chart
+            Highcharts.chart('container', {
+                             chart: {
+                             backgroundColor: '#fbfbfb',
+                             plotBorderWidth: null,
+                             plotShadow: false,
+                             type: 'column'
+                             }, credits: {
+                             enabled: false
+                             },
+                             title: {
+                             text: ''
+                             },
+                             subtitle: {
+                             text: ''
+                             },
+                             xAxis: {
+                             categories: DATES
+                          //   [
+                                         // '25-06-17',
+                                         // '04-07-17',
+                                         // '09-07-17',
+                                          //'17-07-17'
+                                          
+                                          //]
+                             ,
+                             crosshair: true
+                             },
+                             yAxis: {
+                             min: 0,
+                             title: {
+                             text: ''
+                             }
+                             },
+                             tooltip: {
+                             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                             },
+                             plotOptions: {
+                             column: {
+                             pointPadding: 0.2,
+                             borderWidth: 0
+                             }
+                             },
+                             series: [{
+                                      name: 'me',
+                                      data: COUNT
+                                      //[15, 0, 16, 5]
+                                      
+                                      
+                                      
+                                      }]
+                             });
+                             
+
+                             
+            </script>
+    </body>
+</html>

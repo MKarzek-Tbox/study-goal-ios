@@ -1,64 +1,41 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="ipad9_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="MyriadPro-Regular.otf">
+        <array key="MyriadPro-Regular.otf">
             <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-        </mutableArray>
-        <mutableArray key="StagSans-Book-App.ttf">
+        </array>
+        <array key="StagSans-Book-App.ttf">
             <string>StagSansApp-Book</string>
-            <string>StagSansApp-Book</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ActivityDetailsVC" customModule="Jisc" customModuleProvider="target">
             <connections>
                 <outlet property="activityLabel" destination="Boe-g5-5j8" id="seq-e9-zAb"/>
                 <outlet property="activityTypeLabel" destination="CdP-iu-zTo" id="iNA-MT-GAb"/>
-                <outlet property="availableTrophiesButton" destination="I3A-0v-1ag" id="mv1-eS-jzL"/>
-                <outlet property="availableTrophiesTable" destination="ccO-zk-KD9" id="Pce-it-d7a"/>
                 <outlet property="contentScroll" destination="j8j-ct-otY" id="jnR-nY-dbg"/>
                 <outlet property="dateLabel" destination="Zs1-u6-0f2" id="Kvg-cH-trs"/>
                 <outlet property="moduleLabel" destination="F61-eH-H1s" id="bKS-X3-tHc"/>
-                <outlet property="myTrophiesButton" destination="6et-R6-VKJ" id="pzz-n0-yme"/>
-                <outlet property="myTrophiesTable" destination="iEn-pe-CJ8" id="H9Q-yO-hOc"/>
                 <outlet property="noteTextView" destination="vdE-dA-FyA" id="wE8-gh-r5N"/>
                 <outlet property="noteTextViewHeight" destination="Se2-2J-hYU" id="RV6-aS-X5C"/>
                 <outlet property="saveNoteButtonHeight" destination="EJN-cj-CO1" id="TdR-po-atv"/>
                 <outlet property="scrollViewBottomSpace" destination="oDQ-zI-Z7e" id="Kxm-VZ-5qC"/>
                 <outlet property="timeSpentLabel" destination="UzB-9e-xU4" id="VAC-pa-ofE"/>
                 <outlet property="titleLabel" destination="VFw-4x-lTt" id="JnU-St-3Sp"/>
-                <outlet property="trophiesTablesHeight" destination="599-ff-iXZ" id="2KE-Uu-4o3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="viewsWithShadow" destination="Kq4-8R-QYy" collectionClass="NSMutableArray" id="EG9-gu-pqa"/>
                 <outletCollection property="viewsWithShadow" destination="ePa-Ob-gh8" collectionClass="NSMutableArray" id="Ywn-DC-PM7"/>
                 <outletCollection property="viewsWithRoundedCorners" destination="VAt-xQ-w2G" collectionClass="NSMutableArray" id="5W4-en-dVS"/>
                 <outletCollection property="viewsWithRoundedCorners" destination="EkC-DN-4eV" collectionClass="NSMutableArray" id="jkS-bt-eQa"/>
-                <outletCollection property="viewsWithShadow" destination="nGD-sC-gH0" collectionClass="NSMutableArray" id="7Rj-tE-fva"/>
                 <outletCollection property="viewsWithRoundedCorners" destination="85x-ks-BDE" collectionClass="NSMutableArray" id="qJB-Zf-c3S"/>
                 <outletCollection property="localizableLabels" destination="5MD-2i-lkX" collectionClass="NSMutableArray" id="pGC-NY-Hsl"/>
                 <outletCollection property="localizableLabels" destination="WBY-ya-Suz" collectionClass="NSMutableArray" id="4bn-1w-CwG"/>
@@ -68,8 +45,6 @@
                 <outletCollection property="localizableButtons" destination="Pda-ha-lgi" collectionClass="NSMutableArray" id="N01-x4-LKr"/>
                 <outletCollection property="localizableButtons" destination="6fU-gk-JdX" collectionClass="NSMutableArray" id="u7g-pe-gKk"/>
                 <outletCollection property="localizableLabels" destination="Mji-Bj-5JG" collectionClass="NSMutableArray" id="LPg-Z0-Ut2"/>
-                <outletCollection property="localizableButtons" destination="I3A-0v-1ag" collectionClass="NSMutableArray" id="Hgu-WX-xN4"/>
-                <outletCollection property="localizableButtons" destination="6et-R6-VKJ" collectionClass="NSMutableArray" id="T6Z-lo-7mm"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -84,9 +59,9 @@
                             <rect key="frame" x="0.0" y="0.0" width="1024" height="60"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5MD-2i-lkX" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="440" y="28" width="144" height="22"/>
+                            <rect key="frame" x="440.5" y="28" width="143.5" height="22"/>
                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="22"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="activity_details"/>
@@ -98,7 +73,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jisc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Xc-89-VVe" customClass="AppTitleLabel" customModule="Jisc" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="40" height="17"/>
                                     <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZr-VZ-Vf1">
@@ -114,7 +89,7 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="1Xc-89-VVe" firstAttribute="leading" secondItem="vog-Tm-bXe" secondAttribute="leading" id="2db-PT-JgJ"/>
                                 <constraint firstItem="BZr-VZ-Vf1" firstAttribute="top" secondItem="vog-Tm-bXe" secondAttribute="top" id="CrI-jF-Rjq"/>
@@ -125,7 +100,7 @@
                                 <constraint firstItem="BZr-VZ-Vf1" firstAttribute="centerX" secondItem="1Xc-89-VVe" secondAttribute="centerX" id="qdX-wK-9DU"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dqc-Mn-2Hy">
+                        <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dqc-Mn-2Hy">
                             <rect key="frame" x="976" y="20" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="7HQ-RD-1B5"/>
@@ -137,7 +112,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="5MD-2i-lkX" firstAttribute="centerX" secondItem="GMy-Yi-Z25" secondAttribute="centerX" id="J0u-pI-KmA"/>
                         <constraint firstItem="uH7-me-9mF" firstAttribute="leading" secondItem="GMy-Yi-Z25" secondAttribute="leading" id="PUm-Hm-nQf"/>
@@ -162,7 +137,7 @@
                     <rect key="frame" x="0.0" y="60" width="1024" height="708"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YhQ-oV-wKp">
-                            <rect key="frame" x="0.0" y="0.0" width="1024" height="646"/>
+                            <rect key="frame" x="0.0" y="0.0" width="1024" height="483"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kq4-8R-QYy">
                                     <rect key="frame" x="0.0" y="0.0" width="1024" height="53"/>
@@ -170,18 +145,18 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFw-4x-lTt">
                                             <rect key="frame" x="20" y="8" width="984" height="34"/>
                                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
-                                            <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AIx-Bo-rI4">
                                             <rect key="frame" x="0.0" y="50" width="1024" height="3"/>
-                                            <color key="backgroundColor" red="0.51372549019607838" green="0.87450980392156863" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.51372549019607838" green="0.87450980392156863" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="3" id="oqa-tV-slL"/>
                                             </constraints>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="AIx-Bo-rI4" secondAttribute="trailing" id="9Uh-lH-qc0"/>
                                         <constraint firstItem="VFw-4x-lTt" firstAttribute="top" secondItem="Kq4-8R-QYy" secondAttribute="top" constant="8" id="C3Y-dV-b9u"/>
@@ -207,13 +182,13 @@
                                     <rect key="frame" x="0.0" y="68" width="1024" height="30"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date of activity: 2-10-2015" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zs1-u6-0f2">
-                                            <rect key="frame" x="10" y="8" width="164" height="15"/>
+                                            <rect key="frame" x="10" y="7.5" width="164" height="15"/>
                                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="Zs1-u6-0f2" firstAttribute="leading" secondItem="zbD-ir-y5a" secondAttribute="leading" constant="10" id="7rn-PC-5fW"/>
                                         <constraint firstAttribute="height" constant="30" id="MyN-Qt-m9z"/>
@@ -229,11 +204,11 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3e7-Rb-Uh0">
                                                     <rect key="frame" x="12" y="0.0" width="52" height="60"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="moduleBlue" translatesAutoresizingMaskIntoConstraints="NO" id="Ioi-k5-3PA">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="moduleBlue" translatesAutoresizingMaskIntoConstraints="NO" id="Ioi-k5-3PA">
                                                             <rect key="frame" x="14" y="15" width="24" height="30"/>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="55" id="5E4-qH-mri"/>
                                                         <constraint firstAttribute="width" secondItem="3e7-Rb-Uh0" secondAttribute="height" multiplier="55:62" id="9XV-uu-idH"/>
@@ -255,7 +230,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Module" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBY-ya-Suz" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
                                                     <rect key="frame" x="77" y="22" width="55" height="17"/>
                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
-                                                    <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="module"/>
@@ -264,17 +239,17 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxi-g4-S9V">
                                                     <rect key="frame" x="238" y="22" width="4" height="17"/>
                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
-                                                    <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F61-eH-H1s">
                                                     <rect key="frame" x="247" y="8" width="0.0" height="44"/>
                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
-                                                    <color key="textColor" red="0.74509803921568629" green="0.53725490196078429" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.74509803921568629" green="0.53725490196078429" blue="0.85098039215686272" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="123-3w-wfw"/>
                                                 <constraint firstAttribute="bottom" secondItem="3e7-Rb-Uh0" secondAttribute="bottom" id="4Ws-pB-A0G"/>
@@ -313,11 +288,11 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhB-3I-ZkT">
                                                     <rect key="frame" x="12" y="0.0" width="52" height="60"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aGradeStudentBlue" translatesAutoresizingMaskIntoConstraints="NO" id="Mt2-8I-Xja">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="aGradeStudentBlue" translatesAutoresizingMaskIntoConstraints="NO" id="Mt2-8I-Xja">
                                                             <rect key="frame" x="11" y="15" width="30" height="29"/>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="Mt2-8I-Xja" firstAttribute="centerX" secondItem="mhB-3I-ZkT" secondAttribute="centerX" id="4Fs-FI-YAZ"/>
                                                         <constraint firstAttribute="width" secondItem="mhB-3I-ZkT" secondAttribute="height" multiplier="55:62" id="7Jk-tT-M5T"/>
@@ -337,9 +312,9 @@
                                                     </variation>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Am2-UT-p5s" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                    <rect key="frame" x="77" y="22" width="90" height="17"/>
+                                                    <rect key="frame" x="77" y="22" width="89.5" height="17"/>
                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
-                                                    <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="activity_type"/>
@@ -348,17 +323,17 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZ1-ST-XBi">
                                                     <rect key="frame" x="238" y="22" width="4" height="17"/>
                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
-                                                    <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CdP-iu-zTo">
                                                     <rect key="frame" x="247" y="8" width="0.0" height="44"/>
                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
-                                                    <color key="textColor" red="0.74509803919999995" green="0.53725490200000003" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.74509803919999995" green="0.53725490200000003" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="Am2-UT-p5s" firstAttribute="leading" secondItem="mhB-3I-ZkT" secondAttribute="trailing" constant="13" id="0sl-mL-ZZ9"/>
                                                 <constraint firstAttribute="height" constant="50" id="10E-Qq-RGv"/>
@@ -400,7 +375,7 @@
                                                             <rect key="frame" x="11" y="15" width="30" height="29"/>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="4Fl-V9-iFH" firstAttribute="centerX" secondItem="9aF-Hc-mgr" secondAttribute="centerX" id="IgM-9a-qR2"/>
                                                         <constraint firstAttribute="height" constant="62" id="LuF-EO-foi"/>
@@ -422,7 +397,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWt-HL-lhv" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
                                                     <rect key="frame" x="77" y="22" width="54" height="17"/>
                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
-                                                    <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="activity"/>
@@ -431,17 +406,17 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJC-uL-VsR">
                                                     <rect key="frame" x="238" y="22" width="4" height="17"/>
                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
-                                                    <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Boe-g5-5j8">
                                                     <rect key="frame" x="247" y="8" width="0.0" height="44"/>
                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
-                                                    <color key="textColor" red="0.74509803919999995" green="0.53725490200000003" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.74509803919999995" green="0.53725490200000003" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="wJC-uL-VsR" firstAttribute="centerY" secondItem="HM5-Kh-LNj" secondAttribute="centerY" id="16C-Ty-E82"/>
                                                 <constraint firstItem="Boe-g5-5j8" firstAttribute="centerY" secondItem="HM5-Kh-LNj" secondAttribute="centerY" id="5Cp-nA-EBH"/>
@@ -479,11 +454,11 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6w9-Je-MJ9">
                                                     <rect key="frame" x="12" y="0.0" width="52" height="60"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chronometerBlue" translatesAutoresizingMaskIntoConstraints="NO" id="Epb-kN-AmV">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="chronometerBlue" translatesAutoresizingMaskIntoConstraints="NO" id="Epb-kN-AmV">
                                                             <rect key="frame" x="13" y="15" width="27" height="30"/>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="62" id="6qR-8N-pwD"/>
                                                         <constraint firstItem="Epb-kN-AmV" firstAttribute="centerX" secondItem="6w9-Je-MJ9" secondAttribute="centerX" id="FmP-uO-wQ9"/>
@@ -503,9 +478,9 @@
                                                     </variation>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time spent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kr1-1i-KPK" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                    <rect key="frame" x="77" y="22" width="79" height="17"/>
+                                                    <rect key="frame" x="77" y="22" width="78.5" height="17"/>
                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
-                                                    <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="time_spent"/>
@@ -514,17 +489,17 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5C0-GO-eUY">
                                                     <rect key="frame" x="238" y="22" width="4" height="17"/>
                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
-                                                    <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UzB-9e-xU4">
                                                     <rect key="frame" x="247" y="8" width="0.0" height="44"/>
                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
-                                                    <color key="textColor" red="0.74509803919999995" green="0.53725490200000003" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.74509803919999995" green="0.53725490200000003" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="3yq-cV-zvA"/>
                                                 <constraint firstItem="UzB-9e-xU4" firstAttribute="centerY" secondItem="Zvn-eE-CyE" secondAttribute="centerY" id="7KH-NH-wj0"/>
@@ -578,7 +553,7 @@
                                                             </connections>
                                                         </button>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="Pda-ha-lgi" secondAttribute="trailing" id="0dI-GY-17Q"/>
                                                         <constraint firstItem="Pda-ha-lgi" firstAttribute="top" secondItem="VAt-xQ-w2G" secondAttribute="top" id="eef-C4-x2k"/>
@@ -610,7 +585,7 @@
                                                             </connections>
                                                         </button>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="6fU-gk-JdX" secondAttribute="bottom" id="n35-1G-sXf"/>
                                                         <constraint firstItem="6fU-gk-JdX" firstAttribute="top" secondItem="EkC-DN-4eV" secondAttribute="top" id="sjU-Lt-FPd"/>
@@ -624,7 +599,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="VAt-xQ-w2G" firstAttribute="top" secondItem="BLg-HV-u4h" secondAttribute="top" id="HNV-g8-mzl"/>
                                                 <constraint firstItem="EkC-DN-4eV" firstAttribute="leading" secondItem="VAt-xQ-w2G" secondAttribute="trailing" constant="5" id="LVd-Pf-suW"/>
@@ -636,7 +611,7 @@
                                             </constraints>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="ar8-UC-Ylv" firstAttribute="top" secondItem="XCS-eh-5Ww" secondAttribute="bottom" constant="4" id="07K-ba-kVo"/>
                                         <constraint firstItem="HM5-Kh-LNj" firstAttribute="leading" secondItem="XCS-eh-5Ww" secondAttribute="trailing" constant="4" id="17U-V2-Zsn"/>
@@ -719,13 +694,13 @@
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vdE-dA-FyA">
                                                     <rect key="frame" x="20" y="10" width="924" height="80"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="80" id="Se2-2J-hYU"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="jh4-yv-tEa"/>
                                                     </constraints>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                    <color key="textColor" red="0.74509803919999995" green="0.53725490200000003" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.74509803919999995" green="0.53725490200000003" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <connections>
@@ -753,7 +728,7 @@
                                                             </connections>
                                                         </button>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="C3t-wC-dDq" firstAttribute="leading" secondItem="85x-ks-BDE" secondAttribute="leading" id="9tj-Wu-aYZ"/>
                                                         <constraint firstAttribute="height" id="EJN-cj-CO1"/>
@@ -769,7 +744,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="85x-ks-BDE" firstAttribute="centerX" secondItem="cbt-LG-1Th" secondAttribute="centerX" id="Lsn-7R-O5S"/>
                                                 <constraint firstAttribute="trailing" secondItem="vdE-dA-FyA" secondAttribute="trailing" constant="20" id="Tpr-gD-50f"/>
@@ -789,16 +764,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="964" height="40"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mji-Bj-5JG" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="12" width="42" height="17"/>
+                                                    <rect key="frame" x="20" y="12" width="41.5" height="17"/>
                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
-                                                    <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="notes"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="Mji-Bj-5JG" firstAttribute="leading" secondItem="ePa-Ob-gh8" secondAttribute="leading" constant="20" id="KCM-yQ-dES"/>
                                                 <constraint firstItem="Mji-Bj-5JG" firstAttribute="centerY" secondItem="ePa-Ob-gh8" secondAttribute="centerY" id="lfP-CU-sGs"/>
@@ -806,7 +781,7 @@
                                             </constraints>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="ePa-Ob-gh8" firstAttribute="leading" secondItem="Md4-dD-lNk" secondAttribute="leading" id="6bB-ji-umo"/>
                                         <constraint firstAttribute="trailing" secondItem="cbt-LG-1Th" secondAttribute="trailing" id="Jbx-ux-ePX"/>
@@ -823,143 +798,17 @@
                                         </mask>
                                     </variation>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jgx-pq-gTb">
-                                    <rect key="frame" x="30" y="478" width="964" height="168"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcY-z0-fwD">
-                                            <rect key="frame" x="0.0" y="40" width="964" height="128"/>
-                                            <subviews>
-                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="112" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ccO-zk-KD9">
-                                                    <rect key="frame" x="0.0" y="0.0" width="481" height="128"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <connections>
-                                                        <outlet property="dataSource" destination="-1" id="BeP-46-b6t"/>
-                                                        <outlet property="delegate" destination="-1" id="wBa-PY-sMp"/>
-                                                    </connections>
-                                                </tableView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hGV-Yj-HkO">
-                                                    <rect key="frame" x="481" y="4" width="2" height="116"/>
-                                                    <color key="backgroundColor" red="0.88585978403141363" green="0.88585978403141363" blue="0.88585978403141363" alpha="1" colorSpace="calibratedRGB"/>
-                                                </view>
-                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="112" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iEn-pe-CJ8">
-                                                    <rect key="frame" x="483" y="0.0" width="481" height="128"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <connections>
-                                                        <outlet property="dataSource" destination="-1" id="EeO-vx-Ezf"/>
-                                                        <outlet property="delegate" destination="-1" id="83i-iX-eaS"/>
-                                                    </connections>
-                                                </tableView>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="128" id="599-ff-iXZ"/>
-                                                <constraint firstItem="iEn-pe-CJ8" firstAttribute="leading" secondItem="hGV-Yj-HkO" secondAttribute="trailing" id="Bqs-Ty-caj"/>
-                                                <constraint firstAttribute="trailing" secondItem="ccO-zk-KD9" secondAttribute="trailing" id="ClB-JH-IE7"/>
-                                                <constraint firstItem="ccO-zk-KD9" firstAttribute="top" secondItem="qcY-z0-fwD" secondAttribute="top" id="Iky-ga-b2Z"/>
-                                                <constraint firstItem="iEn-pe-CJ8" firstAttribute="leading" secondItem="ccO-zk-KD9" secondAttribute="trailing" constant="2" id="Tp2-HL-fAv"/>
-                                                <constraint firstItem="ccO-zk-KD9" firstAttribute="leading" secondItem="qcY-z0-fwD" secondAttribute="leading" id="X8w-D6-MeY"/>
-                                                <constraint firstItem="hGV-Yj-HkO" firstAttribute="leading" secondItem="ccO-zk-KD9" secondAttribute="trailing" id="bN2-Kz-7Id"/>
-                                                <constraint firstItem="iEn-pe-CJ8" firstAttribute="leading" secondItem="qcY-z0-fwD" secondAttribute="leading" id="eAV-hD-PrX"/>
-                                                <constraint firstAttribute="bottom" secondItem="ccO-zk-KD9" secondAttribute="bottom" id="gQO-si-GAX"/>
-                                                <constraint firstItem="hGV-Yj-HkO" firstAttribute="top" secondItem="qcY-z0-fwD" secondAttribute="top" constant="4" id="jkh-jb-a7C"/>
-                                                <constraint firstAttribute="bottom" secondItem="iEn-pe-CJ8" secondAttribute="bottom" id="n8w-3D-1d7"/>
-                                                <constraint firstAttribute="bottom" secondItem="hGV-Yj-HkO" secondAttribute="bottom" constant="8" id="nxh-K9-xfm"/>
-                                                <constraint firstAttribute="trailing" secondItem="iEn-pe-CJ8" secondAttribute="trailing" id="sZ8-Kv-i2l"/>
-                                                <constraint firstItem="iEn-pe-CJ8" firstAttribute="top" secondItem="qcY-z0-fwD" secondAttribute="top" id="vYO-ji-iqN"/>
-                                                <constraint firstItem="iEn-pe-CJ8" firstAttribute="width" secondItem="ccO-zk-KD9" secondAttribute="width" id="yHO-Aq-ctJ"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="ClB-JH-IE7"/>
-                                                    <exclude reference="eAV-hD-PrX"/>
-                                                </mask>
-                                            </variation>
-                                        </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nGD-sC-gH0">
-                                            <rect key="frame" x="0.0" y="0.0" width="964" height="40"/>
-                                            <subviews>
-                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I3A-0v-1ag" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="482" height="40"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
-                                                    <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    <state key="normal" title="Trophies Available">
-                                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <state key="selected">
-                                                        <color key="titleColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="trophies_available"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizationKeySelected" value="trophies_available"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="availableTrophies:" destination="-1" eventType="touchUpInside" id="ltR-M8-2jf"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6et-R6-VKJ" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
-                                                    <rect key="frame" x="482" y="0.0" width="482" height="40"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
-                                                    <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
-                                                    <state key="normal" title="My Trophies">
-                                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <state key="selected">
-                                                        <color key="titleColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="my_trophies"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizationKeySelected" value="my_trophies"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="myTrophies:" destination="-1" eventType="touchUpInside" id="ib2-8x-gm1"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstItem="6et-R6-VKJ" firstAttribute="height" secondItem="I3A-0v-1ag" secondAttribute="height" id="KH3-ah-zNO"/>
-                                                <constraint firstItem="6et-R6-VKJ" firstAttribute="top" secondItem="nGD-sC-gH0" secondAttribute="top" id="Lic-c4-Rbm"/>
-                                                <constraint firstAttribute="bottom" secondItem="6et-R6-VKJ" secondAttribute="bottom" id="PZf-5N-Lsv"/>
-                                                <constraint firstAttribute="bottom" secondItem="I3A-0v-1ag" secondAttribute="bottom" id="TSJ-Xb-5Fi"/>
-                                                <constraint firstItem="6et-R6-VKJ" firstAttribute="leading" secondItem="I3A-0v-1ag" secondAttribute="trailing" id="Voq-xA-AP7"/>
-                                                <constraint firstAttribute="height" constant="40" id="W1J-Qc-FxW"/>
-                                                <constraint firstAttribute="trailing" secondItem="6et-R6-VKJ" secondAttribute="trailing" id="abe-qG-h4E"/>
-                                                <constraint firstItem="6et-R6-VKJ" firstAttribute="width" secondItem="I3A-0v-1ag" secondAttribute="width" id="ch2-f0-lyp"/>
-                                                <constraint firstItem="I3A-0v-1ag" firstAttribute="leading" secondItem="nGD-sC-gH0" secondAttribute="leading" id="lQC-Mn-q1l"/>
-                                                <constraint firstItem="I3A-0v-1ag" firstAttribute="top" secondItem="nGD-sC-gH0" secondAttribute="top" id="y29-FC-IHH"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="KH3-ah-zNO"/>
-                                                </mask>
-                                            </variation>
-                                        </view>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="nGD-sC-gH0" secondAttribute="trailing" id="AL5-rj-8mV"/>
-                                        <constraint firstItem="nGD-sC-gH0" firstAttribute="leading" secondItem="jgx-pq-gTb" secondAttribute="leading" id="As3-U3-Ajp"/>
-                                        <constraint firstItem="qcY-z0-fwD" firstAttribute="top" secondItem="nGD-sC-gH0" secondAttribute="bottom" id="D0d-Rp-kLr"/>
-                                        <constraint firstItem="nGD-sC-gH0" firstAttribute="top" secondItem="jgx-pq-gTb" secondAttribute="top" id="c3P-mg-Qdy"/>
-                                        <constraint firstItem="qcY-z0-fwD" firstAttribute="leading" secondItem="jgx-pq-gTb" secondAttribute="leading" id="ecL-3z-PqY"/>
-                                        <constraint firstAttribute="trailing" secondItem="qcY-z0-fwD" secondAttribute="trailing" id="iQf-rI-alu"/>
-                                        <constraint firstAttribute="bottom" secondItem="qcY-z0-fwD" secondAttribute="bottom" id="kLK-1m-WfW"/>
-                                    </constraints>
-                                </view>
                             </subviews>
-                            <color key="backgroundColor" red="0.98431372549999996" green="0.98431372549999996" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.98431372549999996" green="0.98431372549999996" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="Md4-dD-lNk" firstAttribute="top" secondItem="WvW-MJ-r7r" secondAttribute="bottom" id="0Qs-kX-Fv8"/>
-                                <constraint firstItem="jgx-pq-gTb" firstAttribute="top" secondItem="Md4-dD-lNk" secondAttribute="bottom" constant="15" id="2Di-I9-lGt"/>
-                                <constraint firstAttribute="trailing" secondItem="jgx-pq-gTb" secondAttribute="trailing" constant="30" id="4JF-cV-wS2"/>
                                 <constraint firstItem="zbD-ir-y5a" firstAttribute="leading" secondItem="YhQ-oV-wKp" secondAttribute="leading" id="7fn-oS-spj"/>
                                 <constraint firstItem="Md4-dD-lNk" firstAttribute="top" secondItem="zbD-ir-y5a" secondAttribute="bottom" constant="300" id="8A8-JB-nOD"/>
                                 <constraint firstItem="WvW-MJ-r7r" firstAttribute="leading" secondItem="YhQ-oV-wKp" secondAttribute="leading" constant="30" id="8iY-mF-cW0"/>
                                 <constraint firstAttribute="trailing" secondItem="Md4-dD-lNk" secondAttribute="trailing" constant="30" id="CDY-Wb-kHQ"/>
-                                <constraint firstAttribute="bottom" secondItem="jgx-pq-gTb" secondAttribute="bottom" id="KEN-Je-KNo"/>
+                                <constraint firstAttribute="bottom" secondItem="Md4-dD-lNk" secondAttribute="bottom" constant="20" id="PBm-ar-bUT"/>
                                 <constraint firstItem="Kq4-8R-QYy" firstAttribute="top" secondItem="YhQ-oV-wKp" secondAttribute="top" id="PHO-f5-B5Q"/>
                                 <constraint firstAttribute="trailing" secondItem="Kq4-8R-QYy" secondAttribute="trailing" id="Q4K-2H-s3l"/>
-                                <constraint firstItem="jgx-pq-gTb" firstAttribute="leading" secondItem="YhQ-oV-wKp" secondAttribute="leading" constant="30" id="S8I-rx-YOF"/>
                                 <constraint firstItem="WvW-MJ-r7r" firstAttribute="top" secondItem="zbD-ir-y5a" secondAttribute="bottom" constant="8" id="XRb-f4-Fry"/>
                                 <constraint firstItem="Kq4-8R-QYy" firstAttribute="leading" secondItem="YhQ-oV-wKp" secondAttribute="leading" id="dlw-qa-8iP"/>
                                 <constraint firstItem="zbD-ir-y5a" firstAttribute="top" secondItem="Kq4-8R-QYy" secondAttribute="bottom" constant="15" id="mzs-R2-gc3"/>
@@ -996,7 +845,7 @@
                     </items>
                 </toolbar>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="j8j-ct-otY" firstAttribute="top" secondItem="GMy-Yi-Z25" secondAttribute="bottom" id="4gu-9U-YBU"/>
                 <constraint firstItem="GMy-Yi-Z25" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Lnl-EO-Hfq"/>
@@ -1010,18 +859,16 @@
                 <constraint firstAttribute="trailing" secondItem="GMy-Yi-Z25" secondAttribute="trailing" id="zhh-Ws-kLo"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-            <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
             <point key="canvasLocation" x="22" y="69"/>
         </view>
     </objects>
     <resources>
-        <image name="aGradeStudentBlue" width="30" height="29"/>
-        <image name="backButton" width="9" height="15"/>
-        <image name="chronometerBlue" width="27" height="30"/>
+        <image name="aGradeStudentBlue" width="30" height="28"/>
+        <image name="backButton" width="8" height="15"/>
+        <image name="chronometerBlue" width="26" height="30"/>
         <image name="lightBlue" width="10" height="10"/>
         <image name="lightPurple" width="10" height="10"/>
-        <image name="moduleBlue" width="24" height="30"/>
+        <image name="moduleBlue" width="23" height="30"/>
         <image name="networkBlue" width="30" height="29"/>
         <image name="settingsButton" width="23" height="22"/>
     </resources>

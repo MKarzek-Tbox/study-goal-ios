@@ -19,7 +19,10 @@ class LogVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, Cus
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		automaticallyAdjustsScrollViewInsets = false
 		activityLogsTable.register(UINib(nibName: kOneActivityCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kOneActivityCellIdentifier)
+		activityLogsTable.contentInset = UIEdgeInsetsMake(20.0, 0, 20.0, 0)
+        
 		if (dataManager.runningActivities().count > 0) {
 			activityActionButton.setImage(UIImage(named: "runningActivity"), for: UIControlState())
 		} else {
@@ -29,6 +32,13 @@ class LogVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, Cus
 		let refreshControl = UIRefreshControl()
 		refreshControl.addTarget(self, action: #selector(LogVC.manuallyRefreshLogs(_:)), for: UIControlEvents.valueChanged)
 		activityLogsTable.addSubview(refreshControl)
+        //London Developer July 24,2017
+        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=logs-main&contentName=MainLogsPage"
+        xAPIManager().checkMod(testUrl:urlString)
+	}
+	
+	@IBAction func openMenu(_ sender:UIButton?) {
+		DELEGATE.menuView?.open()
 	}
 	
 	func refreshActivityLogs() {
@@ -169,9 +179,7 @@ class LogVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, Cus
 	//MARK: UITableView Delegate
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		let height:CGFloat = 51.0
-		return height
-
+		return 108.0
 	}
 	
 	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -182,6 +190,17 @@ class LogVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, Cus
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //print("Ahmed code YAY!")
+        
+        /*let url = URL(string: "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats&contentName=Stats%20Overview&modid=mod101")
+        
+        let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
+            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as Any)
+            print(response as Any)
+            print("This is Ahmed again hopefully it worked!!!")
+        }*/
+        
+        //task.resume()
 		if (aCellIsOpen) {
 			tableView.reloadData()
 		} else {

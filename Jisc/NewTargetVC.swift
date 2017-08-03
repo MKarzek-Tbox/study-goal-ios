@@ -71,13 +71,13 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		if iPad {
-			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
-			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
-		} else {
-			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
-			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
-		}
+//		if iPad {
+//			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
+//			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
+//		} else {
+//			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
+//			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
+//		}
 		if (theTarget != nil) {
 			isEditingTarget = true
 			selectedHours = Int(theTarget!.totalTime) / 60
@@ -256,8 +256,15 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 			target.timeSpan = timeSpan.rawValue
 			if (selectedModule > 0 && selectedModule - 1 < dataManager.modules().count) {
 				target.module = dataManager.modules()[selectedModule - 1]
+                //London Developer July 24,2017
+                let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget&modid=\(String(describing: target.module))"
+                xAPIManager().checkMod(testUrl:urlString)
 			} else {
+                
 				target.module = nil
+                //London Developer July 24,2017
+                let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget)"
+                xAPIManager().checkMod(testUrl:urlString)
 			}
 			target.because = because
 			if (theTarget != nil) {

@@ -82,13 +82,13 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		if iPad {
-			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
-			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
-		} else {
-			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
-			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
-		}
+//		if iPad {
+//			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
+//			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
+//		} else {
+//			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
+//			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
+//		}
 		datePicker.maximumDate = Date()
 		chooseActivityLabel.adjustsFontSizeToFitWidth = true
 		selectedDateLabel.adjustsFontSizeToFitWidth = true
@@ -448,6 +448,9 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 						if (success) {
 							AlertView.showAlert(true, message: localized("saved_successfully"), completion: { (done) -> Void in
 								_ = self.navigationController?.popToRootViewController(animated: true)
+                                //London Developer July 24,2017
+                                let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=logs-timed&contentName=logTimed&modid=\(String(describing: newActivity.module?.id))"
+                                xAPIManager().checkMod(testUrl:urlString)
 							})
 						} else {
 							AlertView.showAlert(false, message: failureReason, completion: nil)

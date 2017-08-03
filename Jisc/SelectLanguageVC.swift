@@ -53,7 +53,7 @@ class SelectLanguageVC: BaseViewController {
 					selectedLanguage = .english
 				}
 				runningActivititesTimer.invalidate()
-				DELEGATE.mainController?.feedViewController.refreshTimer?.invalidate()
+				DELEGATE.menuView?.feedViewController.refreshTimer?.invalidate()
 				dataManager.firstTrophyCheck = true
 				switch (selectedLanguage!) {
 				case .english:

@@ -8,15 +8,6 @@
 
 import UIKit
 
-let periods:[kXAPIEngagementScope] = [.SevenDays, .ThirtyDays]
-let myColor = UIColor(red: 0.53, green: 0.39, blue: 0.78, alpha: 1.0)
-let otherStudentColor = UIColor(red: 0.22, green: 0.57, blue: 0.93, alpha: 1.0)
-
-enum GraphType {
-	case Line
-	case Bar
-}
-
 class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollViewDelegate {
 	
 	@IBOutlet weak var titleLabel:UILabel!
@@ -51,14 +42,13 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 	var graphType = GraphType.Bar
 	@IBOutlet weak var graphToggleButton:UIButton!
 	@IBOutlet weak var compareToView:UIView!
+	@IBOutlet weak var graphWebView:UIWebView!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		scrollIndicator.alpha = 0.0
-//		if staff() {
-			graphType = GraphType.Bar
-			graphToggleButton.isSelected = true
-//		}
+		graphType = GraphType.Bar
+		graphToggleButton.isSelected = true
 		compareToView.alpha = 0.5
 		compareToView.isUserInteractionEnabled = false
 		let today = todayNumber()
@@ -214,107 +204,131 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 	}
 	
 	func representValues(_ sender:(me:[Double]?, myMax:Double, otherStudent:[Double]?, otherStudentMax:Double, columnNames:[String]?)?) {
-		if (sender != nil) {
-			if (sender!.columnNames != nil) {
-				if (sender!.columnNames!.count > 7) {
-					graphContainerWidth.constant = min(60.0 * (CGFloat)(sender!.columnNames!.count), 8000.0)
-				} else {
-					graphContainerWidth.constant = initialGraphWidth
-				}
-				view.layoutIfNeeded()
-			} else {
-				graphContainerWidth.constant = initialGraphWidth
-				view.layoutIfNeeded()
-			}
-		} else {
-			graphContainerWidth.constant = initialGraphWidth
-			view.layoutIfNeeded()
-		}
-		
-		theGraphView?.removeFromSuperview()
-		graphScroll.setContentOffset(CGPoint.zero, animated: false)
-		var values = sender
-		if (values != nil) {
-			graphContainer.alpha = 1.0
-			var maximum = Double(0.0)
-			if (values!.me != nil) {
-				for (_, item) in values!.me!.enumerated() {
-					maximum = max(maximum, item)
-				}
-			}
-			if (values!.otherStudent != nil) {
-				for (_, item) in values!.otherStudent!.enumerated() {
-					maximum = max(maximum, item)
-				}
-			}
-			if (maximum > 3) {
-				self.setVerticalValues(["0", "\(Int(maximum * 0.25))", "\(Int(maximum * 0.5))", "\(Int(maximum * 0.75))", "\(Int(maximum))"])
-			} else if (maximum >= 2) {
-				self.setVerticalValues(["0", "1", "\(Int(maximum))"])
-			} else {
-				self.setVerticalValues(["0", "1"])
-			}
-			if (values!.columnNames != nil) {
-				self.setHorizontalValues(values!.columnNames!)
-			}
-			let frame = graphContainer.bounds
-			var myV:[Double]?
-			var hisV:[Double]?
-			if (values!.me != nil) {
-				if (values!.me!.count < 3) {
-					values!.me!.insert(0.0, at: 0)
-					values!.me!.append(0.0)
-				}
-				myV = values!.me
-			}
-			if (values!.otherStudent != nil) {
-				if (values!.otherStudent!.count < 3) {
-					values!.otherStudent!.insert(0.0, at: 0)
-					values!.otherStudent!.append(0.0)
-				}
-				hisV = values!.otherStudent
-			}
-			
-			if (maximum == 0.0) {
-				noDataLabel.alpha = 1.0
-				graphContainer.alpha = 0.0
-				setVerticalValues([])
-				setHorizontalValues([])
-			} else {
-				if (myV != nil) {
-					if (hisV != nil) {
-						switch graphType {
-						case .Line:
-							theGraphView = GraphGenerator.drawLineGraphInView(graphContainer, frame: frame, values: [myV!, hisV!], colors: [myColor, otherStudentColor], animationDuration: 0.0)
-							break
-						case .Bar:
-							theGraphView = GraphGenerator.drawBarChartInView(graphContainer, frame: frame, values: [myV!, hisV!], colors: [myColor, otherStudentColor])
-							break
-						}
-					} else {
-						switch graphType {
-						case .Line:
-							theGraphView = GraphGenerator.drawLineGraphInView(graphContainer, frame: frame, values: [myV!], colors: [myColor], animationDuration: 0.0)
-							break
-						case .Bar:
-							theGraphView = GraphGenerator.drawBarChartInView(graphContainer, frame: frame, values: [myV!], colors: [myColor])
-							break
+		var htmlString = ""
+		if let sender = sender {
+			let otherName = comparisonStudentName.text
+			let graphWidth = graphWebView.frame.size.width * 0.93984962// * UIScreen.main.scale
+			let graphHeight = graphWebView.frame.size.height * 0.91// * UIScreen.main.scale
+			if let columnNames = sender.columnNames {
+				if let otherValues = sender.otherStudent {
+					if let myValues = sender.me {
+						if graphType == .Bar {
+							htmlString = ChartHTMLManager.barChartWithMyValues(myValues, otherName: otherName, otherValues: otherValues, columnNames: columnNames, graphWidth: graphWidth, graphHeight: graphHeight)
+						} else if graphType == .Line {
+							htmlString = ChartHTMLManager.lineChartWithMyValues(myValues, otherName: otherName, otherValues: otherValues, columnNames: columnNames, graphWidth: graphWidth, graphHeight: graphHeight)
 						}
 					}
-				} else if (hisV != nil) {
-					switch graphType {
-					case .Line:
-						theGraphView = GraphGenerator.drawLineGraphInView(graphContainer, frame: frame, values: [hisV!], colors: [otherStudentColor], animationDuration: 0.0)
-						break
-					case .Bar:
-						theGraphView = GraphGenerator.drawBarChartInView(graphContainer, frame: frame, values: [hisV!], colors: [otherStudentColor])
-						break
+				} else if let myValues = sender.me {
+					if graphType == .Bar {
+						htmlString = ChartHTMLManager.barChartWithMyValues(myValues, otherName: nil, otherValues: nil, columnNames: columnNames, graphWidth: graphWidth, graphHeight: graphHeight)
+					} else if graphType == .Line {
+						htmlString = ChartHTMLManager.lineChartWithMyValues(myValues, otherName: nil, otherValues: nil, columnNames: columnNames, graphWidth: graphWidth, graphHeight: graphHeight)
 					}
 				}
 			}
-		} else {
-			noDataLabel.alpha = 1.0
 		}
+		graphWebView.loadHTMLString(htmlString, baseURL: nil)
+		graphWebView.scrollView.isScrollEnabled = false
+//		if (sender != nil) {
+//			if (sender!.columnNames != nil) {
+//				if (sender!.columnNames!.count > 7) {
+//					graphContainerWidth.constant = min(60.0 * (CGFloat)(sender!.columnNames!.count), 8000.0)
+//				} else {
+//					graphContainerWidth.constant = initialGraphWidth
+//				}
+//				view.layoutIfNeeded()
+//			} else {
+//				graphContainerWidth.constant = initialGraphWidth
+//				view.layoutIfNeeded()
+//			}
+//		} else {
+//			graphContainerWidth.constant = initialGraphWidth
+//			view.layoutIfNeeded()
+//		}
+//		
+//		theGraphView?.removeFromSuperview()
+//		graphScroll.setContentOffset(CGPoint.zero, animated: false)
+//		if var values = sender {
+//			graphContainer.alpha = 1.0
+//			var maximum = Double(0.0)
+//			if (values.me != nil) {
+//				for (_, item) in values.me!.enumerated() {
+//					maximum = max(maximum, item)
+//				}
+//			}
+//			if (values.otherStudent != nil) {
+//				for (_, item) in values.otherStudent!.enumerated() {
+//					maximum = max(maximum, item)
+//				}
+//			}
+//			if (maximum > 3) {
+//				self.setVerticalValues(["0", "\(Int(maximum * 0.25))", "\(Int(maximum * 0.5))", "\(Int(maximum * 0.75))", "\(Int(maximum))"])
+//			} else if (maximum >= 2) {
+//				self.setVerticalValues(["0", "1", "\(Int(maximum))"])
+//			} else {
+//				self.setVerticalValues(["0", "1"])
+//			}
+//			if (values.columnNames != nil) {
+//				self.setHorizontalValues(values.columnNames!)
+//			}
+//			let frame = graphContainer.bounds
+//			var myV:[Double]?
+//			var hisV:[Double]?
+//			if (values.me != nil) {
+//				if (values.me!.count < 3) {
+//					values.me!.insert(0.0, at: 0)
+//					values.me!.append(0.0)
+//				}
+//				myV = values.me
+//			}
+//			if (values.otherStudent != nil) {
+//				if (values.otherStudent!.count < 3) {
+//					values.otherStudent!.insert(0.0, at: 0)
+//					values.otherStudent!.append(0.0)
+//				}
+//				hisV = values.otherStudent
+//			}
+//			
+//			if (maximum == 0.0) {
+//				noDataLabel.alpha = 1.0
+//				graphContainer.alpha = 0.0
+//				setVerticalValues([])
+//				setHorizontalValues([])
+//			} else {
+//				if (myV != nil) {
+//					if (hisV != nil) {
+//						switch graphType {
+//						case .Line:
+//							theGraphView = GraphGenerator.drawLineGraphInView(graphContainer, frame: frame, values: [myV!, hisV!], colors: [myColor, otherStudentColor], animationDuration: 0.0)
+//							break
+//						case .Bar:
+//							theGraphView = GraphGenerator.drawBarChartInView(graphContainer, frame: frame, values: [myV!, hisV!], colors: [myColor, otherStudentColor])
+//							break
+//						}
+//					} else {
+//						switch graphType {
+//						case .Line:
+//							theGraphView = GraphGenerator.drawLineGraphInView(graphContainer, frame: frame, values: [myV!], colors: [myColor], animationDuration: 0.0)
+//							break
+//						case .Bar:
+//							theGraphView = GraphGenerator.drawBarChartInView(graphContainer, frame: frame, values: [myV!], colors: [myColor])
+//							break
+//						}
+//					}
+//				} else if (hisV != nil) {
+//					switch graphType {
+//					case .Line:
+//						theGraphView = GraphGenerator.drawLineGraphInView(graphContainer, frame: frame, values: [hisV!], colors: [otherStudentColor], animationDuration: 0.0)
+//						break
+//					case .Bar:
+//						theGraphView = GraphGenerator.drawBarChartInView(graphContainer, frame: frame, values: [hisV!], colors: [otherStudentColor])
+//						break
+//					}
+//				}
+//			}
+//		} else {
+//			noDataLabel.alpha = 1.0
+//		}
 	}
 	
 	//MARK: xAPI

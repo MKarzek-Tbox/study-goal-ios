@@ -82,7 +82,7 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 		if (isLast) {
 			separator.alpha = 0.0
 		}
-		let imageName = target.activity.iconName(true)
+		let imageName = target.activity.iconName(big: true)
 		targetTypeIcon.image = UIImage(named: imageName)
 		let progress = target.calculateProgress(false)
 		if (progress.completionPercentage >= 1.0) {

@@ -30,7 +30,17 @@ class InstituteCell: UITableViewCell {
 	func loadInstitute(_ institute:Institution) {
 		self.institute = institute
 		instituteName.textAlignment = .left
-		instituteName.text = self.institute?.name
+        if (self.institute?.name == "Gloucestershire"){
+            instituteName.text = "University of Gloucestershire"
+        } else if(self.institute?.name == "Oxford Brookes"){
+            instituteName.text = "Oxford Brookes University"
+        } else if(self.institute?.name == "South Wales"){
+            instituteName.text = "University of South Wales | Prifysgol De Cymru"
+        } else if (self.institute?.name == "Strathclyde"){
+            instituteName.text = "University of Strathclyde"
+        } else {
+            instituteName.text = self.institute?.name
+        }
 		layoutIfNeeded()
 	}
 	

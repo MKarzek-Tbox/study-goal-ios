@@ -51,13 +51,22 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	@IBOutlet weak var acceptAnalyticsButton:UIButton!
 	@IBOutlet weak var acceptPrivacyButton:UIButton!
 	var goingAway = false
+    @IBOutlet var privacyView: UIView!
+    @IBOutlet weak var privacyWebView: UIWebView!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        //London Developer July 24,2017
+        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/setting?setting=attendanceData"
+        xAPIManager().checkMod(testUrl:urlString)
+
 		myFriendsLabel.text = "\(dataManager.friends().count)"
 		trophiesLabel.text = "\(dataManager.myTrophies().count)"
 		nameLabel.text = "\(dataManager.currentStudent!.firstName) \(dataManager.currentStudent!.lastName)"
 		emailLabel.text = dataManager.currentStudent!.email
+        if (emailLabel.text=="not@known"){
+            emailLabel.isHidden = true
+        }
 		studentIDLabel.text = "\(localized("student_id")) : \(dataManager.currentStudent!.jisc_id)"
 		blurredProfileImage.alpha = 0.0
 		NotificationCenter.default.addObserver(self, selector: #selector(SettingsVC.anotherSettingsViewWillAppear(_:)), name: NSNotification.Name(rawValue: kSettingsWillAppearNotification), object: nil)
@@ -146,6 +155,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	}
 	
 	func addCurrentView(_ view:UIView) {
+		view.translatesAutoresizingMaskIntoConstraints = false
 		currentTrophyDetailsView?.removeFromSuperview()
 		currentView?.removeFromSuperview()
 		currentView = view
@@ -217,7 +227,22 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 		}
 	}
 	
-	@IBAction func toggleAnalytics(_ sender:UIButton) {
+    @IBAction func privacyStatement(_ sender: UIButton) {
+        if (iPad) {
+            titleLabel.text = localized("consent")
+            addCurrentView(privacyView)
+            let url = URL(string: "https://github.com/jiscdev/learning-analytics/wiki/Privacy-Statement")
+            let requestObj = URLRequest(url: url!)
+            privacyWebView.loadRequest(requestObj)
+        } else if (!goingAway) {
+            goingAway = true
+            let vc = PrivacyWebViewVC()
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    
+    }
+	
+    @IBAction func toggleAnalytics(_ sender:UIButton) {
 		sender.isSelected = !sender.isSelected
 		changeConsentSettings()
 	}
@@ -281,7 +306,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	}
 	
 	@IBAction func logout(_ sender:UIButton) {
-		UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_you_log_out"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
+		UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_log_out"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
 	}
 	
 	func showDetailsForTrophy(_ trophy:Trophy?) {
@@ -407,7 +432,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 					selectedLanguage = .english
 				}
 				runningActivititesTimer.invalidate()
-				DELEGATE.mainController?.feedViewController.refreshTimer?.invalidate()
+				DELEGATE.menuView?.feedViewController.refreshTimer?.invalidate()
 				dataManager.firstTrophyCheck = true
 				switch (selectedLanguage!) {
 				case .english:
@@ -490,6 +515,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	
 	func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
 		if (buttonIndex == 1) {
+
 			dataManager.logout()
 		}
 	}

@@ -127,7 +127,7 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 		timeActivityTimer?.invalidate()
-		if (DELEGATE.mainController?.selectedIndex != 2) {
+		if (DELEGATE.menuView?.selectedIndex != 2) {
 			navigationController?.popViewController(animated: true)
 		}
 	}
@@ -333,6 +333,7 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 					AlertView.showAlert(true, message: localized("activity_started"), completion: nil)
 					startActivityButton.setTitle(localized("pause"), for: UIControlState())
 				}
+
 			}
 		} else {
 			UIAlertView(title: localized("error"), message: localized("please_select_a_module"), delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
@@ -413,6 +414,9 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 					AlertView.showAlert(true, message: localized("activity_stopped"), completion: { (done) -> Void in
 						_ = self.navigationController?.popViewController(animated: true)
 					})
+                    //London Developer July 24,2017
+                    let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=logs-timed&contentName=logTimed&modid=\(String(describing: self.theActivity?.module?.id))"
+                    xAPIManager().checkMod(testUrl:urlString)
 				} else if (failureReason == "timeZero") {
 					AlertView.showAlert(false, message: localized("activity_was_cancelled_due_to_short_time_spent"), completion: { (done) -> Void in
 						_ = self.navigationController?.popViewController(animated: true)

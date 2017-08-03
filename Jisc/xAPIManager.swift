@@ -80,6 +80,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
 				
 				if (code == .unauthorized) {
 					completionBlock = nil
+
 					dataManager.logout()
 					UIAlertView(title: localized("session_expired_title"), message: localized("session_expired_message"), delegate: nil, cancelButtonTitle: localized("ok")).show()
 				}
@@ -459,7 +460,57 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
 		}
 		startConnectionWithRequest(createGetRequest(path, withJWT: true))
 	}
-	
+    func checkMod(testUrl:String){
+        var request:URLRequest?
+        if let urlString = testUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            if let url = URL(string: urlString) {
+                request = URLRequest(url: url)
+            }
+        }
+        if var request = request {
+            if let token = xAPIToken() {
+               // print("This is the token Ahmed",token)
+                request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            }
+            NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
+                print("This is the data from the request AHMED!!!",NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as! Any)
+            }
+            //startConnectionWithRequest(request)
+        } else {
+            completionBlock?(false, nil, nil, "Error creating the url request")
+        }
+    }
+    func settingsCall(testUrl:String){
+        var request:URLRequest?
+        var returnedString:String = ""
+        if let urlString = testUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            if let url = URL(string: urlString) {
+                request = URLRequest(url: url)
+            }
+        }
+        if var request = request {
+            if let token = xAPIToken() {
+                 print("This is the token Ahmed",token, token.characters.count)
+                request.addValue("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1MDE2NzE5NjYsImp0aSI6Ill0Vk5uYUk2a3lPbW0xQXAyeWMwNitYRTBGaHRVQUc1M3U1eXk4OUxJWVk9IiwiaXNzIjoiaHR0cDpcL1wvbG9jYWxob3N0XC9leGFtcGxlIiwibmJmIjoxNTAxNjcxOTU2LCJleHAiOjE1MDU4MTkxNTYsImRhdGEiOnsiZXBwbiI6ImFsaWNlQHRlc3QudWtmZWRlcmF0aW9uLm9yZy51ayIsInBpZCI6ImFsaWNlQHRlc3QudWtmZWRlcmF0aW9uLm9yZy51ayIsImFmZmlsaWF0aW9uIjoiYWZmaWxpYXRlQHRlc3QudWtmZWRlcmF0aW9uLm9yZy51ayJ9fQ.A99AszSnbL5b4frXXmcoejaTgrVMck7PNBJxtPLIuAgsz4GQmTpk8uWgBeNP8uO2OX9o1WlVvsx0op_45r-8MQ", forHTTPHeaderField: "Authorization")
+            }
+            NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
+                returnedString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)! as String
+                //print(response)
+                print("AHMED NSSTring as Any return", NSString(data: data!, encoding: String.Encoding.utf8.rawValue)! as Any)
+                print("This is the data from the request settings returnedString AHMED!!!",returnedString)
+                if (testUrl=="https://api.x-dev.data.alpha.jisc.ac.uk/sg/setting?setting=studyGoalAttendance"){
+                    let defaults = UserDefaults.standard
+                    defaults.set(returnedString, forKey: "SettingsReturn")
+                } else if (testUrl=="https://api.x-dev.data.alpha.jisc.ac.uk/sg/setting?setting=attendanceData") {
+                    let defaults = UserDefaults.standard
+                    defaults.set(returnedString, forKey: "SettingsReturnAttendance")
+                }
+            }
+            //startConnectionWithRequest(request)
+        } else {
+            completionBlock?(false, nil, nil, "Error creating the url request")
+        }
+    }
 	func checkIn(pin:String, location:String, timestamp:String, completion:@escaping xAPICompletionBlock) {
 		completionBlock = completion
 		var request:URLRequest?

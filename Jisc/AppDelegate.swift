@@ -23,7 +23,8 @@ enum kAppLanguage:String {
 class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
 
 	var window: UIWindow?
-	var mainController:MainTabBarController?
+	var mainNavigationController:UINavigationController?
+	var menuView:MenuView?
 	var playerController:MPMoviePlayerViewController?
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -97,9 +98,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
 		DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double((Int64)(5 * NSEC_PER_SEC)) / Double(NSEC_PER_SEC)) { () -> Void in
 			dataManager.initialize()
 			let vc = LoginVC()
-			let nvc = UINavigationController(rootViewController: vc)
-			nvc.isNavigationBarHidden = true
-			self.window?.rootViewController = nvc
+			self.mainNavigationController = UINavigationController(rootViewController: vc)
+			self.mainNavigationController?.isNavigationBarHidden = true
+			self.window?.rootViewController = self.mainNavigationController
 			self.playerController?.moviePlayer.stop()
 			self.playerController = nil
 		}

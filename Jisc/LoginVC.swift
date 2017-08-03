@@ -233,6 +233,71 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
 		NotificationCenter.default.removeObserver(self)
 	}
 	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		view.layoutIfNeeded()
+		institutesTableHeight.constant = institutesTable.contentSize.height
+		view.layoutIfNeeded()
+	//	loginFieldsBottomSpace = view.frame.size.height - (loginView.frame.origin.y + loginView.frame.size.height)
+	//	loginFieldsBottomSpace += loginView.frame.size.height - (loginFieldsView.frame.origin.y + loginFieldsView.frame.size.height)
+//		let currentUser = getCurrentUser()
+//		var instituteID:String? = nil
+//		var email:String? = nil
+//		var password:String? = nil
+//		if (currentUser != nil) {
+//			instituteID = currentUser!["instituteID"]
+//			email = currentUser!["email"]
+//			password = currentUser!["password"]
+//		} else if (weHaveACurrentUser()) {
+//			instituteID = currentlyLoggedInStudentInstitute
+//			email = currentlyLoggedInStudentEmail
+//			password = currentlyLoggedInStudentPassword
+//		} else if (shouldRememberXAPIUser() && xAPIToken() != nil) {
+//			dataManager.loginWithXAPI(xAPIToken()!, completion: { (success, failureReason) in
+//				if (success) {
+//					DELEGATE.mainController = MainTabBarController()
+//					DELEGATE.window?.rootViewController = DELEGATE.mainController
+//				} else {
+//					self.launchImage.removeFromSuperview()
+//					UIAlertView(title: localized("error"), message: failureReason, delegate: nil, cancelButtonTitle: localized("ok").capitalizedString).show()
+//				}
+//			})
+//		}
+//		
+//		if (instituteID != nil && email != nil && password != nil) {
+//			dataManager.loginStudent(instituteID!, email: email!, password: password!, completion: { (success, failureReason) -> Void in
+//				if (success) {
+//					currentlyLoggedInStudentInstitute = instituteID!
+//					currentlyLoggedInStudentEmail = email!
+//					currentlyLoggedInStudentPassword = password!
+//					DELEGATE.mainController = MainTabBarController()
+//					DELEGATE.window?.rootViewController = DELEGATE.mainController
+//				} else {
+//					self.launchImage.removeFromSuperview()
+//					UIAlertView(title: localized("error"), message: failureReason, delegate: nil, cancelButtonTitle: localized("ok").capitalizedString).show()
+//				}
+//			})
+//		}
+	}
+	
+	override var preferredStatusBarStyle : UIStatusBarStyle {
+		return UIStatusBarStyle.lightContent
+	}
+	
+	func socialLogin(email:String, name:String, userId:String) {
+		dataManager.pickedInstitution = dataManager.socialInstitution()
+		dataManager.socialLogin(email: email, name: name, userId: userId) { (success, failureReason) in
+			if (success) {
+				if let student = dataManager.currentStudent {
+					dataManager.currentStudent?.jisc_id = student.id
+				}
+				RunLoop.current.add(runningActivititesTimer, forMode: RunLoopMode.commonModes)
+				DELEGATE.menuView = MenuView.createView()
+			} else {
+				UIAlertView(title: localized("error"), message: failureReason, delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
+            }
+        }
+    }
 	func putViewInHierarchy(_ subview:UIView) {
 		subview.alpha = 0.0
 		view.addSubview(subview)
@@ -286,8 +351,7 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
 						dataManager.currentStudent?.institution = institution
 					}
 					RunLoop.current.add(runningActivititesTimer, forMode: RunLoopMode.commonModes)
-					DELEGATE.mainController = MainTabBarController()
-					DELEGATE.window?.rootViewController = DELEGATE.mainController
+					DELEGATE.menuView = MenuView.createView()
 				} else {
 					UIAlertView(title: localized("error"), message: failureReason, delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
 				}
@@ -374,7 +438,7 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
 		}
 	}
 	
-	@IBAction func twitter(_ sender:UIButton?) {
+	/*@IBAction func twitter(_ sender:UIButton?) {
 		setUserType(.social)
 		Twitter().logIn(with: self) { (session, error) in
 			if error == nil {
@@ -395,19 +459,25 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
 					} else {
 						self.finishedWithError(error!.localizedDescription)
 					}
-				})
-			} else {
-				self.finishedWithError(error!.localizedDescription)
-			}
+					DELEGATE.menuView = MenuView.createView()
+				} else {
+					UIAlertView(title: localized("error"), message: failureReason, delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
+				}
+			})
+
 		}
-	}
+	}*/
 	
 	@IBAction func goolgePlus(_ sender:UIButton?) {
 		setUserType(.social)
 		GIDSignIn.sharedInstance().signIn()
 	}
 	
-	func socialLogin(email:String, name:String, userId:String) {
+    @IBAction func backToFirstPage(_ sender: UIButton) {
+        goToStep1()
+    }
+    
+    /*func socialLogin(email:String, name:String, userId:String) {
 		if shouldRememberMe() {
 			saveSocialData(email: email, name: name, userId: userId)
 		}
@@ -424,7 +494,7 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
 				UIAlertView(title: localized("error"), message: failureReason, delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
 			}
 		}
-	}
+	}*/
 	
 	@IBAction func demoMode(_ sender:UIButton?) {
 		setUserType(.demo)

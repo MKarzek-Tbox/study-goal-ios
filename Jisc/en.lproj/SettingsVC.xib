@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -37,7 +37,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cEu-O2-ibw">
@@ -130,10 +130,10 @@
                     </variation>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wh2-lc-A0t">
-                    <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                    <rect key="frame" x="0.0" y="60" width="375" height="1140"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VkT-MV-ejr">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="580"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="631"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d8k-qc-8d2" userLabel="profile">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="316"/>
@@ -162,7 +162,7 @@
                                                     <rect key="frame" x="18" y="5" width="289" height="65"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDI-YD-ROS">
-                                                            <rect key="frame" x="0.0" y="0.0" width="84" height="21"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="83.5" height="21"/>
                                                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="21"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -174,7 +174,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student ID : 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dcb-hD-OZM">
-                                                            <rect key="frame" x="0.0" y="46" width="79" height="14"/>
+                                                            <rect key="frame" x="0.0" y="46" width="78.5" height="14"/>
                                                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -524,12 +524,41 @@
                                         <constraint firstItem="1yj-ro-QEb" firstAttribute="top" secondItem="pZc-yQ-1x4" secondAttribute="top" id="xgO-gK-Asq"/>
                                     </constraints>
                                 </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1kM-Wl-vH1" userLabel="privacyStatement">
+                                    <rect key="frame" x="0.0" y="581" width="375" height="52"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lrg-lI-VS2" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
+                                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
+                                            <inset key="titleEdgeInsets" minX="40" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="Privacy Statement" image="settingsFriendsIcon">
+                                                <color key="titleColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="Privacy Statement"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="privacyStatement:" destination="-1" eventType="touchUpInside" id="chi-if-JNA"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="lrg-lI-VS2" secondAttribute="bottom" id="S3s-kd-XRr"/>
+                                        <constraint firstItem="lrg-lI-VS2" firstAttribute="top" secondItem="1kM-Wl-vH1" secondAttribute="top" id="ane-BD-mXI"/>
+                                        <constraint firstAttribute="trailing" secondItem="lrg-lI-VS2" secondAttribute="trailing" id="drL-NE-d1y"/>
+                                        <constraint firstAttribute="height" constant="52" id="jfY-DF-FeI"/>
+                                        <constraint firstItem="lrg-lI-VS2" firstAttribute="leading" secondItem="1kM-Wl-vH1" secondAttribute="leading" id="jtp-66-7YQ"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
+                                <constraint firstItem="pZc-yQ-1x4" firstAttribute="bottom" secondItem="1kM-Wl-vH1" secondAttribute="top" constant="-1" id="0DK-o9-bFF"/>
                                 <constraint firstItem="ML0-Uw-qaX" firstAttribute="leading" secondItem="VkT-MV-ejr" secondAttribute="leading" id="37r-4F-3fd"/>
                                 <constraint firstItem="CrY-J1-DiG" firstAttribute="leading" secondItem="VkT-MV-ejr" secondAttribute="leading" id="3xs-uX-kOY"/>
-                                <constraint firstAttribute="bottom" secondItem="pZc-yQ-1x4" secondAttribute="bottom" id="4Sa-9e-vpK"/>
+                                <constraint firstAttribute="bottom" secondItem="pZc-yQ-1x4" secondAttribute="bottom" constant="51" id="4Sa-9e-vpK"/>
                                 <constraint firstAttribute="trailing" secondItem="ML0-Uw-qaX" secondAttribute="trailing" id="8Bb-R9-8qd"/>
                                 <constraint firstItem="lZT-KV-rRe" firstAttribute="leading" secondItem="VkT-MV-ejr" secondAttribute="leading" id="98X-yb-Z0n"/>
                                 <constraint firstItem="Owl-B7-WLo" firstAttribute="top" secondItem="lZT-KV-rRe" secondAttribute="bottom" constant="1" id="BjO-9s-bJP"/>
@@ -562,6 +591,8 @@
                     </subviews>
                     <constraints>
                         <constraint firstItem="VkT-MV-ejr" firstAttribute="top" secondItem="Wh2-lc-A0t" secondAttribute="top" id="69A-ir-Okp"/>
+                        <constraint firstAttribute="trailing" secondItem="1kM-Wl-vH1" secondAttribute="trailing" id="WDb-wK-NNA"/>
+                        <constraint firstItem="1kM-Wl-vH1" firstAttribute="leading" secondItem="Wh2-lc-A0t" secondAttribute="leading" id="mlZ-qg-UgQ"/>
                         <constraint firstItem="VkT-MV-ejr" firstAttribute="leading" secondItem="Wh2-lc-A0t" secondAttribute="leading" id="ugX-9z-BmF"/>
                         <constraint firstAttribute="trailing" secondItem="VkT-MV-ejr" secondAttribute="trailing" id="vH8-6B-M8A"/>
                         <constraint firstItem="VkT-MV-ejr" firstAttribute="width" secondItem="Wh2-lc-A0t" secondAttribute="width" id="vrs-gf-ZBh"/>
@@ -580,7 +611,8 @@
                 <constraint firstAttribute="trailing" secondItem="Wh2-lc-A0t" secondAttribute="trailing" id="uLT-9G-qHr"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-            <point key="canvasLocation" x="353" y="66"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="352.5" y="187.5"/>
         </view>
     </objects>
     <resources>
