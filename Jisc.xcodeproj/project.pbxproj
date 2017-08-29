@@ -2091,8 +2091,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.jisc.studygoal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "StudyGoal 2016";
+				PROVISIONING_PROFILE = "055603d6-65f9-442b-9bf9-70d76998482a";
+				PROVISIONING_PROFILE_SPECIFIER = "Study Goal Distribution Profile";
 				SWIFT_OBJC_BRIDGING_HEADER = "Jisc/Jisc-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
