@@ -12,7 +12,7 @@ enum MenuButtonType:String {
 	case Feed = "Activity Feed"
 	case Stats = "Stats"
 	case Log = "Log"
-    case Checkin = "Check-in"
+    	case Checkin = "Check-in" 
 	case Target = "Target"
 	case Settings = "Settings"
 	case Logout = "Logout"
@@ -152,28 +152,35 @@ class StatsMenuButton: MenuButton {
 		expanded = true
 		UIView.animate(withDuration: 0.25) {
 			self.arrow.transform = CGAffineTransform(rotationAngle: .pi / 2.0)
-			self.buttonsHeight.constant = 40 * 6
+			self.buttonsHeight.constant = 40 * 4
 			self.parent?.layoutIfNeeded()
 		}
-        let defaults = UserDefaults.standard
-        let result = defaults.object(forKey: "SettingsReturnAttendance") as! String
+        var result = ""
+        if !demo(){
+            let defaults = UserDefaults.standard
+            result = defaults.object(forKey: "SettingsReturnAttendance") as! String
+        }
 
         //let attainmentResult = defaults.object(forKey: "SettingsReturnAttainment") as! String
 
-        if (result.range(of: "false") == nil){
-            attendanceButton.alpha = 1.0
-            eventsAttendedButton.alpha = 0.0
-            //leaderboardsButton.alpha = 1.0
-        } else {
-            attendanceButton.alpha = 0.0
-            eventsAttendedButton.alpha = 0.0
-            //leaderboardsButton.alpha = 0.0
+        //let attainmentResult = defaults.object(forKey: "SettingsReturnAttainment") as! String
+        if !demo(){
+            if (result.range(of: "false") == nil){
+                attendanceButton.alpha = 1.0
+                eventsAttendedButton.alpha = 0.0
+                //leaderboardsButton.alpha = 1.0
+            } else {
+                attendanceButton.alpha = 0.0
+                eventsAttendedButton.alpha = 0.0
+                //leaderboardsButton.alpha = 0.0
+            }
+            //        if (attainmentResult.range(of: "false") != nil){
+            //            attainmentButton.alpha = 1.0
+            //        } else {
+            //            attainmentButton.alpha = 0.0
+            //        }
         }
-//        if (attainmentResult.range(of: "false") != nil){
-//            attainmentButton.alpha = 1.0
-//        } else {
-//            attainmentButton.alpha = 0.0
-//        }
+        eventsAttendedButton.alpha = 0.0
 	}
 	
 	func retract() {
