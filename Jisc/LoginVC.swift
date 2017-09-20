@@ -93,14 +93,18 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
 	@IBOutlet weak var nextButton:UIButton!
 	@IBOutlet var loginStep2:UIView!
 	@IBOutlet var loginStep3:UIView!
+    @IBOutlet weak var versionLabel: UILabel!
 	
-	@IBOutlet weak var instituteTextField:UITextField!
+    @IBOutlet weak var instituteTextField:UITextField!
 	@IBOutlet weak var institutesTable:UITableView!
 	@IBOutlet weak var institutesTableHeight:NSLayoutConstraint!
 	var filteredInstitutions:[Institution] = [Institution]()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        displayVersionAndBuildNumber()
+        
 		NotificationCenter.default.addObserver(self, selector: #selector(xAPILoginComplete(_:)), name: NSNotification.Name(rawValue: xAPILoginCompleteNotification), object: nil)
 		GIDSignIn.sharedInstance().uiDelegate = self
 		FBSDKLoginManager().logOut()
@@ -284,6 +288,18 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
 		return UIStatusBarStyle.lightContent
 	}
 	
+    func displayVersionAndBuildNumber()
+    {
+        var releaseVersionNumber: String? {
+            return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+        }
+        var buildVersionNumber: String? {
+            return Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+        }
+        
+        self.versionLabel.text = releaseVersionNumber! + " (" + buildVersionNumber! + ")"
+    }
+    
 	func socialLogin(email:String, name:String, userId:String) {
 		dataManager.pickedInstitution = dataManager.socialInstitution()
 		dataManager.socialLogin(email: email, name: name, userId: userId) { (success, failureReason) in

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -25,6 +25,7 @@
                 <outlet property="rememberButton" destination="ihX-GB-yAh" id="CqY-Ja-yuP"/>
                 <outlet property="staffButton" destination="jnm-Jf-HlH" id="Jvc-og-GOM"/>
                 <outlet property="studentButton" destination="AXf-hN-ygR" id="bq2-5L-Pc3"/>
+                <outlet property="versionLabel" destination="snD-Sm-7Rh" id="3kr-zJ-vXb"/>
                 <outlet property="view" destination="iN0-l3-epB" id="PEW-9b-GUr"/>
             </connections>
         </placeholder>
@@ -114,7 +115,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdW-ta-NB6">
-                    <rect key="frame" x="92.5" y="597" width="190" height="50"/>
+                    <rect key="frame" x="93" y="597" width="190" height="50"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="190" id="HQv-4O-v53"/>
                     </constraints>
@@ -124,11 +125,18 @@
                         <action selector="demoMode:" destination="-1" eventType="touchUpInside" id="uqI-n8-xdh"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snD-Sm-7Rh">
+                    <rect key="frame" x="342.5" y="649.5" width="28.5" height="13.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="xnp-Pz-kTD" secondAttribute="trailing" constant="20" id="64j-u2-3er"/>
                 <constraint firstItem="SUR-63-VKQ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Aab-dz-06j"/>
+                <constraint firstAttribute="trailing" secondItem="snD-Sm-7Rh" secondAttribute="trailing" constant="4" id="Bph-mW-a99"/>
                 <constraint firstItem="UdW-ta-NB6" firstAttribute="top" relation="greaterThanOrEqual" secondItem="SUR-63-VKQ" secondAttribute="bottom" constant="10" id="COI-NB-0Ff"/>
                 <constraint firstItem="ihX-GB-yAh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="D2J-1X-GNm"/>
                 <constraint firstAttribute="bottom" secondItem="UdW-ta-NB6" secondAttribute="bottom" priority="1" constant="20" id="HdV-9s-Jt0"/>
@@ -137,6 +145,7 @@
                 <constraint firstAttribute="trailing" secondItem="dMH-2G-yRC" secondAttribute="trailing" id="gnx-Te-6he"/>
                 <constraint firstItem="SUR-63-VKQ" firstAttribute="top" secondItem="ihX-GB-yAh" secondAttribute="bottom" constant="10" id="hIF-vC-3vv"/>
                 <constraint firstItem="xnp-Pz-kTD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="haO-w9-KWT"/>
+                <constraint firstAttribute="bottom" secondItem="snD-Sm-7Rh" secondAttribute="bottom" constant="4" id="i2J-3o-LoW"/>
                 <constraint firstAttribute="bottom" secondItem="dMH-2G-yRC" secondAttribute="bottom" id="mDh-vJ-LL2"/>
                 <constraint firstItem="UdW-ta-NB6" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="pyC-4e-L9Z"/>
                 <constraint firstItem="dMH-2G-yRC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="vdA-Me-tru"/>
@@ -334,7 +343,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="335" height="124"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Institution not listed?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ce-Xk-oI9">
-                            <rect key="frame" x="93" y="10" width="150.5" height="17"/>
+                            <rect key="frame" x="92.5" y="10" width="150.5" height="17"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>

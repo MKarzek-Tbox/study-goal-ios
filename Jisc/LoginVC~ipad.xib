@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -25,6 +25,7 @@
                 <outlet property="rememberButton" destination="8TZ-Ui-W2a" id="9Z9-tr-Z2o"/>
                 <outlet property="staffButton" destination="C8l-bE-dxe" id="AMW-7U-ey9"/>
                 <outlet property="studentButton" destination="bSR-SS-cTc" id="wmX-wx-v2r"/>
+                <outlet property="versionLabel" destination="gMu-YH-bmS" id="t24-wm-D6n"/>
                 <outlet property="view" destination="0sw-2U-yWs" id="dpT-qd-O6h"/>
             </connections>
         </placeholder>
@@ -36,6 +37,12 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="hNi-BN-72s">
                     <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMu-YH-bmS">
+                    <rect key="frame" x="982.5" y="746" width="37.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9SM-jG-4Vg">
                     <rect key="frame" x="354.5" y="100" width="315" height="333"/>
                     <subviews>
@@ -132,6 +139,7 @@
                 <constraint firstItem="9SM-jG-4Vg" firstAttribute="centerX" secondItem="0sw-2U-yWs" secondAttribute="centerX" id="Acl-De-Z8z"/>
                 <constraint firstItem="cNL-jC-r5M" firstAttribute="centerX" secondItem="0sw-2U-yWs" secondAttribute="centerX" id="Ad5-my-4V7"/>
                 <constraint firstAttribute="bottom" secondItem="cNL-jC-r5M" secondAttribute="bottom" constant="20" id="Gd6-5K-plf"/>
+                <constraint firstAttribute="trailing" secondItem="gMu-YH-bmS" secondAttribute="trailing" constant="4" id="He5-0I-NOC"/>
                 <constraint firstItem="eyY-qN-7Na" firstAttribute="centerX" secondItem="0sw-2U-yWs" secondAttribute="centerX" id="S9W-FI-PWj"/>
                 <constraint firstAttribute="trailing" secondItem="hNi-BN-72s" secondAttribute="trailing" id="Z8G-8m-bqH"/>
                 <constraint firstItem="8TZ-Ui-W2a" firstAttribute="top" secondItem="9SM-jG-4Vg" secondAttribute="bottom" constant="20" id="bp9-Hw-fpD"/>
@@ -140,6 +148,7 @@
                 <constraint firstItem="hNi-BN-72s" firstAttribute="leading" secondItem="0sw-2U-yWs" secondAttribute="leading" id="q3g-Z6-yiJ"/>
                 <constraint firstAttribute="bottom" secondItem="hNi-BN-72s" secondAttribute="bottom" id="rhJ-tM-BZ5"/>
                 <constraint firstItem="9SM-jG-4Vg" firstAttribute="top" secondItem="0sw-2U-yWs" secondAttribute="top" constant="100" id="vJJ-mB-Ph0"/>
+                <constraint firstAttribute="bottom" secondItem="gMu-YH-bmS" secondAttribute="bottom" constant="4" id="vwn-s4-eZg"/>
             </constraints>
             <point key="canvasLocation" x="33.5" y="54.5"/>
         </view>
@@ -333,7 +342,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="494" height="144"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Institution not listed?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2V-bx-zHi">
-                            <rect key="frame" x="172" y="10" width="150.5" height="17"/>
+                            <rect key="frame" x="172.5" y="10" width="150.5" height="17"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
