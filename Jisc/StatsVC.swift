@@ -538,7 +538,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     //	}
     
     func goToGraph() {
-        topLabel.text = "VLE Activity"
+        topLabel.text = "Overall Activity"
         hideUpperViews()
         container.isHidden = false
         if iPad {
@@ -1076,17 +1076,27 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                                 countData = countData + String(count) + ", "
                             }
                             var countDataFinal:String = ""
-                            let endIndex = countData.index(countData.endIndex, offsetBy: -2)
-                            countDataFinal = "[" + countData.substring(to: endIndex) + "]"
-                            for date in dateArray {
-                                //Here is where I think I should add the formattinfg code.
-                                
-                                dateData = dateData + "'\(date)'" + ", "
-                            }
                             var dateDataFinal:String = ""
-                            let endIndexDate = dateData.index(dateData.endIndex, offsetBy: -2)
                             
-                            dateDataFinal = "[" + dateData.substring(to: endIndexDate) + "]"
+                            if !(countData=="")
+                            {
+                            
+                                let endIndex = countData.index(countData.endIndex, offsetBy: -2)
+                                countDataFinal = "[" + countData.substring(to: endIndex) + "]"
+                                for date in dateArray {
+                                    //Here is where I think I should add the formattinfg code.
+                                    
+                                    dateData = dateData + "'\(date)'" + ", "
+                                }
+                             
+                                let endIndexDate = dateData.index(dateData.endIndex, offsetBy: -2)
+                                
+                                dateDataFinal = "[" + dateData.substring(to: endIndexDate) + "]"
+                            }
+                            else
+                            {
+                                dateDataFinal=""
+                            }
                             
                             
                             contents = contents.replacingOccurrences(of: "COUNT", with: countDataFinal)
