@@ -39,7 +39,7 @@ class xAPILoginVC: BaseViewController, UIWebViewDelegate {
 		urlString += "&target=https://sp.data.alpha.jisc.ac.uk/secure/auth.php?u="
 		urlString += UUID!
 		if shouldRememberMe() {
-			urlString += "lt=true"
+			urlString += "&lt=true"
 		}
 		
 		if let URL = URL(string: urlString) {

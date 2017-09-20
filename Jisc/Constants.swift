@@ -186,7 +186,7 @@ func deleteCurrentUser() {
 }
 
 func shouldRememberXAPIUser() -> Bool {
-	let shouldRemember = NSKeyedUnarchiver.unarchiveObject(withFile: filePath("shouldRememberXAPIUser")) as? Bool
+	let shouldRemember = NSKeyedUnarchiver.unarchiveObject(withFile: filePath("shouldRememberTheUser")) as? Bool
 	if (shouldRemember != nil) {
 		return shouldRemember!
 	} else {
@@ -195,7 +195,7 @@ func shouldRememberXAPIUser() -> Bool {
 }
 
 func setShouldRememberXAPIUser(_ save:Bool) {
-	NSKeyedArchiver.archiveRootObject(save, toFile: filePath("shouldRememberXAPIUser"))
+	NSKeyedArchiver.archiveRootObject(save, toFile: filePath("shouldRememberTheUser"))
 }
 
 //MARK: xAPI Token
@@ -207,7 +207,7 @@ func xAPIToken() -> String? {
 
 func setXAPIToken(_ sender:String) {
 	NSKeyedArchiver.archiveRootObject(sender, toFile: filePath("xAPIToken"))
-	if keepMeLoggedIn() {
+	if shouldRememberXAPIUser() {
 		if let institutionId = dataManager.pickedInstitution?.id {
 			NSKeyedArchiver.archiveRootObject(institutionId, toFile: filePath("institutionId"))
 		}
@@ -599,6 +599,7 @@ func JWTStillValid() -> Bool {
 		}
 	}
 	if valid {
+        
 		if let institutionId = NSKeyedUnarchiver.unarchiveObject(withFile: filePath("institutionId")) as? String {
 			let fetchRequest:NSFetchRequest<Institution> = NSFetchRequest(entityName: institutionEntityName)
 			fetchRequest.predicate = NSPredicate(format: "id == %@", institutionId)
