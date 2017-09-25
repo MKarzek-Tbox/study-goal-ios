@@ -1,17 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="MyriadPro-Regular.otf">
+        <array key="MyriadPro-Regular.otf">
             <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -20,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="81"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="81.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M7W-mU-Jd6">
@@ -45,16 +46,16 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rocky Grade" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LR3-B3-ky6">
                                         <rect key="frame" x="74" y="20" width="105" height="20"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
-                                        <color key="textColor" red="0.6705882353" green="0.50196078430000002" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.6705882353" green="0.50196078430000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="courseIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Hag-eJ-8jR">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="courseIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Hag-eJ-8jR">
                                         <rect key="frame" x="74" y="43" width="10" height="11"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English Course" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPn-R9-gNz">
-                                        <rect key="frame" x="88" y="44" width="62" height="10"/>
+                                        <rect key="frame" x="88" y="43.5" width="62" height="10"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="10"/>
-                                        <color key="textColor" red="0.67843137249999996" green="0.69019607839999997" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.67843137249999996" green="0.69019607839999997" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qi5-d2-Ij4" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
@@ -65,7 +66,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="13"/>
                                         <state key="normal" title="Hide" backgroundImage="blueBorderButton">
-                                            <color key="titleColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <state key="selected" title="Unhide" backgroundImage="blueBorderButton"/>
                                         <userDefinedRuntimeAttributes>
@@ -84,7 +85,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="13"/>
                                         <state key="normal" title="Delete" backgroundImage="blueFullButton">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <state key="selected" backgroundImage="blueFullButton"/>
                                         <userDefinedRuntimeAttributes>
@@ -95,7 +96,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="LR3-B3-ky6" firstAttribute="leading" secondItem="LPT-SR-g8u" secondAttribute="trailing" constant="8" id="4VD-LW-tWC"/>
                                     <constraint firstItem="Hag-eJ-8jR" firstAttribute="top" secondItem="LR3-B3-ky6" secondAttribute="bottom" constant="3" id="6Bc-pQ-efu"/>
@@ -120,7 +121,7 @@
                                 </variation>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.90198396380000001" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.90198397636413574" green="0.90198397636413574" blue="0.90198397636413574" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="yGQ-wz-gkw" firstAttribute="top" secondItem="M7W-mU-Jd6" secondAttribute="top" constant="1" id="eur-Is-bR9"/>
                             <constraint firstItem="yGQ-wz-gkw" firstAttribute="leading" secondItem="M7W-mU-Jd6" secondAttribute="leading" constant="1" id="uAX-38-Acl"/>
@@ -148,8 +149,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="blueBorderButton" width="5" height="7"/>
-        <image name="blueFullButton" width="5" height="5"/>
-        <image name="courseIcon" width="10" height="11"/>
+        <image name="blueBorderButton" width="4" height="4"/>
+        <image name="blueFullButton" width="4" height="4"/>
+        <image name="courseIcon" width="10" height="10"/>
     </resources>
 </document>

@@ -11,6 +11,7 @@ import UIKit
 class MenuView: UIView {
 	
 	let feedViewController = FeedVC()
+    let friendsViewController = SearchVC()
 	let checkinViewController = CheckinVC()
 	let statsViewController = StatsVC()
 	let logViewController = LogVC()
@@ -45,7 +46,7 @@ class MenuView: UIView {
         if !demo(){
             let defaults = UserDefaults.standard
             result = defaults.object(forKey: "SettingsReturn") as! String
-            
+            print("defaults value \(defaults.object(forKey: "SettingsReturn")!)")
         }
 		var lastButton:MenuButton?
 		let index = getHomeScreenTab().rawValue
@@ -65,8 +66,9 @@ class MenuView: UIView {
             print("issocial");
 
 		} else {
-            print("nosocial");
+            print("not social");
 			lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Feed, previousButton: lastButton, isLastButton: false, parent: view)
+            lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Friends, previousButton: lastButton, isLastButton: false, parent: view)
 			if iPad {
 				lastButton = StatsMenuButton.insertSelfinView(view.menuContent, buttonType: .Stats, previousButton: lastButton, isLastButton: false, parent: view)
 			} else {
@@ -75,37 +77,57 @@ class MenuView: UIView {
             
 			lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Log, previousButton: lastButton, isLastButton: false, parent: view)
             if !demo(){
+                print("menu check \(result.range(of: "true"))")
                 if (result.range(of: "true") != nil)
                 {
                     //Show check-in when response is true.
                     lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Checkin, previousButton: lastButton, isLastButton: false, parent: view)
-                } else {
-
                 }
-
             } else {
                     lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Checkin, previousButton: lastButton, isLastButton: false, parent: view)
             }
 
             lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Target, previousButton: lastButton, isLastButton: false, parent: view)
             
+            /*switch (index){
+            case 0:
+                view.feed()
+            case 1:
+                view.friends()
+            case 2:
+                view.stats()
+            case 3:
+                view.checkin()
+            case 4:
+                view.log()
+            case 5:
+                view.target()
+            case 6:
+                view.settings()
+            default:
+                view.logout()
+            }*/
+            
 			if index == 0 {
 				view.feed()
-			} else if index == 1 {
+            } else if index == 1 {
+                view.friends()
+            } else if index == 2 {
 				view.stats()
-			} else if index == 2 {
-				view.log()
             } else if index == 3 {
+                view.checkin()
+            } else if index == 4 {
+                view.log()
+            } else if index == 5 {
                 if !demo(){
                     if (result.range(of: "false") == nil){
                         view.feed()
-                        
                     } else {
                         view.checkin()
                     }
                 }
 
-            } else if index == 4 {
+            } else if index == 6 {
 				view.target()
 			} else {
 				view.feed()
@@ -165,38 +187,45 @@ class MenuView: UIView {
 		DELEGATE.mainNavigationController?.setViewControllers([feedViewController], animated: false)
 		close(nil)
 	}
-	
-	func checkin() {
-        print("checvkingin")
-		selectedIndex = 1
-		NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Checkin)
-		DELEGATE.mainNavigationController?.setViewControllers([checkinViewController], animated: false)
-		close(nil)
-	}
+    
+    func friends() {
+        selectedIndex = 1
+        NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Friends)
+        DELEGATE.mainNavigationController?.setViewControllers([friendsViewController], animated: false)
+        close(nil)
+    }
 	
 	func stats() {
-		selectedIndex = 1
+		selectedIndex = 2
 		NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Stats)
 		DELEGATE.mainNavigationController?.setViewControllers([statsViewController], animated: false)
 		close(nil)
 	}
     
     func appUsage() {
-        selectedIndex = 1
+        selectedIndex = 2
         NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Stats)
         DELEGATE.mainNavigationController?.setViewControllers([appUsageViewController], animated: false)
         close(nil)
     }
+    
+    func checkin() {
+        print("checking in")
+        selectedIndex = 3
+        NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Checkin)
+        DELEGATE.mainNavigationController?.setViewControllers([checkinViewController], animated: false)
+        close(nil)
+    }
 	
 	func log() {
-		selectedIndex = 2
+		selectedIndex = 4
 		NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Log)
 		DELEGATE.mainNavigationController?.setViewControllers([logViewController], animated: false)
 		close(nil)
 	}
 	
 	func target() {
-		selectedIndex = 3
+		selectedIndex = 5
 		NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Target)
 		DELEGATE.mainNavigationController?.setViewControllers([targetViewController], animated: false)
 		close(nil)

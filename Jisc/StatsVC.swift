@@ -82,30 +82,32 @@ class PointsObject {
 
 }
 
-class EventsAttendedObject:NSObject,NSCoding {
-    var date:Date
+class EventsAttendedObject {
+    var date:String
+    var time:String
     var activity:String
     var module:String
     
-    init(date:Date,activity:String,module:String){
+    init(date:String,time:String,activity:String,module:String){
         self.date = date
+        self.time = time
         self.activity = activity
         self.module = module
     }
-    //MARK: - NSCoding -
-    required convenience init(coder aDecoder: NSCoder) {
-        let date = aDecoder.decodeObject(forKey: "date") as! Date
-        let activity = aDecoder.decodeObject(forKey: "activity") as! String
-        let module = aDecoder.decodeObject(forKey: "module") as! String
-        self.init(date: date, activity: activity, module: module)
-    }
-    
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(date, forKey: "date")
-        aCoder.encode(activity, forKey: "activity")
-        aCoder.encode(module, forKey: "module")
-
-    }
+//    //MARK: - NSCoding -
+//    required convenience init(coder aDecoder: NSCoder) {
+//        let date = aDecoder.decodeObject(forKey: "date") as! Date
+//        let activity = aDecoder.decodeObject(forKey: "activity") as! String
+//        let module = aDecoder.decodeObject(forKey: "module") as! String
+//        self.init(date: date, activity: activity, module: module)
+//    }
+//    
+//    func encode(with aCoder: NSCoder) {
+//        aCoder.encode(date, forKey: "date")
+//        aCoder.encode(activity, forKey: "activity")
+//        aCoder.encode(module, forKey: "module")
+//
+//    }
 }
 
 let periods:[kXAPIEngagementScope] = [.SevenDays, .ThirtyDays]
@@ -263,6 +265,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         getAttainmentData {
             print("Getting Attainment data")
         }
+        self.eventsAttendedArray.removeAll()
         getEventsAttended {
             print("requested events attended")
         }
@@ -285,7 +288,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         getAttainmentData {
             self.attainmentTableView.reloadData()
         }
-
+        self.eventsAttendedArray.removeAll()
         getEventsAttended {
             print("requested events attended")
             self.eventsAttendedTableView.reloadData()
@@ -427,41 +430,45 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         let xMGR = xAPIManager()
         xMGR.silent = true
         xMGR.getEventsAttended(skip: 0, limit: self.eventsAttendedLimit) { (success, result, results, error) in
-            
+            self.eventsAttendedArray.append(EventsAttendedObject(date: "Date", time: "Time", activity: "Activity", module: "Module"))
             if (results != nil){
                 print("receiving data")
                 // handle data
                 for event in results! {
-                    var date:Date
-                    var activity:String
-                    var module:String
+                    var date:String?
+                    var time:String?
+                    var activity:String?
+                    var module:String?
                     
                     if let object = event as? [String:Any] {
                         if let statement = object["statement"] as? [String:Any]{
-                            if let context = statement["context"] as? [String:Any] {
-                                if let extensions = context["extensions"] as? [String:Any] {
-                                    activity = extensions["http://xapi.jisc.ac.uk/activity_type_id"] as! String
-                                    let dateFormatter = DateFormatter()
-                                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                                    var dateString = extensions["http://xapi.jisc.ac.uk/starttime"] as! String
-//                                    let firstTenCharIndex = dateString.index(dateString.startIndex, offsetBy: 10)
-//                                    let firstTenChar = dateString.substring(to: firstTenCharIndex)
-                                    dateString = dateString.components(separatedBy: ".").first!
-                                    dateString = dateString.replacingOccurrences(of: "T", with: " ")
-                                    date = dateFormatter.date(from: dateString)!
-                                    
-                                    if let courseArea = extensions["http://xapi.jisc.ac.uk/courseArea"] as? [String:Any]{
-                                        module = courseArea["http://xapi.jisc.ac.uk/uddModInstanceID"] as! String
-                                        print("\(date) \(activity) \(module)")
-                                        self.eventsAttendedArray.append(EventsAttendedObject(date: date,activity: activity,module: module))
+                            if let object2 = statement["object"] as? [String:Any] {
+                                if let definition = object2["definition"] as? [String:Any] {
+                                    if let name = definition["name"] as? [String:Any]{
+                                        let en = name["en"] as! String
+                                        print("Ahmed this is the en",en)
+                                        var separatedArray = en.components(separatedBy: " ")
+                                        date = separatedArray.popLast()
+                                        time = separatedArray.popLast()
+                                        module = separatedArray.joined(separator: " ")
+                                        print ("Ahmed this date \(date!) time \(time!) module \(module)")
+                                        //self.eventsAttendedArray.append(EventsAttendedObject(date: date,activity: activity,module: module))
                                     }
+                                }
+                            }
+                            if let context = statement["context"] as? [String:Any]{
+                                if let extensions = context["extensions"] as? [String:Any]{
+                                    activity = extensions["http://xapi.jisc.ac.uk/activity_type_id"] as? String
+                                    print("Ahmed this is the acticity for the call", activity!)
                                 }
                             }
                         }
                     }
+                    self.eventsAttendedArray.append(EventsAttendedObject(date: date!, time: time!, activity: activity!, module: module!))
                 }
-                self.eventsAttendedArray.sort(by: { $0.date.compare($1.date) == .orderedDescending})
-                self.eventsAttendedUniqueArray = self.eventsAttendedArray.filterDuplicates { $0.date == $1.date }
+                
+//                self.eventsAttendedArray.sort(by: { $0.date.compare($1.date) == .orderedDescending})
+//                self.eventsAttendedUniqueArray = self.eventsAttendedArray.filterDuplicates { $0.date == $1.date }
                 //self.eventsAttendedUniqueArray.sort(by: { $0.date.compare($1.date) == .orderedDescending})
                 //Saving to UserDefaults for offline use.
 //                let defaults = UserDefaults.standard
@@ -711,7 +718,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 //            let decoded  = defaults.object(forKey: "EventsAttendedArray") as! Data
 //            let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [EventsAttendedObject]
 
-            nrRows = eventsAttendedUniqueArray.count
+            nrRows = eventsAttendedArray.count
             break
         default:
             break
@@ -779,16 +786,16 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 
             
             if let theCell = cell as? EventsAttendedCell {
-                if indexPath.row < eventsAttendedUniqueArray.count {
-                    if (indexPath.row == 0){
-                        theCell.activityLabel.text = "Activity"
-                        theCell.timeLabel.text = "Time"
-                        theCell.dateLabel.text = "Date"
-                        theCell.moduleLabel.text = "Module"
-                        print("samlinetest");
-                    } else {
-                        theCell.loadEvents(events: eventsAttendedUniqueArray[indexPath.row])
-                    }
+                if indexPath.row < eventsAttendedArray.count {
+//                    if (indexPath.row == 0){
+//                        theCell.activityLabel.text = "Activity"
+//                        theCell.timeLabel.text = "Time"
+//                        theCell.dateLabel.text = "Date"
+//                        theCell.moduleLabel.text = "Module"
+//                        print("samlinetest");
+//                    } else {
+                        theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
+                   // }
                 } else {
                     //theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
                 }
@@ -844,7 +851,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             
             break
         case eventsAttendedTableView:
-            if (eventsAttendedArray.count > 0)
+            if (eventsAttendedArray.count + 1 > 0)
             {
                 tableView.separatorStyle = .singleLine
                 numOfSections            = 1
@@ -903,16 +910,16 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 //                let decoded  = defaults.object(forKey: "EventsAttendedArray") as! Data
 //                let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [EventsAttendedObject]
                 
-                if indexPath.row < eventsAttendedUniqueArray.count {
-                    if (indexPath.row == 0){
-                        theCell.activityLabel.text = "Activity"
-                        theCell.timeLabel.text = "Time"
-                        theCell.dateLabel.text = "Date"
-                        theCell.moduleLabel.text = "Module"
-                        print("samlinetest");
-                    } else {
-                        theCell.loadEvents(events: eventsAttendedUniqueArray[indexPath.row])
-                    }
+                if indexPath.row < eventsAttendedArray.count {
+//                    if (indexPath.row == 0){
+//                        theCell.activityLabel.text = "Activity"
+//                        theCell.timeLabel.text = "Time"
+//                        theCell.dateLabel.text = "Date"
+//                        theCell.moduleLabel.text = "Module"
+//                        print("samlinetest");
+//                    } else {
+                        theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
+                    //}
 
                 } else {
                     //theCell.loadAttainmentObject(nil)

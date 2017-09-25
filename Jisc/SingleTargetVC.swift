@@ -64,7 +64,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     func doThisWhenNotify(){
         let vc = RecurringTargetVC()
         vc.cameFromEditing()
-        navigationController?.pushViewController(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: false)
     }
     
     func callGetToDoList(){

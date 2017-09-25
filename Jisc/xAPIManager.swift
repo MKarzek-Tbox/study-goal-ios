@@ -563,7 +563,8 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
             }
             NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
                 returnedString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)! as String
-                //print(response)
+                print("returned String is: \(returnedString)")
+                print("response from server \(String(describing: response))")
 
                 if (testUrl=="https://api.datax.jisc.ac.uk/sg/setting?setting=studyGoalAttendance"){
                     let defaults = UserDefaults.standard

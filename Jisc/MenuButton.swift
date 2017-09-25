@@ -9,7 +9,8 @@
 import UIKit
 
 enum MenuButtonType:String {
-	case Feed = "Activity Feed"
+    case Feed = "Activity Feed"
+    case Friends = "Friends"
 	case Stats = "Stats"
 	case Log = "Log"
     case Checkin = "Check-in"
@@ -39,6 +40,10 @@ class MenuButton: UIView {
 			button.button.setImage(UIImage(named: "FeedVCMenuIcon"), for: .normal)
 			button.button.setImage(UIImage(named: "FeedVCMenuIconSelected"), for: .selected)
 			break
+        case .Friends:
+            button.button.setImage(UIImage(named: "settingsFriendsIcon"), for: .normal)
+            button.button.setImage(UIImage(named: "settingsFriendsIcon"), for: .selected)
+            break
 		case .Stats:
 			button.button.setImage(UIImage(named: "StatsVCMenuIcon"), for: .normal)
 			button.button.setImage(UIImage(named: "StatsVCMenuIconSelected"), for: .selected)
@@ -100,7 +105,10 @@ class MenuButton: UIView {
 		switch type {
 		case .Feed:
 			parent?.feed()
-			break
+            break
+        case .Friends:
+            parent?.friends()
+            break
 		case .Stats:
 			parent?.stats()
 			break

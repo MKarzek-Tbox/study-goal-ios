@@ -38,7 +38,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check-in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mio-T4-8pw">
-                            <rect key="frame" x="165.66666666666666" y="28" width="83" height="22"/>
+                            <rect key="frame" x="166" y="28" width="83" height="22"/>
                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="22"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -55,19 +55,19 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jisc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BAV-y0-qjP" customClass="AppTitleLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="9" y="14" width="37" height="17"/>
+                            <rect key="frame" x="44" y="29" width="37" height="17"/>
                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZX-1j-f8P">
-                            <rect key="frame" x="6" y="19" width="40" height="40"/>
+                            <rect key="frame" x="6" y="14" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="UTb-7t-xOp"/>
                                 <constraint firstAttribute="height" constant="40" id="Zri-DJ-540"/>
                             </constraints>
                             <inset key="contentEdgeInsets" minX="0.0" minY="9" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" image="backButton"/>
+                            <state key="normal" image="openMenuButton"/>
                             <connections>
                                 <action selector="backButton:" destination="-1" eventType="touchUpInside" id="9cf-cU-kB4"/>
                             </connections>
@@ -76,20 +76,20 @@
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="Mio-T4-8pw" secondAttribute="bottom" constant="10" id="8cy-i8-wZj"/>
-                        <constraint firstItem="qZX-1j-f8P" firstAttribute="bottom" secondItem="Mio-T4-8pw" secondAttribute="bottom" constant="9" id="9mw-eU-SNw"/>
+                        <constraint firstItem="qZX-1j-f8P" firstAttribute="bottom" secondItem="Mio-T4-8pw" secondAttribute="bottom" constant="4" id="9mw-eU-SNw"/>
                         <constraint firstAttribute="height" constant="60" id="BEW-6C-Wu7"/>
                         <constraint firstItem="vcp-kc-cRi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Mio-T4-8pw" secondAttribute="trailing" constant="5" id="EZe-aQ-8a6"/>
                         <constraint firstItem="Mio-T4-8pw" firstAttribute="centerY" secondItem="vcp-kc-cRi" secondAttribute="centerY" id="N7b-Q0-FQr"/>
                         <constraint firstAttribute="bottom" secondItem="cpC-He-mWx" secondAttribute="bottom" id="ONn-Yy-Zz7"/>
-                        <constraint firstItem="qZX-1j-f8P" firstAttribute="leading" secondItem="BAV-y0-qjP" secondAttribute="leading" constant="-3" id="QI7-at-AgJ"/>
+                        <constraint firstItem="qZX-1j-f8P" firstAttribute="leading" secondItem="BAV-y0-qjP" secondAttribute="leading" constant="-38" id="QI7-at-AgJ"/>
                         <constraint firstAttribute="trailing" secondItem="cpC-He-mWx" secondAttribute="trailing" id="T4S-7c-rJS"/>
                         <constraint firstItem="qZX-1j-f8P" firstAttribute="leading" secondItem="XBF-hw-RIk" secondAttribute="leadingMargin" constant="-2" id="VIF-Jb-9iQ"/>
-                        <constraint firstItem="BAV-y0-qjP" firstAttribute="top" secondItem="XBF-hw-RIk" secondAttribute="topMargin" constant="6" id="c2w-6W-y5G"/>
+                        <constraint firstItem="BAV-y0-qjP" firstAttribute="top" secondItem="XBF-hw-RIk" secondAttribute="topMargin" constant="21" id="c2w-6W-y5G"/>
                         <constraint firstItem="cpC-He-mWx" firstAttribute="top" secondItem="XBF-hw-RIk" secondAttribute="top" id="fla-zf-P6a"/>
                         <constraint firstAttribute="bottom" secondItem="vcp-kc-cRi" secondAttribute="bottom" id="i8Z-d4-7L8"/>
                         <constraint firstAttribute="trailing" secondItem="vcp-kc-cRi" secondAttribute="trailing" id="m7h-y6-zIV"/>
                         <constraint firstAttribute="bottom" secondItem="Mio-T4-8pw" secondAttribute="bottom" constant="10" id="mK8-wS-jha"/>
-                        <constraint firstItem="qZX-1j-f8P" firstAttribute="trailing" secondItem="BAV-y0-qjP" secondAttribute="trailing" id="pop-HA-gV0"/>
+                        <constraint firstItem="qZX-1j-f8P" firstAttribute="trailing" secondItem="BAV-y0-qjP" secondAttribute="trailing" constant="-35" id="pop-HA-gV0"/>
                         <constraint firstItem="Mio-T4-8pw" firstAttribute="centerX" secondItem="XBF-hw-RIk" secondAttribute="centerX" id="r7R-Y3-tAD"/>
                         <constraint firstItem="cpC-He-mWx" firstAttribute="leading" secondItem="XBF-hw-RIk" secondAttribute="leading" id="rIQ-NH-S31"/>
                     </constraints>
@@ -104,10 +104,10 @@
                     <rect key="frame" x="0.0" y="60" width="414" height="676"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="stp-Ab-FNk">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="110.33333333333334"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ii-If-HHd">
-                                    <rect key="frame" x="20" y="55.333333333333329" width="374" height="0.0"/>
+                                    <rect key="frame" x="20" y="55" width="374" height="0.0"/>
                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="40"/>
                                     <color key="textColor" red="0.98039215686274506" green="0.49411764705882355" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -122,7 +122,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z6v-qE-mEZ">
-                            <rect key="frame" x="56.666666666666657" y="110.33333333333337" width="300" height="320"/>
+                            <rect key="frame" x="57" y="110" width="300" height="320"/>
                             <subviews>
                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="On5-lT-ZIU">
                                     <rect key="frame" x="0.0" y="0.0" width="100" height="80"/>
@@ -142,7 +142,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nde-Db-6PV">
-                                    <rect key="frame" x="99.999999999999986" y="0.0" width="100.00000000000001" height="80"/>
+                                    <rect key="frame" x="100" y="0.0" width="100" height="80"/>
                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="40"/>
                                     <state key="normal" title="2">
                                         <color key="titleColor" red="0.6705882353" green="0.50196078430000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -155,7 +155,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEn-a0-Jma">
-                                    <rect key="frame" x="200.00000000000003" y="0.0" width="99.999999999999972" height="80"/>
+                                    <rect key="frame" x="200" y="0.0" width="100" height="80"/>
                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="40"/>
                                     <state key="normal" title="3">
                                         <color key="titleColor" red="0.6705882353" green="0.50196078430000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -168,7 +168,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ant-ek-0ea">
-                                    <rect key="frame" x="0.0" y="80" width="100" height="79.999999999999972"/>
+                                    <rect key="frame" x="0.0" y="80" width="100" height="80"/>
                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="40"/>
                                     <state key="normal" title="4">
                                         <color key="titleColor" red="0.6705882353" green="0.50196078430000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -181,7 +181,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2F-kf-zOG">
-                                    <rect key="frame" x="99.999999999999986" y="80" width="100.00000000000001" height="79.999999999999972"/>
+                                    <rect key="frame" x="100" y="80" width="100" height="80"/>
                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="40"/>
                                     <state key="normal" title="5">
                                         <color key="titleColor" red="0.6705882353" green="0.50196078430000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -194,7 +194,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kUb-xq-h8p">
-                                    <rect key="frame" x="200.00000000000003" y="80" width="99.999999999999972" height="79.999999999999972"/>
+                                    <rect key="frame" x="200" y="80" width="100" height="80"/>
                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="40"/>
                                     <state key="normal" title="6">
                                         <color key="titleColor" red="0.6705882353" green="0.50196078430000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -207,7 +207,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="htg-jo-NDe">
-                                    <rect key="frame" x="0.0" y="159.99999999999997" width="100" height="80"/>
+                                    <rect key="frame" x="0.0" y="160" width="100" height="80"/>
                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="40"/>
                                     <state key="normal" title="7">
                                         <color key="titleColor" red="0.6705882353" green="0.50196078430000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -220,7 +220,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tdv-RA-9y5">
-                                    <rect key="frame" x="99.999999999999986" y="159.99999999999997" width="100.00000000000001" height="80"/>
+                                    <rect key="frame" x="100" y="160" width="100" height="80"/>
                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="40"/>
                                     <state key="normal" title="8">
                                         <color key="titleColor" red="0.6705882353" green="0.50196078430000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -233,7 +233,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9h-Eb-HkN">
-                                    <rect key="frame" x="200.00000000000003" y="159.99999999999997" width="99.999999999999972" height="80"/>
+                                    <rect key="frame" x="200" y="160" width="100" height="80"/>
                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="40"/>
                                     <state key="normal" title="9">
                                         <color key="titleColor" red="0.6705882353" green="0.50196078430000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -246,7 +246,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h8J-dg-xle">
-                                    <rect key="frame" x="99.999999999999986" y="240" width="100.00000000000001" height="80"/>
+                                    <rect key="frame" x="100" y="240" width="100" height="80"/>
                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="40"/>
                                     <state key="normal" title="0">
                                         <color key="titleColor" red="0.6705882353" green="0.50196078430000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -259,7 +259,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEW-Qh-WUx">
-                                    <rect key="frame" x="200.00000000000003" y="240" width="99.999999999999972" height="80"/>
+                                    <rect key="frame" x="200" y="240" width="100" height="80"/>
                                     <state key="normal" image="backspace"/>
                                     <connections>
                                         <action selector="backspace:" destination="-1" eventType="touchUpInside" id="sAQ-6X-JJf"/>
@@ -318,10 +318,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JFF-ca-4aM" customClass="ViewWithRoundedCorners" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="146.66666666666669" y="450.33333333333337" width="121.00000000000006" height="33.000000000000057"/>
+                            <rect key="frame" x="147" y="450" width="121" height="33"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPF-we-K3w" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="121.00000000000003" height="33.000000000000057"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="121" height="33"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="121" id="WaQ-Gj-W68"/>
                                         <constraint firstAttribute="height" constant="33" id="vnN-0W-DG7"/>
@@ -382,9 +382,9 @@
         </view>
     </objects>
     <resources>
-        <image name="backButton" width="8" height="15"/>
         <image name="backspace" width="40" height="30"/>
         <image name="lightBlue" width="10" height="10"/>
+        <image name="openMenuButton" width="22" height="22"/>
         <image name="purple2" width="10" height="10"/>
         <image name="settingsButton" width="23" height="22"/>
     </resources>

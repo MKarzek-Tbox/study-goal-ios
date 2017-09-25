@@ -25,7 +25,6 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
     var aCellIsOpen:Bool = false
 
 	@IBOutlet weak var emptyScreenMessage:UIView!
-	@IBOutlet weak var peopleButton:UIButton!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -51,15 +50,11 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		if (dataManager.friendRequests().count > 0) {
-			peopleButton.setImage(UIImage(named: "profileButtonHighlighted"), for: UIControlState())
+		/*if (dataManager.friendRequests().count > 0) {
             //London Developer July 24,2017
             let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=feed-friends&contentName=friends"
             xAPIManager().checkMod(testUrl:urlString)
-
-		} else {
-			peopleButton.setImage(UIImage(named: "profileButton"), for: UIControlState())
-		}
+		}*/
 	}
 	
 	@IBAction func openMenu(_ sender:UIButton?) {

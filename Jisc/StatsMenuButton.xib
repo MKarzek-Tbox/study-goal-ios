@@ -54,11 +54,11 @@
                             </constraints>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                             <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="VLE Activity">
+                            <state key="normal" title="Activity Points">
                                 <color key="titleColor" red="0.61561751369999995" green="0.61572593450000002" blue="0.61561065910000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
-                                <action selector="graph:" destination="iN0-l3-epB" eventType="touchUpInside" id="pN7-Ff-fUz"/>
+                                <action selector="points:" destination="iN0-l3-epB" eventType="touchUpInside" id="1S3-Mf-eLD"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHR-CA-m5x">
@@ -76,11 +76,11 @@
                             <rect key="frame" x="0.0" y="80" width="375" height="40"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                             <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="Activity Points">
+                            <state key="normal" title="Attendance">
                                 <color key="titleColor" red="0.61561751369999995" green="0.61572593450000002" blue="0.61561065910000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
-                                <action selector="points:" destination="iN0-l3-epB" eventType="touchUpInside" id="R3W-1c-5Kg"/>
+                                <action selector="attendance:" destination="iN0-l3-epB" eventType="touchUpInside" id="SyQ-UG-zgG"/>
                             </connections>
                         </button>
                         <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KF6-Sf-Kqx" userLabel="Leaderboard">
@@ -105,15 +105,15 @@
                                 <action selector="eventsAttended:" destination="iN0-l3-epB" eventType="touchUpInside" id="Zvi-kf-g0w"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xyz-iV-Pau" userLabel="Attendance">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xyz-iV-Pau">
                             <rect key="frame" x="0.0" y="160" width="375" height="40"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                             <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="Attendance Summary">
+                            <state key="normal" title="VLE Activity">
                                 <color key="titleColor" red="0.61561751369999995" green="0.61572593450000002" blue="0.61561065910000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
-                                <action selector="attendance:" destination="iN0-l3-epB" eventType="touchUpInside" id="dLl-O2-Hlz"/>
+                                <action selector="graph:" destination="iN0-l3-epB" eventType="touchUpInside" id="dqa-9l-qqS"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1s-Rf-iVw">
@@ -179,7 +179,7 @@
                 <outlet property="appUsageButton" destination="w1s-Rf-iVw" id="hLJ-wJ-Huv"/>
                 <outlet property="arrow" destination="9Uj-cA-21y" id="aLU-p9-tQO"/>
                 <outlet property="attainmentButton" destination="WHR-CA-m5x" id="9N7-qn-2OV"/>
-                <outlet property="attendanceButton" destination="Xyz-iV-Pau" id="MR8-b0-2PO"/>
+                <outlet property="attendanceButton" destination="dXk-FR-Zp5" id="S3M-IT-vFz"/>
                 <outlet property="button" destination="qvn-Jy-HdG" id="Eyb-jq-48n"/>
                 <outlet property="buttonsHeight" destination="Pot-1N-6eR" id="taV-tA-GQh"/>
                 <outlet property="eventsAttendedButton" destination="h1j-2l-rYa" id="y2c-c0-ipF"/>

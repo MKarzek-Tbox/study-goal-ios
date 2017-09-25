@@ -38,10 +38,8 @@ class EventsAttendedCell: UITableViewCell {
     }
     
     func loadEvents(events:EventsAttendedObject){
-        dateFormatter.dateFormat = "dd/MM/yy"
-        dateLabel.text = dateFormatter.string(from: events.date)
-        dateFormatter.dateFormat = "hh:mm"
-        timeLabel.text = dateFormatter.string(from: events.date)
+        dateLabel.text = events.date
+        timeLabel.text = events.time
         activityLabel.text = events.activity
         moduleLabel.text = events.module
     }

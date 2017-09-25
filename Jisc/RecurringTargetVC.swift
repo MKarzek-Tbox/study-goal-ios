@@ -36,6 +36,7 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
     var selectedHours:Int = 0
     var selectedMinutes:Int = 0
     var timeSpan:kTargetTimeSpan = .Weekly
+    var goal:String = targetGoalPlaceholder
     var because:String = targetReasonPlaceholder
     var selectedActivityType:Int = 0
     var selectedActivity:Int = 0
@@ -118,6 +119,16 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
             because = ""
             noteTextView.textColor = UIColor.lightGray
         }
+        if (goal.isEmpty) {
+            goal = targetGoalPlaceholder
+        }
+        myGoalTextField.text = goal
+        if (goal == targetGoalPlaceholder) {
+            goal = ""
+            myGoalTextField.textColor = UIColor.lightGray
+        }
+        
+        
 ////        activityTypeButton.setTitle(dataManager.activityTypeNameAtIndex(selectedActivityType), for: UIControlState())
 //        activityTypeButton.titleLabel?.adjustsFontSizeToFitWidth = true
 //        activityTypeButton.titleLabel?.numberOfLines = 2
@@ -176,6 +187,7 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
             
             //self.recurringDatePicker.date = editedDateObject
             if !editedReason.isEmpty{
+                myGoalTextField?.textColor = UIColor.black
                 myGoalTextField?.text = editedDescribe
             }
             if !editedDescribe.isEmpty{
@@ -411,18 +423,20 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
 
             }
             
-            
-            print("")
-            
             let somethingWentWrong = xAPIManager().postRequest(testUrl: urlString, body: myBody)
             
             if (somethingWentWrong){
                 AlertView.showAlert(false, message: localized("something_went_wrong")) { (done) -> Void in
-                    _ = self.navigationController?.popViewController(animated: true)
+                   // _ = self.navigationController?.popViewController(animated: true)
+                    let vc = SingleTargetVC()
+                    self.navigationController?.pushViewController(vc, animated: false)
                 }
             } else if (!somethingWentWrong && !myGoalTextField.text.isEmpty){
                 AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
-                    _ = self.navigationController?.popViewController(animated: true)
+                 //   _ = self.navigationController?.popViewController(animated: true)
+                    let vc = SingleTargetVC()
+                    self.navigationController?.pushViewController(vc, animated: false)
+
                 }
             }
 
@@ -637,9 +651,12 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
     //MARK: UITextView Delegate
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        if (textView.text == targetReasonPlaceholder) {
+        if (textView == noteTextView && textView.text == targetReasonPlaceholder) {
             textView.text = ""
             noteTextView.textColor = UIColor.black
+        } else if(textView == myGoalTextField && textView.text == targetGoalPlaceholder){
+            textView.text = ""
+            myGoalTextField.textColor = UIColor.black
         }
         return true
     }
@@ -658,19 +675,30 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
             self.view.layoutIfNeeded()
         })
         
-        if (textView.text.isEmpty) {
+        if (textView == noteTextView && textView.text.isEmpty) {
             textView.text = targetReasonPlaceholder
             noteTextView.textColor = UIColor.lightGray
+        } else if(textView == myGoalTextField && textView.text.isEmpty){
+            textView.text = targetGoalPlaceholder
+            myGoalTextField.textColor = UIColor.lightGray
         }
     }
     
     @IBAction func closeTextView(_ sender:UIBarButtonItem) {
-        noteTextView.resignFirstResponder()
-        //recurringBecauseTextField.resignFirstResponder()
-        because = noteTextView.text
-        if (because == targetReasonPlaceholder) {
-            because = ""
+        if(because != noteTextView.text){
+            noteTextView.resignFirstResponder()
+            because = noteTextView.text
+            if (because == targetReasonPlaceholder) {
+                because = ""
+            }
+        } else if (goal != myGoalTextField.text){
+            myGoalTextField.resignFirstResponder()
+            goal = myGoalTextField.text
+            if(goal == targetGoalPlaceholder){
+                goal = ""
+            }
         }
+        
     }
     
     //MARK: UIPickerView Datasource

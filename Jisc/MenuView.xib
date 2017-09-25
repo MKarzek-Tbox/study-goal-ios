@@ -54,7 +54,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zr6-XS-WFN">
-                                            <rect key="frame" x="104" y="5" width="166" height="65"/>
+                                            <rect key="frame" x="104" y="4.5" width="166" height="65"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fpg-Fn-DYb">
                                                     <rect key="frame" x="0.0" y="0.0" width="83.5" height="21"/>

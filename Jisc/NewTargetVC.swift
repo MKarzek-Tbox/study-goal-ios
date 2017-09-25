@@ -13,6 +13,7 @@ var maxTargetHours = 40
 
 let timeSpans = [kTargetTimeSpan.Daily, kTargetTimeSpan.Weekly, kTargetTimeSpan.Monthly]
 let targetReasonPlaceholder = localized("add_a_reason_to_keep_this_target")
+let targetGoalPlaceholder = localized("Add a goal to this target")
 
 class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate, UIAlertViewDelegate, CustomPickerViewDelegate, UITextFieldDelegate {
     
