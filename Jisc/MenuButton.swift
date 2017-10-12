@@ -342,13 +342,6 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
             parent?.close(nil)
             parent?.stats()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                self.parent?.statsViewController.goToEventsAttended()
-            }
-            retract()
-        } else if indexPath.row == 5 {
-            parent?.close(nil)
-            parent?.stats()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 self.parent?.statsViewController.goToGraph()
             }
             retract()
