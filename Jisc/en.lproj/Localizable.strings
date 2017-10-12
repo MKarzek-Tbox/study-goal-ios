@@ -442,3 +442,4 @@
 "events_attended_segment" = "Events Attended";
 "attendence" = "Attendence";
 "mark" = "Mark";
+"demo_mode_addtarget" = "This is a demonstration. Please sign in to add targets";
