@@ -211,18 +211,16 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         noPointsDataLabel.text = localized("no_points_earned_yet")
         noPointsLabel.text = localized("no_points_earned_yet")
         if !iPad{
-            eventsAndAttendanceSegment.setTitle(localized("events_attended_segment"), forSegmentAt: 0)
-            eventsAndAttendanceSegment.setTitle(localized("attendence_summary"), forSegmentAt: 1)
-            eventsAndAttendanceSegment.selectedSegmentIndex = 1
+            eventsAndAttendanceSegment.setTitle(localized("attendence_summary"), forSegmentAt: 0)
+            eventsAndAttendanceSegment.setTitle(localized("events_attended_segment"), forSegmentAt: 1)
+            eventsAndAttendanceSegment.selectedSegmentIndex = 0
             
-            attendanceSegmentControl.setTitle(localized("events_attended_segment"), forSegmentAt: 0)
-            attendanceSegmentControl.setTitle(localized("attendence_summary"), forSegmentAt: 1)
-            attendanceSegmentControl.selectedSegmentIndex = 1
+            attendanceSegmentControl.setTitle(localized("attendence_summary"), forSegmentAt: 0)
+            attendanceSegmentControl.setTitle(localized("events_attended_segment"), forSegmentAt: 1)
+            attendanceSegmentControl.selectedSegmentIndex = 0
             
             weekOverallSegmentController.setTitle(localized("this_week"), forSegmentAt: 0)
             weekOverallSegmentController.setTitle(localized("overall"), forSegmentAt: 1)
-            
-            
         }
 
         staffAlert?.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
@@ -373,20 +371,20 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     @IBAction func eventsAttendedAction(_ sender: Any) {
         if (eventsAndAttendanceSegment.selectedSegmentIndex == 0){
-            goToEventsAttended()
+            goToAttendance()
             attendanceSegmentControl.selectedSegmentIndex = 0
         } else {
-            goToAttendance()
+            goToEventsAttended()
             attendanceSegmentControl.selectedSegmentIndex = 1
         }
     }
     @IBAction func attendanceAction(_ sender: Any) {
         if (attendanceSegmentControl.selectedSegmentIndex == 0){
-            goToEventsAttended()
+            goToAttendance()
             eventsAndAttendanceSegment.selectedSegmentIndex = 0
             print("From AttendanceAction going to attendance")
         } else {
-            goToAttendance()
+            goToEventsAttended()
             eventsAndAttendanceSegment.selectedSegmentIndex = 1
             print("From AttendanceAction going to Events attended")
         }
