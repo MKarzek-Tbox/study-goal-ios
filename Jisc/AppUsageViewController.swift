@@ -135,15 +135,26 @@ class AppUsageViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func loadData(){
+        print("data gets called")
         let manager = xAPIManager()
         if(startDateField.text != localized("start") && endDateField.text != localized("end")) {
-            let formatter = DateFormatter()
-            formatter.dateFormat = databaseDateFormat
-            let startDate = formatter.string(from: startDatePicker.date)
-            let endDate = formatter.string(from: endDatePicker.date)
-            manager.getAppUsage(studentId: dataManager.currentStudent!.id, startDate: startDate, endDate: endDate)
+            print("data gets called start and enddate")
+            let databaseFormatter = DateFormatter()
+            databaseFormatter.dateFormat = databaseDateFormat
+            let startDate = databaseFormatter.string(from: startDatePicker.date)
+            let endDate = databaseFormatter.string(from: endDatePicker.date)
+        
+            print("app usage start end date \(startDate) \(endDate)")
+            let startDateArray = startDate.components(separatedBy: "/")
+            let startDateCall = "\(startDateArray[2])-\(startDateArray[1])-\(startDateArray[0])"
+            let endDateArray = endDate.components(separatedBy: "/")
+            let endDateCall = "\(endDateArray[2])-\(endDateArray[1])-\(endDateArray[0])"
+            print("app usage start end date \(startDateCall) \(endDateCall)")
+            
+            manager.getAppUsage(studentId: dataManager.currentStudent!.id, startDate: startDateCall, endDate: endDateCall)
         }
         else{
+            print("data gets called without")
             manager.getAppUsage(studentId: dataManager.currentStudent!.id, startDate: "null", endDate: "null")
         }
         

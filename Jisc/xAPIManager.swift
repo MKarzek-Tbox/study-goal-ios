@@ -654,10 +654,11 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
                     print("error on getting data from url")
                 } else {
                     if let jsondata = data{
+                        print("\(jsondata)")
                         do {
                             let json = try JSONSerialization.jsonObject(with: jsondata) as! [String: Any]
                             print("json found")
-                            print(json)
+                            print("json for app usage \(json)")
                             let defaults = UserDefaults.standard
                             
                             let met_targets_number = json["met_targets_number"] as! [String: Any]
@@ -691,6 +692,8 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
                             let activityHours = (json["activity_logged_hours"] as! Int)/60
                             defaults.set(activityHours, forKey: "AppUsage_activities")
                             defaults.set(json["number_of_sessions"], forKey: "AppUsage_sessions")
+                            
+                            print("app usage set values \(metTargets) \(failedTargets) \(setTargets) \(activityHours) \(json["number_of_sessions"])")
                         } catch {
                             print("error on JSONSerialization")
                         }
