@@ -268,7 +268,7 @@
                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="networkBlue" translatesAutoresizingMaskIntoConstraints="NO" id="iAy-Fd-Z7y">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="compareIcon" translatesAutoresizingMaskIntoConstraints="NO" id="iAy-Fd-Z7y">
                                     <rect key="frame" x="16" y="366" width="30" height="29"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
@@ -308,8 +308,8 @@
         </view>
     </objects>
     <resources>
+        <image name="compareIcon" width="58" height="57"/>
         <image name="lightBlue" width="10" height="10"/>
-        <image name="networkBlue" width="30" height="29"/>
         <image name="openMenuButton" width="22" height="22"/>
         <image name="purpleBorder" width="8" height="8"/>
         <image name="selectorIndicatorIcon" width="12" height="6"/>

@@ -90,7 +90,6 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
 	
 	@IBAction func goBack(_ sender:UIButton) {
         DELEGATE.menuView?.open()
-
 	}
 	
 	@IBAction func settings(_ sender:UIButton) {
