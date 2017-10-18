@@ -119,7 +119,7 @@ class AppUsageViewController: UIViewController {
         
         let defaults = UserDefaults.standard
         self.targetsMet.text = "\(localized("targets_met_on_time")): \(defaults.string(forKey: "AppUsage_targets_met") ?? "null")"
-        self.targetsFailed.text = "\(localized("targets_met_on_time")): \(defaults.string(forKey: "AppUsage_targets_failed") ?? "null")"
+        self.targetsFailed.text = "\(localized("targets_not_met_on_time")): \(defaults.string(forKey: "AppUsage_targets_failed") ?? "null")"
         self.targetsSet.text = "\(localized("targets_set")): \(defaults.string(forKey: "AppUsage_targets_set") ?? "null")"
         self.activites.text = "\(localized("hours_of_activites_logged")): \(defaults.string(forKey: "AppUsage_activities") ?? "null")"
         self.sessions.text = "\(localized("sessions")): \(defaults.string(forKey: "AppUsage_sessions") ?? "null")"
