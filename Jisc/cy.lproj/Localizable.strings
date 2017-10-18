@@ -431,11 +431,11 @@
 "recurring" = "Rheolaidd";
 "logout" = "Allgofnodi";
 "events_attended_segment" = "Digwyddiadau";
+"attendance" = "Presenoldeb";
+"mark" = "Marcio";
+"all" = "Holl";
+"summary" = "Crynodeb";
 //New Strings
-"attendence" = "PLACEHOLDER";
-"mark" = "PLACEHOLDER";
-"all" = "PLACEHOLDER";
-"summary" = "PLACEHOLDER";
 "compare_to_leader" = "PLACEHOLDER";
 "filter_modules" = "PLACEHOLDER";
 "chart" = "PLACEHOLDER";
