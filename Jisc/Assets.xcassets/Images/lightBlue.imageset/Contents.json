@@ -1,22 +1,8 @@
 {
   "images" : [
     {
-      "resizing" : {
-        "mode" : "9-part",
-        "center" : {
-          "mode" : "tile",
-          "width" : 1,
-          "height" : 1
-        },
-        "cap-insets" : {
-          "bottom" : 5,
-          "top" : 4,
-          "right" : 5,
-          "left" : 4
-        }
-      },
       "idiom" : "universal",
-      "filename" : "lightBlue.png",
+      "filename" : "purple.png",
       "scale" : "1x"
     },
     {
