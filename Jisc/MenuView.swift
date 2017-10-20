@@ -17,6 +17,7 @@ class MenuView: UIView {
 	let logViewController = LogVC()
 	let targetViewController = TargetVC()
     let appUsageViewController = AppUsageViewController()
+    let settingsViewController = SettingsVC()
 
 	@IBOutlet weak var profileImage:UIImageDownload!
 	@IBOutlet weak var nameLabel:UILabel!
@@ -226,9 +227,10 @@ class MenuView: UIView {
 		close(nil)
 	}
 	
-	func settings() {
-		let vc = SettingsVC()
-		DELEGATE.mainNavigationController?.pushViewController(vc, animated: true)
+    func settings() {
+        selectedIndex = 6
+        NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Settings)
+		DELEGATE.mainNavigationController?.setViewControllers([settingsViewController], animated: false)
 		close(nil)
 	}
 	

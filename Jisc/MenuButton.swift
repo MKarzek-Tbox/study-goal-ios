@@ -117,7 +117,7 @@ class MenuButton: UIView {
 	
 	@IBAction func buttonAction(_ sender:UIButton?) {
 		switch type {
-		case .Feed:
+        case .Feed:
 			parent?.feed()
             break
         case .Friends:
@@ -310,6 +310,10 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
         return 40
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell:UITableViewCell = tableView.cellForRow(at: indexPath)!
+        cell.contentView.backgroundColor = UIColor.white
+        cell.textLabel?.textColor = UIColor.init(red: 59.0/255.0, green: 104.0/255.0, blue: 227.0/255.0, alpha: 1.0)
+        
         if indexPath.row == 0 {
             parent?.close(nil)
             parent?.stats()
@@ -346,5 +350,10 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
             }
             retract()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell:UITableViewCell = tableView.cellForRow(at: indexPath)!
+        cell.textLabel?.textColor = UIColor.init(red: 151.0/255.0, green: 151.0/255.0, blue: 151.0/255.0, alpha: 1.0)
     }
 }
