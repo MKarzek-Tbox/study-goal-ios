@@ -19,7 +19,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     var arrayOfResponses: [[String:Any]] = []
     var arrayOfResponses2: [[String:Any]] = []
     var noHeight = 0.0
-    var demoData:[String] = ["These Single Targets are for demo purposes only, login to use the full functionality","3 DAYS OVERDUE! Read 2 chapters for history class ","Do maths assignment by tomorrow because it is due", "Swipe to the left to to edit, delete and mark as done", "You can accept or deny certain tutor set targert", "Switch between single or recurring targets that you want to post", "The icons indicate the urgency of the due date for that specific target"]
+    //var demoData:[String] = ["These Single Targets are for demo purposes only, login to use the full functionality","3 DAYS OVERDUE! Read 2 chapters for history class ","Do maths assignment by tomorrow because it is due", "Swipe to the left to to edit, delete and mark as done", "You can accept or deny certain tutor set targert", "Switch between single or recurring targets that you want to post", "The icons indicate the urgency of the due date for that specific target"]
     var refreshTimer:Timer?
 
 
@@ -179,17 +179,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     //MARK: UITableView Datasource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        let nrRows = dataManager.targets().count
-//        if (nrRows == 0) {
-//            emptyScreenMessageView.alpha = 1.0
-//        } else {
-//            emptyScreenMessageView.alpha = 0.0
-//        }
-        if demo(){
-            return demoData.count
-        } else {
-            return arrayOfResponses.count
-        }
+        return arrayOfResponses.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -197,14 +187,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         let theCell = tableView.dequeueReusableCell(withIdentifier: kTargetCellIdentifier) as! TargetCell
         theCell.completionColorView.isHidden = true
         print(indexPath.row)
-//        if (theCell == nil) {
-//            theCell = UITableViewCell()
-//        }
-        if demo(){
-            theCell.titleLabel.text = demoData[indexPath.row]
-            theCell.targetTypeIcon.image = UIImage(named: "watch_time_sweet")
-            theCell.completionColorView.isHidden = true
-        } else {
         print("This is the array of responses in SingleTargetVC", arrayOfResponses)
         let singleDictionary = arrayOfResponses[indexPath.row] 
         let describe = singleDictionary["description"] as! String
@@ -213,9 +195,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         let reason = singleDictionary["reason"] as! String
         let status = singleDictionary["from_tutor"] as! String
         let status2 = singleDictionary["is_accepted"] as! String
-         if (status == "0"){
-          //  theCell.isHidden = true
-            
+        if (status == "0"){
         }
         if(status == "yes" && status2 == "0"){
             //theCell.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
@@ -343,7 +323,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             theCell.completionColorView.isHidden = true
             theCell.titleLabel.text = finalText
         }
-        }
         
         return theCell
     }
@@ -351,10 +330,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     //MARK: UITableView Delegate
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if demo(){
-            return 108.0
-
-        } else {
         let singleDictionary = arrayOfResponses[indexPath.row]
         let status = singleDictionary["status"] as! String
         let status1 = singleDictionary["from_tutor"] as! String
@@ -377,8 +352,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         if (status == "0"){
             return 108.0
         }
-        }
-        
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
