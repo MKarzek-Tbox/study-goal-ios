@@ -51,6 +51,7 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
 	var currentAction:kCurrentAction = .sendFriendRequest
 	var studentToInviteEmail = ""
 	@IBOutlet weak var noRequestsMessage:UILabel!
+    @IBOutlet weak var noFriendsMessage:UILabel!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -163,6 +164,11 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
 			print("filter students failed. Error: \(error.localizedDescription)")
 		}
 		myFriendsTable.reloadData()
+        if(filteredFriends.count == 0){
+            self.noFriendsMessage.alpha = 1.0
+        } else {
+            self.noFriendsMessage.alpha = 0.0
+        }
 	}
 	
 	func sendFriendRequestToColleague(_ colleague:Colleague) {
