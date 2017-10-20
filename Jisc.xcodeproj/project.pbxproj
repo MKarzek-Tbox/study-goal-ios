@@ -26,6 +26,7 @@
 		809129DD1F571829008DD0BE /* EventsAttendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80847D7C1F4DE52B00052B11 /* EventsAttendedCell.xib */; };
 		971DEEF31F94C38900F8731E /* VLEActivityViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 971DEEF21F94C38900F8731E /* VLEActivityViewController~ipad.xib */; };
 		971DEEF71F94D4F400F8731E /* AppUsageViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 971DEEF61F94D4F400F8731E /* AppUsageViewController~ipad.xib */; };
+		97365F041F9A13FB00B4B9CC /* StatsMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97365F031F9A13FB00B4B9CC /* StatsMenuButton.swift */; };
 		9766E2061F90AB6700963DD8 /* AttendanceViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9766E2051F90AB6700963DD8 /* AttendanceViewController~ipad.xib */; };
 		9766E20D1F90C40C00963DD8 /* AttainmentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9766E20C1F90C40C00963DD8 /* AttainmentViewController~ipad.xib */; };
 		9766E2111F90C73300963DD8 /* AttainmentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9766E2101F90C73300963DD8 /* AttainmentCell~ipad.xib */; };
@@ -329,6 +330,7 @@
 		84D383A4B7AA065C8D65C534 /* Pods_Jisc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jisc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		971DEEF21F94C38900F8731E /* VLEActivityViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "VLEActivityViewController~ipad.xib"; sourceTree = "<group>"; };
 		971DEEF61F94D4F400F8731E /* AppUsageViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AppUsageViewController~ipad.xib"; sourceTree = "<group>"; };
+		97365F031F9A13FB00B4B9CC /* StatsMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsMenuButton.swift; sourceTree = "<group>"; };
 		9766E2051F90AB6700963DD8 /* AttendanceViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AttendanceViewController~ipad.xib"; sourceTree = "<group>"; };
 		9766E20C1F90C40C00963DD8 /* AttainmentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AttainmentViewController~ipad.xib"; sourceTree = "<group>"; };
 		9766E2101F90C73300963DD8 /* AttainmentCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AttainmentCell~ipad.xib"; sourceTree = "<group>"; };
@@ -667,6 +669,7 @@
 				DA4085B51EE6AFD70012A561 /* MenuButton.swift */,
 				DA4085B71EE6AFE50012A561 /* MenuButton.xib */,
 				DA4085B91EE6EAA10012A561 /* StatsMenuButton.xib */,
+				97365F031F9A13FB00B4B9CC /* StatsMenuButton.swift */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -1840,6 +1843,7 @@
 				DA11B6AC1E7164E600F823B8 /* CheckinVC.swift in Sources */,
 				DAEA56691BF0E52A007A3C86 /* Student.swift in Sources */,
 				DAD644DC1C623B5500AA62E8 /* LocalizableTextField.swift in Sources */,
+				97365F041F9A13FB00B4B9CC /* StatsMenuButton.swift in Sources */,
 				DAD644D71C6239F600AA62E8 /* LocalizableLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
