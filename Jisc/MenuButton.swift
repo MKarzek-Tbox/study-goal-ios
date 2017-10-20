@@ -287,9 +287,11 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
         retract()
 
     }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell") as! UITableViewCell
         cell.textLabel?.text = menuItemsArray[indexPath.row]
@@ -297,19 +299,26 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
         cell.textLabel?.font = UIFont(name: "Myriad Pro", size: 14.0)
         return cell
     }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell") as! UITableViewCell
         cell.textLabel?.text = menuItemsArray[indexPath.row]
         cell.textLabel?.textColor = UIColor.gray
         cell.textLabel?.font = UIFont(name: "Myriad Pro", size: 14.0)
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menuItemsArray.count
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 40
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell:UITableViewCell = tableView.cellForRow(at: indexPath)!
+        cell.contentView.backgroundColor = UIColor.white
+        cell.textLabel?.textColor = UIColor.init(red: 59.0/255.0, green: 104.0/255.0, blue: 227.0/255.0, alpha: 1.0)
         if indexPath.row == 0 {
             parent?.close(nil)
             parent?.statsActivityPoints()
@@ -346,5 +355,10 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
             }
             retract()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell:UITableViewCell = tableView.cellForRow(at: indexPath)!
+        cell.textLabel?.textColor = UIColor.init(red: 151.0/255.0, green: 151.0/255.0, blue: 151.0/255.0, alpha: 1.0)
     }
 }
