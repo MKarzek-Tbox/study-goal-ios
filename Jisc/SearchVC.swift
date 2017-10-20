@@ -51,6 +51,7 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
 	var currentAction:kCurrentAction = .sendFriendRequest
 	var studentToInviteEmail = ""
 	@IBOutlet weak var noRequestsMessage:UILabel!
+    @IBOutlet weak var noFriendsMessage:UILabel!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -142,10 +143,20 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
 		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "firstName", ascending: true), NSSortDescriptor(key: "lastName", ascending: true)]
 		do {
 			try filteredStudents = managedContext.fetch(fetchRequest)
+            if(filteredStudents.count == 0){
+                self.noFriendsMessage.alpha = 1.0
+            } else {
+                self.noFriendsMessage.alpha = 0.0
+            }
 		} catch let error as NSError {
 			print("filter students failed. Error: \(error.localizedDescription)")
 		}
 		searchStudentsResultsTable.reloadData()
+        if(dataManager.friends().count == 0){
+            self.noFriendsMessage.alpha = 1.0
+        } else {
+            self.noFriendsMessage.alpha = 0.0
+        }
 	}
 	
 	func filterFriends(_ string:String) {

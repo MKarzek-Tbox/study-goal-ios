@@ -30,6 +30,7 @@
                 <outlet property="newRequestsButton" destination="WlD-Ie-HiR" id="OEL-Ai-KXs"/>
                 <outlet property="newRequestsTable" destination="wvV-oO-6fc" id="5dr-Ip-wSR"/>
                 <outlet property="newRequestsView" destination="DiI-vw-MTd" id="rRm-OP-I2P"/>
+                <outlet property="noFriendsMessage" destination="xIX-VJ-5Xm" id="taa-85-GfC"/>
                 <outlet property="noRequestsMessage" destination="SR4-OX-B5V" id="V9v-3G-dfC"/>
                 <outlet property="privacyActionButton" destination="Q7m-d2-OyB" id="Pkx-sr-BAz"/>
                 <outlet property="privacyTextLabel" destination="sOm-S8-Kg4" id="sGv-D2-IBq"/>
@@ -89,7 +90,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6q-kq-olh">
-                            <rect key="frame" x="453" y="40" width="120" height="37"/>
+                            <rect key="frame" x="453.5" y="40" width="119.5" height="37"/>
                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="37"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -182,17 +183,30 @@
                                         <outlet property="delegate" destination="-1" id="m4o-XP-Sdi"/>
                                     </connections>
                                 </tableView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no friends to display. Send requests to add friends." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xIX-VJ-5Xm" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
+                                    <rect key="frame" x="368" y="283" width="287" height="34"/>
+                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="no_friends"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="y0Y-jc-p9n" firstAttribute="leading" secondItem="jbE-ja-fud" secondAttribute="leading" id="33R-M9-BPk"/>
+                                <constraint firstAttribute="bottom" secondItem="xIX-VJ-5Xm" secondAttribute="bottom" constant="283" id="3Cw-17-866"/>
                                 <constraint firstItem="EuD-Az-XfK" firstAttribute="top" secondItem="jbE-ja-fud" secondAttribute="top" id="3D8-Of-y03"/>
                                 <constraint firstItem="y0Y-jc-p9n" firstAttribute="top" secondItem="EuD-Az-XfK" secondAttribute="bottom" id="3e4-By-l39"/>
                                 <constraint firstItem="y0Y-jc-p9n" firstAttribute="top" secondItem="jbE-ja-fud" secondAttribute="top" id="9ef-LX-nAi"/>
                                 <constraint firstAttribute="trailing" secondItem="y0Y-jc-p9n" secondAttribute="trailing" id="SW6-ag-Uj2"/>
                                 <constraint firstAttribute="bottom" secondItem="y0Y-jc-p9n" secondAttribute="bottom" constant="-64" id="Wqs-dG-UVH"/>
+                                <constraint firstItem="xIX-VJ-5Xm" firstAttribute="leading" secondItem="jbE-ja-fud" secondAttribute="leading" constant="368" id="Z1V-sn-bQO"/>
                                 <constraint firstItem="EuD-Az-XfK" firstAttribute="leading" secondItem="jbE-ja-fud" secondAttribute="leading" id="hIk-dT-jO6"/>
                                 <constraint firstAttribute="trailing" secondItem="EuD-Az-XfK" secondAttribute="trailing" id="hNz-zI-rsm"/>
+                                <constraint firstAttribute="trailing" secondItem="xIX-VJ-5Xm" secondAttribute="trailing" constant="369" id="leY-Oi-oEV"/>
+                                <constraint firstItem="xIX-VJ-5Xm" firstAttribute="top" secondItem="EuD-Az-XfK" secondAttribute="bottom" constant="223" id="wgK-3l-SbV"/>
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
@@ -351,7 +365,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="325" height="40"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friend Request" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNp-SM-LAl">
-                                                            <rect key="frame" x="0.0" y="10" width="325" height="20"/>
+                                                            <rect key="frame" x="0.0" y="10.5" width="325" height="20"/>
                                                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="20"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -405,7 +419,7 @@
                                                     <rect key="frame" x="0.0" y="101.5" width="325" height="45"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Everything" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vgo-6q-sSi" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                            <rect key="frame" x="20" y="13" width="86" height="19"/>
+                                                            <rect key="frame" x="20" y="13.5" width="86" height="19"/>
                                                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="19"/>
                                                             <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -433,7 +447,7 @@
                                                     <rect key="frame" x="0.0" y="147.5" width="325" height="45"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My result" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frs-81-Au9" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                            <rect key="frame" x="20" y="13" width="73" height="19"/>
+                                                            <rect key="frame" x="20" y="13.5" width="73" height="19"/>
                                                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="19"/>
                                                             <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -461,7 +475,7 @@
                                                     <rect key="frame" x="0.0" y="193.5" width="325" height="45"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My course engagement" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZt-PY-Vw1" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                            <rect key="frame" x="20" y="13" width="188" height="19"/>
+                                                            <rect key="frame" x="20" y="13.5" width="187.5" height="19"/>
                                                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="19"/>
                                                             <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -489,7 +503,7 @@
                                                     <rect key="frame" x="0.0" y="239.5" width="325" height="45"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity log" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCD-M1-kSH" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                            <rect key="frame" x="20" y="13" width="90" height="19"/>
+                                                            <rect key="frame" x="20" y="13.5" width="89.5" height="19"/>
                                                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="19"/>
                                                             <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>

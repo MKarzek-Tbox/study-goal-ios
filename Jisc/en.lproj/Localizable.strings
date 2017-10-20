@@ -450,3 +450,4 @@
 "bar_graph" = "Bar Graph";
 "line_graph" = "Line Graph";
 "demo_mode_addtarget" = "Demo Mode - please login to add targets";
+"no_friends" = "There are no friends to display. Send requests to add friends.";
