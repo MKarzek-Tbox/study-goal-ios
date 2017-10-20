@@ -386,7 +386,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="325" height="40"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friend Request" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNp-SM-LAl">
-                                                            <rect key="frame" x="0.0" y="10" width="325" height="20"/>
+                                                            <rect key="frame" x="0.0" y="10.5" width="325" height="20"/>
                                                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="20"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -411,10 +411,10 @@
                                                     </variation>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bHd-Tg-w6f" userLabel="whatToSee">
-                                                    <rect key="frame" x="0.0" y="40" width="325" height="60"/>
+                                                    <rect key="frame" x="0.0" y="40" width="325" height="60.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What do you want Peter to see?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOm-S8-Kg4">
-                                                            <rect key="frame" x="8" y="8" width="309" height="44"/>
+                                                            <rect key="frame" x="8" y="8" width="309" height="44.5"/>
                                                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="19"/>
                                                             <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -437,10 +437,10 @@
                                                     </variation>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jkf-Ea-ev3" userLabel="everything">
-                                                    <rect key="frame" x="0.0" y="101" width="325" height="45"/>
+                                                    <rect key="frame" x="0.0" y="101.5" width="325" height="45"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Everything" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vgo-6q-sSi" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                            <rect key="frame" x="20" y="13" width="86" height="19"/>
+                                                            <rect key="frame" x="20" y="13.5" width="86" height="19"/>
                                                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="19"/>
                                                             <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -449,7 +449,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DFI-o3-pff">
-                                                            <rect key="frame" x="268" y="7" width="51" height="31"/>
+                                                            <rect key="frame" x="268" y="7.5" width="51" height="31"/>
                                                             <color key="onTintColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <connections>
                                                                 <action selector="toggleSeeEverything:" destination="-1" eventType="valueChanged" id="cj5-kc-1dK"/>
@@ -465,10 +465,10 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B4k-8R-SBK" userLabel="myResults">
-                                                    <rect key="frame" x="0.0" y="147" width="325" height="45"/>
+                                                    <rect key="frame" x="0.0" y="147.5" width="325" height="44.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My result" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frs-81-Au9" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                            <rect key="frame" x="20" y="13" width="73" height="19"/>
+                                                            <rect key="frame" x="20" y="12.5" width="73" height="19"/>
                                                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="19"/>
                                                             <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -477,7 +477,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NQy-eR-zHd">
-                                                            <rect key="frame" x="268" y="7" width="51" height="31"/>
+                                                            <rect key="frame" x="268" y="6.5" width="51" height="31"/>
                                                             <color key="onTintColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <connections>
                                                                 <action selector="toggleSeeMyResults:" destination="-1" eventType="valueChanged" id="db3-CB-CuI"/>
@@ -493,7 +493,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EEE-g7-oRl" userLabel="myCorseEngagement">
-                                                    <rect key="frame" x="0.0" y="193" width="325" height="45"/>
+                                                    <rect key="frame" x="0.0" y="193" width="325" height="44.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My course engagement" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZt-PY-Vw1" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
                                                             <rect key="frame" x="20" y="13" width="187.5" height="19"/>
@@ -505,7 +505,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="29V-S6-hvm">
-                                                            <rect key="frame" x="268" y="7" width="51" height="31"/>
+                                                            <rect key="frame" x="268" y="7.5" width="51" height="31"/>
                                                             <color key="onTintColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <connections>
                                                                 <action selector="toggleSeeCourseEngagement:" destination="-1" eventType="valueChanged" id="zc5-gU-lVb"/>
@@ -521,10 +521,10 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EAX-oB-LJz" userLabel="activityLog">
-                                                    <rect key="frame" x="0.0" y="239" width="325" height="45"/>
+                                                    <rect key="frame" x="0.0" y="238.5" width="325" height="45"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity log" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCD-M1-kSH" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                            <rect key="frame" x="20" y="13" width="89.5" height="19"/>
+                                                            <rect key="frame" x="20" y="13.5" width="89.5" height="19"/>
                                                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="19"/>
                                                             <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -549,7 +549,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUj-8l-SSG" userLabel="send">
-                                                    <rect key="frame" x="0.0" y="285" width="325" height="60"/>
+                                                    <rect key="frame" x="0.0" y="284.5" width="325" height="60.5"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fei-n0-3lU" customClass="ViewWithRoundedCorners" customModule="Jisc" customModuleProvider="target">
                                                             <rect key="frame" x="108" y="15" width="110" height="30"/>
