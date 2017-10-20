@@ -104,7 +104,7 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
             alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
             navigationController?.present(alert, animated: true, completion: nil)
         } else {
-            var markAsDoneAlert = UIAlertController(title: "", message: "Are you sure you want to mark this task as done?", preferredStyle: UIAlertControllerStyle.alert)
+            let markAsDoneAlert = UIAlertController(title: "", message: "Are you sure you want to mark this task as done?", preferredStyle: UIAlertControllerStyle.alert)
             
             markAsDoneAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
                 let defaults = UserDefaults.standard
@@ -134,6 +134,22 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
                 
                 let alert = UIAlertController(title: "", message: "Congratulations on completing your task!", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd/MM/yyyy"
+                
+                let date = dateFormatter.date(from: singleDictionary["end_date"] as! String)
+                
+                if let targetDate = date {
+                    if(targetDate > Date()){
+                        xAPIManager().checkMod(testUrl:"https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-complete-overdue-single&contentName=completeOverdueSingleTarget")
+                    } else {
+                        xAPIManager().checkMod(testUrl:"https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-complete-single&contentName=completeSingleTarget")
+                    }
+                }else {
+                    xAPIManager().checkMod(testUrl:"https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-complete-single&contentName=completeSingleTarget")
+                }
+                
                 self.navigationController?.present(alert, animated: true, completion: nil)
                 
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "getToDoList"), object: self)
@@ -367,6 +383,7 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 			dataManager.deleteTarget(target) { (success, failureReason) -> Void in
 				if success {
 					dataManager.deleteObject(target)
+                    xAPIManager().checkMod(testUrl:"https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-delete-single&contentName=deleteSingleTarget")
 					AlertView.showAlert(true, message: localized("target_deleted_successfully"), completion: nil)
 					self.tableView?.deleteRows(at: [self.indexPath!], with: UITableViewRowAnimation.automatic)
 					self.tableView?.reloadData()

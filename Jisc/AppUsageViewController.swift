@@ -30,6 +30,7 @@ class AppUsageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        xAPIManager().checkMod(testUrl:"https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=app-usage&contentName=appUsage")
         customiseLayout()
     
         loadData()

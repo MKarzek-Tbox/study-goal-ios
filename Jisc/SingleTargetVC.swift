@@ -27,6 +27,9 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        xAPIManager().checkMod(testUrl:"https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-main&contentName=recurringTargetsPage")
+        
         singleTargetTableView.register(UINib(nibName: kTargetCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kTargetCellIdentifier)
         singleTargetSegmentControl.selectedSegmentIndex = 0
         singleTargetTableView.contentInset = UIEdgeInsetsMake(20.0, 0, 20.0, 0)
@@ -414,6 +417,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                     //            let body = ""
                     //            xAPIManager().postRequest(testUrl: <#T##String#>, body: <#T##String#>)
                     DownloadManager().editToDo(dictionary:dictionaryfordis)
+                    xAPIManager().checkMod(testUrl:"https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-accept-tutor-target&contentName=acceptTarget")
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                         // your code here
                         self.getTodoListData()
@@ -446,6 +450,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                                 dictionaryfordis.updateValue("no", forKey: "is_social")
                             }
                             DownloadManager().editToDo(dictionary:dictionaryfordis)
+                            xAPIManager().checkMod(testUrl:"https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-decline-tutor-target&contentName=declineTarget")
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                                 // your code here
                                 self.getTodoListData()

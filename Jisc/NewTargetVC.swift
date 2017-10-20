@@ -304,24 +304,12 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
                 target.totalTime = ((selectedHours * 60) + selectedMinutes) as NSNumber
                 target.timeSpan = timeSpan.rawValue
                 if (selectedModule > 0 && selectedModule - 1 < dataManager.modules().count) {
-                    target.module = dataManager.modules()[selectedModule - 1]
-                    var urlString = ""
-                    if(!dataManager.developerMode){
-                        urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget&modid=\(String(describing: target.module))"
-                    } else {
-                        urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget&modid=\(String(describing: target.module))"
-                    }
-                    xAPIManager().checkMod(testUrl:urlString)
+                    target.module = dataManager.modules()[selectedModule - 1]                    
+                    xAPIManager().checkMod(testUrl:"https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add-recurring&contentName=addRecurringTargets&modid=\(String(describing: target.module))")
                 } else {
                     
                     target.module = nil
-                    var urlString = ""
-                    if(!dataManager.developerMode){
-                        urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget)"
-                    } else {
-                        urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget)"
-                    }
-                    xAPIManager().checkMod(testUrl:urlString)
+                    xAPIManager().checkMod(testUrl:"https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add-recurring&contentName=addRecurringTargets")
                 }
                 target.because = because
                 if (theTarget != nil) {
@@ -395,6 +383,7 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
             }
         } else if (!somethingWentWrong && !myGoalTextField.text.isEmpty){
             AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
+                xAPIManager().checkMod(testUrl:"https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add-single&contentName=addSingleTargets")
                 _ = self.navigationController?.popViewController(animated: true)
             }
         }

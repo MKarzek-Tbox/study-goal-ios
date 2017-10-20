@@ -80,6 +80,8 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        xAPIManager().checkMod(testUrl:"https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-main&contentName=singleTargetsPage")
+        
         NotificationCenter.default.addObserver(self, selector: #selector(RecurringTargetVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(RecurringTargetVC
             .keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
