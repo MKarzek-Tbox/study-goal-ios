@@ -1711,27 +1711,29 @@ class DataManager: NSObject {
     func silentStudentFeedsRefresh(_ alertAboutInternet:Bool, completion:@escaping dataManagerCompletionBlock) {
         let downloadManager = DownloadManager()
         downloadManager.silent = true
-        downloadManager.getFeeds(currentStudent!.id, alertAboutInternet: alertAboutInternet) { (success, result, results, error) -> Void in
-            if (success) {
-                let array = self.myFeeds()
-                for (_, item) in array.enumerated() {
-                    managedContext.delete(item)
-                }
-                if (results != nil) {
-                    for (_, item) in results!.enumerated() {
-                        let dictionary:NSDictionary? = item as? NSDictionary
-                        if (dictionary != nil) {
-                            _ = Feed.insertInManagedObjectContext(managedContext, dictionary: dictionary!)
+        if let student = currentStudent{
+            downloadManager.getFeeds(student.id, alertAboutInternet: alertAboutInternet) {(success, result, results, error) -> Void in
+                if (success) {
+                    let array = self.myFeeds()
+                    for (_, item) in array.enumerated() {
+                        managedContext.delete(item)
+                    }
+                    if (results != nil) {
+                        for (_, item) in results!.enumerated() {
+                            let dictionary:NSDictionary? = item as? NSDictionary
+                            if (dictionary != nil) {
+                                _ = Feed.insertInManagedObjectContext(managedContext, dictionary: dictionary!)
+                            }
                         }
                     }
+                    self.safelySaveContext()
                 }
-                self.safelySaveContext()
+                var failureReason = kDefaultFailureReason
+                if (error != nil) {
+                    failureReason = error!
+                }
+                self.getPushNotifications(failureReason: failureReason, completion: completion)
             }
-            var failureReason = kDefaultFailureReason
-            if (error != nil) {
-                failureReason = error!
-            }
-            self.getPushNotifications(failureReason: failureReason, completion: completion)
         }
     }
     

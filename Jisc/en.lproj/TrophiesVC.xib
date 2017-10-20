@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,6 +21,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TrophiesVC" customModule="Jisc" customModuleProvider="target">
             <connections>
                 <outlet property="availableTrophiesTable" destination="RsZ-a3-jAy" id="ib2-nu-vJn"/>
+                <outlet property="noTrophiesWon" destination="JIh-Wv-WI6" id="7hx-Rf-Bmc"/>
                 <outlet property="trophiesAvailableButton" destination="sUs-Da-VK0" id="gqT-NP-fb7"/>
                 <outlet property="trophiesWonButton" destination="c1z-Dj-iBc" id="pxG-gB-LAo"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -115,6 +116,15 @@
                         <outlet property="delegate" destination="-1" id="xgy-8R-mq5"/>
                     </connections>
                 </tableView>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You did not win any trophies yet." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIh-Wv-WI6" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
+                    <rect key="frame" x="44" y="316" width="287" height="34"/>
+                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="no_trophies"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C30-bp-aDc">
                     <rect key="frame" x="0.0" y="60" width="375" height="44"/>
                     <subviews>
@@ -191,11 +201,15 @@
                 <constraint firstItem="C30-bp-aDc" firstAttribute="width" secondItem="C30-bp-aDc" secondAttribute="height" multiplier="375:72" id="ALs-MG-xx5"/>
                 <constraint firstAttribute="bottom" secondItem="RsZ-a3-jAy" secondAttribute="bottom" id="Buu-p1-q9j"/>
                 <constraint firstItem="C30-bp-aDc" firstAttribute="top" secondItem="h68-eR-o9c" secondAttribute="bottom" id="BzO-X0-qOb"/>
+                <constraint firstAttribute="trailing" secondItem="JIh-Wv-WI6" secondAttribute="trailing" constant="44" id="EmM-KQ-Gd1"/>
                 <constraint firstItem="1l0-ie-6bR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Hbf-Fv-QTI"/>
                 <constraint firstAttribute="trailing" secondItem="C30-bp-aDc" secondAttribute="trailing" id="ILw-qG-AB3"/>
+                <constraint firstItem="JIh-Wv-WI6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="44" id="K2d-Ct-6yi"/>
                 <constraint firstItem="1l0-ie-6bR" firstAttribute="top" secondItem="C30-bp-aDc" secondAttribute="bottom" id="Yks-2w-Lhd"/>
                 <constraint firstItem="h68-eR-o9c" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Yq9-Vt-2OV"/>
                 <constraint firstAttribute="bottom" secondItem="1l0-ie-6bR" secondAttribute="bottom" id="bI3-6m-ZBY"/>
+                <constraint firstItem="JIh-Wv-WI6" firstAttribute="top" secondItem="C30-bp-aDc" secondAttribute="bottom" constant="212" id="cr8-iv-VRA"/>
+                <constraint firstAttribute="bottom" secondItem="JIh-Wv-WI6" secondAttribute="bottom" constant="317" id="dyf-jL-Tuy"/>
                 <constraint firstItem="h68-eR-o9c" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="fpL-L6-6YW"/>
                 <constraint firstItem="C30-bp-aDc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="geh-rc-Ggt"/>
                 <constraint firstAttribute="trailing" secondItem="1l0-ie-6bR" secondAttribute="trailing" id="oYK-Ru-zV3"/>
