@@ -1213,6 +1213,8 @@
 				DAD6AE291C57B76E00BCBBDD /* TrophyDetailsView.xib */,
 				DA0F57781C3E972F00FF5B7A /* NewTrophyAlert.swift */,
 				DAB0C8BD1C4CEC2300F7A3C6 /* NewTrophyAlert.xib */,
+				DA7F1D411BD9035B004EA957 /* TrophiesVC.swift */,
+				DAB0C8B11C4CEBF500F7A3C6 /* TrophiesVC.xib */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -1220,8 +1222,6 @@
 		DAD1D7FA1C50F107005BA786 /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
-				DA7F1D411BD9035B004EA957 /* TrophiesVC.swift */,
-				DAB0C8B11C4CEBF500F7A3C6 /* TrophiesVC.xib */,
 				DAD573911C3D46360080B49B /* TrophiesCell.swift */,
 				DAD573921C3D46360080B49B /* TrophiesCell.xib */,
 			);

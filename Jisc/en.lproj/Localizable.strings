@@ -444,3 +444,4 @@
 "mark" = "Mark";
 "demo_mode_addtarget" = "This is a demonstration. Please sign in to add targets";
 "no_friends" = "There are no friends to display. Send requests to add friends.";
+"no_trophies" = "You did not earn any trophies yet.";

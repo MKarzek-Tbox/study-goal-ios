@@ -17,12 +17,18 @@ class TrophiesVC: BaseViewController, UITableViewDataSource, UITableViewDelegate
 	@IBOutlet weak var trophiesAvailableButton:UIButton!
 	@IBOutlet weak var wonTrophiesTable:UITableView!
 	@IBOutlet weak var availableTrophiesTable:UITableView!
+    @IBOutlet weak var noTrophiesWon:UILabel!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		wonTrophiesTable.register(UINib(nibName: kTrophiesCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kTrophiesCellIdentifier)
 		availableTrophiesTable.register(UINib(nibName: kTrophiesCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kTrophiesCellIdentifier)
 		availableTrophiesTable.alpha = 0.0
+        if(dataManager.myTrophies().count == 0){
+            self.noTrophiesWon.isHidden = false
+        } else {
+            self.noTrophiesWon.isHidden = true
+        }
 	}
 	
 	@IBAction func goBack(_ sender:UIButton) {
@@ -39,6 +45,11 @@ class TrophiesVC: BaseViewController, UITableViewDataSource, UITableViewDelegate
 		UIView.animate(withDuration: 0.25, animations: { () -> Void in
 			self.wonTrophiesTable.alpha = 1.0
 			self.availableTrophiesTable.alpha = 0.0
+            if(dataManager.myTrophies().count == 0){
+                self.noTrophiesWon.isHidden = false
+            } else {
+                self.noTrophiesWon.isHidden = true
+            }
 		}) 
 	}
 	
@@ -48,6 +59,7 @@ class TrophiesVC: BaseViewController, UITableViewDataSource, UITableViewDelegate
 		UIView.animate(withDuration: 0.25, animations: { () -> Void in
 			self.wonTrophiesTable.alpha = 0.0
 			self.availableTrophiesTable.alpha = 1.0
+            self.noTrophiesWon.isHidden = true
 		}) 
 	}
 	
