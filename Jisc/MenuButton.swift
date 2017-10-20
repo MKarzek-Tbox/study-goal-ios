@@ -103,16 +103,22 @@ class MenuButton: UIView {
 	}
 	
 	func selectedAButton(_ notification:Notification) {
-		if let type = notification.object as? MenuButtonType {
-			if self.type == type {
-				button.isSelected = true
-			} else {
-				button.isSelected = false
-				if let stats = self as? StatsMenuButton {
-					stats.retract()
-				}
-			}
-		}
+        if let type = notification.object as? MenuButtonType {
+            if self.type == type {
+                button.isSelected = true
+                if let stats = self as? StatsMenuButton {
+
+                }else {
+                    print("notify here")
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadData"), object: nil)
+                }
+            } else {
+                button.isSelected = false
+                if let stats = self as? StatsMenuButton {
+                    stats.retract()
+                }
+            }
+        }
 	}
 	
 	@IBAction func buttonAction(_ sender:UIButton?) {
@@ -223,70 +229,6 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
 			self.parent?.layoutIfNeeded()
 		}
 	}
-	
-	@IBAction func graph(_ sender:UIButton?) {
-		parent?.close(nil)
-		parent?.stats()
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-			self.parent?.statsViewController.goToGraph()
-		}
-		retract()
-	}
-	
-	@IBAction func attainment(_ sender:UIButton?) {
-		parent?.close(nil)
-		parent?.stats()
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-			self.parent?.statsViewController.goToAttainment()
-		}
-		retract()
-	}
-	
-	@IBAction func points(_ sender:UIButton?) {
-		parent?.close(nil)
-		parent?.stats()
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-			self.parent?.statsViewController.goToPoints()
-		}
-		retract()
-	}
-    
-//    @IBAction func leaderBoard(_ sender: UIButton) {
-//        parent?.close(nil)
-//        parent?.stats()
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-//            self.parent?.statsViewController.goToLeaderBoard()
-//        }
-//        retract()
-//    }
-    
-    @IBAction func eventsAttended(_ sender: UIButton) {
-        parent?.close(nil)
-        parent?.stats()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            self.parent?.statsViewController.goToEventsAttended()
-        }
-        retract()
-    }
-    
-    @IBAction func attendance(_ sender: UIButton) {
-        parent?.close(nil)
-        parent?.stats()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            self.parent?.statsViewController.goToAttendance()
-        }
-        retract()
-    }
-	
-    @IBAction func appUsageAction(_ sender: Any) {
-        parent?.close(nil)
-        parent?.appUsage()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            self.parent?.appUsageViewController
-        }
-        retract()
-
-    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -308,6 +250,7 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        NotificationCenter.default.addObserver(self, selector: #selector(unselectTableCells), name: NSNotification.Name(rawValue: "reloadData"), object: nil)
         return menuItemsArray.count
     }
     
@@ -325,40 +268,39 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 self.parent?.statsActivityPointsViewController
             }
-            retract()
         } else if indexPath.row == 1 {
             parent?.close(nil)
             parent?.appUsage()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 self.parent?.appUsageViewController
             }
-            retract()
         } else if indexPath.row == 2 {
             parent?.close(nil)
             parent?.statsAttainment()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 self.parent?.statsAttainmentViewController
             }
-            retract()
         } else if indexPath.row == 3 {
             parent?.close(nil)
             parent?.statsAttendance()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 self.parent?.statsAttendanceViewController
             }
-            retract()
         } else if indexPath.row == 4 {
             parent?.close(nil)
             parent?.statsVLEActivity()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 self.parent?.statsVLEActivityViewController
             }
-            retract()
         }
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell:UITableViewCell = tableView.cellForRow(at: indexPath)!
         cell.textLabel?.textColor = UIColor.init(red: 151.0/255.0, green: 151.0/255.0, blue: 151.0/255.0, alpha: 1.0)
+    }
+    
+    func unselectTableCells(){
+        statsMenuButtonsTable.reloadData()
     }
 }
