@@ -327,7 +327,7 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
     @IBAction func editTarget(_ sender:UIButton) {
         closeCellOptions()
         if (theTarget != nil) {
-            let vc = NewTargetVC(target: theTarget!)
+            let vc = AddRecurringTargetViewController(target: theTarget!)
             navigationController?.pushViewController(vc, animated: true)
         }
     }

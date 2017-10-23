@@ -1,5 +1,5 @@
 //
-//  NewTargetVC.swift
+//  AddRecurringTargetViewController.swift
 //  Jisc
 //
 //  Created by Therapy Box on 10/28/15.
@@ -15,8 +15,7 @@ let timeSpans = [kTargetTimeSpan.Daily, kTargetTimeSpan.Weekly, kTargetTimeSpan.
 let targetReasonPlaceholder = localized("add_a_reason_to_keep_this_target")
 let targetGoalPlaceholder = localized("Add a goal to this target")
 
-class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate, UIAlertViewDelegate, CustomPickerViewDelegate, UITextFieldDelegate {
-    
+class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate, UIAlertViewDelegate, CustomPickerViewDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var topSegmentControl: UISegmentedControl!
     @IBOutlet weak var recurringSegmentControl: UISegmentedControl!
@@ -167,8 +166,6 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //moduleLabel.text = "Module"
-        // recurringDatePicker.minimumDate = Date()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -193,24 +190,19 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
     
     @IBAction func topSegmentControlAction(_ sender: Any) {
         if (topSegmentControl.selectedSegmentIndex == 1){
-                        let vc = RecurringTargetVC()
+                        let vc = AddSingleTargetViewController()
                         navigationController?.pushViewController(vc, animated: false)
-            //Bundle.main.loadNibNamed("NewTargetVC", owner: self, options: nil)
         } else {
-                        let vc = RecurringTargetVC()
+                        let vc = AddSingleTargetViewController()
                         navigationController?.pushViewController(vc, animated: false)
-            //Bundle.main.loadNibNamed("RecurringTargetVC", owner: self, options: nil)
         }
         
     }
     @IBAction func recurringSegmentControlAction(_ sender: Any) {
         if (recurringSegmentControl.selectedSegmentIndex == 0){
-            //let vc = RecurringTargetVC()
-            //navigationController?.pushViewController(vc, animated: true)
-            Bundle.main.loadNibNamed("RecurringTargetVC", owner: self, options: nil)
-            
+            Bundle.main.loadNibNamed("AddSingleTargetViewController", owner: self, options: nil)
         } else {
-            Bundle.main.loadNibNamed("NewTargetVC", owner: self, options: nil)
+            Bundle.main.loadNibNamed("AddRecurringTargetViewController", owner: self, options: nil)
         }
     }
     
@@ -320,14 +312,12 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
                             }
                             dataManager.deleteObject(target)
                             AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
-                                //_ = self.navigationController?.popViewController(animated: true)
-                                let vc = TargetVC()
+                                let vc = RecurringTargetVC()
                                 self.navigationController?.pushViewController(vc, animated: false)
                             }
                         } else {
                             AlertView.showAlert(false, message: failureReason) { (done) -> Void in
-                               // _ = self.navigationController?.popViewController(animated: true)
-                                let vc = TargetVC()
+                                let vc = RecurringTargetVC()
                                 self.navigationController?.pushViewController(vc, animated: false)
                             }
                         }
@@ -337,15 +327,13 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
                         if (success) {
                             dataManager.deleteObject(target)
                             AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
-                                //_ = self.navigationController?.popViewController(animated: true)
-                                let vc = TargetVC()
+                                let vc = RecurringTargetVC()
                                 self.navigationController?.pushViewController(vc, animated: false)
 
                             }
                         } else {
                             AlertView.showAlert(false, message: failureReason) { (done) -> Void in
-                                //_ = self.navigationController?.popViewController(animated: true)
-                                let vc = TargetVC()
+                                let vc = RecurringTargetVC()
                                 self.navigationController?.pushViewController(vc, animated: false)
 
                             }
@@ -370,7 +358,6 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
             //Make sure to localize the following message
             
             AlertView.showAlert(false, message: localized("Make sure to fill in My Goal section")) { (done) -> Void in
-                //self.dismiss(animated: true, completion: nil)
             }
         }
         let myBody = "student_id=\(dataManager.currentStudent!.id)&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en&reason=\(noteTextView.text!)"
@@ -399,8 +386,7 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
     
     func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         if (buttonIndex == 0) {
-            //_ = navigationController?.popViewController(animated: true)
-            let vc = TargetVC()
+            let vc = RecurringTargetVC()
             navigationController?.pushViewController(vc, animated: true)
 
         } else {
@@ -409,7 +395,6 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
     }
     
     //MARK: Show Selector Views
-    
     @IBAction func showActivityTypeSelector(_ sender:UIButton) {
         if (!isEditingTarget) {
             closeActiveTextEntries()
@@ -470,7 +455,6 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
     }
     
     //MARK: CustomPickerView Delegate
-    
     func view(_ view: CustomPickerView, selectedRow: Int) {
         switch (view) {
         case activityTypeSelectorView:

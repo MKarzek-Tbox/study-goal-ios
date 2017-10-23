@@ -71,7 +71,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
 
     
     func doThisWhenNotify(){
-        let vc = RecurringTargetVC()
+        let vc = AddSingleTargetViewController()
         vc.cameFromEditing()
         navigationController?.pushViewController(vc, animated: false)
     }
@@ -96,7 +96,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     }
 
     @IBAction func newTargetAction(_ sender: Any) {
-        let vc = RecurringTargetVC()
+        let vc = AddSingleTargetViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -104,12 +104,10 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         if (singleTargetSegmentControl.selectedSegmentIndex == 0){
             let vc = SingleTargetVC()
             navigationController?.pushViewController(vc, animated: false)
-            
         } else {
-            let vc = TargetVC()
+            let vc = RecurringTargetVC()
             navigationController?.pushViewController(vc, animated: false)
         }
-        
     }
     
     private func getTodoListData(){

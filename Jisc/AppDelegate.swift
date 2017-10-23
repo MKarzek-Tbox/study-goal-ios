@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
 	var mainNavigationController:UINavigationController?
 	var menuView:MenuView?
 	var playerController:MPMoviePlayerViewController?
-    var recurringVC:RecurringTargetVC?
+    var recurringVC:AddSingleTargetViewController?
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.

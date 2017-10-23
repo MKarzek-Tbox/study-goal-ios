@@ -15,7 +15,7 @@ class MenuView: UIView {
 	let checkinViewController = CheckinVC()
 	let statsViewController = StatsVC()
 	let logViewController = LogVC()
-	let targetViewController = TargetVC()
+	let targetViewController = RecurringTargetVC()
     let settingsViewController = SettingsVC()
     let appUsageViewController = AppUsageViewController()
     let statsActivityPointsViewController = ActivityPointsViewController()

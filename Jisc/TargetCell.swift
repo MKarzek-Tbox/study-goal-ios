@@ -31,7 +31,7 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 	var optionsState:kOptionsState = .closed
 	var panStartPoint:CGPoint = CGPoint.zero
 	@IBOutlet weak var separator:UIView!
-	weak var parent:TargetVC?
+	weak var parent:RecurringTargetVC?
     var optionsOpened = false
 	
 	override func awakeFromNib() {
@@ -194,7 +194,7 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
                 defaults.set(tutor, forKey: "EditedTutor") //Module
 
                 let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
-                let vc = RecurringTargetVC(target: target)
+                let vc = AddSingleTargetViewController(target: target)
                 navigationController?.pushViewController(vc, animated: true)
                 
                 //NotificationCenter.default.post(name: Notification.Name(rawValue: myNotificationKey), object: self)
@@ -207,7 +207,7 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
             if (indexPath != nil) {
                 print("edit for recurring target called")
                 let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
-                let vc = NewTargetVC(target: target)
+                let vc = AddRecurringTargetViewController(target: target)
                 navigationController?.pushViewController(vc, animated: true)
             }
         }

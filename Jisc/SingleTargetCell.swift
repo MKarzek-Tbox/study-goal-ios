@@ -33,7 +33,7 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
     var optionsState:kOptionsState = .closed
     var panStartPoint:CGPoint = CGPoint.zero
 
-    weak var parent:TargetVC?
+    weak var parent:RecurringTargetVC?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -99,7 +99,7 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
 
     @IBAction func editTarget(_ sender:UIButton) {
         print("edit for single target called without notification")
-        let vc = RecurringTargetVC()
+        let vc = AddSingleTargetViewController()
         navigationController?.pushViewController(vc, animated: true)
         if demo() {
             let alert = UIAlertController(title: "", message: localized("demo_mode_edittarget"), preferredStyle: .alert)
