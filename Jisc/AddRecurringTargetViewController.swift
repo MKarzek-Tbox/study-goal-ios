@@ -374,14 +374,13 @@ class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSour
                 _ = self.navigationController?.popViewController(animated: true)
             }
         }
-        
-        
     }
     
     @IBAction func datePickerAction(_ sender: Any) {
         recurringDatePicker.minimumDate = Date()
         
     }
+    
     //MARK: UIAlertView Delegate
     
     func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
