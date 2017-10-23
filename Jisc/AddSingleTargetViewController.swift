@@ -666,18 +666,35 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if(textView == noteTextView){
-            UIView.animate(withDuration: 0.25, animations: { () -> Void in
-                self.scrollBottomSpace.constant = keyboardHeight - 5.0
-                self.contentScroll.contentOffset = CGPoint(x: 0.0, y: self.contentScroll.contentSize.height - self.scrollBottomSpace.constant)
-                self.view.layoutIfNeeded()
-            })
-        } else if (textView == myGoalTextField){
-            UIView.animate(withDuration: 0.25, animations: { () -> Void in
-                self.scrollBottomSpace.constant = keyboardHeight - 5.0
-                self.contentScroll.contentOffset = CGPoint(x: 0.0, y: 0.0)
-                self.view.layoutIfNeeded()
-            })        }
+        if(!iPad){
+            if(textView == noteTextView){
+                UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                    self.scrollBottomSpace.constant = keyboardHeight - 5.0
+                    self.contentScroll.contentOffset = CGPoint(x: 0.0, y: self.contentScroll.contentSize.height - self.scrollBottomSpace.constant)
+                    self.view.layoutIfNeeded()
+                })
+            } else if (textView == myGoalTextField){
+                UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                    self.scrollBottomSpace.constant = keyboardHeight - 5.0
+                    self.contentScroll.contentOffset = CGPoint(x: 0.0, y: 0.0)
+                    self.view.layoutIfNeeded()
+                })
+            }
+        } else {
+            if(textView == noteTextView){
+                UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                    self.scrollBottomSpace.constant = keyboardHeight - 5.0
+                    self.contentScroll.contentOffset = CGPoint(x: 0.0, y: self.contentScroll.contentSize.height + 215)
+                    self.view.layoutIfNeeded()
+                })
+            } else if (textView == myGoalTextField){
+                UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                    self.scrollBottomSpace.constant = keyboardHeight - 5.0
+                    self.contentScroll.contentOffset = CGPoint(x: 0.0, y: +50)
+                    self.view.layoutIfNeeded()
+                })
+            }
+        }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -859,6 +876,24 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         toolbar.alpha = 1.0
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                self.scrollBottomSpace.constant = 0.0
+                self.contentScroll.contentOffset = CGPoint(x: 0.0, y: 0.0)
+                self.view.layoutIfNeeded()
+            })
+            textView.resignFirstResponder()
+            return false
+        }
+        UIView.animate(withDuration: 0.25, animations: { () -> Void in
+            self.scrollBottomSpace.constant = 0.0
+            self.contentScroll.contentOffset = CGPoint(x: 0.0, y: 0.0)
+            self.view.layoutIfNeeded()
+        })
+        return true
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

@@ -41,6 +41,8 @@
 		97A245161F8F95EC00CD9239 /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A245141F8F95EC00CD9239 /* AttendanceViewController.swift */; };
 		97A245171F8F95EC00CD9239 /* AttendanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97A245151F8F95EC00CD9239 /* AttendanceViewController.xib */; };
 		97C77AA81F9E070A00F0C5C1 /* SingleTargetVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97C77AA71F9E070A00F0C5C1 /* SingleTargetVC~ipad.xib */; };
+		97C77AAD1F9E0F7400F0C5C1 /* AddSingleTargetViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97C77AAC1F9E0F7400F0C5C1 /* AddSingleTargetViewController~ipad.xib */; };
+		97C77AAF1F9E0F8500F0C5C1 /* AddRecurringTargetViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97C77AAE1F9E0F8500F0C5C1 /* AddRecurringTargetViewController~ipad.xib */; };
 		DA0081E01DF833D50034786A /* splash_screen.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DA0081DF1DF833D50034786A /* splash_screen.mp4 */; };
 		DA0081E21DF833DD0034786A /* splash_screen_iPad.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DA0081E11DF833DD0034786A /* splash_screen_iPad.mp4 */; };
 		DA0BDBF31E850FFD00166E16 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA0BDBF21E850FFD00166E16 /* LoginVC.xib */; };
@@ -162,7 +164,6 @@
 		DAB0C8611C4CEA8900F7A3C6 /* RecurringTargetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C8631C4CEA8900F7A3C6 /* RecurringTargetVC.xib */; };
 		DAB0C8671C4CEA9E00F7A3C6 /* RecurringTargetVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C8691C4CEA9E00F7A3C6 /* RecurringTargetVC~ipad.xib */; };
 		DAB0C86D1C4CEAAF00F7A3C6 /* AddRecurringTargetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C86F1C4CEAAF00F7A3C6 /* AddRecurringTargetViewController.xib */; };
-		DAB0C8731C4CEAC400F7A3C6 /* AddRecurringTargetViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C8751C4CEAC400F7A3C6 /* AddRecurringTargetViewController~ipad.xib */; };
 		DAB0C8791C4CEAE700F7A3C6 /* TargetDetailsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C87B1C4CEAE700F7A3C6 /* TargetDetailsVC.xib */; };
 		DAB0C8851C4CEB1200F7A3C6 /* SettingsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C8871C4CEB1200F7A3C6 /* SettingsVC.xib */; };
 		DAB0C88B1C4CEB2400F7A3C6 /* SettingsVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C88D1C4CEB2400F7A3C6 /* SettingsVC~ipad.xib */; };
@@ -344,6 +345,8 @@
 		97A245141F8F95EC00CD9239 /* AttendanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
 		97A245151F8F95EC00CD9239 /* AttendanceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttendanceViewController.xib; sourceTree = "<group>"; };
 		97C77AA71F9E070A00F0C5C1 /* SingleTargetVC~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SingleTargetVC~ipad.xib"; sourceTree = "<group>"; };
+		97C77AAC1F9E0F7400F0C5C1 /* AddSingleTargetViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AddSingleTargetViewController~ipad.xib"; sourceTree = "<group>"; };
+		97C77AAE1F9E0F8500F0C5C1 /* AddRecurringTargetViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AddRecurringTargetViewController~ipad.xib"; sourceTree = "<group>"; };
 		AA5AB1488B3C5169A21992B9 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE36E7B48A149906611638BD /* Pods-Jisc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jisc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jisc/Pods-Jisc.debug.xcconfig"; sourceTree = "<group>"; };
 		D1C2B6248A9A876366B5C2F7 /* Pods-Jisc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jisc.release.xcconfig"; path = "Pods/Target Support Files/Pods-Jisc/Pods-Jisc.release.xcconfig"; sourceTree = "<group>"; };
@@ -487,7 +490,6 @@
 		DAB0C8621C4CEA8900F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RecurringTargetVC.xib; sourceTree = "<group>"; };
 		DAB0C8681C4CEA9E00F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/RecurringTargetVC~ipad.xib"; sourceTree = "<group>"; };
 		DAB0C86E1C4CEAAF00F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AddRecurringTargetViewController.xib; sourceTree = "<group>"; };
-		DAB0C8741C4CEAC400F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/AddRecurringTargetViewController~ipad.xib"; sourceTree = "<group>"; };
 		DAB0C87A1C4CEAE700F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TargetDetailsVC.xib; sourceTree = "<group>"; };
 		DAB0C8861C4CEB1200F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SettingsVC.xib; sourceTree = "<group>"; };
 		DAB0C88C1C4CEB2400F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/SettingsVC~ipad.xib"; sourceTree = "<group>"; };
@@ -1293,8 +1295,9 @@
 			isa = PBXGroup;
 			children = (
 				DAB0C8691C4CEA9E00F7A3C6 /* RecurringTargetVC~ipad.xib */,
-				DAB0C8751C4CEAC400F7A3C6 /* AddRecurringTargetViewController~ipad.xib */,
 				97C77AA71F9E070A00F0C5C1 /* SingleTargetVC~ipad.xib */,
+				97C77AAC1F9E0F7400F0C5C1 /* AddSingleTargetViewController~ipad.xib */,
+				97C77AAE1F9E0F8500F0C5C1 /* AddRecurringTargetViewController~ipad.xib */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -1549,6 +1552,7 @@
 				DA0081E21DF833DD0034786A /* splash_screen_iPad.mp4 in Resources */,
 				DA294C191EBB7BC5005CC2A1 /* GoogleService-Info.plist in Resources */,
 				DAB0C8431C4CEA2F00F7A3C6 /* LogActivityVC~ipad.xib in Resources */,
+				97C77AAD1F9E0F7400F0C5C1 /* AddSingleTargetViewController~ipad.xib in Resources */,
 				DA0081E01DF833D50034786A /* splash_screen.mp4 in Resources */,
 				DACEE6641E7985860039DCA6 /* CheckinVC~ipad.xib in Resources */,
 				DAB0C88B1C4CEB2400F7A3C6 /* SettingsVC~ipad.xib in Resources */,
@@ -1566,7 +1570,6 @@
 				DAB0C7F51C4CE92700F7A3C6 /* MyFriendCell.xib in Resources */,
 				9766E2111F90C73300963DD8 /* AttainmentCell~ipad.xib in Resources */,
 				DAB0C8611C4CEA8900F7A3C6 /* RecurringTargetVC.xib in Resources */,
-				DAB0C8731C4CEAC400F7A3C6 /* AddRecurringTargetViewController~ipad.xib in Resources */,
 				97C77AA81F9E070A00F0C5C1 /* SingleTargetVC~ipad.xib in Resources */,
 				97A245171F8F95EC00CD9239 /* AttendanceViewController.xib in Resources */,
 				DA4085B81EE6AFE50012A561 /* MenuButton.xib in Resources */,
@@ -1584,6 +1587,7 @@
 				DAD66CA61C527A1200074B79 /* CustomPickerView.xib in Resources */,
 				DAB0C7E31C4CE8F700F7A3C6 /* SearchVC~ipad.xib in Resources */,
 				DA0BDBF31E850FFD00166E16 /* LoginVC.xib in Resources */,
+				97C77AAF1F9E0F8500F0C5C1 /* AddRecurringTargetViewController~ipad.xib in Resources */,
 				DAD573941C3D46360080B49B /* TrophiesCell.xib in Resources */,
 				8017FBE31F7E89580012B73F /* bargraph.html in Resources */,
 				DAB0C7FB1C4CE93D00F7A3C6 /* StatsVC.xib in Resources */,
@@ -2066,14 +2070,6 @@
 				DAB0C86E1C4CEAAF00F7A3C6 /* en */,
 			);
 			name = AddRecurringTargetViewController.xib;
-			sourceTree = "<group>";
-		};
-		DAB0C8751C4CEAC400F7A3C6 /* AddRecurringTargetViewController~ipad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DAB0C8741C4CEAC400F7A3C6 /* en */,
-			);
-			name = "AddRecurringTargetViewController~ipad.xib";
 			sourceTree = "<group>";
 		};
 		DAB0C87B1C4CEAE700F7A3C6 /* TargetDetailsVC.xib */ = {

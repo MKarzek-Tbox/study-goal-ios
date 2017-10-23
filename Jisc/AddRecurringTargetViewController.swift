@@ -80,9 +80,10 @@ class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        topSegmentControl.setTitle(localized("single"), forSegmentAt: 0)
-        topSegmentControl.setTitle(localized("recurring"), forSegmentAt: 1)
-        
+        if let controller = topSegmentControl {
+            controller.setTitle(localized("single"), forSegmentAt: 0)
+            controller.setTitle(localized("recurring"), forSegmentAt: 1)
+        }
         if (theTarget != nil) {
             print("editing mode for recurring targets entered")
             isEditingTarget = true
