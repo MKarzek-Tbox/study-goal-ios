@@ -86,9 +86,7 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
         NotificationCenter.default.addObserver(self, selector: #selector(AddSingleTargetViewController
             .keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        if iPad {
-            recurringSegmentControl.isHidden = true
-        }
+        recurringSegmentControl.isHidden = true
         
         recurringSegmentControl.setTitle(localized("single"), forSegmentAt: 0)
         recurringSegmentControl.setTitle(localized("recurring"), forSegmentAt: 1)
