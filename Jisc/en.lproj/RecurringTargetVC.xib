@@ -97,7 +97,10 @@
                     </constraints>
                 </view>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="0XW-eD-NZN">
-                    <rect key="frame" x="8" y="64" width="358" height="29"/>
+                    <rect key="frame" x="8" y="64" width="358" height="43"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="42" id="4PG-V1-b7Y"/>
+                    </constraints>
                     <segments>
                         <segment title="Single"/>
                         <segment title="Recurring"/>
@@ -107,7 +110,7 @@
                     </connections>
                 </segmentedControl>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="108" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jdf-Z3-vHU">
-                    <rect key="frame" x="0.0" y="100" width="375" height="607"/>
+                    <rect key="frame" x="0.0" y="113" width="375" height="554"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="cUh-0J-Znf"/>
@@ -146,10 +149,10 @@
             <constraints>
                 <constraint firstItem="0XW-eD-NZN" firstAttribute="top" secondItem="Te2-ao-IqD" secondAttribute="bottom" constant="4" id="1fm-qJ-h77"/>
                 <constraint firstItem="7vf-Jw-phV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="1sQ-8M-fUG"/>
-                <constraint firstItem="Jdf-Z3-vHU" firstAttribute="top" secondItem="Te2-ao-IqD" secondAttribute="bottom" constant="40" id="41E-kq-YIv"/>
+                <constraint firstItem="Jdf-Z3-vHU" firstAttribute="top" secondItem="Te2-ao-IqD" secondAttribute="bottom" constant="53" id="41E-kq-YIv"/>
                 <constraint firstAttribute="trailing" secondItem="Te2-ao-IqD" secondAttribute="trailing" id="7L3-vg-U1C"/>
                 <constraint firstItem="0XW-eD-NZN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="AIK-Su-jpn"/>
-                <constraint firstAttribute="bottom" secondItem="Jdf-Z3-vHU" secondAttribute="bottom" constant="-40" id="AWf-O1-9ul"/>
+                <constraint firstAttribute="bottom" secondItem="Jdf-Z3-vHU" secondAttribute="bottom" id="AWf-O1-9ul"/>
                 <constraint firstAttribute="trailing" secondItem="Jdf-Z3-vHU" secondAttribute="trailing" id="MSS-k7-E8Y"/>
                 <constraint firstItem="Te2-ao-IqD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="R0j-Rr-vki"/>
                 <constraint firstItem="Te2-ao-IqD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hG4-PN-l0T"/>

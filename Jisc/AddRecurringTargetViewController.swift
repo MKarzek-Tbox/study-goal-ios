@@ -378,7 +378,6 @@ class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSour
     
     @IBAction func datePickerAction(_ sender: Any) {
         recurringDatePicker.minimumDate = Date()
-        
     }
     
     //MARK: UIAlertView Delegate
