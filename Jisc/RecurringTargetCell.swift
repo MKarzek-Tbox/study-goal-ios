@@ -10,16 +10,16 @@ import UIKit
 
 
 let kSingleButtonsWidth:CGFloat = 236.0
-let kSingleTargetCellNibName = "SingleTargetCell"
-let kSingleTargetCellIdentifier = "SingleTargetCellIdentifier"
-let kAnotherSingleTargetCellOpenedOptions = "kAnotherSingleTargetCellOpenedOptions"
-let kChangeSingleTargetCellSelectedStyleOn = "kChangeSingleTargetCellSelectedStyleOn"
-let kChangeSingleTargetCellSelectedStyleOff = "kChangeSingleTargetCellSelectedStyleOff"
-let greenSingleTargetColor = UIColor(red: 0.1, green: 0.69, blue: 0.12, alpha: 1.0)
-let orangeSingleTargetColor = UIColor(red: 0.99, green: 0.51, blue: 0.23, alpha: 1.0)
-let redSingleTargetColor = UIColor(red: 0.99, green: 0.24, blue: 0.26, alpha: 1.0)
+let kRecurringTargetCellNibName = "RecurringTargetCell"
+let kRecurringTargetCellIdentifier = "RecurringTargetCellIdentifier"
+let kAnotherRecurringTargetCellOpenedOptions = "kAnotherRecurringTargetCellOpenedOptions"
+let kChangeRecurringTargetCellSelectedStyleOn = "kChangeRecurringTargetCellSelectedStyleOn"
+let kChangeRecurringTargetCellSelectedStyleOff = "kChangeRecurringTargetCellSelectedStyleOff"
+let greenRecurringTargetColor = UIColor(red: 0.1, green: 0.69, blue: 0.12, alpha: 1.0)
+let orangeRecurringTargetColor = UIColor(red: 0.99, green: 0.51, blue: 0.23, alpha: 1.0)
+let redRecurringTargetColor = UIColor(red: 0.99, green: 0.24, blue: 0.26, alpha: 1.0)
 
-class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
+class RecurringTargetCell: UITableViewCell, UIAlertViewDelegate {
     
     @IBOutlet weak var targetTypeIcon:UIImageView!
     @IBOutlet weak var completionColorView:UIView!
@@ -37,13 +37,13 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(SingleTargetCell.panAction(_:)))
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(RecurringTargetCell.panAction(_:)))
         panGesture.delegate = self
         addGestureRecognizer(panGesture)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(SingleTargetCell.anotherCellOpenedOptions(_:)), name: NSNotification.Name(rawValue: kAnotherSingleTargetCellOpenedOptions), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(SingleTargetCell.changeSelectedStyleOn), name: NSNotification.Name(rawValue: kChangeSingleTargetCellSelectedStyleOn), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(SingleTargetCell.changeSelectedStyleOff), name: NSNotification.Name(rawValue: kChangeSingleTargetCellSelectedStyleOff), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(RecurringTargetCell.anotherCellOpenedOptions(_:)), name: NSNotification.Name(rawValue: kAnotherRecurringTargetCellOpenedOptions), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(RecurringTargetCell.changeSelectedStyleOn), name: NSNotification.Name(rawValue: kChangeRecurringTargetCellSelectedStyleOn), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(RecurringTargetCell.changeSelectedStyleOff), name: NSNotification.Name(rawValue: kChangeRecurringTargetCellSelectedStyleOff), object: nil)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -54,7 +54,7 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
     }
     
     func anotherCellOpenedOptions(_ notification:Notification) {
-        let senderCell = notification.object as? SingleTargetCell
+        let senderCell = notification.object as? RecurringTargetCell
         if (senderCell != nil) {
             if (self != senderCell!) {
                 closeCellOptions()
@@ -74,7 +74,7 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
         titleLabel.text = ""
         closeCellOptions()
         targetTypeIcon.image = nil
-        completionColorView.backgroundColor = redSingleTargetColor
+        completionColorView.backgroundColor = redRecurringTargetColor
         indexPath = nil
         tableView = nil
     }
@@ -85,11 +85,11 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
         targetTypeIcon.image = UIImage(named: imageName)
         let progress = target.calculateProgress(false)
         if (progress.completionPercentage >= 1.0) {
-            completionColorView.backgroundColor = greenSingleTargetColor
+            completionColorView.backgroundColor = greenRecurringTargetColor
         } else if (progress.completionPercentage >= 0.8) {
-            completionColorView.backgroundColor = orangeSingleTargetColor
+            completionColorView.backgroundColor = orangeRecurringTargetColor
         } else {
-            completionColorView.backgroundColor = redSingleTargetColor
+            completionColorView.backgroundColor = redRecurringTargetColor
         }
     }
     @IBAction func editSingleTarget(_ sender: Any) {
@@ -165,21 +165,19 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
     }
     
     func openCellOptions() {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: kAnotherSingleTargetCellOpenedOptions), object: self)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: kAnotherRecurringTargetCellOpenedOptions), object: self)
         optionsState = .open
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.contentTrailingConstraint.constant = kSingleButtonsWidth
             self.optionsButtonsView.setNeedsLayout()
             self.layoutIfNeeded()
         }, completion: { (done) -> Void in
-            NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeSingleTargetCellSelectedStyleOff), object: nil)
-           // self.parent?.aSingleCellIsOpen = true
+            NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeRecurringTargetCellSelectedStyleOff), object: nil)
         })
     }
     
     func closeCellOptions() {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeSingleTargetCellSelectedStyleOn), object: nil)
-        //parent?.aSingleCellIsOpen = false
+        NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeRecurringTargetCellSelectedStyleOn), object: nil)
         optionsState = .closed
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             //self.contentTrailingConstraint.constant = 0.0

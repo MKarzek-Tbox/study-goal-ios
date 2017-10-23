@@ -11,8 +11,8 @@
 		800B167C1F46F39C0000D633 /* SingleTargetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800B167A1F46F39C0000D633 /* SingleTargetVC.swift */; };
 		800B167D1F46F39C0000D633 /* SingleTargetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 800B167B1F46F39C0000D633 /* SingleTargetVC.xib */; };
 		800C2DC51F28EBD5006A078B /* stats_attendance_high_chart.html in Resources */ = {isa = PBXBuildFile; fileRef = 800C2DC41F28EBD5006A078B /* stats_attendance_high_chart.html */; };
-		80110A621F4B4E7F00FBF51D /* SingleTargetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80110A601F4B4E7F00FBF51D /* SingleTargetCell.swift */; };
-		80110A631F4B4E7F00FBF51D /* SingleTargetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80110A611F4B4E7F00FBF51D /* SingleTargetCell.xib */; };
+		80110A621F4B4E7F00FBF51D /* RecurringTargetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80110A601F4B4E7F00FBF51D /* RecurringTargetCell.swift */; };
+		80110A631F4B4E7F00FBF51D /* RecurringTargetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80110A611F4B4E7F00FBF51D /* RecurringTargetCell.xib */; };
 		8014B5F01F44BCD6001BF4E4 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8014B5EE1F44BCD5001BF4E4 /* TermsViewController.swift */; };
 		8014B5F11F44BCD6001BF4E4 /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8014B5EF1F44BCD5001BF4E4 /* TermsViewController.xib */; };
 		8017FBE21F7E89580012B73F /* linegraph.html in Resources */ = {isa = PBXBuildFile; fileRef = 8017FBDD1F7E89540012B73F /* linegraph.html */; };
@@ -315,8 +315,8 @@
 		800B167A1F46F39C0000D633 /* SingleTargetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTargetVC.swift; sourceTree = "<group>"; };
 		800B167B1F46F39C0000D633 /* SingleTargetVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleTargetVC.xib; sourceTree = "<group>"; };
 		800C2DC41F28EBD5006A078B /* stats_attendance_high_chart.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = stats_attendance_high_chart.html; sourceTree = "<group>"; };
-		80110A601F4B4E7F00FBF51D /* SingleTargetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTargetCell.swift; sourceTree = "<group>"; };
-		80110A611F4B4E7F00FBF51D /* SingleTargetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleTargetCell.xib; sourceTree = "<group>"; };
+		80110A601F4B4E7F00FBF51D /* RecurringTargetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecurringTargetCell.swift; sourceTree = "<group>"; };
+		80110A611F4B4E7F00FBF51D /* RecurringTargetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecurringTargetCell.xib; sourceTree = "<group>"; };
 		8014B5EE1F44BCD5001BF4E4 /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
 		8014B5EF1F44BCD5001BF4E4 /* TermsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TermsViewController.xib; sourceTree = "<group>"; };
 		8017FBDD1F7E89540012B73F /* linegraph.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = linegraph.html; sourceTree = "<group>"; };
@@ -757,6 +757,17 @@
 			name = StatsAttendance;
 			sourceTree = "<group>";
 		};
+		97C77AA51F9DF89300F0C5C1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				DA6CFB061BE11A85004A5FB0 /* TargetCell.swift */,
+				DA6CFB071BE11A85004A5FB0 /* TargetCell.xib */,
+				80110A601F4B4E7F00FBF51D /* RecurringTargetCell.swift */,
+				80110A611F4B4E7F00FBF51D /* RecurringTargetCell.xib */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		C99704E93C2B375DBBA083D3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1078,15 +1089,17 @@
 			name = BundleLocalization;
 			sourceTree = "<group>";
 		};
-		DABB0CC61C5A1248001A291D /* SingleTargetDetails */ = {
+		DABB0CC61C5A1248001A291D /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
+				DAB148EB1BE2336B0092FF17 /* TargetDetailsVC.swift */,
+				DAB0C87B1C4CEAE700F7A3C6 /* TargetDetailsVC.xib */,
 				DAA4BEAB1BF383DF0057AEF9 /* SingleTargetDetailsView.swift */,
 				DABB0CC41C59FED5001A291D /* SingleTargetDetailsView.xib */,
 				DABB0CC71C5A13D5001A291D /* TargetPieChart.swift */,
 				DABB0CC91C5A2553001A291D /* TargetGraphChart.swift */,
 			);
-			name = SingleTargetDetails;
+			name = DetailView;
 			sourceTree = "<group>";
 		};
 		DABB7C0D1C045E1500180749 /* Sharing */ = {
@@ -1303,16 +1316,11 @@
 		DAD1D7F21C50F043005BA786 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				97C77AA51F9DF89300F0C5C1 /* Cells */,
+				DABB0CC61C5A1248001A291D /* DetailView */,
 				DAA2AEFC1BCE85E600ED796A /* RecurringTargetVC.swift */,
 				800B167A1F46F39C0000D633 /* SingleTargetVC.swift */,
-				DA6CFB061BE11A85004A5FB0 /* TargetCell.swift */,
-				DA6CFB071BE11A85004A5FB0 /* TargetCell.xib */,
 				DA6CFB021BE119EA004A5FB0 /* AddRecurringTargetViewController.swift */,
-				DAB148EB1BE2336B0092FF17 /* TargetDetailsVC.swift */,
-				DAB0C87B1C4CEAE700F7A3C6 /* TargetDetailsVC.xib */,
-				DABB0CC61C5A1248001A291D /* SingleTargetDetails */,
-				80110A601F4B4E7F00FBF51D /* SingleTargetCell.swift */,
-				80110A611F4B4E7F00FBF51D /* SingleTargetCell.xib */,
 				80587B651F4C96A3006E4AEE /* AddSingleTargetViewController.swift */,
 			);
 			name = Common;
@@ -1645,7 +1653,7 @@
 				DAC634F51C807DFE0084E314 /* StagSans-Book-App.ttf in Resources */,
 				DA2093FE1E69BD76001D979A /* SocialLoginVC.xib in Resources */,
 				DAB0C89D1C4CEB5900F7A3C6 /* OneFriendCell.xib in Resources */,
-				80110A631F4B4E7F00FBF51D /* SingleTargetCell.xib in Resources */,
+				80110A631F4B4E7F00FBF51D /* RecurringTargetCell.xib in Resources */,
 				DA593A681C47A03300C68513 /* ActivityTypesIconsBig.xcassets in Resources */,
 				971DEEF71F94D4F400F8731E /* AppUsageViewController~ipad.xib in Resources */,
 				DAB0C8A31C4CEB6800F7A3C6 /* SelectHomeScreenVC.xib in Resources */,
@@ -1741,7 +1749,7 @@
 				DD6518411F22030A00003916 /* PrivacyWebViewVC.swift in Sources */,
 				DA3F7B861C996B9B00E15678 /* ConsentVC.swift in Sources */,
 				DA868B181BE79C0E00032225 /* EngagementGraphVC.swift in Sources */,
-				80110A621F4B4E7F00FBF51D /* SingleTargetCell.swift in Sources */,
+				80110A621F4B4E7F00FBF51D /* RecurringTargetCell.swift in Sources */,
 				DAD573931C3D46360080B49B /* TrophiesCell.swift in Sources */,
 				DAB0C8E81C4D20DF00F7A3C6 /* BundleLocalization.m in Sources */,
 				DA425AA81BD4E77F00C77D76 /* DownloadManager.swift in Sources */,
