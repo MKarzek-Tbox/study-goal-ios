@@ -196,7 +196,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         let reason = singleDictionary["reason"] as! String
         let status = singleDictionary["from_tutor"] as! String
         let status2 = singleDictionary["is_accepted"] as! String
-        let canEditing = singleDictionary["can_editing"] as! String
+        let canEditing = singleDictionary["is_editable"] as! String
         let reminderDate = singleDictionary["reminder_date"] as! String
          if (status == "0"){
           //  theCell.isHidden = true
@@ -216,7 +216,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             let reason = singleDictionary["reason"] as! String
             let status = singleDictionary["from_tutor"] as! String
             let status2 = singleDictionary["is_accepted"] as! String
-            let canEditing = singleDictionary["can_editing"] as! String
+            let canEditing = singleDictionary["is_editable"] as! String
             let reminderDate = singleDictionary["reminder_date"] as! String
             if (status == "0"){
                 //theCell.isHidden = true
@@ -380,14 +380,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if (aSingleCellIsOpen) {
-//            tableView.reloadData()
-//        } else {
-//            let target = dataManager.targets()[indexPath.row]
-//            let vc = TargetDetailsVC(target: target, index: indexPath.row)
-//            navigationController?.pushViewController(vc, animated: true)
-//            
-//        }
         if demo(){
         
         } else {
@@ -404,7 +396,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                     dictionaryfordis.updateValue(String(describing: singleDictionary["id"]!), forKey: "record_id")
                     dictionaryfordis.updateValue(singleDictionary["module"] as! String, forKey: "module")
                     dictionaryfordis.updateValue(singleDictionary["from_tutor"] as! String, forKey: "from_tutor")
-                    dictionaryfordis.updateValue(singleDictionary["can_editing"] as! String, forKey: "can_editing")
+                    dictionaryfordis.updateValue(singleDictionary["is_editable"] as! String, forKey: "is_editable")
                     dictionaryfordis.updateValue(singleDictionary["reminder_date"] as! String, forKey: "reminder_date")
                     
                     dictionaryfordis.updateValue(singleDictionary["description"] as! String, forKey: "description")
@@ -446,7 +438,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                             dictionaryfordis.updateValue(singleDictionary["description"] as! String, forKey: "description")
                             dictionaryfordis.updateValue(singleDictionary["end_date"] as! String, forKey: "end_date")
                             dictionaryfordis.updateValue(field.text!, forKey: "reason_for_ignoring")
-                            dictionaryfordis.updateValue(singleDictionary["can_editing"] as! String, forKey: "can_editing")
+                            dictionaryfordis.updateValue(singleDictionary["is_editable"] as! String, forKey: "is_editable")
                             dictionaryfordis.updateValue(singleDictionary["reminder_date"] as! String, forKey: "reminder_date")
                             
                             dictionaryfordis.updateValue("en", forKey: "language")
@@ -473,7 +465,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                             dictionaryfordis.updateValue(singleDictionary["end_date"] as! String, forKey: "end_date")
                             
                             
-                            dictionaryfordis.updateValue(singleDictionary["can_editing"] as! String, forKey: "can_editing")
+                            dictionaryfordis.updateValue(singleDictionary["is_editable"] as! String, forKey: "is_editable")
                             dictionaryfordis.updateValue(singleDictionary["reminder_date"] as! String, forKey: "reminder_date")
                             
                             dictionaryfordis.updateValue("en", forKey: "language")

@@ -15,25 +15,22 @@ let timeSpans = [kTargetTimeSpan.Daily, kTargetTimeSpan.Weekly, kTargetTimeSpan.
 let targetReasonPlaceholder = localized("add_a_reason_to_keep_this_target")
 let targetGoalPlaceholder = localized("Add a goal to this target")
 
-class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate, UIAlertViewDelegate, CustomPickerViewDelegate, UITextFieldDelegate {
+class AddRecurringTargetViewController: BaseViewController, UITextViewDelegate, UIAlertViewDelegate, CustomPickerViewDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var topSegmentControl: UISegmentedControl!
-    @IBOutlet weak var recurringSegmentControl: UISegmentedControl!
     
-    @IBOutlet weak var myGoalTextField: UITextView! //H
-    @IBOutlet weak var recurringDatePicker: UIDatePicker!//H
-    @IBOutlet weak var recurringBecauseTextField: UITextView!
-    
-    @IBOutlet weak var moduleLabel: LocalizableLabel! //H
     @IBOutlet weak var activityTypeButton:UIButton!
     @IBOutlet weak var chooseActivityButton:UIButton!
     @IBOutlet weak var intervalButton:UIButton!
+    
     @IBOutlet weak var hoursPicker:UIPickerView!
     @IBOutlet weak var minutesPicker:UIPickerView!
+    
     @IBOutlet weak var closeTimePickerButton:UIButton!
     @IBOutlet weak var timePickerBottomSpace:NSLayoutConstraint!
     @IBOutlet weak var moduleButton:UIButton! //H
     @IBOutlet weak var contentScroll:UIScrollView!
+    
     @IBOutlet weak var scrollBottomSpace:NSLayoutConstraint!
     @IBOutlet weak var noteTextView:UITextView! //H
     @IBOutlet weak var hoursTextField:UITextField!
@@ -84,6 +81,7 @@ class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSour
         if let controller = topSegmentControl {
             controller.setTitle(localized("single"), forSegmentAt: 0)
             controller.setTitle(localized("recurring"), forSegmentAt: 1)
+            controller.selectedSegmentIndex = 1
         }
         if (theTarget != nil) {
             print("editing mode for recurring targets entered")
@@ -105,8 +103,6 @@ class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSour
             topSegmentControl.isHidden = true
         }
         
-        hoursPicker.selectRow(selectedHours, inComponent: 0, animated: false)
-        minutesPicker.selectRow(selectedMinutes, inComponent: 0, animated: false)
         if (because.isEmpty) {
             because = targetReasonPlaceholder
         }
@@ -115,13 +111,16 @@ class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSour
             because = ""
             noteTextView.textColor = UIColor.lightGray
         }
+        
         activityTypeButton.setTitle(dataManager.activityTypeNameAtIndex(selectedActivityType), for: UIControlState())
         activityTypeButton.titleLabel?.adjustsFontSizeToFitWidth = true
         activityTypeButton.titleLabel?.numberOfLines = 2
         let activityType = dataManager.activityTypes()[selectedActivityType]
+        
         chooseActivityButton.setTitle(dataManager.activityAtIndex(selectedActivity, type: activityType)?.name, for: UIControlState())
         chooseActivityButton.titleLabel?.adjustsFontSizeToFitWidth = true
         chooseActivityButton.titleLabel?.numberOfLines = 2
+        
         timeSpan = timeSpans[selectedTimeSpan]
         var string = ""
         switch (timeSpan) {
@@ -138,6 +137,7 @@ class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSour
         intervalButton.setTitle(string, for: UIControlState())
         intervalButton.titleLabel?.adjustsFontSizeToFitWidth = true
         intervalButton.titleLabel?.numberOfLines = 2
+        
         if (selectedModule > 0) {
             moduleButton.setTitle(dataManager.moduleNameAtIndex(selectedModule - 1), for: UIControlState())
         } else {
@@ -145,6 +145,7 @@ class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSour
         }
         moduleButton.titleLabel?.adjustsFontSizeToFitWidth = true
         moduleButton.titleLabel?.numberOfLines = 2
+        
         var title = "\(selectedHours)"
         if (selectedHours < 10) {
             title = "0\(selectedHours)"
@@ -162,6 +163,8 @@ class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSour
         initialSpan = timeSpan
         initialSelectedModule = selectedModule
         initialReason = because
+        
+        //changes for reminder
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -189,20 +192,9 @@ class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSour
     }
     
     @IBAction func topSegmentControlAction(_ sender: Any) {
-        if (topSegmentControl.selectedSegmentIndex == 1){
-            let vc = AddRecurringTargetViewController()
-            navigationController?.pushViewController(vc, animated: false)
-        } else {
+        if (topSegmentControl.selectedSegmentIndex == 0){
             let vc = AddSingleTargetViewController()
             navigationController?.pushViewController(vc, animated: false)
-        }
-        
-    }
-    @IBAction func recurringSegmentControlAction(_ sender: Any) {
-        if (recurringSegmentControl.selectedSegmentIndex == 0){
-            Bundle.main.loadNibNamed("AddSingleTargetViewController", owner: self, options: nil)
-        } else {
-            Bundle.main.loadNibNamed("AddRecurringTargetViewController", owner: self, options: nil)
         }
     }
     
@@ -236,12 +228,9 @@ class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSour
         } else if (initialReason != noteTextView.text) {
             changesWereMade = true
         }
+        //changes for reminder
+        
         return changesWereMade
-    }
-    
-    @IBAction func settings(_ sender:UIButton) {
-        let vc = SettingsVC()
-        navigationController?.pushViewController(vc, animated: true)
     }
     
     func closeActiveTextEntries() {
@@ -281,6 +270,7 @@ class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSour
             alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
             navigationController?.present(alert, animated: true, completion: nil)
         } else {
+            //changes for reminder
             if (selectedMinutes == 0 && selectedHours == 0) {
                 UIAlertView(title: localized("error"), message: localized("please_enter_a_time_target"), delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
             } else if (checkForTargetConflicts()) {
@@ -344,7 +334,7 @@ class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSour
         }
     }
     
-    @IBAction func recurringSaveAction(_ sender: Any) {
+    /*@IBAction func recurringSaveAction(_ sender: Any) {
         dateFormatter.dateFormat = "y-MM-dd"
         let somedateString = dateFormatter.string(from: self.recurringDatePicker.date)
         let urlString = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_add_todo_task?"
@@ -374,11 +364,11 @@ class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSour
                 _ = self.navigationController?.popViewController(animated: true)
             }
         }
-    }
+    }*/
     
-    @IBAction func datePickerAction(_ sender: Any) {
-        recurringDatePicker.minimumDate = Date()
-    }
+    //@IBAction func datePickerAction(_ sender: Any) {
+       // recurringDatePicker.minimumDate = Date()
+    //}
     
     //MARK: UIAlertView Delegate
     
@@ -386,13 +376,13 @@ class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSour
         if (buttonIndex == 0) {
             let vc = RecurringTargetVC()
             navigationController?.pushViewController(vc, animated: true)
-
         } else {
             saveTarget(UIButton())
         }
     }
     
     //MARK: Show Selector Views
+    
     @IBAction func showActivityTypeSelector(_ sender:UIButton) {
         if (!isEditingTarget) {
             closeActiveTextEntries()
@@ -453,6 +443,7 @@ class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSour
     }
     
     //MARK: CustomPickerView Delegate
+    
     func view(_ view: CustomPickerView, selectedRow: Int) {
         switch (view) {
         case activityTypeSelectorView:
@@ -512,35 +503,6 @@ class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSour
         }
     }
     
-    //MARK: Time Picker
-    
-    @IBAction func changeTime(_ sender:UIButton) {
-        closeActiveTextEntries()
-        UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.closeTimePickerButton.alpha = 1.0
-            self.timePickerBottomSpace.constant = 0.0
-            self.view.layoutIfNeeded()
-        })
-    }
-    
-    @IBAction func closeTimePicker(_ sender:UIButton) {
-        animateTimePickerClosing()
-    }
-    
-    @IBAction func closeTimePickerFromToolbar(_ sender:UIBarButtonItem) {
-        animateTimePickerClosing()
-    }
-    
-    func animateTimePickerClosing() {
-        hoursPicker.selectRow(selectedHours, inComponent: 0, animated: false)
-        minutesPicker.selectRow(selectedMinutes, inComponent: 0, animated: false)
-        UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.closeTimePickerButton.alpha = 0.0
-            self.timePickerBottomSpace.constant = -260.0
-            self.view.layoutIfNeeded()
-        })
-    }
-    
     //MARK: UITextView Delegate
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
@@ -552,18 +514,22 @@ class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSour
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.scrollBottomSpace.constant = keyboardHeight - 5.0
-            self.contentScroll.contentOffset = CGPoint(x: 0.0, y: self.contentScroll.contentSize.height - self.scrollBottomSpace.constant)
-            self.view.layoutIfNeeded()
-        })
+        if(!iPad){
+            UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                self.scrollBottomSpace.constant = keyboardHeight - 5.0
+                self.contentScroll.contentOffset = CGPoint(x: 0.0, y: self.contentScroll.contentSize.height - self.scrollBottomSpace.constant)
+                self.view.layoutIfNeeded()
+            })
+        }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.scrollBottomSpace.constant = 0.0
-            self.view.layoutIfNeeded()
-        })
+        if(!iPad){
+            UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                self.scrollBottomSpace.constant = 0.0
+                self.view.layoutIfNeeded()
+            })
+        }
         
         if (textView.text.isEmpty) {
             textView.text = targetReasonPlaceholder
@@ -573,98 +539,9 @@ class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSour
     
     @IBAction func closeTextView(_ sender:UIBarButtonItem) {
         noteTextView.resignFirstResponder()
-        //recurringBecauseTextField.resignFirstResponder()
         because = noteTextView.text
         if (because == targetReasonPlaceholder) {
             because = ""
-        }
-    }
-    
-    //MARK: UIPickerView Datasource
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        var nrRows = 0
-        switch (pickerView) {
-        case hoursPicker:
-            nrRows = maxTargetHours
-        case minutesPicker:
-            nrRows = 60
-        default:break
-        }
-        return nrRows
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 50.0
-    }
-    
-    //MARK: UIPickerView Delegate
-    
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        var viewForRow:UIView
-        var title = "\(row)"
-        if (row < 10) {
-            title = "0\(row)"
-        }
-        
-        if (view != nil) {
-            viewForRow = view!
-            
-            let label = viewForRow.viewWithTag(1) as? UILabel
-            if (label != nil) {
-                label!.text = title
-            }
-        } else {
-            viewForRow = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 44.0, height: 50.0))
-            viewForRow.backgroundColor = UIColor.clear
-            
-            let label = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: 44.0, height: 50.0))
-            label.backgroundColor = UIColor.clear
-            label.text = title
-            label.textAlignment = NSTextAlignment.center
-            label.textColor = lilacColor
-            label.font = myriadProLight(44)
-            label.tag = 1
-            viewForRow.addSubview(label)
-        }
-        return viewForRow
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        var title = "\(row)"
-        if (row < 10) {
-            title = "0\(row)"
-        }
-        switch (pickerView) {
-        case hoursPicker:
-            selectedHours = row
-            hoursTextField.text = title
-            if (selectedHours >= maxTargetHours && timeSpan == .Daily) {
-                selectedHours = maxTargetHours
-                if maxTargetHours < 10 {
-                    hoursTextField.text = "0\(maxTargetHours)"
-                } else {
-                    hoursTextField.text = "\(maxTargetHours)"
-                }
-                hoursPicker.selectRow(maxTargetHours, inComponent: 0, animated: true)
-                selectedMinutes = 0
-                minutesPicker.selectRow(0, inComponent: 0, animated: true)
-                minutesTextField.text = "00"
-            }
-        case minutesPicker:
-            if (selectedHours >= maxTargetHours && timeSpan == .Daily) {
-                selectedMinutes = 0
-                minutesPicker.selectRow(0, inComponent: 0, animated: true)
-                minutesTextField.text = "00"
-            } else {
-                selectedMinutes = row
-                minutesTextField.text = title
-            }
-        default:break
         }
     }
     

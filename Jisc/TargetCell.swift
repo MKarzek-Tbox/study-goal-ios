@@ -130,7 +130,7 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
                     dictionaryfordis.updateValue("no", forKey: "is_social")
                 }
                 
-                dictionaryfordis.updateValue(singleDictionary["can_editing"] as! String, forKey: "can_editing")
+                dictionaryfordis.updateValue(singleDictionary["is_editable"] as! String, forKey: "is_editable")
                 dictionaryfordis.updateValue(singleDictionary["reminder_date"] as! String, forKey: "reminder_date")
                 
                 DownloadManager().editToDo(dictionary:dictionaryfordis)
@@ -188,7 +188,7 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
                 let module = singleDictionary["module"] as! String
                 let reason = singleDictionary["reason"] as! String
                 let tutor = singleDictionary["from_tutor"] as! String
-                let canEditing = singleDictionary["can_editing"] as! String
+                let canEditing = singleDictionary["is_editable"] as! String
                 let reminderDate = singleDictionary["reminder_date"] as! String
 
                 defaults.set(id, forKey: "EditedID") //Setting ID
@@ -249,7 +249,7 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 
                         }
                     }
-                    let canEditing = singleDictionary["can_editing"] as! String
+                    let canEditing = singleDictionary["is_editable"] as! String
                     let reminderDate = singleDictionary["reminder_date"] as! String
                     
                     defaults.set(id, forKey: "EditedID") //Setting ID
