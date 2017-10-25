@@ -39,6 +39,7 @@ class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSour
     @IBOutlet weak var hoursTextField:UITextField!
     @IBOutlet weak var minutesTextField:UITextField!
     @IBOutlet weak var toolbar:UIView!
+    
     var selectedHours:Int = 0
     var selectedMinutes:Int = 0
     var timeSpan:kTargetTimeSpan = .Weekly
@@ -161,8 +162,6 @@ class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSour
         initialSpan = timeSpan
         initialSelectedModule = selectedModule
         initialReason = because
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -191,11 +190,11 @@ class AddRecurringTargetViewController: BaseViewController, UIPickerViewDataSour
     
     @IBAction func topSegmentControlAction(_ sender: Any) {
         if (topSegmentControl.selectedSegmentIndex == 1){
-                        let vc = AddSingleTargetViewController()
-                        navigationController?.pushViewController(vc, animated: false)
+            let vc = AddRecurringTargetViewController()
+            navigationController?.pushViewController(vc, animated: false)
         } else {
-                        let vc = AddSingleTargetViewController()
-                        navigationController?.pushViewController(vc, animated: false)
+            let vc = AddSingleTargetViewController()
+            navigationController?.pushViewController(vc, animated: false)
         }
         
     }
