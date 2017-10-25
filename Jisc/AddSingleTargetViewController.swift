@@ -936,11 +936,12 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
     
     var reminderDatePicker = UIDatePicker()
         var endDatePicker = UIDatePicker()
-     let gbDateFormat = DateFormatter.dateFormat(fromTemplate: "EEEE d MMM yyyy", options: 0, locale: NSLocale(localeIdentifier: "en-GB") as Locale)
+     let gbDateFormat = DateFormatter.dateFormat(fromTemplate: "EEEE d MMM yyyy - hh:00", options: 0, locale: NSLocale(localeIdentifier: "en-GB") as Locale)
+    let gbDateFormatShort = DateFormatter.dateFormat(fromTemplate: "EEEE d MMM yyyy", options: 0, locale: NSLocale(localeIdentifier: "en-GB") as Locale)
     
     func setupDatePickers(){
         reminderDateField.borderStyle = UITextBorderStyle.none
-        reminderDatePicker.datePickerMode = UIDatePickerMode.date
+        reminderDatePicker.datePickerMode = UIDatePickerMode.dateAndTime
         reminderDatePicker.minimumDate = Date()
         let reminderToolbar = UIToolbar()
         reminderToolbar.sizeToFit()
@@ -1006,7 +1007,7 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
                     let editedDateObject = defaults.object(forKey: "EditedDate")
                     if (editedDateObject != nil){
                         let formatter = DateFormatter()
-                        formatter.dateFormat = gbDateFormat
+                        formatter.dateFormat = gbDateFormatShort
                         let dateTime = formatter.date(from:editedDateObject as! String)
                         endDateField.text = formatter.string(from: dateTime!)
                         
@@ -1025,7 +1026,7 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
             self.view.endEditing(true)
         } else {
             let formatter = DateFormatter()
-            formatter.dateFormat = gbDateFormat
+            formatter.dateFormat = gbDateFormatShort
             let gbDate = formatter.string(from: endDatePicker.date)
             endDateField.text = "\(gbDate)"
             self.view.endEditing(true)
