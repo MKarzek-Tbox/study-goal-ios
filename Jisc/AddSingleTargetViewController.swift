@@ -10,61 +10,41 @@ import UIKit
 import CoreData
 
 
-class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate, UIAlertViewDelegate, CustomPickerViewDelegate, UITextFieldDelegate  {
-    @IBOutlet weak var topSegmentControl: UISegmentedControl!
+class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIAlertViewDelegate, CustomPickerViewDelegate, UITextFieldDelegate  {
     
-    @IBOutlet weak var myGoalTextField: UITextView! //H
-    @IBOutlet weak var recurringDatePicker: UIDatePicker!//H
-    @IBOutlet weak var recurringBecauseTextField: UITextView!
-    
-    @IBOutlet weak var moduleLabel: LocalizableLabel! //H
-    @IBOutlet weak var recurringSegmentControl: UISegmentedControl! // H
-    @IBOutlet weak var activityTypeButton:UIButton!
-    @IBOutlet weak var chooseActivityButton:UIButton!
-    @IBOutlet weak var intervalButton:UIButton!
-    @IBOutlet weak var hoursPicker:UIPickerView!
-    @IBOutlet weak var minutesPicker:UIPickerView!
+    @IBOutlet weak var moduleLabel: LocalizableLabel!
+    @IBOutlet weak var recurringSegmentControl: UISegmentedControl!
     @IBOutlet weak var closeTimePickerButton:UIButton!
-    @IBOutlet weak var timePickerBottomSpace:NSLayoutConstraint!
-    @IBOutlet weak var moduleButton:UIButton! //H
+    @IBOutlet weak var moduleButton:UIButton!
     @IBOutlet weak var contentScroll:UIScrollView!
     @IBOutlet weak var scrollBottomSpace:NSLayoutConstraint!
-    @IBOutlet weak var noteTextView:UITextView! //H
-    @IBOutlet weak var hoursTextField:UITextField!
-    @IBOutlet weak var minutesTextField:UITextField!
-    @IBOutlet weak var toolbar:UIView!
+    @IBOutlet weak var noteTextView:UITextView!
+    @IBOutlet weak var myGoalTextField: UITextView!
+    
     @IBOutlet weak var reminderSwitch:UISwitch!
     @IBOutlet weak var reminderView:UIView!
-    @IBOutlet weak var reminderHourField:UITextField!
     @IBOutlet weak var reminderDateField:UITextField!
     @IBOutlet weak var endDateField:UITextField!
     
-    
-    var selectedHours:Int = 0
-    var selectedMinutes:Int = 0
-    var timeSpan:kTargetTimeSpan = .Weekly
     var goal:String = targetGoalPlaceholder
     var because:String = targetReasonPlaceholder
-    var selectedActivityType:Int = 0
-    var selectedActivity:Int = 0
-    var selectedTimeSpan:Int = 0
+    
     var selectedModule:Int = 0
     var theTarget:Target?
-    @IBOutlet weak var titleLabel:UILabel! //H
+    @IBOutlet weak var titleLabel:UILabel!
     var isEditingTarget:Bool = false
     @IBOutlet weak var addModuleView:UIView!
     @IBOutlet weak var addModuleTextField:UITextField!
     
-    var initialSelectedActivityType = 0
-    var initialSelectedActivity = 0
-    var initialTime:Int = 0
-    var initialSpan:kTargetTimeSpan = .Daily
     var initialSelectedModule:Int = 0
-    var initialReason:String = ""
+    var initialReason = ""
+    var initialGoal = ""
     
-    var activityTypeSelectorView:CustomPickerView = CustomPickerView()
-    var activitySelectorView:CustomPickerView = CustomPickerView()
-    var intervalSelectorView:CustomPickerView = CustomPickerView()
+    var reminderDatePicker = UIDatePicker()
+    var endDatePicker = UIDatePicker()
+    let gbDateFormat = DateFormatter.dateFormat(fromTemplate: "EEEE d MMM yyyy - hh:00", options: 0, locale: NSLocale(localeIdentifier: "en-GB") as Locale)
+    let gbDateFormatShort = DateFormatter.dateFormat(fromTemplate: "EEEE d MMM yyyy", options: 0, locale: NSLocale(localeIdentifier: "en-GB") as Locale)
+    
     var moduleSelectorView:CustomPickerView = CustomPickerView()
     
     var isInEditingMode:Bool = false
@@ -102,15 +82,9 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
             print("editing mode for single targets entered")
             isEditingTarget = true
             isInEditingMode = true
-            selectedHours = Int(theTarget!.totalTime) / 60
-            selectedMinutes = Int(theTarget!.totalTime) % 60
-            if let tempTimeSpan = kTargetTimeSpan(rawValue: theTarget!.timeSpan) {
-                timeSpan = tempTimeSpan
-            }
-            selectedTimeSpan = timeSpans.index(of: timeSpan)!
+            
             because = theTarget!.because
-            selectedActivityType = dataManager.indexOfActivityType(theTarget!.activityType)!
-            selectedActivity = dataManager.indexOfActivityWithName(theTarget!.activity.englishName, type: theTarget!.activityType)!
+            
             if (theTarget!.module != nil) {
                 selectedModule = dataManager.indexOfModuleWithID(theTarget!.module!.id)!
                 selectedModule += 1
@@ -136,8 +110,6 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
             myGoalTextField.textColor = UIColor.lightGray
         }
         
-        timeSpan = timeSpans[selectedTimeSpan]
-        
         if (selectedModule > 0) {
             moduleButton.setTitle(dataManager.moduleNameAtIndex(selectedModule - 1), for: UIControlState())
         } else {
@@ -146,12 +118,9 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
         moduleButton.titleLabel?.adjustsFontSizeToFitWidth = true
         moduleButton.titleLabel?.numberOfLines = 2
         
-        initialSelectedActivityType = selectedActivityType
-        initialSelectedActivity = selectedActivity
-        initialTime = (selectedHours * 60) + selectedMinutes
-        initialSpan = timeSpan
         initialSelectedModule = selectedModule
         initialReason = because
+        initialGoal = goal
         
         if (isInEditingMode){
             print("isInEditingMode trying to add information")
@@ -172,11 +141,14 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
             } else {
                 moduleButton.setTitle(editedModule, for: UIControlState())
             }
+            
             let dateFormatter = DateFormatter()
             dateFormatter.locale = Locale.init(identifier: "en_GB")
             dateFormatter.dateFormat = "yyyy-MM-dd"
             let date = dateFormatter.date(from: editedDateObject)
-            self.recurringDatePicker.setDate(date!, animated: true)
+            self.endDatePicker.setDate(date!, animated: true)
+            dateFormatter.dateFormat = gbDateFormatShort
+            endDateField.text = dateFormatter.string(for: endDatePicker.date)
         }
         
     }
@@ -205,11 +177,7 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
     }
     
     @IBAction func recurringSegmentControlAction(_ sender: Any) {
-        if (recurringSegmentControl.selectedSegmentIndex == 0){
-            let vc = AddSingleTargetViewController()
-            navigationController?.pushViewController(vc, animated: false)
-            
-        } else {
+        if (recurringSegmentControl.selectedSegmentIndex == 1){
             let vc = AddRecurringTargetViewController()
             navigationController?.pushViewController(vc, animated: false)
         }
@@ -234,15 +202,9 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
         var changesWereMade:Bool = false
         if (initialSelectedModule != selectedModule) {
             changesWereMade = true
-        } else if (initialSelectedActivityType != selectedActivityType) {
-            changesWereMade = true
-        } else if (initialSelectedActivity != selectedActivity) {
-            changesWereMade = true
-        } else if (initialTime != ((selectedHours * 60) + selectedMinutes)) {
-            changesWereMade = true
-        } else if (initialSpan != timeSpan) {
-            changesWereMade = true
         } else if (initialReason != noteTextView.text) {
+            changesWereMade = true
+        } else if (initialGoal != myGoalTextField.text) {
             changesWereMade = true
         }
         return changesWereMade
@@ -266,91 +228,14 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
                     continue
                 }
             }
-            let itemTimeSpan = kTargetTimeSpan(rawValue: item.timeSpan)
-            let activityType = dataManager.activityTypes()[selectedActivityType]
-            let activity = dataManager.activityAtIndex(selectedActivity, type: activityType)!
-            
+
             var itemSelectedModule:Int = 0
             if (item.module != nil) {
                 itemSelectedModule = dataManager.indexOfModuleWithID(item.module!.id)!
                 itemSelectedModule += 1
             }
-            
-            if ((itemTimeSpan == timeSpan) && (item.activity.englishName == activity.englishName) && (itemSelectedModule == selectedModule)) {
-                conflictExists = true
-                break
-            }
         }
         return conflictExists
-    }
-    
-    @IBAction func saveTarget(_ sender:UIButton) {
-        if (selectedMinutes == 0 && selectedHours == 0) {
-            UIAlertView(title: localized("error"), message: localized("please_enter_a_time_target"), delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
-        } else if (checkForTargetConflicts()) {
-            UIAlertView(title: localized("error"), message: localized("you_already_have_a_target_with_the_same_parameters_set"), delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
-        } else {
-            var target = Target.insertInManagedObjectContext(managedContext, dictionary: NSDictionary())
-            if (theTarget != nil) {
-                dataManager.deleteObject(target)
-                target = theTarget!
-            }
-            target.activityType = dataManager.activityTypes()[selectedActivityType]
-            target.activity = dataManager.activityAtIndex(selectedActivity, type: target.activityType)!
-            target.totalTime = ((selectedHours * 60) + selectedMinutes) as NSNumber
-            target.timeSpan = timeSpan.rawValue
-            if (selectedModule > 0 && selectedModule - 1 < dataManager.modules().count) {
-                target.module = dataManager.modules()[selectedModule - 1]
-                var urlString = ""
-                if(!dataManager.developerMode){
-                    urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget&modid=\(String(describing: target.module))"
-                } else {
-                    urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget&modid=\(String(describing: target.module))"
-                }
-                xAPIManager().checkMod(testUrl:urlString)
-            } else {
-                target.module = nil
-                var urlString = ""
-                if(!dataManager.developerMode){
-                    urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget)"
-                } else {
-                    urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget)"
-                }
-                xAPIManager().checkMod(testUrl:urlString)
-            }
-            target.because = because
-            
-            if (theTarget != nil) {
-                dataManager.editTarget(theTarget!, completion: { (success, failureReason) -> Void in
-                    if (success) {
-                        for (_, item) in target.stretchTargets.enumerated() {
-                            dataManager.deleteObject(item as! NSManagedObject)
-                        }
-                        dataManager.deleteObject(target)
-                        AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
-                            _ = self.navigationController?.popViewController(animated: true)
-                        }
-                    } else {
-                        AlertView.showAlert(false, message: failureReason) { (done) -> Void in
-                            _ = self.navigationController?.popViewController(animated: true)
-                        }
-                    }
-                })
-            } else {
-                dataManager.addTarget(target, completion: { (success, failureReason) -> Void in
-                    if (success) {
-                        dataManager.deleteObject(target)
-                        AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
-                            _ = self.navigationController?.popViewController(animated: true)
-                        }
-                    } else {
-                        AlertView.showAlert(false, message: failureReason) { (done) -> Void in
-                            _ = self.navigationController?.popViewController(animated: true)
-                        }
-                    }
-                })
-            }
-        }
     }
     
     @IBAction func recurringSaveAction(_ sender: Any) {
@@ -361,7 +246,7 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
             
         } else {
             dateFormatter.dateFormat = "y-MM-dd"
-            let somedateString = dateFormatter.string(from: self.recurringDatePicker.date)
+            let somedateString = dateFormatter.string(from: self.endDatePicker.date)
             let urlString = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_add_todo_task?"
             let urlStringEdit = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_edit_todo_task?"
             var module = ""
@@ -417,7 +302,6 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
                 myBody = myBody + "&record_id=\(recordId)"
                 print(myBody)
                 
-                //let somethingWentWrong = xAPIManager().editSingleTarget(body: myBody)
                 let somethingWentWrong = xAPIManager().postRequest(testUrl: urlStringEdit, body: myBody)
                 
                 if (somethingWentWrong){
@@ -448,7 +332,7 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
                         formatter.dateFormat = "yyyy-MM-dd"
                         let TestDateTime = formatter.date(from:editedDateObject as! String)
                         
-                        recurringDatePicker.date = TestDateTime!
+                        endDatePicker.date = TestDateTime!
                         
                         UIAlertView(title: localized("error"), message: localized("tutor_target"), delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
                         
@@ -459,7 +343,7 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
                     if (editedDateObject != nil){
                         let formatter = DateFormatter()
                         formatter.dateFormat = "yyyy-MM-dd"
-                        let TestDateTime = formatter.string(from: recurringDatePicker.date)
+                        let TestDateTime = formatter.string(from: endDatePicker.date)
                         //  recurringDatePicker.date = TestDateTime!
                         defaults.set(TestDateTime, forKey: "EditedDate")
                         
@@ -467,9 +351,9 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
                 }
             }
         } else {
-            recurringDatePicker.minimumDate = Date()
-            let secondsInYear = 365 * 24 * 60 * 60
-            recurringDatePicker.maximumDate = Date(timeInterval: TimeInterval(secondsInYear), since: Date())
+            //recurringDatePicker.minimumDate = Date()
+            //let secondsInYear = 365 * 24 * 60 * 60
+            //recurringDatePicker.maximumDate = Date(timeInterval: TimeInterval(secondsInYear), since: Date())
         }
         //        let defaults = UserDefaults.standard
         //        let editedDateObject = defaults.object(forKey: "EditedDate") as! Date
@@ -487,51 +371,15 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
     
     func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         if (buttonIndex == 0) {
-            //_ = navigationController?.popViewController(animated: false)
             let vc = SingleTargetVC()
             navigationController?.pushViewController(vc, animated: true)
             
         } else {
-            saveTarget(UIButton())
+            recurringSaveAction(UIButton())
         }
     }
     
     //MARK: Show Selector Views
-    
-    @IBAction func showActivityTypeSelector(_ sender:UIButton) {
-        if (!isEditingTarget) {
-            closeActiveTextEntries()
-            var array:[String] = [String]()
-            for (_, item) in dataManager.activityTypes().enumerated() {
-                array.append(item.name)
-            }
-            activityTypeSelectorView = CustomPickerView.create(localized("choose_activity_type"), delegate: self, contentArray: array, selectedItem: selectedActivityType)
-            view.addSubview(activityTypeSelectorView)
-        }
-    }
-    
-    @IBAction func showActivitySelector(_ sender:UIButton) {
-        var array:[String] = [String]()
-        for (index, _) in dataManager.activityTypes()[selectedActivityType].activities.enumerated() {
-            let activityType = dataManager.activityTypes()[selectedActivityType]
-            let name = dataManager.activityAtIndex(index, type: activityType)?.name
-            if (name != nil) {
-                array.append(name!)
-            }
-        }
-        activitySelectorView = CustomPickerView.create(localized("choose_activity"), delegate: self, contentArray: array, selectedItem: selectedActivity)
-        view.addSubview(activitySelectorView)
-    }
-    
-    @IBAction func showIntervalSelector(_ sender:UIButton) {
-        closeActiveTextEntries()
-        var array:[String] = [String]()
-        array.append(localized("day").capitalized)
-        array.append(localized("week").capitalized)
-        array.append(localized("month").capitalized)
-        intervalSelectorView = CustomPickerView.create(localized("choose_interval"), delegate: self, contentArray: array, selectedItem: selectedTimeSpan)
-        view.addSubview(intervalSelectorView)
-    }
     
     @IBAction func showModuleSelector(_ sender:UIButton) {
         if currentUserType() == .social {
@@ -561,46 +409,6 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
     
     func view(_ view: CustomPickerView, selectedRow: Int) {
         switch (view) {
-        case activityTypeSelectorView:
-            selectedActivityType = selectedRow
-            activityTypeButton.setTitle(dataManager.activityTypeNameAtIndex(selectedActivityType), for: UIControlState())
-            selectedActivity = 0
-            chooseActivityButton.setTitle(dataManager.activityAtIndex(selectedActivity, type: dataManager.activityTypes()[selectedActivityType])?.name, for: UIControlState())
-            break
-        case activitySelectorView:
-            selectedActivity = selectedRow
-            let activityType = dataManager.activityTypes()[selectedActivityType]
-            chooseActivityButton.setTitle(dataManager.activityAtIndex(selectedActivity, type: activityType)?.name, for: UIControlState())
-            break
-        case intervalSelectorView:
-            selectedTimeSpan = selectedRow
-            timeSpan = timeSpans[selectedTimeSpan]
-            switch timeSpan {
-            case .Daily:
-                maxTargetHours = 8
-                break
-            case .Weekly:
-                maxTargetHours = 40
-                break
-            case .Monthly:
-                maxTargetHours = 99
-                break
-            }
-            let string = view.contentArray[selectedRow]
-            intervalButton.setTitle(string, for: UIControlState())
-            if (selectedHours >= maxTargetHours && timeSpan == .Daily) {
-                selectedHours = maxTargetHours
-                if maxTargetHours < 10 {
-                    hoursTextField.text = "0\(maxTargetHours)"
-                } else {
-                    hoursTextField.text = "\(maxTargetHours)"
-                }
-                hoursPicker.selectRow(maxTargetHours, inComponent: 0, animated: true)
-                selectedMinutes = 0
-                minutesPicker.selectRow(0, inComponent: 0, animated: true)
-                minutesTextField.text = "00"
-            }
-            break
         case moduleSelectorView:
             if currentUserType() == .social {
                 if selectedRow == dataManager.modules().count {
@@ -616,35 +424,6 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
             break
         default:break
         }
-    }
-    
-    //MARK: Time Picker
-    
-    @IBAction func changeTime(_ sender:UIButton) {
-        closeActiveTextEntries()
-        UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.closeTimePickerButton.alpha = 1.0
-            self.timePickerBottomSpace.constant = 0.0
-            self.view.layoutIfNeeded()
-        })
-    }
-    
-    @IBAction func closeTimePicker(_ sender:UIButton) {
-        animateTimePickerClosing()
-    }
-    
-    @IBAction func closeTimePickerFromToolbar(_ sender:UIBarButtonItem) {
-        animateTimePickerClosing()
-    }
-    
-    func animateTimePickerClosing() {
-        hoursPicker.selectRow(selectedHours, inComponent: 0, animated: false)
-        minutesPicker.selectRow(selectedMinutes, inComponent: 0, animated: false)
-        UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.closeTimePickerButton.alpha = 0.0
-            self.timePickerBottomSpace.constant = -260.0
-            self.view.layoutIfNeeded()
-        })
     }
     
     //MARK: UITextView Delegate
@@ -712,94 +491,6 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
         
     }
     
-    //MARK: UIPickerView Datasource
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        var nrRows = 0
-        switch (pickerView) {
-        case hoursPicker:
-            nrRows = maxTargetHours
-        case minutesPicker:
-            nrRows = 60
-        default:break
-        }
-        return nrRows
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 50.0
-    }
-    
-    //MARK: UIPickerView Delegate
-    
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        var viewForRow:UIView
-        var title = "\(row)"
-        if (row < 10) {
-            title = "0\(row)"
-        }
-        
-        if (view != nil) {
-            viewForRow = view!
-            
-            let label = viewForRow.viewWithTag(1) as? UILabel
-            if (label != nil) {
-                label!.text = title
-            }
-        } else {
-            viewForRow = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 44.0, height: 50.0))
-            viewForRow.backgroundColor = UIColor.clear
-            
-            let label = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: 44.0, height: 50.0))
-            label.backgroundColor = UIColor.clear
-            label.text = title
-            label.textAlignment = NSTextAlignment.center
-            label.textColor = lilacColor
-            label.font = myriadProLight(44)
-            label.tag = 1
-            viewForRow.addSubview(label)
-        }
-        return viewForRow
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        var title = "\(row)"
-        if (row < 10) {
-            title = "0\(row)"
-        }
-        switch (pickerView) {
-        case hoursPicker:
-            selectedHours = row
-            hoursTextField.text = title
-            if (selectedHours >= maxTargetHours && timeSpan == .Daily) {
-                selectedHours = maxTargetHours
-                if maxTargetHours < 10 {
-                    hoursTextField.text = "0\(maxTargetHours)"
-                } else {
-                    hoursTextField.text = "\(maxTargetHours)"
-                }
-                hoursPicker.selectRow(maxTargetHours, inComponent: 0, animated: true)
-                selectedMinutes = 0
-                minutesPicker.selectRow(0, inComponent: 0, animated: true)
-                minutesTextField.text = "00"
-            }
-        case minutesPicker:
-            if (selectedHours >= maxTargetHours && timeSpan == .Daily) {
-                selectedMinutes = 0
-                minutesPicker.selectRow(0, inComponent: 0, animated: true)
-                minutesTextField.text = "00"
-            } else {
-                selectedMinutes = row
-                minutesTextField.text = title
-            }
-        default:break
-        }
-    }
-    
     //MARK: - UITextField Delegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -827,15 +518,7 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        toolbar.alpha = 0.0
-        var shouldBegin = true
-        if selectedHours == maxTargetHours && textField == minutesTextField {
-            shouldBegin = false
-            AlertView.showAlert(false, message: localizedWith1Parameter("time_spent_max", parameter: "\(maxTargetHours)"), completion: nil)
-        } else {
-            textField.text = ""
-        }
-        return shouldBegin
+        return true
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -846,19 +529,13 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if selectedHours == maxTargetHours && textField == hoursTextField {
-            minutesTextField.text = "00"
-            selectedMinutes = 0
+        if(!iPad){
+            UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                self.scrollBottomSpace.constant = 0.0
+                self.view.layoutIfNeeded()
+            })
         }
-        UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.scrollBottomSpace.constant = 0.0
-            self.view.layoutIfNeeded()
-        })
         return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        toolbar.alpha = 1.0
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -875,69 +552,6 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
         }
         return true
     }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        var shouldChange = false
-        if string.isEmpty || textField == addModuleTextField {
-            shouldChange = true
-        } else {
-            if "0123456789".contains(string) {
-                shouldChange = true
-                switch textField {
-                case hoursTextField:
-                    switch timeSpan {
-                    case .Daily:
-                        if string == "9" {
-                            shouldChange = false
-                        } else {
-                            textField.text = "0\(string)"
-                            selectedHours = (string as NSString).integerValue
-                            textField.resignFirstResponder()
-                        }
-                        break
-                    case .Weekly, .Monthly:
-                        if let text = textField.text {
-                            if ((text as NSString).replacingCharacters(in: range, with: string) as NSString).integerValue > maxTargetHours {
-                                shouldChange = false
-                            } else {
-                                shouldChange = false
-                                textField.text = (text as NSString).replacingCharacters(in: range, with: string)
-                                selectedHours = ((text as NSString).replacingCharacters(in: range, with: string) as NSString).integerValue
-                                if ((text as NSString).replacingCharacters(in: range, with: string) as NSString).integerValue > 9 {
-                                    textField.resignFirstResponder()
-                                }
-                            }
-                        }
-                        break
-                    }
-                    break
-                case minutesTextField:
-                    if let text = textField.text {
-                        if text.isEmpty {
-                            if !"012345".contains(string) {
-                                shouldChange = false
-                            }
-                        } else {
-                            if let text = textField.text {
-                                textField.text = (text as NSString).replacingCharacters(in: range, with: string)
-                                selectedMinutes = ((text as NSString).replacingCharacters(in: range, with: string) as NSString).integerValue
-                                textField.resignFirstResponder()
-                            }
-                        }
-                    }
-                    break
-                default:
-                    break
-                }
-            }
-        }
-        return shouldChange
-    }
-    
-    var reminderDatePicker = UIDatePicker()
-        var endDatePicker = UIDatePicker()
-     let gbDateFormat = DateFormatter.dateFormat(fromTemplate: "EEEE d MMM yyyy - hh:00", options: 0, locale: NSLocale(localeIdentifier: "en-GB") as Locale)
-    let gbDateFormatShort = DateFormatter.dateFormat(fromTemplate: "EEEE d MMM yyyy", options: 0, locale: NSLocale(localeIdentifier: "en-GB") as Locale)
     
     func setupDatePickers(){
         reminderDateField.borderStyle = UITextBorderStyle.none

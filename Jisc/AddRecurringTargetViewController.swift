@@ -334,42 +334,6 @@ class AddRecurringTargetViewController: BaseViewController, UITextViewDelegate, 
         }
     }
     
-    /*@IBAction func recurringSaveAction(_ sender: Any) {
-        dateFormatter.dateFormat = "y-MM-dd"
-        let somedateString = dateFormatter.string(from: self.recurringDatePicker.date)
-        let urlString = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_add_todo_task?"
-        var module = ""
-        if (selectedModule - 1 < 0){
-            module = ""
-        } else {
-            module = dataManager.moduleNameAtIndex(selectedModule - 1)!
-        }
-        if (myGoalTextField.text.isEmpty){
-            //Make sure to localize the following message
-            
-            AlertView.showAlert(false, message: localized("Make sure to fill in My Goal section")) { (done) -> Void in
-            }
-        }
-        let myBody = "student_id=\(dataManager.currentStudent!.id)&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en&reason=\(noteTextView.text!)"
-        
-        let somethingWentWrong = xAPIManager().postRequest(testUrl: urlString, body: myBody)
-        
-        if (somethingWentWrong){
-            AlertView.showAlert(false, message: localized("something_went_wrong")) { (done) -> Void in
-                _ = self.navigationController?.popViewController(animated: true)
-            }
-        } else if (!somethingWentWrong && !myGoalTextField.text.isEmpty){
-            AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
-                xAPIManager().checkMod(testUrl:"https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add-single&contentName=addSingleTargets")
-                _ = self.navigationController?.popViewController(animated: true)
-            }
-        }
-    }*/
-    
-    //@IBAction func datePickerAction(_ sender: Any) {
-       // recurringDatePicker.minimumDate = Date()
-    //}
-    
     //MARK: UIAlertView Delegate
     
     func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
