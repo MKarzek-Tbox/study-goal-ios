@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="MyriadPro-Regular.otf">
+            <string>MyriadPro-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecurringTargetCell" customModule="Jisc" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="105" id="KGk-i7-Jjw" customClass="SingleTargetCell" customModule="Jisc" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="105"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="104.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uhI-SJ-IaT">
+                        <rect key="frame" x="1" y="-2" width="374" height="107"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mPy-3c-uNU">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="107"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOL-mF-Nex">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="107"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qaO-z0-1gl">
+                                                <rect key="frame" x="15" y="90" width="50" height="2"/>
+                                                <color key="backgroundColor" red="0.51372549020000002" green="0.87450980389999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="activity_icon_big_1" translatesAutoresizingMaskIntoConstraints="NO" id="gFm-rH-REE">
+                                                <rect key="frame" x="20" y="32" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="Zn2-jM-vFY"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="qaO-z0-1gl" firstAttribute="leading" secondItem="dOL-mF-Nex" secondAttribute="leading" constant="15" id="BxD-3q-3Hp"/>
+                                            <constraint firstItem="gFm-rH-REE" firstAttribute="leading" secondItem="dOL-mF-Nex" secondAttribute="leading" constant="20" id="Frt-3e-eNW"/>
+                                            <constraint firstItem="qaO-z0-1gl" firstAttribute="top" secondItem="gFm-rH-REE" secondAttribute="bottom" constant="18" id="JXW-jV-W1h"/>
+                                            <constraint firstItem="gFm-rH-REE" firstAttribute="centerX" secondItem="dOL-mF-Nex" secondAttribute="centerX" id="N49-je-afa"/>
+                                            <constraint firstItem="gFm-rH-REE" firstAttribute="top" secondItem="dOL-mF-Nex" secondAttribute="top" constant="32" id="Pvw-Uj-Sri"/>
+                                            <constraint firstAttribute="bottom" secondItem="qaO-z0-1gl" secondAttribute="bottom" constant="15" id="VIR-1L-LvL"/>
+                                            <constraint firstItem="gFm-rH-REE" firstAttribute="centerX" secondItem="qaO-z0-1gl" secondAttribute="centerX" id="kwA-hk-3oh"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vr-jv-bgJ">
+                                        <rect key="frame" x="375" y="0.0" width="0.0" height="107"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Oc-nx-f3a" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
+                                                <rect key="frame" x="-157" y="0.0" width="78" height="107"/>
+                                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                                <inset key="titleEdgeInsets" minX="0.0" minY="40" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Edit" backgroundImage="lightBlue"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="edit"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="editTargetButton" translatesAutoresizingMaskIntoConstraints="NO" id="Txf-XM-bBF">
+                                                <rect key="frame" x="-132" y="25" width="28" height="28"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rns-Nz-cVc" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
+                                                <rect key="frame" x="-78" y="0.0" width="78" height="107"/>
+                                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                                <inset key="titleEdgeInsets" minX="0.0" minY="40" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Delete" backgroundImage="red"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="delete"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="deleteTargetButton" translatesAutoresizingMaskIntoConstraints="NO" id="2Zc-gD-Bv4">
+                                                <rect key="frame" x="-50" y="25" width="23" height="28"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="Rns-Nz-cVc" secondAttribute="bottom" id="0m4-gt-O3U"/>
+                                            <constraint firstItem="2Zc-gD-Bv4" firstAttribute="top" secondItem="1vr-jv-bgJ" secondAttribute="top" constant="25" id="7x5-Ep-Pdd"/>
+                                            <constraint firstItem="Txf-XM-bBF" firstAttribute="top" secondItem="2Zc-gD-Bv4" secondAttribute="top" id="Bnz-Dm-egO"/>
+                                            <constraint firstItem="Rns-Nz-cVc" firstAttribute="baseline" secondItem="5Oc-nx-f3a" secondAttribute="firstBaseline" id="BoX-ac-nRU"/>
+                                            <constraint firstItem="5Oc-nx-f3a" firstAttribute="top" secondItem="Rns-Nz-cVc" secondAttribute="top" id="DM2-Wy-d1d"/>
+                                            <constraint firstItem="Rns-Nz-cVc" firstAttribute="leading" secondItem="Txf-XM-bBF" secondAttribute="trailing" constant="26" id="LQ2-rF-Xh7"/>
+                                            <constraint firstItem="Rns-Nz-cVc" firstAttribute="centerX" secondItem="2Zc-gD-Bv4" secondAttribute="centerX" id="NOg-sk-054"/>
+                                            <constraint firstAttribute="trailing" secondItem="Rns-Nz-cVc" secondAttribute="trailing" id="VVw-NU-0cM"/>
+                                            <constraint firstItem="2Zc-gD-Bv4" firstAttribute="leading" secondItem="5Oc-nx-f3a" secondAttribute="trailing" constant="29" id="doa-yb-V0Q"/>
+                                            <constraint firstItem="Rns-Nz-cVc" firstAttribute="top" secondItem="1vr-jv-bgJ" secondAttribute="top" id="hTY-kS-WOI"/>
+                                            <constraint firstItem="Rns-Nz-cVc" firstAttribute="leading" secondItem="5Oc-nx-f3a" secondAttribute="trailing" constant="1" id="l2d-Y4-cYa"/>
+                                            <constraint firstItem="5Oc-nx-f3a" firstAttribute="baseline" secondItem="Rns-Nz-cVc" secondAttribute="firstBaseline" id="ok5-PL-5ld"/>
+                                            <constraint firstItem="5Oc-nx-f3a" firstAttribute="centerX" secondItem="Txf-XM-bBF" secondAttribute="centerX" id="xnc-ck-1Fc"/>
+                                            <constraint firstAttribute="width" id="zyy-xF-Xo0"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="self.layer.masksToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66z-oH-Cbh">
+                                        <rect key="frame" x="95" y="8" width="45.5" height="91"/>
+                                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
+                                        <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="1vr-jv-bgJ" secondAttribute="trailing" id="4uP-oL-Nog"/>
+                                    <constraint firstAttribute="bottom" secondItem="dOL-mF-Nex" secondAttribute="bottom" id="5Xs-gr-zzx"/>
+                                    <constraint firstItem="1vr-jv-bgJ" firstAttribute="leading" secondItem="mPy-3c-uNU" secondAttribute="leading" constant="375" id="8ay-pb-1bT"/>
+                                    <constraint firstItem="dOL-mF-Nex" firstAttribute="top" secondItem="1vr-jv-bgJ" secondAttribute="top" id="8c7-qK-jBo"/>
+                                    <constraint firstItem="dOL-mF-Nex" firstAttribute="leading" secondItem="mPy-3c-uNU" secondAttribute="leading" id="CG2-S2-14F"/>
+                                    <constraint firstItem="dOL-mF-Nex" firstAttribute="centerY" secondItem="66z-oH-Cbh" secondAttribute="centerY" id="PpV-jr-gvJ"/>
+                                    <constraint firstItem="66z-oH-Cbh" firstAttribute="leading" secondItem="dOL-mF-Nex" secondAttribute="trailing" constant="15" id="RRo-Jw-ZIq"/>
+                                    <constraint firstItem="66z-oH-Cbh" firstAttribute="top" secondItem="mPy-3c-uNU" secondAttribute="topMargin" id="Wmg-au-bVc"/>
+                                    <constraint firstItem="dOL-mF-Nex" firstAttribute="top" secondItem="mPy-3c-uNU" secondAttribute="top" id="ZqY-MA-ADR"/>
+                                    <constraint firstItem="dOL-mF-Nex" firstAttribute="bottom" secondItem="1vr-jv-bgJ" secondAttribute="bottom" id="yWd-ed-CR9"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="mPy-3c-uNU" firstAttribute="leading" secondItem="uhI-SJ-IaT" secondAttribute="leading" id="R9l-U3-Q0W"/>
+                            <constraint firstAttribute="trailing" secondItem="mPy-3c-uNU" secondAttribute="trailing" constant="-1" id="Wvx-Bg-3kC"/>
+                            <constraint firstAttribute="bottom" secondItem="mPy-3c-uNU" secondAttribute="bottom" id="a9g-7o-FIj"/>
+                            <constraint firstItem="mPy-3c-uNU" firstAttribute="top" secondItem="uhI-SJ-IaT" secondAttribute="top" id="dA9-u1-Iat"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="uhI-SJ-IaT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-7" id="KPE-Ho-887"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="uhI-SJ-IaT" secondAttribute="trailing" constant="-8" id="SiK-sp-545"/>
+                    <constraint firstItem="uhI-SJ-IaT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-10" id="iDl-Ui-gTK"/>
+                    <constraint firstItem="uhI-SJ-IaT" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="o7Z-JC-kCK"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="completionColorView" destination="qaO-z0-1gl" id="a98-ce-aGS"/>
+                <outlet property="contentTrailingConstraint" destination="zyy-xF-Xo0" id="dH7-oF-jPT"/>
+                <outlet property="optionsButtonsView" destination="1vr-jv-bgJ" id="gf7-2r-D9B"/>
+                <outlet property="targetTypeIcon" destination="gFm-rH-REE" id="sKK-kg-2eu"/>
+                <outlet property="titleLabel" destination="66z-oH-Cbh" id="yHR-ry-4zt"/>
+            </connections>
+            <point key="canvasLocation" x="113.5" y="163.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="activity_icon_big_1" width="40" height="34"/>
+        <image name="deleteTargetButton" width="23" height="28"/>
+        <image name="editTargetButton" width="28" height="28"/>
+        <image name="lightBlue" width="10" height="10"/>
+        <image name="red" width="10" height="10"/>
+    </resources>
+</document>

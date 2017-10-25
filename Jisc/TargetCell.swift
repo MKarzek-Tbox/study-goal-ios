@@ -130,6 +130,9 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
                     dictionaryfordis.updateValue("no", forKey: "is_social")
                 }
                 
+                dictionaryfordis.updateValue(singleDictionary["can_editing"] as! String, forKey: "can_editing")
+                dictionaryfordis.updateValue(singleDictionary["reminder_date"] as! String, forKey: "reminder_date")
+                
                 DownloadManager().editToDo(dictionary:dictionaryfordis)
                 
                 let alert = UIAlertController(title: "", message: "Congratulations on completing your task!", preferredStyle: .alert)
@@ -185,13 +188,17 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
                 let module = singleDictionary["module"] as! String
                 let reason = singleDictionary["reason"] as! String
                 let tutor = singleDictionary["from_tutor"] as! String
+                let canEditing = singleDictionary["can_editing"] as! String
+                let reminderDate = singleDictionary["reminder_date"] as! String
 
                 defaults.set(id, forKey: "EditedID") //Setting ID
                 defaults.set(reason, forKey: "EditedReason") //My goal text
                 defaults.set(describe, forKey: "EditedDescribe") //Because
                 defaults.set(endDate, forKey: "EditedDate") // end_date as Date
                 defaults.set(module, forKey: "EditedModule") //Module
-                defaults.set(tutor, forKey: "EditedTutor") //Module
+                defaults.set(tutor, forKey: "EditedTutor") //Tutor
+                defaults.set(canEditing, forKey: "EditedCanEditing") //Can Editing
+                defaults.set(reminderDate, forKey: "EditedReminderDate") //Reminder Date
 
                 let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
                 let vc = AddSingleTargetViewController(target: target)
@@ -242,12 +249,16 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 
                         }
                     }
+                    let canEditing = singleDictionary["can_editing"] as! String
+                    let reminderDate = singleDictionary["reminder_date"] as! String
                     
                     defaults.set(id, forKey: "EditedID") //Setting ID
                     defaults.set(reason, forKey: "EditedReason") //My goal text
                     defaults.set(describe, forKey: "EditedDescribe") //Because
                     defaults.set(endDate, forKey: "EditedDate") // end_date as Date
                     defaults.set(module, forKey: "EditedModule") //Module
+                    defaults.set(canEditing, forKey: "EditedCanEditing") //Can Editing
+                    defaults.set(reminderDate, forKey: "EditedReminderDate") //Reminder Date
 
                     UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_target"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
                     print("indy\(String(describing: indexPath?.row))")

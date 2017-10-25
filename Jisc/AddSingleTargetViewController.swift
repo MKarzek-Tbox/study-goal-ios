@@ -33,6 +33,13 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
     @IBOutlet weak var hoursTextField:UITextField!
     @IBOutlet weak var minutesTextField:UITextField!
     @IBOutlet weak var toolbar:UIView!
+    @IBOutlet weak var reminderSwitch:UISwitch!
+    @IBOutlet weak var reminderView:UIView!
+    @IBOutlet weak var reminderHourField:UITextField!
+    @IBOutlet weak var reminderDateField:UITextField!
+    @IBOutlet weak var endDateField:UITextField!
+    
+    
     var selectedHours:Int = 0
     var selectedMinutes:Int = 0
     var timeSpan:kTargetTimeSpan = .Weekly
@@ -79,6 +86,8 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupDatePickers()
         
         xAPIManager().checkMod(testUrl:"https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-main&contentName=singleTargetsPage")
         
@@ -469,19 +478,9 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
     }
     
     func keyboardWillShow(notification: NSNotification) {
-        //        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-        //            if self.contentScroll.contentOffset.y != 0{
-        //                self.contentScroll.contentOffset.y += 330
-        //            }
-        //        }
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        /*if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-         if self.view.frame.origin.y != 0{
-         self.view.frame.origin.y += keyboardSize.height
-         }
-         }*/
     }
     
     //MARK: UIAlertView Delegate
@@ -676,28 +675,16 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
                     self.view.layoutIfNeeded()
                 })
             }
-        } else {
-            if(textView == noteTextView){
-                UIView.animate(withDuration: 0.25, animations: { () -> Void in
-                    self.scrollBottomSpace.constant = keyboardHeight - 5.0
-                    self.contentScroll.contentOffset = CGPoint(x: 0.0, y: self.contentScroll.contentSize.height + 215)
-                    self.view.layoutIfNeeded()
-                })
-            } else if (textView == myGoalTextField){
-                UIView.animate(withDuration: 0.25, animations: { () -> Void in
-                    self.scrollBottomSpace.constant = keyboardHeight - 5.0
-                    self.contentScroll.contentOffset = CGPoint(x: 0.0, y: +50)
-                    self.view.layoutIfNeeded()
-                })
-            }
         }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.scrollBottomSpace.constant = 0.0
-            self.view.layoutIfNeeded()
-        })
+        if(!iPad){
+            UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                self.scrollBottomSpace.constant = 0.0
+                self.view.layoutIfNeeded()
+            })
+        }
         
         if (textView == noteTextView && textView.text.isEmpty) {
             textView.text = targetReasonPlaceholder
@@ -876,19 +863,16 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if(text == "\n") {
-            UIView.animate(withDuration: 0.25, animations: { () -> Void in
-                self.scrollBottomSpace.constant = 0.0
-                self.contentScroll.contentOffset = CGPoint(x: 0.0, y: 0.0)
-                self.view.layoutIfNeeded()
-            })
+            if(!iPad){
+                UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                    self.scrollBottomSpace.constant = 0.0
+                    self.contentScroll.contentOffset = CGPoint(x: 0.0, y: 0.0)
+                    self.view.layoutIfNeeded()
+                })
+            }
             textView.resignFirstResponder()
             return false
         }
-        UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.scrollBottomSpace.constant = 0.0
-            self.contentScroll.contentOffset = CGPoint(x: 0.0, y: 0.0)
-            self.view.layoutIfNeeded()
-        })
         return true
     }
     
@@ -948,5 +932,111 @@ class AddSingleTargetViewController: BaseViewController, UIPickerViewDataSource,
             }
         }
         return shouldChange
+    }
+    
+    var reminderDatePicker = UIDatePicker()
+        var endDatePicker = UIDatePicker()
+     let gbDateFormat = DateFormatter.dateFormat(fromTemplate: "EEEE d MMM yyyy", options: 0, locale: NSLocale(localeIdentifier: "en-GB") as Locale)
+    
+    func setupDatePickers(){
+        reminderDateField.borderStyle = UITextBorderStyle.none
+        reminderDatePicker.datePickerMode = UIDatePickerMode.date
+        reminderDatePicker.minimumDate = Date()
+        let reminderToolbar = UIToolbar()
+        reminderToolbar.sizeToFit()
+        let reminderDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(reminderPickerDone))
+        reminderToolbar.setItems([reminderDoneButton], animated: true)
+        reminderDateField.inputAccessoryView = reminderToolbar
+        reminderDateField.inputView = reminderDatePicker
+        
+        endDateField.borderStyle = UITextBorderStyle.none
+        endDatePicker.datePickerMode = UIDatePickerMode.date
+        endDatePicker.minimumDate = Date()
+        let endDateToolbar = UIToolbar()
+        endDateToolbar.sizeToFit()
+        let endDateDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(endDatePickerDone))
+        endDateToolbar.setItems([endDateDoneButton], animated: true)
+        endDateField.inputAccessoryView = endDateToolbar
+        endDateField.inputView = endDatePicker
+    }
+    
+    func reminderPickerDone(){
+        if (isInEditingMode){
+            let defaults = UserDefaults.standard
+            if demo(){
+            } else {
+                let editedTutor = defaults.object(forKey: "EditedTutor") as! String
+                if (editedTutor == "yes"){
+                    let editedDateObject = defaults.object(forKey: "EditedReminderDate")
+                    if (editedDateObject != nil){
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = gbDateFormat
+                        let dateTime = formatter.date(from:editedDateObject as! String)
+                        reminderDateField.text = formatter.string(from: dateTime!)
+                        
+                        UIAlertView(title: localized("error"), message: localized("tutor_target"), delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
+                    }
+                } else {
+                    let editedDateObject = defaults.object(forKey: "EditedReminderDate") //as! Date
+                    if (editedDateObject != nil){
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "yyyy-MM-dd"
+                        let TestDateTime = formatter.string(from: reminderDatePicker.date)
+                        defaults.set(TestDateTime, forKey: "EditedReminderDate")
+                    }
+                }
+            }
+            self.view.endEditing(true)
+        } else {
+            let formatter = DateFormatter()
+            formatter.dateFormat = gbDateFormat
+            let gbDate = formatter.string(from: reminderDatePicker.date)
+            reminderDateField.text = "\(gbDate)"
+            self.view.endEditing(true)
+        }
+    }
+    
+    func endDatePickerDone(){
+        if (isInEditingMode){
+            let defaults = UserDefaults.standard
+            if demo(){
+            } else {
+                let editedTutor = defaults.object(forKey: "EditedTutor") as! String
+                if (editedTutor == "yes"){
+                    let editedDateObject = defaults.object(forKey: "EditedDate")
+                    if (editedDateObject != nil){
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = gbDateFormat
+                        let dateTime = formatter.date(from:editedDateObject as! String)
+                        endDateField.text = formatter.string(from: dateTime!)
+                        
+                        UIAlertView(title: localized("error"), message: localized("tutor_target"), delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
+                    }
+                } else {
+                    let editedDateObject = defaults.object(forKey: "EditedDate") //as! Date
+                    if (editedDateObject != nil){
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "yyyy-MM-dd"
+                        let dateTime = formatter.string(from: endDatePicker.date)
+                        defaults.set(dateTime, forKey: "EditedDate")
+                    }
+                }
+            }
+            self.view.endEditing(true)
+        } else {
+            let formatter = DateFormatter()
+            formatter.dateFormat = gbDateFormat
+            let gbDate = formatter.string(from: endDatePicker.date)
+            endDateField.text = "\(gbDate)"
+            self.view.endEditing(true)
+        }
+    }
+    
+    @IBAction func changeReminderSettings(){
+        if(reminderSwitch.isOn){
+            reminderView.isHidden = false
+        } else {
+            reminderView.isHidden = true
+        }
     }
 }
