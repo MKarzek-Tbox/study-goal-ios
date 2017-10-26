@@ -42,7 +42,7 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
     
     var reminderDatePicker = UIDatePicker()
     var endDatePicker = UIDatePicker()
-    let gbDateFormat = DateFormatter.dateFormat(fromTemplate: "EEEE d MMM yyyy - hh:00", options: 0, locale: NSLocale(localeIdentifier: "en-GB") as Locale)
+    let gbDateFormat = DateFormatter.dateFormat(fromTemplate: "EEEE d MMM yyyy - hh:mm", options: 0, locale: NSLocale(localeIdentifier: "en-GB") as Locale)
     let gbDateFormatShort = DateFormatter.dateFormat(fromTemplate: "EEEE d MMM yyyy", options: 0, locale: NSLocale(localeIdentifier: "en-GB") as Locale)
     
     var moduleSelectorView:CustomPickerView = CustomPickerView()
@@ -126,11 +126,12 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
         dateFormatter.locale = Locale.init(identifier: "en_GB")
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let initialDate = Date()
+        
         self.endDatePicker.setDate(initialDate, animated: true)
         dateFormatter.dateFormat = gbDateFormatShort
         endDateField.text = dateFormatter.string(for: endDatePicker.date)
         
-        self.reminderDatePicker.setDate(initialDate, animated: true)
+        self.reminderDatePicker.setDate(Calendar.current.date(bySettingHour: 23, minute: 0, second: 0, of: initialDate)!, animated: true)
         dateFormatter.dateFormat = gbDateFormat
         reminderDateField.text = dateFormatter.string(for: reminderDatePicker.date)
         
@@ -338,48 +339,6 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
         }
     }
     
-    @IBAction func datePickerAction(_ sender: Any) {
-        if (isInEditingMode){
-            let defaults = UserDefaults.standard
-            if demo(){
-            } else {
-                let editedTutor = defaults.object(forKey: "EditedTutor") as! String //as! Date
-                if (editedTutor == "yes"){
-                    let editedDateObject = defaults.object(forKey: "EditedDate") //as! Date
-                    if (editedDateObject != nil){
-                        let formatter = DateFormatter()
-                        formatter.dateFormat = "yyyy-MM-dd"
-                        let TestDateTime = formatter.date(from:editedDateObject as! String)
-                        
-                        endDatePicker.date = TestDateTime!
-                        
-                        UIAlertView(title: localized("error"), message: localized("tutor_target"), delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
-                        
-                    }
-                    
-                } else {
-                    let editedDateObject = defaults.object(forKey: "EditedDate") //as! Date
-                    if (editedDateObject != nil){
-                        let formatter = DateFormatter()
-                        formatter.dateFormat = "yyyy-MM-dd"
-                        let TestDateTime = formatter.string(from: endDatePicker.date)
-                        //  recurringDatePicker.date = TestDateTime!
-                        defaults.set(TestDateTime, forKey: "EditedDate")
-                        
-                    }
-                }
-            }
-        } else {
-            //recurringDatePicker.minimumDate = Date()
-            //let secondsInYear = 365 * 24 * 60 * 60
-            //recurringDatePicker.maximumDate = Date(timeInterval: TimeInterval(secondsInYear), since: Date())
-        }
-        //        let defaults = UserDefaults.standard
-        //        let editedDateObject = defaults.object(forKey: "EditedDate") as! Date
-        //        recurringDatePicker.date = editedDateObject
-        
-    }
-    
     func keyboardWillShow(notification: NSNotification) {
     }
     
@@ -576,6 +535,7 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
         reminderDateField.borderStyle = UITextBorderStyle.none
         reminderDatePicker.datePickerMode = UIDatePickerMode.dateAndTime
         reminderDatePicker.minimumDate = Date()
+        reminderDatePicker.minuteInterval = 15
         let reminderToolbar = UIToolbar()
         reminderToolbar.sizeToFit()
         let reminderDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(reminderPickerDone))
@@ -663,12 +623,11 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
             let gbDate = formatter.string(from: endDatePicker.date)
             endDateField.text = "\(gbDate)"
             
-            let reminderDate = endDatePicker.date.addingTimeInterval(TimeInterval(-60*60))
+            let reminderDate = Calendar.current.date(bySettingHour: 23, minute: 0, second: 0, of: endDatePicker.date)!
             self.reminderDatePicker.setDate(reminderDate, animated: false)
             dateFormatter.dateFormat = gbDateFormat
             reminderDateField.text = dateFormatter.string(for: reminderDate)
             reminderDatePicker.maximumDate = endDatePicker.date
-            reminderDatePicker.minimumDate = endDatePicker.date
             self.view.endEditing(true)
         }
     }
