@@ -73,7 +73,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" backgroundImage="backButton"/>
                             <connections>
-                                <action selector="goBack:" destination="-1" eventType="touchDragInside" id="vua-WG-ZiF"/>
+                                <action selector="goBack:" destination="-1" eventType="touchUpInside" id="QU4-WM-I6W"/>
                             </connections>
                         </button>
                     </subviews>

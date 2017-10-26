@@ -454,3 +454,6 @@
 "no_trophies" = "You did not win any trophies yet.";
 "reminder" = "Reminder";
 "o_clock" = "o'clock";
+"show_demo_mode" = "See demo account";
+"student" = "Student";
+"staff" = "Staff";
