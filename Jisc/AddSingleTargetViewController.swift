@@ -78,7 +78,7 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
         recurringSegmentControl.setTitle(localized("single"), forSegmentAt: 0)
         recurringSegmentControl.setTitle(localized("recurring"), forSegmentAt: 1)
         
-        //
+        //prepare for edit of single target
         if let editableTarget = theTarget {
             print("editing mode for single targets entered")
             isInEditingMode = true
@@ -161,18 +161,20 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
             dateFormatter.locale = Locale.init(identifier: "en_GB")
             dateFormatter.dateFormat = "yyyy-MM-dd"
             let date = dateFormatter.date(from: editedDateObject)
-            self.endDatePicker.minimumDate = date!
             self.endDatePicker.setDate(date!, animated: true)
             dateFormatter.dateFormat = gbDateFormatShort
             endDateField.text = dateFormatter.string(for: endDatePicker.date)
             
             print("\(editedReminderDate)")
+            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
             if let reminderDate = dateFormatter.date(from: editedReminderDate){
+                print("date found \(editedReminderDate)")
                 self.reminderDatePicker.setDate(reminderDate, animated: true)
                 dateFormatter.dateFormat = gbDateFormat
                 reminderDateField.text = dateFormatter.string(for: reminderDatePicker.date)
                 reminderDatePicker.maximumDate = date
             } else {
+                print("date not found \(editedReminderDate)")
                 self.reminderDatePicker.setDate(Calendar.current.date(bySettingHour: 23, minute: 0, second: 0, of: date!)!, animated: true)
                 dateFormatter.dateFormat = gbDateFormat
                 reminderDateField.text = dateFormatter.string(for: reminderDatePicker.date)
@@ -193,7 +195,6 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }
-    
     
     @IBAction func goBack(_ sender:UIButton) {
         if (changesWereMade()) {
@@ -274,6 +275,7 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
             navigationController?.present(alert, animated: true, completion: nil)
             
         } else {
+            print("save not demo")
             dateFormatter.dateFormat = "y-MM-dd"
             let somedateString = dateFormatter.string(from: self.endDatePicker.date)
             let urlString = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_add_todo_task?"
@@ -288,7 +290,6 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
                 //Make sure to localize the following message
                 
                 AlertView.showAlert(false, message: localized("Make sure to fill in My Goal section")) { (done) -> Void in
-                    
                 }
                 return
             }
@@ -307,8 +308,15 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
                 } else {
                     myBody = "student_id=\(dataManager.currentStudent!.id)&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en"
                 }
-                
             }
+            
+            //add reminder to body
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+            let reminderDate = formatter.string(from: reminderDatePicker.date)
+            myBody += "&reminder_date=\(reminderDate)"
+            
+            print("Body: \(myBody)")
             
             if(!isInEditingMode){
                 let somethingWentWrong = xAPIManager().postRequest(testUrl: urlString, body: myBody)
