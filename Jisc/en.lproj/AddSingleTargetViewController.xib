@@ -25,7 +25,6 @@
             <connections>
                 <outlet property="addModuleTextField" destination="o7E-aL-zOQ" id="Vgk-V1-5g3"/>
                 <outlet property="addModuleView" destination="B3x-Tz-icq" id="fRH-TN-mgF"/>
-                <outlet property="closeTimePickerButton" destination="qMu-la-jmx" id="Iel-bj-1bd"/>
                 <outlet property="contentScroll" destination="8LJ-iO-58R" id="ULg-2A-9Yp"/>
                 <outlet property="endDateField" destination="tFv-4U-Nhf" id="Ug0-D5-McR"/>
                 <outlet property="moduleButton" destination="2Qg-FF-bv2" id="syk-vS-Bs4"/>
@@ -449,28 +448,7 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="suz-R5-226">
                                     <rect key="frame" x="127" y="562" width="120" height="0.0"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1AX-Ra-U6c" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="120" height="38"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="38" id="1eo-4x-x8L"/>
-                                                <constraint firstAttribute="width" constant="120" id="WAN-5x-uJi"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
-                                            <state key="normal" title="Save" backgroundImage="purpleButton"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="save"/>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="recurringSaveAction:" destination="-1" eventType="touchUpInside" id="w5k-pJ-PgX"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <constraints>
-                                        <constraint firstItem="1AX-Ra-U6c" firstAttribute="top" secondItem="suz-R5-226" secondAttribute="top" id="LDO-a7-t0h"/>
-                                        <constraint firstItem="1AX-Ra-U6c" firstAttribute="leading" secondItem="suz-R5-226" secondAttribute="leading" id="a78-K7-Ncp"/>
-                                    </constraints>
                                 </view>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="br7-Ci-d2x">
                                     <rect key="frame" x="8" y="8" width="359" height="43"/>
@@ -524,13 +502,6 @@
                         <constraint firstItem="br7-Ci-d2x" firstAttribute="leading" secondItem="8LJ-iO-58R" secondAttribute="leading" constant="8" id="t00-DX-GAw"/>
                     </constraints>
                 </scrollView>
-                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qMu-la-jmx">
-                    <rect key="frame" x="0.0" y="60" width="375" height="34"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
-                    <connections>
-                        <action selector="closeTimePicker:" destination="-1" eventType="touchUpInside" id="8h3-7s-iLO"/>
-                    </connections>
-                </button>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B3x-Tz-icq">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
@@ -564,24 +535,42 @@
                         <constraint firstAttribute="bottom" secondItem="sQy-F5-suo" secondAttribute="bottom" id="jbP-G0-Jeh"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1AX-Ra-U6c" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
+                    <rect key="frame" x="127" y="621" width="120" height="38"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="38" id="1eo-4x-x8L"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="KPT-zI-tCA"/>
+                        <constraint firstAttribute="width" constant="120" id="WAN-5x-uJi"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="sFC-aM-38a"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
+                    <state key="normal" title="Save" backgroundImage="purpleButton"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="save"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="recurringSaveAction:" destination="-1" eventType="touchUpInside" id="NEa-XM-MpB"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.98431372549999996" green="0.98431372549999996" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="1AX-Ra-U6c" firstAttribute="top" secondItem="ivo-zm-lYc" secondAttribute="bottom" constant="561" id="JZt-d9-I9R"/>
                 <constraint firstItem="br7-Ci-d2x" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="OnB-wS-f6B"/>
                 <constraint firstItem="8LJ-iO-58R" firstAttribute="top" secondItem="ivo-zm-lYc" secondAttribute="bottom" id="PAq-FE-Yym"/>
-                <constraint firstItem="qMu-la-jmx" firstAttribute="trailing" secondItem="8LJ-iO-58R" secondAttribute="trailing" id="R6I-dG-6Y0"/>
                 <constraint firstItem="ivo-zm-lYc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="T0d-0E-KT8"/>
+                <constraint firstItem="1AX-Ra-U6c" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="127" id="TPd-1S-FZ1"/>
                 <constraint firstAttribute="trailing" secondItem="B3x-Tz-icq" secondAttribute="trailing" id="Vyc-1V-LE9"/>
                 <constraint firstItem="B3x-Tz-icq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="WgQ-CQ-CEq"/>
+                <constraint firstAttribute="bottom" secondItem="1AX-Ra-U6c" secondAttribute="bottom" constant="8" id="Zjc-HJ-yRH"/>
                 <constraint firstItem="8LJ-iO-58R" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dq8-lN-pva"/>
                 <constraint firstItem="B3x-Tz-icq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gYD-O2-bqc"/>
                 <constraint firstAttribute="trailing" secondItem="8LJ-iO-58R" secondAttribute="trailing" id="jEc-JY-CK7"/>
                 <constraint firstItem="ivo-zm-lYc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="kgX-to-gZp"/>
                 <constraint firstAttribute="trailing" secondItem="ivo-zm-lYc" secondAttribute="trailing" id="n3Z-1J-sRZ"/>
+                <constraint firstAttribute="trailing" secondItem="1AX-Ra-U6c" secondAttribute="trailing" constant="128" id="nAI-or-pHa"/>
                 <constraint firstAttribute="bottom" secondItem="B3x-Tz-icq" secondAttribute="bottom" id="nX4-xL-wrq"/>
                 <constraint firstAttribute="bottom" secondItem="8LJ-iO-58R" secondAttribute="bottom" id="oWD-ZW-mXi"/>
-                <constraint firstItem="qMu-la-jmx" firstAttribute="top" secondItem="8LJ-iO-58R" secondAttribute="top" id="q4o-cQ-zyW"/>
-                <constraint firstItem="qMu-la-jmx" firstAttribute="leading" secondItem="8LJ-iO-58R" secondAttribute="leading" id="vTY-qo-aUL"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <point key="canvasLocation" x="468.5" y="448.5"/>

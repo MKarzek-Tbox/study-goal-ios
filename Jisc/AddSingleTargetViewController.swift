@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 
-
 class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIAlertViewDelegate, CustomPickerViewDelegate, UITextFieldDelegate  {
     
     @IBOutlet weak var moduleLabel: LocalizableLabel!
@@ -32,7 +31,6 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
     var selectedModule:Int = 0
     var theTarget:Target?
     @IBOutlet weak var titleLabel:UILabel!
-    var isEditingTarget:Bool = false
     @IBOutlet weak var addModuleView:UIView!
     @IBOutlet weak var addModuleTextField:UITextField!
     
@@ -61,9 +59,11 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     func cameFromEditing(){
         isInEditingMode = true
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -78,14 +78,15 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
         recurringSegmentControl.setTitle(localized("single"), forSegmentAt: 0)
         recurringSegmentControl.setTitle(localized("recurring"), forSegmentAt: 1)
         
-        if (theTarget != nil) {
+        //
+        if let editableTarget = theTarget {
             print("editing mode for single targets entered")
-            isEditingTarget = true
             isInEditingMode = true
             
-            because = theTarget!.because
+            because = editableTarget.because
+            goal = editableTarget.description
             
-            if (theTarget!.module != nil) {
+            if (editableTarget.module != nil) {
                 selectedModule = dataManager.indexOfModuleWithID(theTarget!.module!.id)!
                 selectedModule += 1
             }
@@ -159,17 +160,24 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
             let dateFormatter = DateFormatter()
             dateFormatter.locale = Locale.init(identifier: "en_GB")
             dateFormatter.dateFormat = "yyyy-MM-dd"
-            var date = dateFormatter.date(from: editedDateObject)
+            let date = dateFormatter.date(from: editedDateObject)
+            self.endDatePicker.minimumDate = date!
             self.endDatePicker.setDate(date!, animated: true)
             dateFormatter.dateFormat = gbDateFormatShort
             endDateField.text = dateFormatter.string(for: endDatePicker.date)
             
-            date = dateFormatter.date(from: editedReminderDate)
-            self.reminderDatePicker.setDate(date!, animated: true)
-            dateFormatter.dateFormat = gbDateFormat
-            reminderDateField.text = dateFormatter.string(for: reminderDatePicker.date)
-            reminderDatePicker.maximumDate = date
-            reminderDatePicker.minimumDate = date
+            print("\(editedReminderDate)")
+            if let reminderDate = dateFormatter.date(from: editedReminderDate){
+                self.reminderDatePicker.setDate(reminderDate, animated: true)
+                dateFormatter.dateFormat = gbDateFormat
+                reminderDateField.text = dateFormatter.string(for: reminderDatePicker.date)
+                reminderDatePicker.maximumDate = date
+            } else {
+                self.reminderDatePicker.setDate(Calendar.current.date(bySettingHour: 23, minute: 0, second: 0, of: date!)!, animated: true)
+                dateFormatter.dateFormat = gbDateFormat
+                reminderDateField.text = dateFormatter.string(for: reminderDatePicker.date)
+                reminderDatePicker.maximumDate = date
+            }
         }
     }
     
@@ -259,6 +267,7 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
     }
     
     @IBAction func recurringSaveAction(_ sender: Any) {
+        print("entering recurring Save Action")
         if demo(){
             let alert = UIAlertController(title: "", message: localized("demo_mode_add_target"), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
@@ -535,7 +544,7 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
         reminderDateField.borderStyle = UITextBorderStyle.none
         reminderDatePicker.datePickerMode = UIDatePickerMode.dateAndTime
         reminderDatePicker.minimumDate = Date()
-        reminderDatePicker.minuteInterval = 15
+        reminderDatePicker.minuteInterval = 10
         let reminderToolbar = UIToolbar()
         reminderToolbar.sizeToFit()
         let reminderDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(reminderPickerDone))
@@ -561,11 +570,11 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
             } else {
                 let editedTutor = defaults.object(forKey: "EditedTutor") as! String
                 if (editedTutor == "yes"){
-                    let editedDateObject = defaults.object(forKey: "EditedReminderDate")
-                    if (editedDateObject != nil){
+                    let editedReminderDateObject = defaults.object(forKey: "EditedReminderDate")
+                    if (editedReminderDateObject != nil){
                         let formatter = DateFormatter()
                         formatter.dateFormat = gbDateFormat
-                        let dateTime = formatter.date(from:editedDateObject as! String)
+                        let dateTime = formatter.date(from:editedReminderDateObject as! String)
                         reminderDateField.text = formatter.string(from: dateTime!)
                         
                         UIAlertView(title: localized("error"), message: localized("tutor_target"), delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
@@ -575,8 +584,12 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
                     if (editedDateObject != nil){
                         let formatter = DateFormatter()
                         formatter.dateFormat = "yyyy-MM-dd"
-                        let TestDateTime = formatter.string(from: reminderDatePicker.date)
-                        defaults.set(TestDateTime, forKey: "EditedReminderDate")
+                        defaults.set(formatter.string(from: reminderDatePicker.date), forKey: "EditedReminderDate")
+                        
+                        formatter.dateFormat = gbDateFormat
+                        let gbDate = formatter.string(from: reminderDatePicker.date)
+                        reminderDateField.text = "\(gbDate)"
+                        self.view.endEditing(true)
                     }
                 }
             }
@@ -611,8 +624,18 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
                     if (editedDateObject != nil){
                         let formatter = DateFormatter()
                         formatter.dateFormat = "yyyy-MM-dd"
-                        let dateTime = formatter.string(from: endDatePicker.date)
-                        defaults.set(dateTime, forKey: "EditedDate")
+                        defaults.set(formatter.string(from: endDatePicker.date), forKey: "EditedDate")
+                        
+                        formatter.dateFormat = gbDateFormatShort
+                        let gbDate = formatter.string(from: endDatePicker.date)
+                        endDateField.text = "\(gbDate)"
+                        
+                        let reminderDate = Calendar.current.date(bySettingHour: 23, minute: 0, second: 0, of: endDatePicker.date)!
+                        self.reminderDatePicker.setDate(reminderDate, animated: false)
+                        dateFormatter.dateFormat = gbDateFormat
+                        reminderDateField.text = dateFormatter.string(for: reminderDate)
+                        reminderDatePicker.maximumDate = endDatePicker.date
+                        self.view.endEditing(true)
                     }
                 }
             }

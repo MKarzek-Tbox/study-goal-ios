@@ -168,11 +168,6 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
     }
 	
 	@IBAction func editTarget(_ sender:UIButton) {
-//		if demo() {
-//			let alert = UIAlertController(title: "", message: localized("demo_mode_edit_target"), preferredStyle: .alert)
-//			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
-//			navigationController?.present(alert, animated: true, completion: nil)
-//        } else {
         if(kButtonsWidth > 200){
             if (indexPath != nil) {
                 print("indy2\(String(describing: indexPath?.row))")
@@ -203,14 +198,9 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
                 let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
                 let vc = AddSingleTargetViewController(target: target)
                 navigationController?.pushViewController(vc, animated: true)
-                
-                //NotificationCenter.default.post(name: Notification.Name(rawValue: myNotificationKey), object: self)
-
-            } else {
-
             }
-        }else{
-        closeCellOptions()
+        } else {
+            closeCellOptions()
             if (indexPath != nil) {
                 print("edit for recurring target called")
                 let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
@@ -218,8 +208,8 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
                 navigationController?.pushViewController(vc, animated: true)
             }
         }
-		//}
 	}
+    
 	@IBAction func deleteTarget(_ sender:UIButton) {
 		if demo() {
 			let alert = UIAlertController(title: "", message: localized("demo_mode_delete_target"), preferredStyle: .alert)

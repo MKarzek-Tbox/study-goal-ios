@@ -34,6 +34,7 @@
                 <outlet property="reminderDateField" destination="rZl-8i-o6u" id="jem-Fv-5n8"/>
                 <outlet property="reminderSwitch" destination="6ms-qp-bP9" id="VBe-i2-eei"/>
                 <outlet property="reminderView" destination="7Fm-RQ-YZV" id="b7F-bf-xvd"/>
+                <outlet property="titleLabel" destination="bM0-Ds-cWi" id="j78-9D-HYx"/>
                 <outlet property="view" destination="iN0-l3-epB" id="7Yz-af-GqI"/>
             </connections>
         </placeholder>

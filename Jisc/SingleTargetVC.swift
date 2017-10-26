@@ -66,9 +66,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         getTodoListData()
         self.singleTargetTableView.reloadData()
         sender.endRefreshing()
-        
     }
-
     
     func doThisWhenNotify(){
         let vc = AddSingleTargetViewController()
