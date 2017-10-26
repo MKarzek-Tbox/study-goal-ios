@@ -122,6 +122,18 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
         initialReason = because
         initialGoal = goal
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale.init(identifier: "en_GB")
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let initialDate = Date()
+        self.endDatePicker.setDate(initialDate, animated: true)
+        dateFormatter.dateFormat = gbDateFormatShort
+        endDateField.text = dateFormatter.string(for: endDatePicker.date)
+        
+        self.reminderDatePicker.setDate(initialDate, animated: true)
+        dateFormatter.dateFormat = gbDateFormat
+        reminderDateField.text = dateFormatter.string(for: reminderDatePicker.date)
+        
         if (isInEditingMode){
             print("isInEditingMode trying to add information")
             let defaults = UserDefaults.standard
@@ -129,6 +141,7 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
             let editedDescribe = defaults.object(forKey: "EditedDescribe") as! String
             let editedDateObject = defaults.object(forKey: "EditedDate") as! String
             let editedModule = defaults.object(forKey: "EditedModule") as! String
+            let editedReminderDate = defaults.object(forKey: "EditedReminderDate") as! String
             
             myGoalTextField?.textColor = UIColor.black
             myGoalTextField?.text = editedDescribe
@@ -145,12 +158,18 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
             let dateFormatter = DateFormatter()
             dateFormatter.locale = Locale.init(identifier: "en_GB")
             dateFormatter.dateFormat = "yyyy-MM-dd"
-            let date = dateFormatter.date(from: editedDateObject)
+            var date = dateFormatter.date(from: editedDateObject)
             self.endDatePicker.setDate(date!, animated: true)
             dateFormatter.dateFormat = gbDateFormatShort
             endDateField.text = dateFormatter.string(for: endDatePicker.date)
+            
+            date = dateFormatter.date(from: editedReminderDate)
+            self.reminderDatePicker.setDate(date!, animated: true)
+            dateFormatter.dateFormat = gbDateFormat
+            reminderDateField.text = dateFormatter.string(for: reminderDatePicker.date)
+            reminderDatePicker.maximumDate = date
+            reminderDatePicker.minimumDate = date
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -259,7 +278,7 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
                 //Make sure to localize the following message
                 
                 AlertView.showAlert(false, message: localized("Make sure to fill in My Goal section")) { (done) -> Void in
-                    //self.dismiss(animated: true, completion: nil)
+                    
                 }
                 return
             }
@@ -643,6 +662,13 @@ class AddSingleTargetViewController: BaseViewController, UITextViewDelegate, UIA
             formatter.dateFormat = gbDateFormatShort
             let gbDate = formatter.string(from: endDatePicker.date)
             endDateField.text = "\(gbDate)"
+            
+            let reminderDate = endDatePicker.date.addingTimeInterval(TimeInterval(-60*60))
+            self.reminderDatePicker.setDate(reminderDate, animated: false)
+            dateFormatter.dateFormat = gbDateFormat
+            reminderDateField.text = dateFormatter.string(for: reminderDate)
+            reminderDatePicker.maximumDate = endDatePicker.date
+            reminderDatePicker.minimumDate = endDatePicker.date
             self.view.endEditing(true)
         }
     }
