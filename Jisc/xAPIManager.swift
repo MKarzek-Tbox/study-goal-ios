@@ -55,16 +55,16 @@ struct EngagementGraphOptions {
 }
 
 class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegate {
-    
+
     var rawData:NSMutableData = NSMutableData()
     var completionBlock:downloadCompletionBlock?
     var silent:Bool = inheritSilent
     var connectionSuccessfull:Bool = false
     var code:kRequestStatusCode?
     var shouldNotifyAboutInternetConnection:Bool = true
-    
+
     //MARK: NSURLConnection Data Delegate
-    
+
     func connection(_ connection: NSURLConnection, didReceive data: Data) {
         rawData.append(data)
     }
@@ -92,7 +92,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
                 if (code == .ok || code == .noContent) {
                     connectionSuccessfull = true
                 }
-                
+
                 //				if (code == .unauthorized) {
                 //					completionBlock = nil
                 //
@@ -102,7 +102,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
             }
         }
     }
-    
+
     func connectionDidFinishLoading(_ connection: NSURLConnection) {
         if (!silent) {
             LoadingView.hide()
@@ -139,7 +139,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
                 }
             } catch {
                 let string = String(data: rawData as Data, encoding: String.Encoding.utf8)
-                
+
                 if (string != nil) {
                     if (connection.originalRequest.url?.absoluteString != nil) {
                         print("\(connection.originalRequest.url!.absoluteString) - Received data to string: |\(string!)|")
@@ -173,9 +173,9 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
             }
         }
     }
-    
+
     //MARK: NSURLConnection Delegate
-    
+
     func connection(_ connection: NSURLConnection, didFailWithError error: Error) {
         if (!silent) {
             LoadingView.hide()
@@ -189,15 +189,15 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
             })
         }
     }
-    
+
     //MARK: Helpful Functions
-    
+
     func urlWithHost(_ host:String, path:String) -> URL? {
         let fullPath = "\(host)\(path)"
         let theURL:URL? = URL(string: fullPath)
         return theURL
     }
-    
+
     func urlWithPath(_ path:String) -> URL? {
         let fullPath = "\(xAPIHostPath)\(path)"
         var theURL = URL(string: "")
@@ -210,7 +210,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         }
         return theURL
     }
-    
+
     func createGetRequest(_ path:String, withJWT:Bool) -> URLRequest? {
         var request:URLRequest?
         if let url = urlWithPath(path) {
@@ -223,51 +223,51 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         }
         return request
     }
-    
+
     func bodyStringFromDictionary(_ dictionary:[String:String]) -> String {
         var string:String = ""
         let elements:NSMutableArray = NSMutableArray()
         let newDictionary:NSMutableDictionary = NSMutableDictionary(dictionary: dictionary)
-        
+
         for key in newDictionary.allKeys
         {
             let argumentString:String? = key as? String
             let objectString:String? = newDictionary.object(forKey: key) as? String
-            
+
             if (argumentString == nil) {
                 print("key is nil")
                 continue
             }
-            
+
             if (objectString == nil) {
                 print("object is nil")
                 continue
             }
-            
+
             elements.add("\(argumentString!)=\(objectString!)")
         }
-        
+
         string = elements.componentsJoined(by: "&")
-        
+
         let escapedString:String? = string.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-        
+
         if (escapedString != nil) {
             string = escapedString!
         }
-        
+
         if (LOG_ACTIVITY) {
             print("body string:\n\(string)")
         }
-        
+
         if (LOG_ACTIVITY) {
             let separator = "&"
             let array:[String] = string.components(separatedBy: separator)
             print("\(array)")
         }
-        
+
         return string
     }
-    
+
     func createPostRequest(_ path:String, bodyString:String)  -> URLRequest? {
         let postData:Data? = bodyString.data(using: String.Encoding.utf8, allowLossyConversion: true)
         var request:URLRequest?
@@ -285,7 +285,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         request?.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
         return request
     }
-    
+
     func createPutRequest(_ path:String, bodyString:String)  -> URLRequest? {
         let postData:Data? = bodyString.data(using: String.Encoding.utf8, allowLossyConversion: true)
         var request:URLRequest?
@@ -303,7 +303,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         request?.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
         return request
     }
-    
+
     func createDeleteRequest(_ path:String)  -> URLRequest? {
         var request:URLRequest?
         if let url = urlWithPath(path) {
@@ -315,7 +315,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         request?.httpMethod = "DELETE"
         return request
     }
-    
+
     func createProfileImageUploadRequest(_ path: String, myID:String, image:UIImage) -> URLRequest?
     {
         var request:URLRequest?
@@ -326,19 +326,19 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
             request?.addValue("\(token)\"}", forHTTPHeaderField: "Authorization")
         }
         request?.httpMethod = "POST"
-        
+
         let boundary = "---------------------------14737809831466499882746641449"
-        
+
         let contentType = NSString(format: "multipart/form-data; boundary=%@", boundary)
         request?.addValue(contentType as String, forHTTPHeaderField: "Content-Type")
-        
+
         let body = NSMutableData()
-        
+
         var data = (NSString(format: "\r\n--%@\r\n", boundary)).data(using: String.Encoding.utf8.rawValue)
         body.append(data!)
         data = (NSString(format: "Content-Disposition: form-data; name=\"student_id\"\r\n\r\n%@", myID)).data(using: String.Encoding.utf8.rawValue)
         body.append(data!)
-        
+
         data = (NSString(format: "\r\n--%@\r\n", boundary)).data(using: String.Encoding.utf8.rawValue)
         body.append(data!)
         var language = "en"
@@ -347,7 +347,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         }
         data = (NSString(format: "Content-Disposition: form-data; name=\"language\"\r\n\r\n%@", language)).data(using: String.Encoding.utf8.rawValue)
         body.append(data!)
-        
+
         data = (NSString(format: "\r\n--%@\r\n", boundary)).data(using: String.Encoding.utf8.rawValue)
         body.append(data!)
         let fileName = "\(myID)_\(Date().timeIntervalSince1970)"
@@ -361,15 +361,15 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
             imageData = UIImageJPEGRepresentation(newImage, 1.0)!
         }
         body.append(imageData)
-        
+
         data = (NSString(format: "\r\n--%@--\r\n", boundary)).data(using: String.Encoding.utf8.rawValue)
         body.append(data!)
-        
+
         request?.httpBody = body as Data
-        
+
         return request
     }
-    
+
     func startConnectionWithRequest(_ request:URLRequest?) {
         if let request = request {
             if (internetAvailability == ReachabilityStatus.notInitialized) {
@@ -387,7 +387,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
                 }
                 let connection:NSURLConnection? = NSURLConnection(request: request, delegate: self, startImmediately: false)
                 connection?.start()
-                
+
                 if (request.url?.absoluteString != nil && LOG_ACTIVITY) {
                     let method:String? = request.httpMethod
                     if (method != nil) {
@@ -400,13 +400,13 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
             completionBlock?(false, nil, nil, "Error creating the url request")
         }
     }
-    
+
     func delayedConnection(_ timer:Timer) {
         startConnectionWithRequest(timer.userInfo as? URLRequest)
     }
-    
+
     //MARK: Download Functions
-    
+
     func getStudentDetails(_ completion:@escaping xAPICompletionBlock) {
         completionBlock = completion
         var request:URLRequest?
@@ -424,12 +424,12 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         }
         startConnectionWithRequest(request)
     }
-    
+
     func getIDPS(_ completion:@escaping xAPICompletionBlock) {
         completionBlock = completion
         startConnectionWithRequest(createGetRequest(xAPIGetIDPSPath, withJWT: false))
     }
-    
+
     func getActivityPoints(_ period:kXAPIActivityPointsPeriod, completion:@escaping xAPICompletionBlock) {
         completionBlock = completion
         startConnectionWithRequest(createGetRequest("\(xAPIGetActivityPointsPath)?scope=\(period.rawValue)", withJWT: true))
@@ -451,17 +451,17 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         completionBlock = completion
         startConnectionWithRequest(createGetRequest(xAPIGetModulesPath, withJWT: true))
     }
-    
+
     func getModuleTest(_ completion:@escaping xAPICompletionBlock) {
         completionBlock = completion
         startConnectionWithRequest(createGetRequest("module/test?scope=overall", withJWT: true))
     }
-    
+
     func getAttainment(_ completion:@escaping xAPICompletionBlock) {
         completionBlock = completion
         startConnectionWithRequest(createGetRequest(xAPIGetAttainmentPath, withJWT: true))
     }
-    
+
     func callEventsAttended(){
         print("This is from XAPI Manager Events attended")
         //        let statsClass = StatsVC()
@@ -469,11 +469,11 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         //            print("requested events attended")
         //        }
     }
-    
+
     func getEngagementData(_ options:EngagementGraphOptions, completion:@escaping xAPICompletionBlock) {
         completionBlock = completion
         var path = xAPIGetEngagementDataPath
-        
+
         var parameters = [String]()
         if let scope = options.scope {
             parameters.append("scope=\(scope.rawValue)")
@@ -552,7 +552,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
             if let token = xAPIToken() {
                 request.addValue("\(token)", forHTTPHeaderField: "Authorization")
                 request.httpMethod = "POST"
-                
+
                 request.httpBody = body.data(using: .utf8)
             }
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -561,13 +561,13 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
                     somethingWentWrong = true
                     return
                 }
-                
+
                 if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
                     print("statusCode should be 200, but is \(httpStatus.statusCode)")
                     print("response = \(response!)")
                     somethingWentWrong = true
                 }
-                
+
                 let responseString = String(data: data, encoding: .utf8)
                 print("responseString = \(responseString!)")
                 somethingWentWrong = false
@@ -576,7 +576,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         }
         return somethingWentWrong
     }
-    
+
     func settingsCall(testUrl:String){
         var request:URLRequest?
         var returnedString:String = ""
@@ -593,7 +593,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
                 returnedString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)! as String
                 print("returned String is: \(returnedString)")
                 print("response from server \(String(describing: response))")
-                
+
                 if (testUrl=="https://api.datax.jisc.ac.uk/sg/setting?setting=studyGoalAttendance"){
                     let defaults = UserDefaults.standard
                     defaults.set(returnedString, forKey: "SettingsReturn")
@@ -610,7 +610,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
     func checkIn(pin:String, location:String, timestamp:String, completion:@escaping xAPICompletionBlock) {
         completionBlock = completion
         var request:URLRequest?
-        if let urlString = "https://api.x-staging.data.alpha.jisc.ac.uk/att/checkin?checkinpin=\(pin)&geo_tag=\(location)&timestamp=\(timestamp)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+        if let urlString = "https://api.datax.jisc.ac.uk/att/checkin?checkinpin=\(pin)&geo_tag=\(location)&timestamp=\(timestamp)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             if let url = URL(string: urlString) {
                 request = URLRequest(url: url)
             }
@@ -624,7 +624,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
             completionBlock?(false, nil, nil, "Error creating the url request")
         }
     }
-    
+
     func getAppUsage(studentId:String, startDate:String, endDate:String) {
         //print("made it to the call")
         var urlPath = ""
@@ -634,11 +634,11 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         else{
             urlPath = xAPIGetAppUsagePath + "?student_id=" + studentId + "&start_date=" + startDate + "&end_date=" + endDate
         }
-        
+
         if let url = URL(string: urlPath){
             print("calling for app usage data")
             print("url " + urlPath)
-            
+
             //let session = URLSession.shared
             let request = NSMutableURLRequest(url: url)
             request.httpMethod = "GET"
@@ -648,7 +648,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
                 print("error with token")
                 return
             }
-            
+
             let dataCallTask = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
                 if error != nil {
                     print("error on getting data from url")
@@ -660,39 +660,39 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
                             print("json found")
                             print("json for app usage \(json)")
                             let defaults = UserDefaults.standard
-                            
+
                             let met_targets_number = json["met_targets_number"] as! [String: Any]
                             let metRecurringTargets = met_targets_number["recurring targets"] as! Int
                             let metSingleTargets = met_targets_number["todo tasks"] as! Int
-                            
+
                             let metTargets = metRecurringTargets + metSingleTargets
-                            
+
                             print("metTargets \(metTargets)")
                             defaults.set(metTargets, forKey: "AppUsage_targets_met")
-                            
-                            
+
+
                             let failed_targets_number = json["failed_targets_number"] as! [String: Any]
                             let failedRecurringTargets = failed_targets_number["recurring targets"] as! Int
                             let failedSingleTargets = failed_targets_number["todo tasks"] as! Int
-                            
+
                             let failedTargets = failedRecurringTargets + failedSingleTargets
-                            
+
                             print("failedTargets \(failedTargets)")
                             defaults.set(failedTargets, forKey: "AppUsage_targets_failed")
-                            
-                            
+
+
                             let set_targets_number = json["set_targets_number"] as! [String: Any]
                             let setRecurringTargets = set_targets_number["recurring targets"] as! Int
                             let setSingleTargets = set_targets_number["todo tasks"] as! Int
                             let setTargets = setRecurringTargets + setSingleTargets
                             print("setTargets \(setTargets)")
-                            
+
                             defaults.set(setTargets, forKey: "AppUsage_targets_set")
-                            
+
                             let activityHours = (json["activity_logged_hours"] as! Int)/60
                             defaults.set(activityHours, forKey: "AppUsage_activities")
                             defaults.set(json["number_of_sessions"], forKey: "AppUsage_sessions")
-                            
+
                             print("app usage set values \(metTargets) \(failedTargets) \(setTargets) \(activityHours) \(json["number_of_sessions"])")
                         } catch {
                             print("error on JSONSerialization")
@@ -703,14 +703,14 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
             dataCallTask.resume()
         }
     }
-    
+
     func editSingleTarget(body: String) -> URLRequest? {
         print("made it to the call")
         var urlPath = xAPIEditToDoPath
-        
+
         let postData:Data? = body.data(using: String.Encoding.utf8, allowLossyConversion: true)
         var request:URLRequest?
-        
+
         if let url = urlWithPath(urlPath) {
             print("edittodo calling for edit todo target")
             print("edittodo url " + urlPath)
@@ -718,13 +718,13 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         } else {
             print("edittodo url not created")
         }
-        
+
         if let token = xAPIToken() {
             request?.addValue("\(token)\"}", forHTTPHeaderField: "Authorization")
         } else {
             print("edittodo token not found")
         }
-        
+
         request?.httpMethod = "POST"
         if (postData != nil) {
             request?.setValue("\(postData!.count)", forHTTPHeaderField: "Content-Length")
@@ -735,9 +735,8 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         } else {
             print("edittodo post data nil")
         }
-        
+
         request?.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
         return request
     }
 }
-
