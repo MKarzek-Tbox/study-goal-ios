@@ -431,7 +431,11 @@
 "recurring" = "Rheolaidd";
 "logout" = "Allgofnodi";
 "events_attended_segment" = "Digwyddiadau";
+"see_demo_account" = "Ewch i'r Cyfrif Demo";
 //New Strings
 "attendence" = "PLACEHOLDER";
 "mark" = "PLACEHOLDER";
 "no_friends" = "PLACEHOLDER";
+"staff" = "PLACEHOLDER";
+"student" = "PLACEHOLDER";
+"keep_me_logged_in" = "PLACEHOLDER";

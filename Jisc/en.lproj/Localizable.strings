@@ -445,3 +445,7 @@
 "demo_mode_addtarget" = "This is a demonstration. Please sign in to add targets";
 "no_friends" = "There are no friends to display. Send requests to add friends.";
 "no_trophies" = "You did not earn any trophies yet.";
+"staff" = "Staff";
+"student" = "Student";
+"see_demo_account" = "See demo account";
+"keep_me_logged_in" = "Keep me logged in";
