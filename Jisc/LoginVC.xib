@@ -48,7 +48,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AXf-hN-ygR">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AXf-hN-ygR" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="177" width="335" height="50"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                             <state key="normal" title="Student" backgroundImage="genericLoginButton">
@@ -58,11 +58,15 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <state key="highlighted" backgroundImage="genericLoginButtonSelected"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="student"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeySelected" value="student"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="imAStudent:" destination="-1" eventType="touchUpInside" id="xRM-Pf-LuH"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnm-Jf-HlH">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnm-Jf-HlH" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="247" width="335" height="50"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                             <state key="normal" title="Staff" backgroundImage="genericLoginButton">
@@ -72,6 +76,10 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <state key="highlighted" backgroundImage="genericLoginButtonSelected"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="staff"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeySelected" value="staff"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="imAMemberOfStaff:" destination="-1" eventType="touchUpInside" id="raD-KB-rXE"/>
                             </connections>
@@ -93,7 +101,7 @@
                         <constraint firstItem="WII-La-gAk" firstAttribute="leading" secondItem="xnp-Pz-kTD" secondAttribute="leading" id="tHp-Xa-Zf0"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihX-GB-yAh">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihX-GB-yAh" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                     <rect key="frame" x="97" y="417" width="180" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="180" id="SlO-GU-fhS"/>
@@ -102,6 +110,10 @@
                     <inset key="titleEdgeInsets" minX="10" minY="2" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="Keep me logged in" image="newcheckOff"/>
                     <state key="selected" image="newcheck"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="keep_me_logged_in"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizationKeySelected" value="keep_me_logged_in"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="rememberMe:" destination="-1" eventType="touchUpInside" id="J8O-YL-Q3q"/>
                     </connections>
@@ -113,13 +125,17 @@
                         <action selector="next:" destination="-1" eventType="touchUpInside" id="4hO-5O-Hv3"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdW-ta-NB6">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdW-ta-NB6" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                     <rect key="frame" x="92.5" y="597" width="190" height="50"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="190" id="HQv-4O-v53"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                     <state key="normal" title="See demo account" backgroundImage="demoButtonBG"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="see_demo_account"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizationKeySelected" value="see_demo_account"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="demoMode:" destination="-1" eventType="touchUpInside" id="uqI-n8-xdh"/>
                     </connections>
@@ -338,7 +354,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="335" height="124"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Institution not listed?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ce-Xk-oI9">
-                            <rect key="frame" x="92.5" y="10" width="150.5" height="17"/>
+                            <rect key="frame" x="93" y="10" width="150.5" height="17"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>

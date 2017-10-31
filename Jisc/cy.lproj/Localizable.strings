@@ -364,7 +364,6 @@
 "send_friend_request" = "Gyrru Cais Ffrind";
 "please_search_for_friends_using_their_institution_email_address" = "I chwilio am ffrindiau, defnyddiwch ei cyfeiriad ebost nhw (o fewn ei sefydliad)";
 "report_a_bug" = "Cofnodi Nodwedd / Nam";
-"student_id" = "Rhif Myfyriwr";
 "bug_feature_idea" = "Cofnodi Nodwedd/Nam";
 "bug_or_feature" = "Nam gyda’r app ydy hwn, neu cofnod o nodwedd newydd ar gyfer yr app?";
 "affected_parts" = "Mewn pa rhan o’r app mae hwn yn briodol iddo (porthiant, ystadegau, log, target, neu rhywle arall)?";
@@ -431,7 +430,11 @@
 "recurring" = "Rheolaidd";
 "logout" = "Allgofnodi";
 "events_attended_segment" = "Digwyddiadau";
-//New Strings
-"attendence" = "PLACEHOLDER";
-"mark" = "PLACEHOLDER";
-"no_friends" = "PLACEHOLDER";
+"see_demo_account" = "Ewch i'r Cyfrif Demo";
+"student_id" = "Rhif Myfyriwr";
+"attendance" = "Presenoldeb";
+"no_friends" = "Nid ydych chi wedi ychwanegu unrhyw ffrindiau eto";
+"staff" = "Staffwr";
+"student" = "Myfyriwr";
+"keep_me_logged_in" = "Cadwâ fi wedi ilofnodi mewn";
+"mark" = "Gradd";
