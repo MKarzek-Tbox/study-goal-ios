@@ -24,12 +24,11 @@ class OneFeedItemCell: LocalizableCell {
     @IBOutlet weak var timeStamp:UILabel!
     @IBOutlet weak var shareButton:UIButton!
     @IBOutlet weak var shareView:UIView!
-    @IBOutlet weak var optionsButton:UIButton!
     @IBOutlet weak var optionsView:UIView!
-    @IBOutlet weak var userOptionsImage:UIImageDownload!
     @IBOutlet weak var hidePostButton:UIButton!
     @IBOutlet weak var hideFriendButton:UIButton!
     @IBOutlet weak var deleteFriendButton:UIButton!
+    
     var theFeed:Feed?
     weak var parent:FeedVC?
 
@@ -50,8 +49,6 @@ class OneFeedItemCell: LocalizableCell {
             deleteFriendButton.titleLabel?.font = myriadProRegular(13)
         }
         shareButton.alpha = 0.0
-        optionsButton.alpha = 0.0
-        optionsView.alpha = 0.0
         shareView.alpha = 0.0
         
         if (buttonsWithLargeTitles.count > 0) {
@@ -103,28 +100,27 @@ class OneFeedItemCell: LocalizableCell {
     override func prepareForReuse() {
         shareView.alpha = 0.0
         shareButton.alpha = 0.0
-        optionsButton.alpha = 0.0
-        optionsView.alpha = 0.0
         loadProfilePicture("")
     }
     
     func loadProfilePicture(_ link:String) {
         userImage.loadImageWithLink(link, type: .profile, completion: nil)
-        userOptionsImage.loadImageWithLink(link, type: .profile, completion: nil)
+        //userOptionsImage.loadImageWithLink(link, type: .profile, completion: nil)
     }
     
     func loadFeedPost(_ feed:Feed) {
         theFeed = feed
         if feed.activityType == "temp_push_notification" {
-            self.contentView.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
+            print("\(feed.description) is a push notification ")
+            self.cellBG.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
         } else {
-            self.contentView.backgroundColor = UIColor(red: 251.0/255.0, green: 251.0/255.0, blue: 251.0/255.0, alpha: 1.0)
+            print("\(feed.description) is a post ")
+            self.cellBG.backgroundColor = UIColor(red: 251.0/255.0, green: 251.0/255.0, blue: 251.0/255.0, alpha: 1.0)
         }
         if (feed.isMine()) {
             shareButton.alpha = 1.0
             loadProfilePicture("\(hostPath)\(dataManager.currentStudent!.photo)")
         } else {
-            optionsButton.alpha = 1.0
             let fromFriend = feed.fromFriend()
             if (fromFriend != nil) {
                 loadProfilePicture("\(hostPath)\(fromFriend!.photo)")
@@ -366,7 +362,6 @@ class OneFeedItemCell: LocalizableCell {
         switch (sender.state) {
         case .began:
             panStartPoint = sender.location(in: self)
-            optionsButtonsView.alpha = 1.0
         case .ended:
             let velocity = sender.velocity(in: self).x
             if (velocity < 0) {
@@ -410,7 +405,6 @@ class OneFeedItemCell: LocalizableCell {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.contentTrailingConstraint.constant = 0.0
             self.layoutIfNeeded()
-            self.optionsButtonsView.alpha = 0.0
         }) 
     }
 

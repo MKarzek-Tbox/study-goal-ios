@@ -35,34 +35,17 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 		let refreshControl = UIRefreshControl()
 		refreshControl.addTarget(self, action: #selector(FeedVC.manuallyRefreshFeeds(_:)), for: UIControlEvents.valueChanged)
 
-        
-        
-        //London Developer July 24,2017
         let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=feed-main&contentName=MainFeed"
         xAPIManager().checkMod(testUrl:urlString)
         feedsTableView.reloadData()
-        
-        //let statsClass = StatsVC()
-//        statsClass.getEventsAttended {
-//            print("requested events attended from feed")
-//        }
-        //statsClass.viewDidLoad()
-        
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		/*if (dataManager.friendRequests().count > 0) {
-            //London Developer July 24,2017
-            let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=feed-friends&contentName=friends"
-            xAPIManager().checkMod(testUrl:urlString)
-		}*/
 	}
 	
 	@IBAction func openMenu(_ sender:UIButton?) {
-        //DELEGATE.menuView = MenuView.createView()
         DELEGATE.menuView?.open()
-		//print("open menu: \(DELEGATE.menuView)")
 	}
 	
 	func refreshFeeds(_ sender:Timer) {

@@ -161,17 +161,6 @@
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="11" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" image="shareIcon"/>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BmL-2V-gtv">
-                                                <rect key="frame" x="61" y="0.0" width="44" height="44"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="44" id="u8e-3y-Abt"/>
-                                                </constraints>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="11" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" image="optionsIcon"/>
-                                                <connections>
-                                                    <action selector="options:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="tOM-kg-GOq"/>
-                                                </connections>
-                                            </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="btu-Na-l5i">
                                                 <rect key="frame" x="0.0" y="0.0" width="105" height="44"/>
                                                 <subviews>
@@ -227,10 +216,7 @@
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="btu-Na-l5i" secondAttribute="trailing" id="0ht-v4-TUd"/>
-                                            <constraint firstAttribute="bottom" secondItem="BmL-2V-gtv" secondAttribute="bottom" id="9Zu-dj-WWc"/>
-                                            <constraint firstItem="BmL-2V-gtv" firstAttribute="top" secondItem="mPz-B0-2SR" secondAttribute="top" id="BjC-N3-TbT"/>
                                             <constraint firstAttribute="bottom" secondItem="btu-Na-l5i" secondAttribute="bottom" id="FaS-1s-cn1"/>
-                                            <constraint firstAttribute="trailing" secondItem="BmL-2V-gtv" secondAttribute="trailing" id="J5u-Y2-dJd"/>
                                             <constraint firstAttribute="height" constant="44" id="LOg-Z3-AAk"/>
                                             <constraint firstItem="qUx-rx-hM1" firstAttribute="top" secondItem="mPz-B0-2SR" secondAttribute="top" id="Tpi-DI-AU2"/>
                                             <constraint firstAttribute="trailing" secondItem="qUx-rx-hM1" secondAttribute="trailing" id="VNR-Bx-SA2"/>
@@ -245,176 +231,18 @@
                                             </mask>
                                         </variation>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DfD-dj-zKS">
-                                        <rect key="frame" x="0.0" y="0.0" width="371" height="125"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CCP-O6-vhX" customClass="UIImageDownload" customModule="Jisc" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="28" width="58" height="58"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="CCP-O6-vhX" secondAttribute="height" multiplier="1:1" id="15C-pe-AUQ"/>
-                                                    <constraint firstAttribute="width" constant="58" id="vSQ-Zn-BGS"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="self.layer.masksToBounds" value="YES"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="self.layer.cornerRadius">
-                                                        <integer key="value" value="29"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rKy-Xu-fTi">
-                                                <rect key="frame" x="323" y="0.0" width="38" height="38"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="rKy-Xu-fTi" secondAttribute="height" multiplier="1:1" id="oMB-0T-ht4"/>
-                                                    <constraint firstAttribute="width" constant="38" id="oeQ-NG-dQk"/>
-                                                </constraints>
-                                                <state key="normal" image="closeFeedOptionsIcon"/>
-                                                <connections>
-                                                    <action selector="closeOptions:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="RJY-Rl-v5D"/>
-                                                </connections>
-                                            </button>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOR-bh-c4c">
-                                                <rect key="frame" x="76" y="37" width="275" height="40"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NTQ-8H-h9A">
-                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="40"/>
-                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rVF-AH-ftt">
-                                                        <rect key="frame" x="89" y="10" width="1" height="20"/>
-                                                        <color key="backgroundColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="1" id="Va7-aX-MtQ"/>
-                                                            <constraint firstAttribute="height" constant="20" id="u5p-Fg-Z5A"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8af-EO-cP2" customClass="BigTitleButton" customModule="Jisc" customModuleProvider="target">
-                                                        <rect key="frame" x="95" y="0.0" width="84" height="40"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="350" id="v6H-UL-tHh"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
-                                                        <state key="normal" title="Hide Friend">
-                                                            <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="hide_friend"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="hideFriend:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Fhm-Ac-WY7"/>
-                                                        </connections>
-                                                    </button>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xc3-W7-Ofp">
-                                                        <rect key="frame" x="184" y="10" width="1" height="20"/>
-                                                        <color key="backgroundColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="20" id="3Gu-e9-3zG"/>
-                                                            <constraint firstAttribute="width" constant="1" id="h3D-A5-BCA"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXH-QI-t9l" customClass="BigTitleButton" customModule="Jisc" customModuleProvider="target">
-                                                        <rect key="frame" x="190" y="0.0" width="84" height="40"/>
-                                                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
-                                                        <state key="normal" title="Delete Friend">
-                                                            <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="delete_friend"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="deleteFriend:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gkY-Pt-wbG"/>
-                                                        </connections>
-                                                    </button>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OHU-S7-hMw">
-                                                        <rect key="frame" x="274" y="0.0" width="0.0" height="40"/>
-                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g8E-Gz-RoE" customClass="BigTitleButton" customModule="Jisc" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="84" height="40"/>
-                                                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
-                                                        <state key="normal" title="Hide Post">
-                                                            <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="hide_post"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="hidePost:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="F2W-5I-4tZ"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstItem="rVF-AH-ftt" firstAttribute="top" secondItem="HOR-bh-c4c" secondAttribute="top" constant="10" id="00D-ex-6hj"/>
-                                                    <constraint firstAttribute="bottom" secondItem="g8E-Gz-RoE" secondAttribute="bottom" id="0lE-9o-t68"/>
-                                                    <constraint firstItem="OHU-S7-hMw" firstAttribute="leading" secondItem="XXH-QI-t9l" secondAttribute="trailing" id="1N6-Wp-1Xq"/>
-                                                    <constraint firstItem="rVF-AH-ftt" firstAttribute="leading" secondItem="g8E-Gz-RoE" secondAttribute="trailing" constant="5" id="1xO-Nf-egR"/>
-                                                    <constraint firstItem="8af-EO-cP2" firstAttribute="width" secondItem="XXH-QI-t9l" secondAttribute="width" id="3LR-jj-5zh"/>
-                                                    <constraint firstItem="XXH-QI-t9l" firstAttribute="top" secondItem="HOR-bh-c4c" secondAttribute="top" id="3rP-7c-pkN"/>
-                                                    <constraint firstItem="NTQ-8H-h9A" firstAttribute="top" secondItem="HOR-bh-c4c" secondAttribute="top" id="49u-K9-Y7n"/>
-                                                    <constraint firstItem="OHU-S7-hMw" firstAttribute="width" secondItem="NTQ-8H-h9A" secondAttribute="width" id="4Wf-UU-Pln"/>
-                                                    <constraint firstItem="XXH-QI-t9l" firstAttribute="leading" secondItem="Xc3-W7-Ofp" secondAttribute="trailing" constant="5" id="63v-RQ-vy1"/>
-                                                    <constraint firstItem="g8E-Gz-RoE" firstAttribute="leading" secondItem="NTQ-8H-h9A" secondAttribute="trailing" id="717-bO-c4M"/>
-                                                    <constraint firstAttribute="bottom" secondItem="NTQ-8H-h9A" secondAttribute="bottom" id="8sY-LD-R6R"/>
-                                                    <constraint firstAttribute="bottom" secondItem="OHU-S7-hMw" secondAttribute="bottom" id="CLC-mc-I8I"/>
-                                                    <constraint firstAttribute="trailing" secondItem="OHU-S7-hMw" secondAttribute="trailing" constant="1" id="Ezs-58-V4a"/>
-                                                    <constraint firstItem="8af-EO-cP2" firstAttribute="leading" secondItem="rVF-AH-ftt" secondAttribute="trailing" constant="5" id="H2s-oQ-E2v"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Xc3-W7-Ofp" secondAttribute="bottom" constant="10" id="HOB-3l-C7T"/>
-                                                    <constraint firstItem="8af-EO-cP2" firstAttribute="top" secondItem="HOR-bh-c4c" secondAttribute="top" id="I1h-KD-z91"/>
-                                                    <constraint firstAttribute="trailing" secondItem="XXH-QI-t9l" secondAttribute="trailing" id="L88-Pz-4Dt"/>
-                                                    <constraint firstAttribute="bottom" secondItem="XXH-QI-t9l" secondAttribute="bottom" id="OOg-Qw-UpP"/>
-                                                    <constraint firstAttribute="bottom" secondItem="8af-EO-cP2" secondAttribute="bottom" id="UeI-sB-hVc"/>
-                                                    <constraint firstItem="g8E-Gz-RoE" firstAttribute="width" secondItem="8af-EO-cP2" secondAttribute="width" id="Ugm-v5-Ca0"/>
-                                                    <constraint firstItem="g8E-Gz-RoE" firstAttribute="leading" secondItem="HOR-bh-c4c" secondAttribute="leading" id="UqF-mi-mhp"/>
-                                                    <constraint firstItem="Xc3-W7-Ofp" firstAttribute="top" secondItem="HOR-bh-c4c" secondAttribute="top" constant="10" id="bds-ZG-KHb"/>
-                                                    <constraint firstItem="g8E-Gz-RoE" firstAttribute="top" secondItem="HOR-bh-c4c" secondAttribute="top" id="beg-dj-km9"/>
-                                                    <constraint firstItem="Xc3-W7-Ofp" firstAttribute="leading" secondItem="8af-EO-cP2" secondAttribute="trailing" constant="5" id="fCF-X2-58t"/>
-                                                    <constraint firstItem="NTQ-8H-h9A" firstAttribute="leading" secondItem="HOR-bh-c4c" secondAttribute="leading" id="hWU-Oc-A7P"/>
-                                                    <constraint firstAttribute="bottom" secondItem="rVF-AH-ftt" secondAttribute="bottom" constant="10" id="jre-Tz-ghK"/>
-                                                    <constraint firstItem="OHU-S7-hMw" firstAttribute="top" secondItem="HOR-bh-c4c" secondAttribute="top" id="zpK-gu-Ji8"/>
-                                                </constraints>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="UqF-mi-mhp"/>
-                                                        <exclude reference="L88-Pz-4Dt"/>
-                                                    </mask>
-                                                </variation>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="HOR-bh-c4c" firstAttribute="centerY" secondItem="DfD-dj-zKS" secondAttribute="centerY" constant="-5.5" id="26n-21-VcZ"/>
-                                            <constraint firstItem="HOR-bh-c4c" firstAttribute="centerX" secondItem="DfD-dj-zKS" secondAttribute="centerX" id="Cjv-ca-PNE"/>
-                                            <constraint firstItem="CCP-O6-vhX" firstAttribute="width" secondItem="CCP-O6-vhX" secondAttribute="height" multiplier="1:1" id="GeN-xO-5iH"/>
-                                            <constraint firstItem="rKy-Xu-fTi" firstAttribute="top" secondItem="DfD-dj-zKS" secondAttribute="top" id="NNO-Kp-7JH"/>
-                                            <constraint firstItem="CCP-O6-vhX" firstAttribute="centerY" secondItem="DfD-dj-zKS" secondAttribute="centerY" constant="-5.5" id="X9G-GM-SGD"/>
-                                            <constraint firstAttribute="trailing" secondItem="rKy-Xu-fTi" secondAttribute="trailing" constant="10" id="dMM-Et-oHK"/>
-                                            <constraint firstItem="HOR-bh-c4c" firstAttribute="leading" secondItem="CCP-O6-vhX" secondAttribute="trailing" constant="10" id="sdp-r7-uBD"/>
-                                            <constraint firstItem="CCP-O6-vhX" firstAttribute="leading" secondItem="DfD-dj-zKS" secondAttribute="leading" constant="8" id="vtU-LN-GFc"/>
-                                            <constraint firstAttribute="trailing" secondItem="HOR-bh-c4c" secondAttribute="trailing" constant="20" id="yfr-CL-atP"/>
-                                        </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="GeN-xO-5iH"/>
-                                                <exclude reference="Cjv-ca-PNE"/>
-                                            </mask>
-                                        </variation>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="mPz-B0-2SR" firstAttribute="trailing" secondItem="ZcQ-Zy-1Q5" secondAttribute="trailing" id="0uk-vd-8Me"/>
-                                    <constraint firstItem="DfD-dj-zKS" firstAttribute="top" secondItem="sJG-Rj-YJ1" secondAttribute="top" id="H4Y-ID-9Vl"/>
-                                    <constraint firstAttribute="bottom" secondItem="DfD-dj-zKS" secondAttribute="bottom" id="H89-uz-RTt"/>
                                     <constraint firstItem="ZcQ-Zy-1Q5" firstAttribute="leading" secondItem="sJG-Rj-YJ1" secondAttribute="leading" id="LfF-g7-DxO"/>
                                     <constraint firstAttribute="trailing" secondItem="ZcQ-Zy-1Q5" secondAttribute="trailing" constant="13" id="S1d-LH-jAI"/>
-                                    <constraint firstAttribute="trailing" secondItem="DfD-dj-zKS" secondAttribute="trailing" constant="3" id="UEX-ZT-Mfp"/>
                                     <constraint firstItem="z1I-ms-8Wa" firstAttribute="top" secondItem="sJG-Rj-YJ1" secondAttribute="top" constant="25" id="XEM-dF-UIf"/>
                                     <constraint firstAttribute="trailing" secondItem="z1I-ms-8Wa" secondAttribute="trailing" constant="13" id="aRA-um-a7R"/>
                                     <constraint firstAttribute="bottom" secondItem="ZcQ-Zy-1Q5" secondAttribute="bottom" constant="86" id="fOs-CU-liu"/>
                                     <constraint firstItem="ZcQ-Zy-1Q5" firstAttribute="top" secondItem="z1I-ms-8Wa" secondAttribute="bottom" constant="-100" id="hJ5-me-AM3"/>
                                     <constraint firstItem="mPz-B0-2SR" firstAttribute="bottom" secondItem="ZcQ-Zy-1Q5" secondAttribute="bottom" constant="74.5" id="qEw-2V-Wyh"/>
                                     <constraint firstItem="z1I-ms-8Wa" firstAttribute="leading" secondItem="sJG-Rj-YJ1" secondAttribute="leading" id="smy-ea-0KP"/>
-                                    <constraint firstItem="DfD-dj-zKS" firstAttribute="leading" secondItem="sJG-Rj-YJ1" secondAttribute="leading" id="yLi-8U-dxD"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -442,34 +270,20 @@
                 <outlet property="cellBG" destination="z1I-ms-8Wa" id="0WB-0F-BHY"/>
                 <outlet property="contentText" destination="Qiu-jc-Lfu" id="7ms-9h-76q"/>
                 <outlet property="contentTrailingConstraint" destination="QdQ-OU-wUZ" id="44w-hJ-vbD"/>
-                <outlet property="deleteFriendButton" destination="XXH-QI-t9l" id="aSU-P6-5z1"/>
-                <outlet property="hideFriendButton" destination="8af-EO-cP2" id="YCZ-1y-OIb"/>
-                <outlet property="hidePostButton" destination="g8E-Gz-RoE" id="mQi-79-P82"/>
-                <outlet property="optionsButton" destination="BmL-2V-gtv" id="DDH-Er-Bwr"/>
                 <outlet property="optionsButtonsView" destination="trT-m6-fIG" id="fQ1-9e-nog"/>
-                <outlet property="optionsView" destination="DfD-dj-zKS" id="gbU-Ta-PWE"/>
                 <outlet property="shareButton" destination="qUx-rx-hM1" id="3ba-xB-I69"/>
                 <outlet property="shareView" destination="btu-Na-l5i" id="WWU-wt-AeQ"/>
                 <outlet property="timeStamp" destination="sfJ-eh-Oo4" id="uqp-GL-iFK"/>
                 <outlet property="userImage" destination="YWB-9m-LQO" id="y6w-9c-IsS"/>
-                <outlet property="userOptionsImage" destination="CCP-O6-vhX" id="3Hg-y1-EYr"/>
-                <outletCollection property="buttonsWithLargeTitles" destination="g8E-Gz-RoE" collectionClass="NSMutableArray" id="GOv-eS-5Ri"/>
-                <outletCollection property="buttonsWithLargeTitles" destination="8af-EO-cP2" collectionClass="NSMutableArray" id="Z3x-5H-dD2"/>
-                <outletCollection property="buttonsWithLargeTitles" destination="XXH-QI-t9l" collectionClass="NSMutableArray" id="k7h-VU-t16"/>
-                <outletCollection property="localizableButtons" destination="8af-EO-cP2" collectionClass="NSMutableArray" id="3S4-bT-nbD"/>
-                <outletCollection property="localizableButtons" destination="XXH-QI-t9l" collectionClass="NSMutableArray" id="NG8-YD-itL"/>
-                <outletCollection property="localizableButtons" destination="g8E-Gz-RoE" collectionClass="NSMutableArray" id="hHE-xI-Itv"/>
             </connections>
             <point key="canvasLocation" x="39.5" y="56"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="closeFeedOptionsIcon" width="17" height="17"/>
         <image name="deleteTargetButton" width="23" height="28"/>
         <image name="facebookIcon" width="20" height="20"/>
         <image name="lightPurple" width="10" height="10"/>
         <image name="mailIcon" width="20" height="20"/>
-        <image name="optionsIcon" width="20" height="5"/>
         <image name="red" width="10" height="10"/>
         <image name="shareFeedButton" width="23" height="24"/>
         <image name="shareIcon" width="21" height="16"/>
