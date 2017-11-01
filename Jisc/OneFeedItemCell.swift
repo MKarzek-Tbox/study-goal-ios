@@ -117,19 +117,23 @@ class OneFeedItemCell: LocalizableCell {
             print("\(feed.description) is a post ")
             self.cellBG.backgroundColor = UIColor(red: 251.0/255.0, green: 251.0/255.0, blue: 251.0/255.0, alpha: 1.0)
         }
-        if (feed.isMine()) {
-            shareButton.alpha = 1.0
-            loadProfilePicture("\(hostPath)\(dataManager.currentStudent!.photo)")
+        if feed.activityType == "temp_push_notification"{
+            userImage.image = UIImage(named: "notification_image")
         } else {
-            let fromFriend = feed.fromFriend()
-            if (fromFriend != nil) {
-                loadProfilePicture("\(hostPath)\(fromFriend!.photo)")
+            if (feed.isMine()) {
+                shareButton.alpha = 1.0
+                loadProfilePicture("\(hostPath)\(dataManager.currentStudent!.photo)")
             } else {
-                let fromColleague = feed.fromColleague()
-                if (fromColleague != nil) {
-                    loadProfilePicture("\(hostPath)\(fromColleague!.photo)")
+                let fromFriend = feed.fromFriend()
+                if (fromFriend != nil) {
+                    loadProfilePicture("\(hostPath)\(fromFriend!.photo)")
                 } else {
-                    loadProfilePicture("")
+                    let fromColleague = feed.fromColleague()
+                    if (fromColleague != nil) {
+                        loadProfilePicture("\(hostPath)\(fromColleague!.photo)")
+                    } else {
+                        loadProfilePicture("")
+                    }
                 }
             }
         }
@@ -387,15 +391,17 @@ class OneFeedItemCell: LocalizableCell {
     }
     
     func openCellOptions() {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: kAnotherActivityCellOpenedOptions), object: self)
-        optionsState = .open
-        UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.contentTrailingConstraint.constant = kButtonsWidth
-            self.layoutIfNeeded()
-        }, completion: { (done) -> Void in
-            NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeActivityCellSelectedStyleOff), object: nil)
-            self.parent?.aCellIsOpen = true
-        })
+        if(theFeed?.activityType != "temp_push_notification"){
+            NotificationCenter.default.post(name: Notification.Name(rawValue: kAnotherActivityCellOpenedOptions), object: self)
+            optionsState = .open
+            UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                self.contentTrailingConstraint.constant = kButtonsWidth
+                self.layoutIfNeeded()
+            }, completion: { (done) -> Void in
+                NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeActivityCellSelectedStyleOff), object: nil)
+                self.parent?.aCellIsOpen = true
+            })
+        }
     }
     
     func closeCellOptions() {
