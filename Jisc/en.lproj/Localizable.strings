@@ -411,7 +411,6 @@
 "attainment_info" = "IMPORTANT: All marks / grades indicated with '**' are subject to moderation and confirmation by a Board of Examiners. These marks / grades are therefore provisional and subject to change.";
 "are_you_sure_you_want_to_delete_this_message" = "Are you sure you want to delete item this from feed?";
 "tutor_target" = "You can't edit targets that have been set by a tutor";
-//New Values
 "app_usage" = "App Usage";
 "attendence_summary" = "Attendence Summary";
 "events_attended" = "Events Attended";
@@ -449,3 +448,5 @@
 "student" = "Student";
 "see_demo_account" = "See demo account";
 "keep_me_logged_in" = "Keep me logged in";
+"demo_mode_push_notification" = "You can't mark a post as read in demo mode.";
+

@@ -181,13 +181,19 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 				self.navigationController?.present(alert, animated: true, completion: nil)
 			}
 		} else if feed.activityType == "temp_push_notification" {
-			if let studentId = dataManager.currentStudent?.id {
-				DownloadManager().markNotificationAsRead(studentdId: studentId, notificationId: feed.id, alertAboutInternet: false, completion: { (success, dictionary, array, error) in
-					dataManager.silentStudentFeedsRefresh(true) { (success, failureReason) -> Void in
-						self.feedsTableView.reloadData()
-					}
-				})
-			}
+            if demo(){
+                let alert = UIAlertController(title: "", message: localized("demo_mode_push_notification"), preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+                navigationController?.present(alert, animated: true, completion: nil)
+            } else {
+                if let studentId = dataManager.currentStudent?.id {
+                    DownloadManager().markNotificationAsRead(studentdId: studentId, notificationId: feed.id, alertAboutInternet: false, completion: { (success, dictionary, array, error) in
+                        dataManager.silentStudentFeedsRefresh(true) { (success, failureReason) -> Void in
+                            self.feedsTableView.reloadData()
+                        }
+                    })
+                }
+            }
 		}
         if (aCellIsOpen) {
             tableView.reloadData()

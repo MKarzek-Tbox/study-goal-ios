@@ -438,3 +438,4 @@
 "student" = "Myfyriwr";
 "keep_me_logged_in" = "Cadwâ fi wedi ilofnodi mewn";
 "mark" = "Gradd";
+"demo_mode_push_notification" = "You can't mark a post as read in demo mode.";
