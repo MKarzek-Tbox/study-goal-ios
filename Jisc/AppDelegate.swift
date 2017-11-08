@@ -13,6 +13,7 @@ import FBSDKLoginKit
 import Google
 import Fabric
 import TwitterKit
+import Crashlytics
 
 enum kAppLanguage:String {
 	case English = "en"
@@ -37,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
 		FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 		var configureError: NSError?
 		GGLContext.sharedInstance().configureWithError(&configureError)
-		Fabric.with([Twitter.self])
+		Fabric.with([Crashlytics.self])
 		
 		window!.layer.addSublayer(CALayer())
 		
