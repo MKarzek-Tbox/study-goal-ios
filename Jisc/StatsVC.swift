@@ -1169,22 +1169,22 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                                 countData = countData + String(count) + ", "
                             }
                             var countDataFinal:String = ""
-                            let endIndex = countData.index(countData.endIndex, offsetBy: -2)
-                            countDataFinal = "[" + countData.substring(to: endIndex) + "]"
-                            for date in dateArray {
-                                //Here is where I think I should add the formattinfg code.
+                            if(countData.characters.count > 1){
+                                let endIndex = countData.index(countData.endIndex, offsetBy: -2)
+                                    countDataFinal = "[" + countData.substring(to: endIndex) + "]"
                                 
-                                dateData = dateData + "'\(date)'" + ", "
+                                for date in dateArray {
+                                    dateData = dateData + "'\(date)'" + ", "
+                                }
+                                var dateDataFinal:String = ""
+                                let endIndexDate = dateData.index(dateData.endIndex, offsetBy: -2)
+                                
+                                dateDataFinal = "[" + dateData.substring(to: endIndexDate) + "]"
+                                
+                                
+                                contents = contents.replacingOccurrences(of: "COUNT", with: countDataFinal)
+                                contents = contents.replacingOccurrences(of: "DATES", with: dateDataFinal)
                             }
-                            var dateDataFinal:String = ""
-                            let endIndexDate = dateData.index(dateData.endIndex, offsetBy: -2)
-                            
-                            dateDataFinal = "[" + dateData.substring(to: endIndexDate) + "]"
-                            
-                            
-                            contents = contents.replacingOccurrences(of: "COUNT", with: countDataFinal)
-                            contents = contents.replacingOccurrences(of: "DATES", with: dateDataFinal)
-                            
                             if(dateArray.count == 0){
                                 self.noDataLabel.alpha = 1.0
                                 self.noDataLabel.textColor = UIColor.black
