@@ -2152,6 +2152,7 @@
 				CODE_SIGN_ENTITLEMENTS = Jisc/Jisc.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Marcel Chirila (8J95YKX7C3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = JG53BNN66L;
 				INFOPLIST_FILE = Jisc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -2177,6 +2178,7 @@
 				CODE_SIGN_ENTITLEMENTS = Jisc/Jisc.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Therapy Box Limited (JG53BNN66L)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = JG53BNN66L;
 				INFOPLIST_FILE = Jisc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
