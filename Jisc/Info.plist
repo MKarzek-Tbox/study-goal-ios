@@ -61,14 +61,9 @@
 		<string>aabe6f656cd29919a8d107f1347dc2c158eff1d7</string>
 		<key>Kits</key>
 		<array>
-			<dict>
-				<key>KitInfo</key>
-				<dict>
-					<key>consumerKey</key>
-					<string>8sRjZ9CSN89N1iHMyMZjfedeE</string>
-					<key>consumerSecret</key>
-					<string>GPRDOuvl9HBoIZVYZo7r5XlverGN6HAGNouJYhCDOVIYrd7lcT</string>
-				</dict>
+            <dict>
+                <key>KitInfo</key>
+                <dict/>
 				<key>KitName</key>
 				<string>Crashlytics</string>
 			</dict>

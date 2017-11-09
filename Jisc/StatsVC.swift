@@ -1065,29 +1065,50 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             var contents = try String(contentsOfFile: filePath, encoding: .utf8)
             contents = contents.replacingOccurrences(of: "300px", with: "\(w)px")
             contents = contents.replacingOccurrences(of: "220px", with: "\(h)px")
+            
             var dateDataFinal = ""
             var countDateFinal = ""
+            var otherStudentFinal = ""
+            var webData = ""
+            
             if (self.graphValues?.columnNames != nil) {
-                 dateDataFinal = self.graphValues!.columnNames!.description
+                dateDataFinal = self.graphValues!.columnNames!.description
             } else {
-                 dateDataFinal = ""
+                dateDataFinal = ""
             }
+            
             if (self.graphValues?.me != nil) {
                 countDateFinal = self.graphValues!.me!.description
             } else {
                 countDateFinal = ""
             }
-
-            //dateDataFinal = "['23/09', '24/09', '25/09', '26/09', '27/09', '28/09', '29/09']"
-            //let countDateFinal = "[8,9,9,6,2,8,2]"
-            contents = contents.replacingOccurrences(of: "COUNT", with: countDateFinal)
-            contents = contents.replacingOccurrences(of: "DATES", with: dateDataFinal)
             
+            if(compareToButton.titleLabel?.text == localized("no_one")) {
+                webData = "series: [{name:'\(localized("me"))',data: \(countDateFinal)}], xAxis: { categories: \(dateDataFinal)}"
+                webData = webData.replacingOccurrences(of: "\"", with: "'")
+                
+            } else {
+                if(self.graphValues?.otherStudent != nil){
+                    otherStudentFinal = self.graphValues!.otherStudent!.description
+                } else {
+                    otherStudentFinal = ""
+                }
+                
+                webData = "series: [{name:'\(localized("me"))',data: \(countDateFinal)},"
+                webData.append("{name:'\(localized(compareToButton.titleLabel!.text!))',data: \(otherStudentFinal)}], xAxis: { categories: \(dateDataFinal)")
+                webData.append("}")
+                webData = webData.replacingOccurrences(of: "\"", with: "'")
+            }
+            
+            print("\(webData)")
+            
+            contents = contents.replacingOccurrences(of: "<<<REPLACE_DATA_HERE>>>", with: webData)
             let baseUrl = URL(fileURLWithPath: filePath)
             vleGraphWebView.loadHTMLString(contents as String, baseURL: baseUrl)
+            
         } catch {
             print ("File HTML error")
-        }
+            }
         }
         
     }
@@ -2145,10 +2166,10 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                     let student = friendsInTheSameCourse()[selectedStudent - 1]
                     compareToButton.setTitle("\(student.firstName) \(student.lastName)", for: UIControlState())
                     comparisonStudentName.text = "\(student.firstName) \(student.lastName)"
-                    UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                    /*UIView.animate(withDuration: 0.25, animations: { () -> Void in
                         self.blueDot.alpha = 1.0
                         self.comparisonStudentName.alpha = 1.0
-                    })
+                    })*/
                     //				} else if (selectedStudent == friendsInTheSameCourse().count + 1) {
                     //					compareToButton.setTitle(localized("top_10_percent"), for: UIControlState())
                     //					comparisonStudentName.text = localized("top_10_percent")
@@ -2160,10 +2181,10 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 } else if (selectedStudent == friendsInTheSameCourse().count + 1) {
                     compareToButton.setTitle(localized("average"), for: UIControlState())
                     comparisonStudentName.text = localized("average")
-                    UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                    /*UIView.animate(withDuration: 0.25, animations: { () -> Void in
                         self.blueDot.alpha = 1.0
                         self.comparisonStudentName.alpha = 1.0
-                    })
+                    })*/
                 }
                 getEngagementData()
             }
