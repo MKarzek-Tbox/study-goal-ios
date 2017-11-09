@@ -25,7 +25,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="125.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="trT-m6-fIG">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="trT-m6-fIG">
                         <rect key="frame" x="220" y="0.0" width="157" height="126"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxc-y4-nIH" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
@@ -255,7 +255,6 @@
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="1" green="0.93333333330000001" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="trT-m6-fIG" firstAttribute="top" secondItem="IcS-TK-KBX" secondAttribute="top" id="6Da-7H-9aG"/>
                     <constraint firstAttribute="bottomMargin" secondItem="trT-m6-fIG" secondAttribute="bottom" constant="-8.5" id="QRi-iN-44q"/>
