@@ -412,7 +412,7 @@
 "are_you_sure_you_want_to_delete_this_message" = "Are you sure you want to delete item this from feed?";
 "tutor_target" = "You can't edit targets that have been set by a tutor";
 "app_usage" = "App Usage";
-"attendence_summary" = "Attendence Summary";
+"attendence_summary" = "Attendance Summary";
 "events_attended" = "Events Attended";
 "vle_activity" = "VLE Activity";
 "leaderboard" = "Leaderboard";
@@ -439,7 +439,7 @@
 "recurring" = "Recurring";
 "logout" = "logout";
 "events_attended_segment" = "Events Attended";
-"attendence" = "Attendence";
+"attendence" = "Attendance";
 "mark" = "Mark";
 "demo_mode_addtarget" = "This is a demonstration. Please sign in to add targets";
 "no_friends" = "There are no friends to display. Send requests to add friends.";
