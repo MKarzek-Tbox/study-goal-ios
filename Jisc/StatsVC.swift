@@ -845,8 +845,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 return numOfSections
             } else {
                 
-                if (attainmentArray.count > 0)
+                if (attainmentArray.count > 1)
                 {
+                    print("attainment data \(attainmentArray[1].moduleName)")
                     tableView.separatorStyle = .singleLine
                     numOfSections            = 1
                     tableView.backgroundView = nil
