@@ -417,12 +417,14 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                         if let grade = dictionary["ASSESS_AGREED_GRADE"] as? String {
                             if let moduleName = dictionary["X_MOD_NAME"] as? String {
                                 if let dateString = dictionary["CREATED_AT"] as? String {
-                                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                                    if let temp = dateString.components(separatedBy: ".").first {
-                                        if let date = dateFormatter.date(from: temp.replacingOccurrences(of: "T", with: " ")) {
-                                            self.attainmentArray.append(AttainmentObject(date: date, moduleName: moduleName, grade: grade))
-                                        }
-                                    }
+                                    print("dateString is \(dateString)")
+                                    
+                                    let dateFormatter = DateFormatter()
+                                    dateFormatter.dateFormat = "yyyy-MM-dd"
+                                    dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
+                                    let date = dateFormatter.date(from: dateString)
+                                    
+                                    self.attainmentArray.append(AttainmentObject(date: date!, moduleName: moduleName, grade: grade))
                                 }
                             }
                         }
