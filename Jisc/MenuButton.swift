@@ -170,7 +170,7 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var statsMenuButtonsTable: UITableView!
     
 	var expanded = false
-    var menuItemsArray = [localized("activity_points"),localized("app_usage"),localized("attainment"),localized("attendence"),localized("vle_activity")]
+    var menuItemsArray = [localized("activity_points"),localized("attainment"),localized("attendence"),localized("vle_activity")]
     
 	override func buttonAction(_ sender: UIButton?) {
 		if expanded {
@@ -188,7 +188,7 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
         self.statsMenuButtonsTable.register(UITableViewCell.self, forCellReuseIdentifier: "MenuCell")
 		UIView.animate(withDuration: 0.25) {
 			self.arrow.transform = CGAffineTransform(rotationAngle: .pi / 2.0)
-			self.buttonsHeight.constant = 40 * 5 //This constant multiplication multiplies the height by the number of buttons shown, for example 40 * 4(buttons) or 40 *6(buttons) Adjust it as necesary.
+			self.buttonsHeight.constant = 40 * 4 //This constant multiplication multiplies the height by the number of buttons shown, for example 40 * 4(buttons) or 40 *6(buttons) Adjust it as necesary.
 			self.parent?.layoutIfNeeded()
 		}
         var result = ""
