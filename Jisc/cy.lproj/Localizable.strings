@@ -439,3 +439,4 @@
 "keep_me_logged_in" = "Cadwâ fi wedi ilofnodi mewn";
 "mark" = "Gradd";
 "demo_mode_push_notification" = "You can't mark a post as read in demo mode.";
+"delete_push_notification_error" = "Tap on a notification to mark it as read. Unread notifications can't be deleted.";

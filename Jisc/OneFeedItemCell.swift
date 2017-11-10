@@ -311,7 +311,11 @@ class OneFeedItemCell: LocalizableCell {
                     NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeActivityCellSelectedStyleOn), object: nil)
                     self.parent?.aCellIsOpen = false
                     self.optionsState = .closed
-                    AlertView.showAlert(false, message: failureReason, completion: nil)
+                    if(self.theFeed?.activityType == "temp_push_notification"){
+                        AlertView.showAlert(false, message: localized("Tap on a notification to mark it as read. Unread notifications can't be deleted."), completion: nil)
+                    } else {
+                        AlertView.showAlert(false, message: failureReason, completion: nil)
+                    }
                     self.closeCellOptions()
 
                 }
