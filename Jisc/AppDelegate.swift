@@ -26,13 +26,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
 	var window: UIWindow?
 	var mainNavigationController:UINavigationController?
 	var menuView:MenuView?
-	var playerController:MPMoviePlayerViewController?
+	//var playerController:MPMoviePlayerViewController?
+    var playerController:UIViewController?
     var recurringVC:RecurringTargetVC?
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
 		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.backgroundColor = UIColor.black
+		window?.backgroundColor = UIColor.white
 		window?.makeKeyAndVisible()
 		
 		//FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -79,32 +80,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
 	}
 	
 	func initializeApp() {
-		var fileUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "splash_screen", ofType: "mp4")!)
-		if iPad {
-			fileUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "splash_screen_iPad", ofType: "mp4")!)
-		}
-		playerController = MPMoviePlayerViewController(contentURL: fileUrl)
-		playerController?.moviePlayer.controlStyle = .none
-		playerController?.moviePlayer.scalingMode = .aspectFill
-		playerController?.moviePlayer.play()
-		window?.rootViewController = playerController
-		
-		let defaultImage = UIImageView(image: UIImage(named: "DefaultScreen"))
-		defaultImage.contentMode = .scaleAspectFill
-		defaultImage.frame = playerController!.view.bounds
-		playerController?.view.addSubview(defaultImage)
-		
+        
+        playerController = UIViewController()
+        window?.rootViewController = playerController
+		dataManager.initialize()
+        
 		DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double((Int64)(1 * NSEC_PER_SEC)) / Double(NSEC_PER_SEC)) { () -> Void in
-			defaultImage.removeFromSuperview()
-		}
-		
-		DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double((Int64)(5 * NSEC_PER_SEC)) / Double(NSEC_PER_SEC)) { () -> Void in
-			dataManager.initialize()
 			let vc = LoginVC()
 			self.mainNavigationController = UINavigationController(rootViewController: vc)
 			self.mainNavigationController?.isNavigationBarHidden = true
 			self.window?.rootViewController = self.mainNavigationController
-			self.playerController?.moviePlayer.stop()
 			self.playerController = nil
 		}
 	}
