@@ -492,7 +492,11 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
 
     func getAttainment(_ completion:@escaping xAPICompletionBlock) {
         completionBlock = completion
-        startConnectionWithRequest(createGetRequest(xAPIGetAttainmentPath, withJWT: true))
+        if(demo()){
+            startConnectionWithRequest(createGetRequestWithFullPath("https://stuapp.analytics.alpha.jisc.ac.uk/fn_fake_attainment", withJWT: true))
+        } else {
+           startConnectionWithRequest(createGetRequest(xAPIGetAttainmentPath, withJWT: true))
+        }
     }
 
     func callEventsAttended(){
