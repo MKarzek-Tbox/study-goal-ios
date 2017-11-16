@@ -321,25 +321,25 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 self.parent?.statsViewController.goToPoints()
             }
-        } else if indexPath.row == 1 {
+        } /*else if indexPath.row == 1 {
             parent?.close(nil)
             parent?.appUsage()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 self.parent?.appUsageViewController
             }
-        } else if indexPath.row == 2 {
+        }*/ else if indexPath.row == 1 {
             parent?.close(nil)
             parent?.stats()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 self.parent?.statsViewController.goToAttainment()
             }
-        } else if indexPath.row == 3 {
+        } else if indexPath.row == 2 {
             parent?.close(nil)
             parent?.stats()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 self.parent?.statsViewController.goToAttendance()
             }
-        } else if indexPath.row == 4 {
+        } else if indexPath.row == 3 {
             parent?.close(nil)
             parent?.stats()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
