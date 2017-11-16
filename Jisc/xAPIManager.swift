@@ -210,10 +210,35 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         }
         return theURL
     }
+    
+    func urlWithoutPath(_ path:String) -> URL? {
+        let fullPath = "\(path)"
+        var theURL = URL(string: "")
+        if let escapedString = fullPath.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
+            if let url = URL(string: escapedString) {
+                theURL = url
+            } else {
+                print("URL failed: \(fullPath)")
+            }
+        }
+        return theURL
+    }
 
     func createGetRequest(_ path:String, withJWT:Bool) -> URLRequest? {
         var request:URLRequest?
         if let url = urlWithPath(path) {
+            request = URLRequest(url: url)
+            if (withJWT) {
+                if let token = xAPIToken() {
+                    request?.addValue("\(token)\"}", forHTTPHeaderField: "Authorization")
+                }
+            }
+        }
+        return request
+    }
+    func createGetRequestWithFullPath(_ path:String, withJWT:Bool) -> URLRequest? {
+        var request:URLRequest?
+        if let url = urlWithoutPath(path) {
             request = URLRequest(url: url)
             if (withJWT) {
                 if let token = xAPIToken() {
@@ -432,7 +457,15 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
 
     func getActivityPoints(_ period:kXAPIActivityPointsPeriod, completion:@escaping xAPICompletionBlock) {
         completionBlock = completion
-        startConnectionWithRequest(createGetRequest("\(xAPIGetActivityPointsPath)?scope=\(period.rawValue)", withJWT: true))
+        if(!demo()) {
+            startConnectionWithRequest(createGetRequest("\(xAPIGetActivityPointsPath)?scope=\(period.rawValue)", withJWT: true))
+        } else {
+            if(period.rawValue == "7d"){
+                startConnectionWithRequest(createGetRequestWithFullPath("https://stuapp.analytics.alpha.jisc.ac.uk/fn_fake_activity_7d", withJWT: true))
+            } else {
+                startConnectionWithRequest(createGetRequestWithFullPath("https://stuapp.analytics.alpha.jisc.ac.uk/fn_fake_activity_28d", withJWT: true))
+            }
+        }
     }
     func getEventsAttended(skip:Int, limit:Int, completion:@escaping xAPICompletionBlock) {
         completionBlock = completion
