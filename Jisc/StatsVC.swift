@@ -310,9 +310,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         if !iPad{
             self.vleGraphWebView.isHidden = false
         }
-        if(demo()){
-            self.highChartWebView.isHidden = true;
-        }
         self.noPointsLabel.isHidden = false
         self.eventsAttendedTableView.isHidden = false
         self.loadHighChart()
@@ -324,6 +321,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         
         let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main&contentName=MainStats"
         xAPIManager().checkMod(testUrl:urlString)
+        
+        if(demo()){
+            moduleButton.alpha = 0.5
+            moduleButton.isEnabled = false
+            periodSegment.isEnabled = false
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -981,13 +984,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             contents = contents.replacingOccurrences(of: "300px", with: "\(w)px")
             contents = contents.replacingOccurrences(of: "220px", with: "\(h)px")
             
-            /* {
-             name: 'Computer',
-             y: 56.33
-             }, {
-             name: 'English',
-             y: 24.03
-             } */
             var data: String = ""
 
             for point in pointsArray {

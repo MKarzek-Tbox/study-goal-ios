@@ -536,7 +536,11 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         if parameters.count > 0 {
             path = "\(path)?\((parameters as NSArray).componentsJoined(by: "&"))"
         }
-        startConnectionWithRequest(createGetRequest(path, withJWT: true))
+        if(demo()){
+            startConnectionWithRequest(createGetRequestWithFullPath("https://stuapp.analytics.alpha.jisc.ac.uk/fn_fake_vle_activity", withJWT: true))
+        } else {
+            startConnectionWithRequest(createGetRequest(path, withJWT: true))
+        }
     }
     func checkMod(testUrl:String){
         var request:URLRequest?
