@@ -1097,8 +1097,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         let twentyEightDaysAgo = Calendar.current.date(byAdding: .day, value: -34, to: Date())
         let daysAgoResult = dateFormatter.string(from: twentyEightDaysAgo!)
         
-        
-        let urlStringCall = "https://api.datax.jisc.ac.uk/sg/weeklyattendance?startdate=\(daysAgoResult)&enddate=\(result)"
+        var urlStringCall = ""
+        if(!demo()){
+            urlStringCall = "https://api.datax.jisc.ac.uk/sg/weeklyattendance?startdate=\(daysAgoResult)&enddate=\(result)"
+        } else {
+            urlStringCall = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_fake_attendance_summary"
+        }
         var request:URLRequest?
         if let urlString = urlStringCall.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             if let url = URL(string: urlString) {
@@ -1112,11 +1116,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
                 
                 print("data received for events graph")
+                
                 do {
                     if let data = data,
                         let json = try JSONSerialization.jsonObject(with: data) as? [Any] {
                         print("json count events graph \(json.count)")
-                        
+                        self.highChartWebView.isHidden = false
                         for item in json {
                             let object = item as? [String:Any]
                             if let count = object?["count"] as? Int {
@@ -1174,6 +1179,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                                 
                                 dateDataFinal = "[" + dateData.substring(to: endIndexDate) + "]"
                                 
+                                print("\(countDataFinal)")
+                                print("\(dateDataFinal)")
                                 
                                 contents = contents.replacingOccurrences(of: "COUNT", with: countDataFinal)
                                 contents = contents.replacingOccurrences(of: "DATES", with: dateDataFinal)
