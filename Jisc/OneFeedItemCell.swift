@@ -25,9 +25,6 @@ class OneFeedItemCell: LocalizableCell {
     @IBOutlet weak var shareButton:UIButton!
     @IBOutlet weak var shareView:UIView!
     @IBOutlet weak var optionsView:UIView!
-    @IBOutlet weak var hidePostButton:UIButton!
-    @IBOutlet weak var hideFriendButton:UIButton!
-    @IBOutlet weak var deleteFriendButton:UIButton!
     
     var theFeed:Feed?
     weak var parent:FeedVC?
@@ -43,11 +40,6 @@ class OneFeedItemCell: LocalizableCell {
         NotificationCenter.default.addObserver(self, selector: #selector(OneFeedItemCell.anotherCellOpenedOptions(_:)), name: NSNotification.Name(rawValue: kAnotherActivityCellOpenedOptions), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(OneFeedItemCell.changeSelectedStyleOn), name: NSNotification.Name(rawValue: kChangeActivityCellSelectedStyleOn), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(OneFeedItemCell.changeSelectedStyleOff), name: NSNotification.Name(rawValue: kChangeActivityCellSelectedStyleOff), object: nil)
-        if (screenWidth == .small) {
-            hidePostButton.titleLabel?.font = myriadProRegular(13)
-            hideFriendButton.titleLabel?.font = myriadProRegular(13)
-            deleteFriendButton.titleLabel?.font = myriadProRegular(13)
-        }
         shareButton.alpha = 0.0
         shareView.alpha = 0.0
         
