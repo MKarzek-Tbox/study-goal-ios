@@ -470,8 +470,14 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
     func getEventsAttended(skip:Int, limit:Int, completion:@escaping xAPICompletionBlock) {
         completionBlock = completion
         var request:URLRequest?
-        if let url = urlWithHost(xAPIGetEventsAttendedPath, path: "skip=\(skip)&limit=\(limit)") {
-            request = URLRequest(url: url)
+        if(!demo()){
+            if let url = urlWithHost(xAPIGetEventsAttendedPath, path: "skip=\(skip)&limit=\(limit)") {
+                request = URLRequest(url: url)
+            }
+        } else {
+            if let url = urlWithoutPath("https://stuapp.analytics.alpha.jisc.ac.uk/fn_fake_attendance") {
+                request = URLRequest(url: url)
+            }
         }
         if let token = xAPIToken() {
             request?.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")

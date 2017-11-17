@@ -199,8 +199,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     var eventsAttendedArray = [EventsAttendedObject]()
     var eventsAttendedUniqueArray = [EventsAttendedObject]()
     var eventsAttendedLimit:Int = 20
-    var attainmentDemoArray = ["Date   Module Name","20/7/2016 Introduction to Cell Biology", "18/4/2017 Computing 101", "11/11/2017 Introduction to World Literature"]
-    var eventsAttendedDemoArray = [["Lecture","10:20","20/7/2016","Maths"],["Lab","12:00","13/4/2016","Chemistry"],["Lecture", "9:30","14/8/2016","English"]]
     var graphTypePath = "bargraph"
     
     override func viewDidLoad() {
@@ -494,6 +492,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         xMGR.silent = true
         xMGR.getEventsAttended(skip: 0, limit: self.eventsAttendedLimit) { (success, result, results, error) in
             self.eventsAttendedArray.append(EventsAttendedObject(date: localized("date"), time: localized("time"), activity: localized("activity"), module: localized("module")))
+            while(self.eventsAttendedArray.count > 1){
+                self.eventsAttendedArray.remove(at: self.eventsAttendedArray.count-1)
+            }
             if (results != nil){
                 print("receiving data")
                 // handle data
@@ -512,26 +513,31 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                                             var separatedArray = en.components(separatedBy: " ")
                                             date = separatedArray.popLast()
                                             time = separatedArray.popLast()
+                                            
                                             module = separatedArray.joined(separator: " ")
                                         }
-                                        //self.eventsAttendedArray.append(EventsAttendedObject(date: date,activity: activity,module: module))
                                     }
                                 }
                             }
                             if let context = statement["context"] as? [String:Any]{
                                 if let extensions = context["extensions"] as? [String:Any]{
                                     activity = extensions["http://xapi.jisc.ac.uk/activity_type_id"] as? String
+                                    if let courseArea = extensions["http://xapi.jisc.ac.uk/courseArea"] as? [String:Any]{
+                                        module = courseArea["http://xapi.jisc.ac.uk/uddModInstanceID"] as? String
+                                    }
                                 }
                             }
+                            
+                            
                         }
                     }
                     //Uncomment the following line to populate the eventsAttended table
-                   // self.eventsAttendedArray.append(EventsAttendedObject(date: date!, time: time!, activity: activity!, module: module!))
+                   self.eventsAttendedArray.append(EventsAttendedObject(date: date!, time: time!, activity: activity!, module: module!))
                 }
                 
-//                self.eventsAttendedArray.sort(by: { $0.date.compare($1.date) == .orderedDescending})
-//                self.eventsAttendedUniqueArray = self.eventsAttendedArray.filterDuplicates { $0.date == $1.date }
-                //self.eventsAttendedUniqueArray.sort(by: { $0.date.compare($1.date) == .orderedDescending})
+                self.eventsAttendedArray.sort(by: { $0.date.compare($1.date) == .orderedDescending})
+                self.eventsAttendedUniqueArray = self.eventsAttendedArray.filterDuplicates { $0.date == $1.date }
+                self.eventsAttendedUniqueArray.sort(by: { $0.date.compare($1.date) == .orderedDescending})
                 //Saving to UserDefaults for offline use.
 //                let defaults = UserDefaults.standard
 //                let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: self.eventsAttendedArray)
@@ -543,7 +549,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 
             print("events array")
             print(self.eventsAttendedArray)
-            
             
             print("here is the sorted array ", self.eventsAttendedArray.sort(by: { $0.date.compare($1.date) == .orderedDescending}))
             
@@ -763,28 +768,18 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         var nrRows = 0
         switch tableView {
         case attainmentTableView:
-            if demo(){
-                nrRows = attainmentDemoArray.count
-            } else {
-                nrRows = attainmentArray.count
-                if let student = dataManager.currentStudent {
-                    if student.affiliation.contains("glos.ac.uk") {
-                        nrRows += 1
-                    }
+            nrRows = attainmentArray.count
+            if let student = dataManager.currentStudent {
+                if student.affiliation.contains("glos.ac.uk") {
+                    nrRows += 1
                 }
             }
-            
-
-                      break
+            break
         case pointsTable:
             nrRows = pointsArray.count
             break
         case eventsAttendedTableView:
-            if demo(){
-                nrRows = 3
-            } else {
-                nrRows = eventsAttendedArray.count
-            }
+            nrRows = eventsAttendedArray.count
             break
         default:
             break
@@ -799,10 +794,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             cell = tableView.dequeueReusableCell(withIdentifier: kAttainmentCellIdentifier, for: indexPath)
 
             if let theCell = cell as? AttainmentCell {
-                if demo(){
-                    //theCell.nameLabel.text = attainmentDemoArray[indexPath.row]
-                    //theCell.positionLabel.text = String(arc4random_uniform(50))
-                } else if indexPath.row < attainmentArray.count {
+                if indexPath.row < attainmentArray.count {
                     let attObject = attainmentArray[indexPath.row]
                     theCell.loadAttainmentObject(attObject)
                 } else {
@@ -823,7 +815,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 
             if let theCell = cell as? EventsAttendedCell {
                 if indexPath.row < eventsAttendedArray.count {
-                        theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
+                    theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
                 }
             }
             break
@@ -885,10 +877,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             
             break
         case eventsAttendedTableView:
-            if demo(){
-                numOfSections = 1
-                return numOfSections
-            }
             if (eventsAttendedArray.count > 1)
             {
                 tableView.separatorStyle = .singleLine
@@ -904,9 +892,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 tableView.backgroundView  = noDataLabel
                 tableView.separatorStyle  = .none
             }
-            
             break
-        
         default:
             let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: tableView.bounds.size.height, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
             noDataLabel.text          = localized("no_data_available")
@@ -916,19 +902,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             tableView.separatorStyle  = .none
             break
         }
-        
-        
-        
         return numOfSections
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         switch tableView {
         case attainmentTableView:
             if let theCell = cell as? AttainmentCell {
-                if demo(){
-                    theCell.nameLabel.text = attainmentDemoArray[indexPath.row]
-                    theCell.positionLabel.text = String(arc4random_uniform(50))
-                }
                 if indexPath.row < attainmentArray.count {
                     let attObject = attainmentArray[indexPath.row]
                     theCell.loadAttainmentObject(attObject)
@@ -944,24 +923,14 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             break
         case eventsAttendedTableView:
             if let theCell = cell as? EventsAttendedCell {
-                if demo(){
-                    for item in self.eventsAttendedDemoArray[indexPath.row]{
-                        theCell.activityLabel.text = item
-                        theCell.timeLabel.text = item
-                        theCell.dateLabel.text = item
-                        theCell.moduleLabel.text = item
-                    }
-                } else if indexPath.row < eventsAttendedArray.count {
+                if indexPath.row < eventsAttendedArray.count {
                     theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
                     
-                } else {
-                    //theCell.loadAttainmentObject(nil)
                 }
-                
             }
             let lastSectionIndex = tableView.numberOfSections - 1
             let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
-            if indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex {
+            if (indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex && eventsAttendedArray.count > 19) {
                 let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
                 spinner.startAnimating()
                 spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
