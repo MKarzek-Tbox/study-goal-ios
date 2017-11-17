@@ -1322,11 +1322,15 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 }
                 view.layoutIfNeeded()
             } else {
-                graphContainerWidth.constant = initialGraphWidth
+                if let graph = graphContainerWidth {
+                    graph.constant = initialGraphWidth
+                }
                 view.layoutIfNeeded()
             }
         } else {
-            graphContainerWidth.constant = initialGraphWidth
+            if let graph = graphContainerWidth {
+                graph.constant = initialGraphWidth
+            }
             view.layoutIfNeeded()
         }
         
