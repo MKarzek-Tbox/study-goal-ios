@@ -197,6 +197,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="QRl-vL-hAn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="44" id="0Ph-hI-Eux"/>
                 <constraint firstItem="RsZ-a3-jAy" firstAttribute="top" secondItem="C30-bp-aDc" secondAttribute="bottom" id="2mb-wL-Qvh"/>
                 <constraint firstItem="C30-bp-aDc" firstAttribute="width" secondItem="C30-bp-aDc" secondAttribute="height" multiplier="375:72" id="ALs-MG-xx5"/>
                 <constraint firstAttribute="bottom" secondItem="RsZ-a3-jAy" secondAttribute="bottom" id="Buu-p1-q9j"/>
@@ -211,7 +212,9 @@
                 <constraint firstItem="JIh-Wv-WI6" firstAttribute="top" secondItem="C30-bp-aDc" secondAttribute="bottom" constant="212" id="cr8-iv-VRA"/>
                 <constraint firstAttribute="bottom" secondItem="JIh-Wv-WI6" secondAttribute="bottom" constant="317" id="dyf-jL-Tuy"/>
                 <constraint firstItem="h68-eR-o9c" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="fpL-L6-6YW"/>
+                <constraint firstAttribute="bottom" secondItem="QRl-vL-hAn" secondAttribute="bottom" constant="317" id="g7t-ZP-lfI"/>
                 <constraint firstItem="C30-bp-aDc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="geh-rc-Ggt"/>
+                <constraint firstAttribute="trailing" secondItem="QRl-vL-hAn" secondAttribute="trailing" constant="44" id="mWJ-5m-kuu"/>
                 <constraint firstAttribute="trailing" secondItem="1l0-ie-6bR" secondAttribute="trailing" id="oYK-Ru-zV3"/>
                 <constraint firstItem="C30-bp-aDc" firstAttribute="top" secondItem="h68-eR-o9c" secondAttribute="bottom" id="rzX-Ud-hsI"/>
                 <constraint firstItem="RsZ-a3-jAy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="s8j-fN-cTZ"/>

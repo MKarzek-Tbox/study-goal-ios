@@ -168,10 +168,20 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
 		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "firstName", ascending: true), NSSortDescriptor(key: "lastName", ascending: true)]
 		do {
 			try filteredFriends = managedContext.fetch(fetchRequest)
+            if(filteredStudents.count == 0){
+                self.noFriendsMessage.alpha = 1.0
+            } else {
+                self.noFriendsMessage.alpha = 0.0
+            }
 		} catch let error as NSError {
 			print("filter students failed. Error: \(error.localizedDescription)")
 		}
 		myFriendsTable.reloadData()
+        if(dataManager.friends().count == 0){
+            self.noFriendsMessage.alpha = 1.0
+        } else {
+            self.noFriendsMessage.alpha = 0.0
+        }
 	}
 	
 	func sendFriendRequestToColleague(_ colleague:Colleague) {

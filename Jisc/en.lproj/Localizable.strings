@@ -412,7 +412,7 @@
 "are_you_sure_you_want_to_delete_this_message" = "Are you sure you want to delete item this from feed?";
 "tutor_target" = "You can't edit targets that have been set by a tutor";
 "app_usage" = "App Usage";
-"attendence_summary" = "Attendence Summary";
+"attendence_summary" = "Attendance Summary";
 "events_attended" = "Events Attended";
 "vle_activity" = "VLE Activity";
 "leaderboard" = "Leaderboard";
@@ -441,6 +441,16 @@
 "events_attended_segment" = "Events Attended";
 "attendence" = "Attendance";
 "mark" = "Mark";
+"demo_mode_addtarget" = "This is a demonstration. Please sign in to add targets";
+"no_friends" = "There are no friends to display. Send requests to add friends.";
+"no_trophies" = "You did not earn any trophies yet.";
+"staff" = "Staff";
+"student" = "Student";
+"see_demo_account" = "See demo account";
+"keep_me_logged_in" = "Keep me logged in";
+"demo_mode_push_notification" = "You can't mark a post as read in demo mode.";
+"delete_push_notification_error" = "Tap on a notification to mark it as read. Unread notifications can't be deleted.";
+
 "all" = "All";
 "summary" = "Summary";
 "compare_to_leader" = "Compare to Leader";

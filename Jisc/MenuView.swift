@@ -75,7 +75,7 @@ class MenuView: UIView {
 			lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Feed, previousButton: lastButton, isLastButton: false, parent: view)
             lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Friends, previousButton: lastButton, isLastButton: false, parent: view)
 			if iPad {
-				lastButton = StatsMenuButton.insertSelfinView(view.menuContent, buttonType: .Stats, previousButton: lastButton, isLastButton: false, parent: view)
+				//lastButton = StatsMenuButton.insertSelfinView(view.menuContent, buttonType: .Stats, previousButton: lastButton, isLastButton: false, parent: view)
 			} else {
 				lastButton = StatsMenuButton.insertSelfinView(view.menuContent, buttonType: .Stats, previousButton: lastButton, isLastButton: false, parent: view)
 			}

@@ -198,9 +198,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         let reason = singleDictionary["reason"] as! String
         let status = singleDictionary["from_tutor"] as! String
         let status2 = singleDictionary["is_accepted"] as! String
-         if (status == "0"){
-          //  theCell.isHidden = true
-            
+        if (status == "0"){
         }
         if(status == "yes" && status2 == "0"){
             //theCell.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
@@ -335,10 +333,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     //MARK: UITableView Delegate
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if demo(){
-            return 108.0
-
-        } else {
         let singleDictionary = arrayOfResponses[indexPath.row]
         let status = singleDictionary["status"] as! String
         let status1 = singleDictionary["from_tutor"] as! String
@@ -361,8 +355,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         if (status == "0"){
             return 108.0
         }
-        }
-        
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

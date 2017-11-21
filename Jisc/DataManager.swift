@@ -1712,7 +1712,7 @@ class DataManager: NSObject {
         let downloadManager = DownloadManager()
         downloadManager.silent = true
         if let student = currentStudent{
-            downloadManager.getFeeds(student.id, alertAboutInternet: alertAboutInternet) {(success, result, results, error) -> Void in
+            downloadManager.getFeeds(student.id, alertAboutInternet: alertAboutInternet) { (success, result, results, error) -> Void in
                 if (success) {
                     let array = self.myFeeds()
                     for (_, item) in array.enumerated() {

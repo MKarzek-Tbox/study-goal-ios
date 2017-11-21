@@ -50,7 +50,10 @@ class Feed: NSManagedObject {
 	}
 	
 	func isMine() -> Bool {
-		let isMine = (from == dataManager.currentStudent!.id)
+        var isMine = false
+        if let student = dataManager.currentStudent{
+            isMine = (from == student.id)
+        }
 		return isMine
 	}
 	

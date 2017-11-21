@@ -108,8 +108,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     var eventsAttendedArray = [EventsAttendedObject]()
     var eventsAttendedUniqueArray = [EventsAttendedObject]()
     var eventsAttendedLimit:Int = 20
-    var attainmentDemoArray = ["Date   Module Name","20/7/2016 Introduction to Cell Biology", "18/4/2017 Computing 101", "11/11/2017 Introduction to World Literature"]
-    var eventsAttendedDemoArray = [["Lecture","10:20","20/7/2016","Maths"],["Lab","12:00","13/4/2016","Chemistry"],["Lecture", "9:30","14/8/2016","English"]]
     var graphTypePath = "bargraph"
     
     override func viewDidLoad() {
@@ -120,18 +118,16 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         noPointsDataLabel.text = localized("no_points_earned_yet")
         noPointsLabel.text = localized("no_points_earned_yet")
         if !iPad{
-            eventsAndAttendanceSegment.setTitle(localized("events_attended_segment"), forSegmentAt: 0)
-            eventsAndAttendanceSegment.setTitle(localized("attendence_summary"), forSegmentAt: 1)
-            eventsAndAttendanceSegment.selectedSegmentIndex = 1
+            eventsAndAttendanceSegment.setTitle(localized("attendence_summary"), forSegmentAt: 0)
+            eventsAndAttendanceSegment.setTitle(localized("events_attended_segment"), forSegmentAt: 1)
+            eventsAndAttendanceSegment.selectedSegmentIndex = 0
             
-            attendanceSegmentControl.setTitle(localized("events_attended_segment"), forSegmentAt: 0)
-            attendanceSegmentControl.setTitle(localized("attendence_summary"), forSegmentAt: 1)
-            attendanceSegmentControl.selectedSegmentIndex = 1
+            attendanceSegmentControl.setTitle(localized("attendence_summary"), forSegmentAt: 0)
+            attendanceSegmentControl.setTitle(localized("events_attended_segment"), forSegmentAt: 1)
+            attendanceSegmentControl.selectedSegmentIndex = 0
             
             weekOverallSegmentController.setTitle(localized("this_week"), forSegmentAt: 0)
             weekOverallSegmentController.setTitle(localized("overall"), forSegmentAt: 1)
-            
-            
         }
         
         staffAlert?.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
@@ -223,9 +219,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         if !iPad{
             self.vleGraphWebView.isHidden = false
         }
-        if(demo()){
-            self.highChartWebView.isHidden = true;
-        }
         self.noPointsLabel.isHidden = false
         self.eventsAttendedTableView.isHidden = false
         self.loadHighChart()
@@ -242,6 +235,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main&contentName=MainStats"
         }
         xAPIManager().checkMod(testUrl:urlString)
+        
+        if(demo()){
+            moduleButton.alpha = 0.5
+            moduleButton.isEnabled = false
+            periodSegment.isEnabled = false
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -287,20 +286,20 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     @IBAction func eventsAttendedAction(_ sender: Any) {
         if (eventsAndAttendanceSegment.selectedSegmentIndex == 0){
-            goToEventsAttended()
+            goToAttendance()
             attendanceSegmentControl.selectedSegmentIndex = 0
         } else {
-            goToAttendance()
+            goToEventsAttended()
             attendanceSegmentControl.selectedSegmentIndex = 1
         }
     }
     @IBAction func attendanceAction(_ sender: Any) {
         if (attendanceSegmentControl.selectedSegmentIndex == 0){
-            goToEventsAttended()
+            goToAttendance()
             eventsAndAttendanceSegment.selectedSegmentIndex = 0
             print("From AttendanceAction going to attendance")
         } else {
-            goToAttendance()
+            goToEventsAttended()
             eventsAndAttendanceSegment.selectedSegmentIndex = 1
             print("From AttendanceAction going to Events attended")
         }
@@ -333,12 +332,14 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                         if let grade = dictionary["ASSESS_AGREED_GRADE"] as? String {
                             if let moduleName = dictionary["X_MOD_NAME"] as? String {
                                 if let dateString = dictionary["CREATED_AT"] as? String {
-                                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                                    if let temp = dateString.components(separatedBy: ".").first {
-                                        if let date = dateFormatter.date(from: temp.replacingOccurrences(of: "T", with: " ")) {
-                                            self.attainmentArray.append(AttainmentObject(date: date, moduleName: moduleName, grade: grade))
-                                        }
-                                    }
+                                    print("dateString is \(dateString)")
+                                    
+                                    let dateFormatter = DateFormatter()
+                                    dateFormatter.dateFormat = "yyyy-MM-dd"
+                                    dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
+                                    let date = dateFormatter.date(from: dateString)
+                                    
+                                    self.attainmentArray.append(AttainmentObject(date: date!, moduleName: moduleName, grade: grade))
                                 }
                             }
                         }
@@ -408,6 +409,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         xMGR.silent = true
         xMGR.getEventsAttended(skip: 0, limit: self.eventsAttendedLimit) { (success, result, results, error) in
             self.eventsAttendedArray.append(EventsAttendedObject(date: localized("date"), time: localized("time"), activity: localized("activity"), module: localized("module")))
+            while(self.eventsAttendedArray.count > 1){
+                self.eventsAttendedArray.remove(at: self.eventsAttendedArray.count-1)
+            }
             if (results != nil){
                 print("receiving data")
                 // handle data
@@ -426,26 +430,31 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                                             var separatedArray = en.components(separatedBy: " ")
                                             date = separatedArray.popLast()
                                             time = separatedArray.popLast()
+                                            
                                             module = separatedArray.joined(separator: " ")
                                         }
-                                        //self.eventsAttendedArray.append(EventsAttendedObject(date: date,activity: activity,module: module))
                                     }
                                 }
                             }
                             if let context = statement["context"] as? [String:Any]{
                                 if let extensions = context["extensions"] as? [String:Any]{
                                     activity = extensions["http://xapi.jisc.ac.uk/activity_type_id"] as? String
+                                    if let courseArea = extensions["http://xapi.jisc.ac.uk/courseArea"] as? [String:Any]{
+                                        module = courseArea["http://xapi.jisc.ac.uk/uddModInstanceID"] as? String
+                                    }
                                 }
                             }
+                            
+                            
                         }
                     }
                     //Uncomment the following line to populate the eventsAttended table
-                    // self.eventsAttendedArray.append(EventsAttendedObject(date: date!, time: time!, activity: activity!, module: module!))
+                   self.eventsAttendedArray.append(EventsAttendedObject(date: date!, time: time!, activity: activity!, module: module!))
                 }
                 
-                //                self.eventsAttendedArray.sort(by: { $0.date.compare($1.date) == .orderedDescending})
-                //                self.eventsAttendedUniqueArray = self.eventsAttendedArray.filterDuplicates { $0.date == $1.date }
-                //self.eventsAttendedUniqueArray.sort(by: { $0.date.compare($1.date) == .orderedDescending})
+                self.eventsAttendedArray.sort(by: { $0.date.compare($1.date) == .orderedDescending})
+                self.eventsAttendedUniqueArray = self.eventsAttendedArray.filterDuplicates { $0.date == $1.date }
+                self.eventsAttendedUniqueArray.sort(by: { $0.date.compare($1.date) == .orderedDescending})
                 //Saving to UserDefaults for offline use.
                 //                let defaults = UserDefaults.standard
                 //                let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: self.eventsAttendedArray)
@@ -457,7 +466,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             
             print("events array")
             print(self.eventsAttendedArray)
-            
             
             print("here is the sorted array ", self.eventsAttendedArray.sort(by: { $0.date.compare($1.date) == .orderedDescending}))
             
@@ -702,28 +710,18 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         var nrRows = 0
         switch tableView {
         case attainmentTableView:
-            if demo(){
-                nrRows = attainmentDemoArray.count
-            } else {
-                nrRows = attainmentArray.count
-                if let student = dataManager.currentStudent {
-                    if student.affiliation.contains("glos.ac.uk") {
-                        nrRows += 1
-                    }
+            nrRows = attainmentArray.count
+            if let student = dataManager.currentStudent {
+                if student.affiliation.contains("glos.ac.uk") {
+                    nrRows += 1
                 }
             }
-            
-            
             break
         case pointsTable:
             nrRows = pointsArray.count
             break
         case eventsAttendedTableView:
-            if demo(){
-                nrRows = 3
-            } else {
-                nrRows = eventsAttendedArray.count
-            }
+            nrRows = eventsAttendedArray.count
             break
         default:
             break
@@ -738,10 +736,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             cell = tableView.dequeueReusableCell(withIdentifier: kAttainmentCellIdentifier, for: indexPath)
             
             if let theCell = cell as? AttainmentCell {
-                if demo(){
-                    //theCell.nameLabel.text = attainmentDemoArray[indexPath.row]
-                    //theCell.positionLabel.text = String(arc4random_uniform(50))
-                } else if indexPath.row < attainmentArray.count {
+                if indexPath.row < attainmentArray.count {
                     let attObject = attainmentArray[indexPath.row]
                     theCell.loadAttainmentObject(attObject)
                 } else {
@@ -786,8 +781,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 return numOfSections
             } else {
                 
-                if (attainmentArray.count > 0)
+                if (attainmentArray.count > 1)
                 {
+                    print("attainment data \(attainmentArray[1].moduleName)")
                     tableView.separatorStyle = .singleLine
                     numOfSections            = 1
                     tableView.backgroundView = nil
@@ -823,10 +819,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             
             break
         case eventsAttendedTableView:
-            if demo(){
-                numOfSections = 1
-                return numOfSections
-            }
             if (eventsAttendedArray.count > 1)
             {
                 tableView.separatorStyle = .singleLine
@@ -842,7 +834,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 tableView.backgroundView  = noDataLabel
                 tableView.separatorStyle  = .none
             }
-            
             break
             
         default:
@@ -854,19 +845,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             tableView.separatorStyle  = .none
             break
         }
-        
-        
-        
         return numOfSections
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         switch tableView {
         case attainmentTableView:
             if let theCell = cell as? AttainmentCell {
-                if demo(){
-                    //theCell.nameLabel.text = attainmentDemoArray[indexPath.row]
-                    //theCell.positionLabel.text = String(arc4random_uniform(50))
-                }
                 if indexPath.row < attainmentArray.count {
                     let attObject = attainmentArray[indexPath.row]
                     theCell.loadAttainmentObject(attObject)
@@ -882,24 +866,14 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             break
         case eventsAttendedTableView:
             if let theCell = cell as? EventsAttendedCell {
-                if demo(){
-                    for item in self.eventsAttendedDemoArray[indexPath.row]{
-                        theCell.activityLabel.text = item
-                        theCell.timeLabel.text = item
-                        theCell.dateLabel.text = item
-                        theCell.moduleLabel.text = item
-                    }
-                } else if indexPath.row < eventsAttendedArray.count {
+                if indexPath.row < eventsAttendedArray.count {
                     theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
                     
-                } else {
-                    //theCell.loadAttainmentObject(nil)
                 }
-                
             }
             let lastSectionIndex = tableView.numberOfSections - 1
             let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
-            if indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex {
+            if (indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex && eventsAttendedArray.count > 19) {
                 let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
                 spinner.startAnimating()
                 spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
@@ -950,13 +924,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             contents = contents.replacingOccurrences(of: "300px", with: "\(w)px")
             contents = contents.replacingOccurrences(of: "220px", with: "\(h)px")
             
-            /* {
-             name: 'Computer',
-             y: 56.33
-             }, {
-             name: 'English',
-             y: 24.03
-             } */
             var data: String = ""
             
             for point in pointsArray {
@@ -992,42 +959,63 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     
     private func loadVLEChart(){
         if !iPad{
-            do {
-                guard let filePath = Bundle.main.path(forResource: self.graphTypePath, ofType: "html")
-                    else {
-                        print ("File reading error")
-                        return
-                }
+        do {
+            guard let filePath = Bundle.main.path(forResource: self.graphTypePath, ofType: "html")
+                else {
+                    print ("File reading error")
+                    return
+            }
+            
+            vleGraphWebView.setNeedsLayout()
+            vleGraphWebView.layoutIfNeeded()
+            let w = vleGraphWebView.frame.size.width - 20
+            let h = vleGraphWebView.frame.size.height - 20
+            var contents = try String(contentsOfFile: filePath, encoding: .utf8)
+            contents = contents.replacingOccurrences(of: "300px", with: "\(w)px")
+            contents = contents.replacingOccurrences(of: "220px", with: "\(h)px")
+            
+            var dateDataFinal = ""
+            var countDateFinal = ""
+            var otherStudentFinal = ""
+            var webData = ""
+            
+            if (self.graphValues?.columnNames != nil) {
+                dateDataFinal = self.graphValues!.columnNames!.description
+            } else {
+                dateDataFinal = ""
+            }
+            
+            if (self.graphValues?.me != nil) {
+                countDateFinal = self.graphValues!.me!.description
+            } else {
+                countDateFinal = ""
+            }
+            
+            if(compareToButton.titleLabel?.text == localized("no_one")) {
+                webData = "series: [{name:'\(localized("me"))',data: \(countDateFinal)}], xAxis: { categories: \(dateDataFinal)}"
+                webData = webData.replacingOccurrences(of: "\"", with: "'")
                 
-                vleGraphWebView.setNeedsLayout()
-                vleGraphWebView.layoutIfNeeded()
-                let w = vleGraphWebView.frame.size.width - 20
-                let h = vleGraphWebView.frame.size.height - 20
-                var contents = try String(contentsOfFile: filePath, encoding: .utf8)
-                contents = contents.replacingOccurrences(of: "300px", with: "\(w)px")
-                contents = contents.replacingOccurrences(of: "220px", with: "\(h)px")
-                var dateDataFinal = ""
-                var countDateFinal = ""
-                if (self.graphValues?.columnNames != nil) {
-                    dateDataFinal = self.graphValues!.columnNames!.description
+            } else {
+                if(self.graphValues?.otherStudent != nil){
+                    otherStudentFinal = self.graphValues!.otherStudent!.description
                 } else {
-                    dateDataFinal = ""
-                }
-                if (self.graphValues?.me != nil) {
-                    countDateFinal = self.graphValues!.me!.description
-                } else {
-                    countDateFinal = ""
+                    otherStudentFinal = ""
                 }
                 
-                //dateDataFinal = "['23/09', '24/09', '25/09', '26/09', '27/09', '28/09', '29/09']"
-                //let countDateFinal = "[8,9,9,6,2,8,2]"
-                contents = contents.replacingOccurrences(of: "COUNT", with: countDateFinal)
-                contents = contents.replacingOccurrences(of: "DATES", with: dateDataFinal)
-                
-                let baseUrl = URL(fileURLWithPath: filePath)
-                vleGraphWebView.loadHTMLString(contents as String, baseURL: baseUrl)
-            } catch {
-                print ("File HTML error")
+                webData = "series: [{name:'\(localized("me"))',data: \(countDateFinal)},"
+                webData.append("{name:'\(localized(compareToButton.titleLabel!.text!))',data: \(otherStudentFinal)}], xAxis: { categories: \(dateDataFinal)")
+                webData.append("}")
+                webData = webData.replacingOccurrences(of: "\"", with: "'")
+            }
+            
+            print("\(webData)")
+            
+            contents = contents.replacingOccurrences(of: "<<<REPLACE_DATA_HERE>>>", with: webData)
+            let baseUrl = URL(fileURLWithPath: filePath)
+            vleGraphWebView.loadHTMLString(contents as String, baseURL: baseUrl)
+            
+        } catch {
+            print ("File HTML error")
             }
         }
         
@@ -1045,12 +1033,11 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         let twentyEightDaysAgo = Calendar.current.date(byAdding: .day, value: -34, to: Date())
         let daysAgoResult = dateFormatter.string(from: twentyEightDaysAgo!)
         
-        
         var urlStringCall = ""
-        if(!dataManager.developerMode){
+        if(!demo()){
             urlStringCall = "https://api.datax.jisc.ac.uk/sg/weeklyattendance?startdate=\(daysAgoResult)&enddate=\(result)"
         } else {
-            urlStringCall = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/weeklyattendance?startdate=\(daysAgoResult)&enddate=\(result)"
+            urlStringCall = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_fake_attendance_summary"
         }
         var request:URLRequest?
         if let urlString = urlStringCall.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
@@ -1065,11 +1052,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
                 
                 print("data received for events graph")
+                
                 do {
                     if let data = data,
                         let json = try JSONSerialization.jsonObject(with: data) as? [Any] {
                         print("json count events graph \(json.count)")
-                        
+                        self.highChartWebView.isHidden = false
                         for item in json {
                             let object = item as? [String:Any]
                             if let count = object?["count"] as? Int {
@@ -1115,22 +1103,24 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                                 countData = countData + String(count) + ", "
                             }
                             var countDataFinal:String = ""
-                            let endIndex = countData.index(countData.endIndex, offsetBy: -2)
-                            countDataFinal = "[" + countData.substring(to: endIndex) + "]"
-                            for date in dateArray {
-                                //Here is where I think I should add the formattinfg code.
+                            if(countData.characters.count > 1){
+                                let endIndex = countData.index(countData.endIndex, offsetBy: -2)
+                                    countDataFinal = "[" + countData.substring(to: endIndex) + "]"
                                 
-                                dateData = dateData + "'\(date)'" + ", "
+                                for date in dateArray {
+                                    dateData = dateData + "'\(date)'" + ", "
+                                }
+                                var dateDataFinal:String = ""
+                                let endIndexDate = dateData.index(dateData.endIndex, offsetBy: -2)
+                                
+                                dateDataFinal = "[" + dateData.substring(to: endIndexDate) + "]"
+                                
+                                print("\(countDataFinal)")
+                                print("\(dateDataFinal)")
+                                
+                                contents = contents.replacingOccurrences(of: "COUNT", with: countDataFinal)
+                                contents = contents.replacingOccurrences(of: "DATES", with: dateDataFinal)
                             }
-                            var dateDataFinal:String = ""
-                            let endIndexDate = dateData.index(dateData.endIndex, offsetBy: -2)
-                            
-                            dateDataFinal = "[" + dateData.substring(to: endIndexDate) + "]"
-                            
-                            
-                            contents = contents.replacingOccurrences(of: "COUNT", with: countDataFinal)
-                            contents = contents.replacingOccurrences(of: "DATES", with: dateDataFinal)
-                            
                             if(dateArray.count == 0){
                                 self.noDataLabel.alpha = 1.0
                                 self.noDataLabel.textColor = UIColor.black
@@ -1272,11 +1262,15 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 }
                 view.layoutIfNeeded()
             } else {
-                graphContainerWidth.constant = initialGraphWidth
+                if let graph = graphContainerWidth {
+                    graph.constant = initialGraphWidth
+                }
                 view.layoutIfNeeded()
             }
         } else {
-            graphContainerWidth.constant = initialGraphWidth
+            if let graph = graphContainerWidth {
+                graph.constant = initialGraphWidth
+            }
             view.layoutIfNeeded()
         }
         
@@ -2111,10 +2105,10 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                     let student = friendsInTheSameCourse()[selectedStudent - 1]
                     compareToButton.setTitle("\(student.firstName) \(student.lastName)", for: UIControlState())
                     comparisonStudentName.text = "\(student.firstName) \(student.lastName)"
-                    UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                    /*UIView.animate(withDuration: 0.25, animations: { () -> Void in
                         self.blueDot.alpha = 1.0
                         self.comparisonStudentName.alpha = 1.0
-                    })
+                    })*/
                     //				} else if (selectedStudent == friendsInTheSameCourse().count + 1) {
                     //					compareToButton.setTitle(localized("top_10_percent"), for: UIControlState())
                     //					comparisonStudentName.text = localized("top_10_percent")
@@ -2126,10 +2120,10 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 } else if (selectedStudent == friendsInTheSameCourse().count + 1) {
                     compareToButton.setTitle(localized("average"), for: UIControlState())
                     comparisonStudentName.text = localized("average")
-                    UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                    /*UIView.animate(withDuration: 0.25, animations: { () -> Void in
                         self.blueDot.alpha = 1.0
                         self.comparisonStudentName.alpha = 1.0
-                    })
+                    })*/
                 }
                 getEngagementData()
             }

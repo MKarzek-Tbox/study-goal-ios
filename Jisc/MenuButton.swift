@@ -29,6 +29,7 @@ class MenuButton: UIView {
 	
     
 	class func insertSelfinView(_ view:UIView, buttonType: MenuButtonType, previousButton:MenuButton?, isLastButton:Bool, parent:MenuView) -> MenuButton {
+        
 		let button = Bundle.main.loadNibNamed("\(self.classForCoder())", owner: nil, options: nil)!.first as! MenuButton
 		button.translatesAutoresizingMaskIntoConstraints = false
 		button.type = buttonType
@@ -101,7 +102,7 @@ class MenuButton: UIView {
 		NotificationCenter.default.addObserver(button, selector: #selector(selectedAButton(_:)), name: kButtonSelectionNotification, object: nil)
 		return button
 	}
-	
+   
 	func selectedAButton(_ notification:Notification) {
         if let type = notification.object as? MenuButtonType {
             if self.type == type {
@@ -123,7 +124,7 @@ class MenuButton: UIView {
 	
 	@IBAction func buttonAction(_ sender:UIButton?) {
 		switch type {
-		case .Feed:
+        case .Feed:
 			parent?.feed()
             break
         case .Friends:

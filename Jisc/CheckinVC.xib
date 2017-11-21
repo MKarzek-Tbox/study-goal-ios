@@ -55,14 +55,14 @@
                                 <action selector="settings:" destination="-1" eventType="touchUpInside" id="JQs-Qs-kgo"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jisc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BAV-y0-qjP" customClass="AppTitleLabel" customModule="Jisc" customModuleProvider="target">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Jisc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BAV-y0-qjP" customClass="AppTitleLabel" customModule="Jisc" customModuleProvider="target">
                             <rect key="frame" x="44" y="29" width="37" height="17"/>
                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZX-1j-f8P">
-                            <rect key="frame" x="6" y="14" width="40" height="40"/>
+                            <rect key="frame" x="6" y="14" width="49" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="UTb-7t-xOp"/>
                                 <constraint firstAttribute="height" constant="40" id="Zri-DJ-540"/>
@@ -76,21 +76,21 @@
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstItem="BAV-y0-qjP" firstAttribute="leading" secondItem="qZX-1j-f8P" secondAttribute="trailing" constant="-2" id="77d-Pe-VW2"/>
                         <constraint firstAttribute="bottom" secondItem="Mio-T4-8pw" secondAttribute="bottom" constant="10" id="8cy-i8-wZj"/>
                         <constraint firstItem="qZX-1j-f8P" firstAttribute="bottom" secondItem="Mio-T4-8pw" secondAttribute="bottom" constant="4" id="9mw-eU-SNw"/>
                         <constraint firstAttribute="height" constant="60" id="BEW-6C-Wu7"/>
                         <constraint firstItem="vcp-kc-cRi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Mio-T4-8pw" secondAttribute="trailing" constant="5" id="EZe-aQ-8a6"/>
+                        <constraint firstItem="Mio-T4-8pw" firstAttribute="leading" secondItem="BAV-y0-qjP" secondAttribute="trailing" constant="85" id="FvC-hk-8i3"/>
                         <constraint firstItem="Mio-T4-8pw" firstAttribute="centerY" secondItem="vcp-kc-cRi" secondAttribute="centerY" id="N7b-Q0-FQr"/>
                         <constraint firstAttribute="bottom" secondItem="cpC-He-mWx" secondAttribute="bottom" id="ONn-Yy-Zz7"/>
-                        <constraint firstItem="qZX-1j-f8P" firstAttribute="leading" secondItem="BAV-y0-qjP" secondAttribute="leading" constant="-38" id="QI7-at-AgJ"/>
+                        <constraint firstItem="BAV-y0-qjP" firstAttribute="top" secondItem="XBF-hw-RIk" secondAttribute="top" constant="29" id="R7J-vA-hIi"/>
                         <constraint firstAttribute="trailing" secondItem="cpC-He-mWx" secondAttribute="trailing" id="T4S-7c-rJS"/>
                         <constraint firstItem="qZX-1j-f8P" firstAttribute="leading" secondItem="XBF-hw-RIk" secondAttribute="leadingMargin" constant="-2" id="VIF-Jb-9iQ"/>
-                        <constraint firstItem="BAV-y0-qjP" firstAttribute="top" secondItem="XBF-hw-RIk" secondAttribute="topMargin" constant="21" id="c2w-6W-y5G"/>
                         <constraint firstItem="cpC-He-mWx" firstAttribute="top" secondItem="XBF-hw-RIk" secondAttribute="top" id="fla-zf-P6a"/>
                         <constraint firstAttribute="bottom" secondItem="vcp-kc-cRi" secondAttribute="bottom" id="i8Z-d4-7L8"/>
                         <constraint firstAttribute="trailing" secondItem="vcp-kc-cRi" secondAttribute="trailing" id="m7h-y6-zIV"/>
                         <constraint firstAttribute="bottom" secondItem="Mio-T4-8pw" secondAttribute="bottom" constant="10" id="mK8-wS-jha"/>
-                        <constraint firstItem="qZX-1j-f8P" firstAttribute="trailing" secondItem="BAV-y0-qjP" secondAttribute="trailing" constant="-35" id="pop-HA-gV0"/>
                         <constraint firstItem="Mio-T4-8pw" firstAttribute="centerX" secondItem="XBF-hw-RIk" secondAttribute="centerX" id="r7R-Y3-tAD"/>
                         <constraint firstItem="cpC-He-mWx" firstAttribute="leading" secondItem="XBF-hw-RIk" secondAttribute="leading" id="rIQ-NH-S31"/>
                     </constraints>
@@ -374,6 +374,7 @@
                 <constraint firstItem="IpA-EX-toW" firstAttribute="top" secondItem="XBF-hw-RIk" secondAttribute="bottom" id="H8X-r5-lgj"/>
                 <constraint firstItem="IpA-EX-toW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" priority="750" id="JIp-Oj-lLB"/>
                 <constraint firstAttribute="trailing" secondItem="XBF-hw-RIk" secondAttribute="trailing" id="dHK-Hq-Uf2"/>
+                <constraint firstItem="stp-Ab-FNk" firstAttribute="top" secondItem="BAV-y0-qjP" secondAttribute="bottom" constant="14" id="dpt-tn-dsE"/>
                 <constraint firstAttribute="trailing" secondItem="IpA-EX-toW" secondAttribute="trailing" priority="750" id="n8D-BB-5SR"/>
                 <constraint firstItem="IpA-EX-toW" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="u94-m1-WeF"/>
                 <constraint firstItem="XBF-hw-RIk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zHU-bK-JFp"/>

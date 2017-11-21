@@ -46,28 +46,14 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
         }
         xAPIManager().checkMod(testUrl:urlString)
         feedsTableView.reloadData()
-        
-        //let statsClass = StatsVC()
-//        statsClass.getEventsAttended {
-//            print("requested events attended from feed")
-//        }
-        //statsClass.viewDidLoad()
-        
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		/*if (dataManager.friendRequests().count > 0) {
-            //London Developer July 24,2017
-            let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=feed-friends&contentName=friends"
-            xAPIManager().checkMod(testUrl:urlString)
-		}*/
 	}
 	
 	@IBAction func openMenu(_ sender:UIButton?) {
-        //DELEGATE.menuView = MenuView.createView()
         DELEGATE.menuView?.open()
-		//print("open menu: \(DELEGATE.menuView)")
 	}
 	
 	func refreshFeeds(_ sender:Timer) {
@@ -203,13 +189,19 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 				self.navigationController?.present(alert, animated: true, completion: nil)
 			}
 		} else if feed.activityType == "temp_push_notification" {
-			if let studentId = dataManager.currentStudent?.id {
-				DownloadManager().markNotificationAsRead(studentdId: studentId, notificationId: feed.id, alertAboutInternet: false, completion: { (success, dictionary, array, error) in
-					dataManager.silentStudentFeedsRefresh(true) { (success, failureReason) -> Void in
-						self.feedsTableView.reloadData()
-					}
-				})
-			}
+            if demo(){
+                let alert = UIAlertController(title: "", message: localized("demo_mode_push_notification"), preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+                navigationController?.present(alert, animated: true, completion: nil)
+            } else {
+                if let studentId = dataManager.currentStudent?.id {
+                    DownloadManager().markNotificationAsRead(studentdId: studentId, notificationId: feed.id, alertAboutInternet: false, completion: { (success, dictionary, array, error) in
+                        dataManager.silentStudentFeedsRefresh(true) { (success, failureReason) -> Void in
+                            self.feedsTableView.reloadData()
+                        }
+                    })
+                }
+            }
 		}
         if (aCellIsOpen) {
             tableView.reloadData()

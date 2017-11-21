@@ -7,5 +7,6 @@ target 'Jisc' do
 	pod 'FBSDKLoginKit'
 	pod 'Google/SignIn'
 	pod 'Fabric'
+	pod 'Crashlytics'
 	pod 'TwitterKit'
 end

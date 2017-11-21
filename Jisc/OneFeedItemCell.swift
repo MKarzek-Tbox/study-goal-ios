@@ -24,12 +24,8 @@ class OneFeedItemCell: LocalizableCell {
     @IBOutlet weak var timeStamp:UILabel!
     @IBOutlet weak var shareButton:UIButton!
     @IBOutlet weak var shareView:UIView!
-    @IBOutlet weak var optionsButton:UIButton!
     @IBOutlet weak var optionsView:UIView!
-    @IBOutlet weak var userOptionsImage:UIImageDownload!
-    @IBOutlet weak var hidePostButton:UIButton!
-    @IBOutlet weak var hideFriendButton:UIButton!
-    @IBOutlet weak var deleteFriendButton:UIButton!
+    
     var theFeed:Feed?
     weak var parent:FeedVC?
 
@@ -44,14 +40,7 @@ class OneFeedItemCell: LocalizableCell {
         NotificationCenter.default.addObserver(self, selector: #selector(OneFeedItemCell.anotherCellOpenedOptions(_:)), name: NSNotification.Name(rawValue: kAnotherActivityCellOpenedOptions), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(OneFeedItemCell.changeSelectedStyleOn), name: NSNotification.Name(rawValue: kChangeActivityCellSelectedStyleOn), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(OneFeedItemCell.changeSelectedStyleOff), name: NSNotification.Name(rawValue: kChangeActivityCellSelectedStyleOff), object: nil)
-        if (screenWidth == .small) {
-            hidePostButton.titleLabel?.font = myriadProRegular(13)
-            hideFriendButton.titleLabel?.font = myriadProRegular(13)
-            deleteFriendButton.titleLabel?.font = myriadProRegular(13)
-        }
         shareButton.alpha = 0.0
-        optionsButton.alpha = 0.0
-        optionsView.alpha = 0.0
         shareView.alpha = 0.0
         
         if (buttonsWithLargeTitles.count > 0) {
@@ -103,37 +92,40 @@ class OneFeedItemCell: LocalizableCell {
     override func prepareForReuse() {
         shareView.alpha = 0.0
         shareButton.alpha = 0.0
-        optionsButton.alpha = 0.0
-        optionsView.alpha = 0.0
         loadProfilePicture("")
     }
     
     func loadProfilePicture(_ link:String) {
         userImage.loadImageWithLink(link, type: .profile, completion: nil)
-        userOptionsImage.loadImageWithLink(link, type: .profile, completion: nil)
+        //userOptionsImage.loadImageWithLink(link, type: .profile, completion: nil)
     }
     
     func loadFeedPost(_ feed:Feed) {
         theFeed = feed
         if feed.activityType == "temp_push_notification" {
-            self.contentView.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
+            print("\(feed.description) is a push notification ")
+            self.cellBG.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
         } else {
-            self.contentView.backgroundColor = UIColor(red: 251.0/255.0, green: 251.0/255.0, blue: 251.0/255.0, alpha: 1.0)
+            print("\(feed.description) is a post ")
+            self.cellBG.backgroundColor = UIColor(red: 251.0/255.0, green: 251.0/255.0, blue: 251.0/255.0, alpha: 1.0)
         }
-        if (feed.isMine()) {
-            shareButton.alpha = 1.0
-            loadProfilePicture("\(hostPath)\(dataManager.currentStudent!.photo)")
+        if feed.activityType == "temp_push_notification"{
+            userImage.image = UIImage(named: "notification_image")
         } else {
-            optionsButton.alpha = 1.0
-            let fromFriend = feed.fromFriend()
-            if (fromFriend != nil) {
-                loadProfilePicture("\(hostPath)\(fromFriend!.photo)")
+            if (feed.isMine()) {
+                shareButton.alpha = 1.0
+                loadProfilePicture("\(hostPath)\(dataManager.currentStudent!.photo)")
             } else {
-                let fromColleague = feed.fromColleague()
-                if (fromColleague != nil) {
-                    loadProfilePicture("\(hostPath)\(fromColleague!.photo)")
+                let fromFriend = feed.fromFriend()
+                if (fromFriend != nil) {
+                    loadProfilePicture("\(hostPath)\(fromFriend!.photo)")
                 } else {
-                    loadProfilePicture("")
+                    let fromColleague = feed.fromColleague()
+                    if (fromColleague != nil) {
+                        loadProfilePicture("\(hostPath)\(fromColleague!.photo)")
+                    } else {
+                        loadProfilePicture("")
+                    }
                 }
             }
         }
@@ -311,7 +303,11 @@ class OneFeedItemCell: LocalizableCell {
                     NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeActivityCellSelectedStyleOn), object: nil)
                     self.parent?.aCellIsOpen = false
                     self.optionsState = .closed
-                    AlertView.showAlert(false, message: failureReason, completion: nil)
+                    if(self.theFeed?.activityType == "temp_push_notification"){
+                        AlertView.showAlert(false, message: localized("Tap on a notification to mark it as read. Unread notifications can't be deleted."), completion: nil)
+                    } else {
+                        AlertView.showAlert(false, message: failureReason, completion: nil)
+                    }
                     self.closeCellOptions()
 
                 }
@@ -366,7 +362,6 @@ class OneFeedItemCell: LocalizableCell {
         switch (sender.state) {
         case .began:
             panStartPoint = sender.location(in: self)
-            optionsButtonsView.alpha = 1.0
         case .ended:
             let velocity = sender.velocity(in: self).x
             if (velocity < 0) {
@@ -392,15 +387,17 @@ class OneFeedItemCell: LocalizableCell {
     }
     
     func openCellOptions() {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: kAnotherActivityCellOpenedOptions), object: self)
-        optionsState = .open
-        UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.contentTrailingConstraint.constant = kButtonsWidth
-            self.layoutIfNeeded()
-        }, completion: { (done) -> Void in
-            NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeActivityCellSelectedStyleOff), object: nil)
-            self.parent?.aCellIsOpen = true
-        })
+        if(theFeed?.activityType != "temp_push_notification"){
+            NotificationCenter.default.post(name: Notification.Name(rawValue: kAnotherActivityCellOpenedOptions), object: self)
+            optionsState = .open
+            UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                self.contentTrailingConstraint.constant = kButtonsWidth
+                self.layoutIfNeeded()
+            }, completion: { (done) -> Void in
+                NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeActivityCellSelectedStyleOff), object: nil)
+                self.parent?.aCellIsOpen = true
+            })
+        }
     }
     
     func closeCellOptions() {
@@ -410,7 +407,6 @@ class OneFeedItemCell: LocalizableCell {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.contentTrailingConstraint.constant = 0.0
             self.layoutIfNeeded()
-            self.optionsButtonsView.alpha = 0.0
         }) 
     }
 
