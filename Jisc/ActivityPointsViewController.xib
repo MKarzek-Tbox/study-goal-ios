@@ -27,9 +27,11 @@
                 <outlet property="activityPointsSummaryView" destination="mlD-2z-it9" id="o05-ja-Wwc"/>
                 <outlet property="endDateField" destination="SU9-kl-cmT" id="UI3-S2-kNs"/>
                 <outlet property="moduleButton" destination="oHa-vH-Iih" id="2eC-81-idX"/>
+                <outlet property="overallSelectorButton" destination="Bz3-FX-ycw" id="IXU-bh-NV6"/>
                 <outlet property="segmentControl" destination="qJa-DW-NrL" id="UOT-TA-cGJ"/>
                 <outlet property="startDateField" destination="77T-w6-o7I" id="0z8-mi-8t3"/>
                 <outlet property="tableView" destination="4u7-UC-pdL" id="y8q-S2-IDY"/>
+                <outlet property="thisWeekSelectorButton" destination="80R-HJ-YzJ" id="Oc9-tM-HdM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="webView" destination="dt7-E3-873" id="9Df-Nd-ICF"/>
                 <outlet property="webViewNullMessage" destination="V6x-XE-B2H" id="vxK-ad-tuk"/>
@@ -141,7 +143,43 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vrp-8g-dX8" userLabel="Date Settings">
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80R-HJ-YzJ" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
+                            <rect key="frame" x="8" y="343" width="175" height="42"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
+                            <state key="normal" title="This Week" backgroundImage="purpleBorder">
+                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected">
+                                <color key="titleColor" red="0.21568627450980393" green="0.56862745098039214" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="this_week"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeySelected" value="this_week"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="callPeriodData:" destination="-1" eventType="touchUpInside" id="UPC-Kk-XM0"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bz3-FX-ycw" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
+                            <rect key="frame" x="192" y="343" width="175" height="42"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
+                            <state key="normal" title="Overall" backgroundImage="purpleBorder">
+                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected">
+                                <color key="titleColor" red="0.2156862745" green="0.56862745100000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="overall"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeySelected" value="overall"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="callPeriodData:" destination="-1" eventType="touchUpInside" id="hSi-tB-VRI"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vrp-8g-dX8" userLabel="Date Settings">
                             <rect key="frame" x="325" y="343" width="42" height="42"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Light" family="Myriad Pro" pointSize="17"/>
@@ -149,7 +187,7 @@
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Start" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="77T-w6-o7I" customClass="LocalizableTextField" customModule="Jisc" customModuleProvider="target">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Start" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="77T-w6-o7I" customClass="LocalizableTextField" customModule="Jisc" customModuleProvider="target">
                             <rect key="frame" x="8" y="343" width="149" height="42"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="textColor" red="0.64705882349999999" green="0.64705882349999999" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -160,7 +198,7 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyText" value="start"/>
                             </userDefinedRuntimeAttributes>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="End" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SU9-kl-cmT" customClass="LocalizableTextField" customModule="Jisc" customModuleProvider="target">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="End" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SU9-kl-cmT" customClass="LocalizableTextField" customModule="Jisc" customModuleProvider="target">
                             <rect key="frame" x="168" y="343" width="149" height="42"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="textColor" red="0.64705882349999999" green="0.64705882349999999" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -171,15 +209,15 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyText" value="end"/>
                             </userDefinedRuntimeAttributes>
                         </textField>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="selectorIndicatorIcon" translatesAutoresizingMaskIntoConstraints="NO" id="vqx-Pc-Yc3" userLabel="selectorIndicatorIconStart">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="selectorIndicatorIcon" translatesAutoresizingMaskIntoConstraints="NO" id="vqx-Pc-Yc3" userLabel="selectorIndicatorIconStart">
                             <rect key="frame" x="136" y="361" width="12" height="6"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="selectorIndicatorIcon" translatesAutoresizingMaskIntoConstraints="NO" id="s6N-5R-A7k" userLabel="selectorIndicatorIconEnd">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="selectorIndicatorIcon" translatesAutoresizingMaskIntoConstraints="NO" id="s6N-5R-A7k" userLabel="selectorIndicatorIconEnd">
                             <rect key="frame" x="300" y="361" width="12" height="6"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oHa-vH-Iih" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oHa-vH-Iih" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                             <rect key="frame" x="8" y="393" width="359" height="42"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
@@ -195,7 +233,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Activity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LuB-rI-G8E" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="443" width="140" height="35"/>
+                            <rect key="frame" x="0.0" y="393" width="140" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
@@ -206,7 +244,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Points Awarded" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHL-Wm-jbd" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="255" y="443" width="120" height="35"/>
+                            <rect key="frame" x="255" y="393" width="120" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
@@ -217,7 +255,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4u7-UC-pdL" userLabel="TableView">
-                            <rect key="frame" x="0.0" y="486" width="375" height="123"/>
+                            <rect key="frame" x="0.0" y="436" width="375" height="173"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <connections>
@@ -226,7 +264,7 @@
                             </connections>
                         </tableView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Count" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXO-it-pC8" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="143" y="443" width="109" height="35"/>
+                            <rect key="frame" x="143" y="393" width="109" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
@@ -238,6 +276,16 @@
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <variation key="default">
+                        <mask key="subviews">
+                            <exclude reference="Vrp-8g-dX8"/>
+                            <exclude reference="77T-w6-o7I"/>
+                            <exclude reference="SU9-kl-cmT"/>
+                            <exclude reference="vqx-Pc-Yc3"/>
+                            <exclude reference="s6N-5R-A7k"/>
+                            <exclude reference="oHa-vH-Iih"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

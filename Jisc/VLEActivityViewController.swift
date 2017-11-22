@@ -19,6 +19,10 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
     @IBOutlet weak var endDateField:UITextField!
     
     @IBOutlet weak var moduleButton:UIButton!
+    @IBOutlet weak var compareToButton:UIButton!
+    
+    @IBOutlet weak var sevenDaysSelectorButton:UIButton!
+    @IBOutlet weak var twentyEightDaysSelectorButton:UIButton!
     
     var startDatePicker = UIDatePicker()
     var endDatePicker = UIDatePicker()
@@ -29,6 +33,9 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
     var selectedModule = 0
     var selectedPeriod = 0
     var selectedStudent = 0
+    
+    var compareToSelectorView:CustomPickerView = CustomPickerView()
+    var friendsInModule = [Friend]()
     
     var graphType = GraphType.Bar
     var graphTypePath = "bargraph"
@@ -637,18 +644,104 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         xAPIManager().checkMod(testUrl:urlString)
     }
     
-    func view(_ view: CustomPickerView, selectedRow: Int) {
-        if (selectedModule != selectedRow) {
-            selectedModule = selectedRow
-            let moduleIndex = selectedModule - 1
-            
-            if (selectedModule == 0) {
-                moduleButton.setTitle(localized("filter_modules"), for: UIControlState())
-            } else if (moduleIndex >= 0 && moduleIndex < dataManager.modules().count) {
-                moduleButton.setTitle(dataManager.modules()[moduleIndex].name, for: UIControlState())
-                //specific call
+    @IBAction func showCompareToSelector(_ sender:UIButton) {
+        if (selectedModule == 0) {
+            var array:[String] = [String]()
+            array.append(localized("no_one"))
+            let colleagues = friendsInTheSameCourse()
+            for (_, item) in colleagues.enumerated() {
+                array.append("\(item.firstName) \(item.lastName)")
             }
+            if array.count > 1 {
+                compareToSelectorView = CustomPickerView.create(localized("choose_student"), delegate: self, contentArray: array, selectedItem: selectedStudent)
+                view.addSubview(compareToSelectorView)
+            }
+        } else {
+            var array:[String] = [String]()
+            array.append(localized("no_one"))
+            let colleagues = friendsInTheSameCourse()
+            for (_, item) in colleagues.enumerated() {
+                array.append("\(item.firstName) \(item.lastName)")
+            }
+            array.append(localized("average"))
+            compareToSelectorView = CustomPickerView.create(localized("choose_student"), delegate: self, contentArray: array, selectedItem: selectedStudent)
+            view.addSubview(compareToSelectorView)
+        }
+    }
+    
+    func view(_ view: CustomPickerView, selectedRow: Int) {
+        switch (view) {
+        case moduleSelectorView:
+            if (selectedModule != selectedRow) {
+                compareToButton.alpha = 1.0
+                compareToButton.isUserInteractionEnabled = true
+                if (selectedModule == 0) {
+                    if (selectedStudent != 0) {
+                        compareToButton.setTitle(localized("no_one"), for: UIControlState())
+                        compareToSelectorView.alpha = 0.5
+                        compareToSelectorView.isUserInteractionEnabled = false
+                        selectedStudent = 0
+                    }
+                }
+                selectedModule = selectedRow
+                moduleButton.setTitle(view.contentArray[selectedRow], for: UIControlState())
+                let moduleIndex = selectedModule - (1 + dataManager.courses().count)
+                if (moduleIndex >= 0 && moduleIndex < dataManager.modules().count) {
+                    moduleButton.setTitle(dataManager.modules()[moduleIndex].name, for: UIControlState())
+                }
+                if (selectedModule == 0) {
+                    friendsInModule.removeAll()
+                    selectedStudent = 0
+                    compareToButton.setTitle(localized("no_one"), for: UIControlState())
+                    compareToSelectorView.alpha = 0.5
+                    compareToSelectorView.isUserInteractionEnabled = false
+                } else if (moduleIndex >= 0 && moduleIndex < dataManager.modules().count) {
+                    DownloadManager().getFriendsByModule(dataManager.currentStudent!.id, module: dataManager.modules()[moduleIndex].id, alertAboutInternet: false, completion: { (success, result, results, error) in
+                        if let array = results {
+                            print("ARRAY: \(array)")
+                        }
+                    })
+                }
+                getEngagementData()
+            }
+        break
+        case compareToSelectorView:
+            if (selectedStudent != selectedRow) {
+                selectedStudent = selectedRow
+                if (selectedStudent == 0) {
+                    compareToButton.setTitle(localized("no_one"), for: UIControlState())
+                } else if ((selectedStudent - 1) < friendsInTheSameCourse().count) {
+                    let student = friendsInTheSameCourse()[selectedStudent - 1]
+                    compareToButton.setTitle("\(student.firstName) \(student.lastName)", for: UIControlState())
+        //				} else if (selectedStudent == friendsInTheSameCourse().count + 1) {
+        //					compareToButton.setTitle(localized("top_10_percent"), for: UIControlState())
+        //					comparisonStudentName.text = localized("top_10_percent")
+        //					UIView.animate(withDuration: 0.25, animations: { () -> Void in
+        //						self.blueDot.alpha = 1.0
+        //						self.comparisonStudentName.alpha = 1.0
+        //					})
+        //				} else if (selectedStudent == friendsInTheSameCourse().count + 2) {
+                } else if (selectedStudent == friendsInTheSameCourse().count + 1) {
+                    compareToButton.setTitle(localized("average"), for: UIControlState())
+                }
+                getEngagementData()
+            }
+        break
+        default:break
+        }
+    }
+    
+    @IBAction func callPeriodData(_ sender:UIButton){
+        switch (sender){
+        case sevenDaysSelectorButton:
+            selectedPeriod = 0
             getEngagementData()
+            break
+        case twentyEightDaysSelectorButton:
+            selectedPeriod = 1
+            getEngagementData()
+            break
+        default: break
         }
     }
 }

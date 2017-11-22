@@ -35,8 +35,11 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
     @IBOutlet weak var activityPointsSum:UILabel!
     
     @IBOutlet weak var moduleButton:UIButton!
+    @IBOutlet weak var thisWeekSelectorButton:UIButton!
+    @IBOutlet weak var overallSelectorButton:UIButton!
     
     var activityPointsData = [PointsObject]()
+    var selectedPeriod = 0
     
     var startDatePicker = UIDatePicker()
     var endDatePicker = UIDatePicker()
@@ -63,7 +66,7 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
         tableView.register(UINib(nibName: kPointsCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kPointsCellIdentifier)
         tableView.tableFooterView = UIView()
         
-        getActivityPoints(period: .Overall) {
+        getActivityPoints(period: .SevenDays) {
             print("getting activity points")
         }
     }
@@ -315,9 +318,29 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
                 moduleButton.setTitle(dataManager.modules()[moduleIndex].name, for: UIControlState())
                 //specific call
             }
-            getActivityPoints(period: .Overall) {
-                
+            if(selectedPeriod == 0){
+                getActivityPoints(period: .SevenDays) { }
+            } else {
+                getActivityPoints(period: .Overall) { }
             }
+        }
+    }
+    
+    @IBAction func callPeriodData(_ sender:UIButton){
+        switch (sender){
+        case thisWeekSelectorButton:
+            selectedPeriod = 0
+            getActivityPoints(period: .SevenDays){ }
+            thisWeekSelectorButton.isSelected = true
+            overallSelectorButton.isSelected = false
+            break
+        case overallSelectorButton:
+            selectedPeriod = 1
+            getActivityPoints(period: .Overall){ }
+            overallSelectorButton.isSelected = true
+            thisWeekSelectorButton.isSelected = false
+            break
+        default: break
         }
     }
 }

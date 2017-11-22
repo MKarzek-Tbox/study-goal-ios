@@ -19,9 +19,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VLEActivityViewController" customModule="Jisc" customModuleProvider="target">
             <connections>
+                <outlet property="compareToButton" destination="ayg-B8-VFC" id="yLr-7v-0zy"/>
                 <outlet property="endDateField" destination="sck-OW-dHP" id="lUP-Zu-odW"/>
                 <outlet property="moduleButton" destination="KcJ-UI-yFK" id="ejy-Lf-sJs"/>
+                <outlet property="sevenDaysSelectorButton" destination="3LO-Uh-viB" id="FdZ-6i-fpt"/>
                 <outlet property="startDateField" destination="Dsx-2E-jBg" id="QIG-RU-68F"/>
+                <outlet property="twentyEightDaysSelectorButton" destination="Cf7-sO-m7D" id="zOz-bn-XBo"/>
                 <outlet property="view" destination="iN0-l3-epB" id="p2v-fi-Ooi"/>
                 <outlet property="webView" destination="J99-Zd-4jz" id="BA2-DV-lY3"/>
                 <outlet property="webViewLineiPad" destination="Kke-ir-ahQ" id="Hwg-04-5oq"/>
@@ -109,7 +112,7 @@
                             <rect key="frame" x="514" y="0.0" width="510" height="647"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Start" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dsx-2E-jBg" customClass="LocalizableTextField" customModule="Jisc" customModuleProvider="target">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Start" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dsx-2E-jBg" customClass="LocalizableTextField" customModule="Jisc" customModuleProvider="target">
                                     <rect key="frame" x="45" y="50" width="178" height="52"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="textColor" red="0.64705882349999999" green="0.64705882349999999" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -120,7 +123,7 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyText" value="start"/>
                                     </userDefinedRuntimeAttributes>
                                 </textField>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="End" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sck-OW-dHP" customClass="LocalizableTextField" customModule="Jisc" customModuleProvider="target">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="End" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sck-OW-dHP" customClass="LocalizableTextField" customModule="Jisc" customModuleProvider="target">
                                     <rect key="frame" x="229" y="50" width="178" height="52"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="textColor" red="0.64705882349999999" green="0.64705882349999999" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -131,15 +134,15 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyText" value="end"/>
                                     </userDefinedRuntimeAttributes>
                                 </textField>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="selectorIndicatorIcon" translatesAutoresizingMaskIntoConstraints="NO" id="1pZ-gg-zms" userLabel="selectorIndicatorIconStart">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="selectorIndicatorIcon" translatesAutoresizingMaskIntoConstraints="NO" id="1pZ-gg-zms" userLabel="selectorIndicatorIconStart">
                                     <rect key="frame" x="200" y="73" width="12" height="6"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="selectorIndicatorIcon" translatesAutoresizingMaskIntoConstraints="NO" id="hYD-CQ-889" userLabel="selectorIndicatorIconEnd">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="selectorIndicatorIcon" translatesAutoresizingMaskIntoConstraints="NO" id="hYD-CQ-889" userLabel="selectorIndicatorIconEnd">
                                     <rect key="frame" x="385" y="73" width="12" height="6"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFi-Tr-AfF" userLabel="Date Settings">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFi-Tr-AfF" userLabel="Date Settings">
                                     <rect key="frame" x="415" y="50" width="52" height="52"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="MyriadPro-Light" family="Myriad Pro" pointSize="17"/>
@@ -162,7 +165,22 @@
                                         <action selector="showModuleSelector:" destination="-1" eventType="touchUpInside" id="Vn4-0k-dgW"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayg-B8-VFC" userLabel="Compare to" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3LO-Uh-viB">
+                                    <rect key="frame" x="45" y="43" width="208" height="52"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
+                                    <state key="normal" title="7d" backgroundImage="purpleBorder">
+                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="filter_modules"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizationKeySelected" value="filter_modules"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="callPeriodData:" destination="-1" eventType="touchUpInside" id="IcC-Fd-H7o"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayg-B8-VFC" userLabel="Compare to" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                                     <rect key="frame" x="45" y="250" width="422" height="52"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
@@ -173,9 +191,36 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="compare_to"/>
                                         <userDefinedRuntimeAttribute type="string" keyPath="localizationKeySelected" value="compare_to"/>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="showCompareToSelector:" destination="-1" eventType="touchUpInside" id="Phh-ex-XcS"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cf7-sO-m7D">
+                                    <rect key="frame" x="259" y="43" width="208" height="52"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
+                                    <state key="normal" title="28d" backgroundImage="purpleBorder">
+                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="filter_modules"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizationKeySelected" value="filter_modules"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="callPeriodData:" destination="-1" eventType="touchUpInside" id="iAB-fg-rpz"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <variation key="default">
+                                <mask key="subviews">
+                                    <exclude reference="Dsx-2E-jBg"/>
+                                    <exclude reference="sck-OW-dHP"/>
+                                    <exclude reference="1pZ-gg-zms"/>
+                                    <exclude reference="hYD-CQ-889"/>
+                                    <exclude reference="hFi-Tr-AfF"/>
+                                </mask>
+                            </variation>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
