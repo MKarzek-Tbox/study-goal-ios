@@ -503,39 +503,61 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
             let baseUrl = URL(fileURLWithPath: filePath)
             webView.loadHTMLString(contents as String, baseURL: baseUrl)
             
-            /*if(iPad){
-                guard let filePath = Bundle.main.path(forResource: "linegraph", ofType: "html")
-                    else {
-                        print ("File reading error")
-                        return
-                }
-                
-                webViewLineiPad.setNeedsLayout()
-                webViewLineiPad.layoutIfNeeded()
-                let w = webViewLineiPad.frame.size.width - 20
-                let h = webViewLineiPad.frame.size.height - 20
-                var contents = try String(contentsOfFile: filePath, encoding: .utf8)
-                contents = contents.replacingOccurrences(of: "300px", with: "\(w)px")
-                contents = contents.replacingOccurrences(of: "220px", with: "\(h)px")
-                var dateDataFinal = ""
-                var countDateFinal = ""
-                if (self.vleActivityOptions?.columnNames != nil) {
-                    dateDataFinal = self.vleActivityOptions!.columnNames!.description
-                } else {
-                    dateDataFinal = ""
-                }
-                if (self.vleActivityOptions?.me != nil) {
-                    countDateFinal = self.vleActivityOptions!.me!.description
-                } else {
-                    countDateFinal = ""
-                }
-                
-                contents = contents.replacingOccurrences(of: "COUNT", with: countDateFinal)
-                contents = contents.replacingOccurrences(of: "DATES", with: dateDataFinal)
-                
-                let baseUrl = URL(fileURLWithPath: filePath)
-                webViewLineiPad.loadHTMLString(contents as String, baseURL: baseUrl)
-            }*/
+            if(iPad){
+             guard let filePath = Bundle.main.path(forResource: "linegraph", ofType: "html")
+             else {
+             print ("File reading error")
+             return
+             }
+             
+             webViewLineiPad.setNeedsLayout()
+             webViewLineiPad.layoutIfNeeded()
+             let w = webViewLineiPad.frame.size.width - 20
+             let h = webViewLineiPad.frame.size.height - 20
+             var contents = try String(contentsOfFile: filePath, encoding: .utf8)
+             contents = contents.replacingOccurrences(of: "300px", with: "\(w)px")
+             contents = contents.replacingOccurrences(of: "220px", with: "\(h)px")
+             
+             var dateDataFinal = ""
+             var countDateFinal = ""
+             var otherStudentFinal = ""
+             var webData = ""
+             
+             if (self.vleActivityOptions?.columnNames != nil) {
+             dateDataFinal = self.vleActivityOptions!.columnNames!.description
+             } else {
+             dateDataFinal = ""
+             }
+             
+             if (self.vleActivityOptions?.me != nil) {
+             countDateFinal = self.vleActivityOptions!.me!.description
+             } else {
+             countDateFinal = ""
+             }
+             
+             if(compareToButton.titleLabel?.text == localized("no_one") || compareToButton.titleLabel?.text == localized("compare_to")) {
+             webData = "series: [{name:'\(localized("me"))',data: \(countDateFinal)}], xAxis: { categories: \(dateDataFinal)}"
+             webData = webData.replacingOccurrences(of: "\"", with: "'")
+             
+             } else {
+             if(self.vleActivityOptions?.otherStudent != nil){
+             otherStudentFinal = self.vleActivityOptions!.otherStudent!.description
+             } else {
+             otherStudentFinal = ""
+             }
+             
+             webData = "series: [{name:'\(localized("me"))',data: \(countDateFinal)},"
+             webData.append("{name:'\(localized(compareToButton.titleLabel!.text!))',data: \(otherStudentFinal)}], xAxis: { categories: \(dateDataFinal)")
+             webData.append("}")
+             webData = webData.replacingOccurrences(of: "\"", with: "'")
+             }
+             
+             print("webData \(webData)")
+             
+             contents = contents.replacingOccurrences(of: "<<<REPLACE_DATA_HERE>>>", with: webData)
+             let baseUrl = URL(fileURLWithPath: filePath)
+             webViewLineiPad.loadHTMLString(contents as String, baseURL: baseUrl)
+            }
         } catch {
             print ("File HTML error")
         }
