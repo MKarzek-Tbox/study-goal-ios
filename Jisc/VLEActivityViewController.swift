@@ -462,26 +462,48 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
             var contents = try String(contentsOfFile: filePath, encoding: .utf8)
             contents = contents.replacingOccurrences(of: "300px", with: "\(w)px")
             contents = contents.replacingOccurrences(of: "220px", with: "\(h)px")
+            
             var dateDataFinal = ""
             var countDateFinal = ""
+            var otherStudentFinal = ""
+            var webData = ""
+            
             if (self.vleActivityOptions?.columnNames != nil) {
                 dateDataFinal = self.vleActivityOptions!.columnNames!.description
             } else {
                 dateDataFinal = ""
             }
+            
             if (self.vleActivityOptions?.me != nil) {
                 countDateFinal = self.vleActivityOptions!.me!.description
             } else {
                 countDateFinal = ""
             }
             
-            contents = contents.replacingOccurrences(of: "COUNT", with: countDateFinal)
-            contents = contents.replacingOccurrences(of: "DATES", with: dateDataFinal)
+            if(compareToButton.titleLabel?.text == localized("no_one") || compareToButton.titleLabel?.text == localized("compare_to")) {
+                webData = "series: [{name:'\(localized("me"))',data: \(countDateFinal)}], xAxis: { categories: \(dateDataFinal)}"
+                webData = webData.replacingOccurrences(of: "\"", with: "'")
+                
+            } else {
+                if(self.vleActivityOptions?.otherStudent != nil){
+                    otherStudentFinal = self.vleActivityOptions!.otherStudent!.description
+                } else {
+                    otherStudentFinal = ""
+                }
+                
+                webData = "series: [{name:'\(localized("me"))',data: \(countDateFinal)},"
+                webData.append("{name:'\(localized(compareToButton.titleLabel!.text!))',data: \(otherStudentFinal)}], xAxis: { categories: \(dateDataFinal)")
+                webData.append("}")
+                webData = webData.replacingOccurrences(of: "\"", with: "'")
+            }
             
+            print("webData \(webData)")
+            
+            contents = contents.replacingOccurrences(of: "<<<REPLACE_DATA_HERE>>>", with: webData)
             let baseUrl = URL(fileURLWithPath: filePath)
             webView.loadHTMLString(contents as String, baseURL: baseUrl)
             
-            if(iPad){
+            /*if(iPad){
                 guard let filePath = Bundle.main.path(forResource: "linegraph", ofType: "html")
                     else {
                         print ("File reading error")
@@ -513,7 +535,7 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
                 
                 let baseUrl = URL(fileURLWithPath: filePath)
                 webViewLineiPad.loadHTMLString(contents as String, baseURL: baseUrl)
-            }
+            }*/
         } catch {
             print ("File HTML error")
         }
@@ -619,19 +641,30 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
     @IBAction func showModuleSelector(_ sender:UIButton) {
         var array:[String] = [String]()
         array.append(localized("all_modules"))
-        let centeredIndexes = [Int]()
+        var centeredIndexes = [Int]()
+        for (_, item) in dataManager.courses().enumerated() {
+            centeredIndexes.append(array.count)
+            array.append(item.name)
+        }
         for (_, item) in dataManager.modules().enumerated() {
             array.append(" - \(item.name)")
         }
         moduleSelectorView = CustomPickerView.create(localized("filter"), delegate: self, contentArray: array, selectedItem: selectedModule)
         moduleSelectorView.centerIndexes = centeredIndexes
         view.addSubview(moduleSelectorView)
+        let period = periods[selectedPeriod]
         var moduleID:String? = nil
+        var courseID:String? = nil
         
         if (selectedModule > 0) {
-            let theIndex = selectedModule - 1
-            if (theIndex < dataManager.modules().count) {
-                moduleID = dataManager.modules()[theIndex].id
+            var theIndex = selectedModule - 1
+            if (theIndex < dataManager.courses().count) {
+                courseID = dataManager.courses()[theIndex].id
+            } else {
+                theIndex -= dataManager.courses().count
+                if (theIndex < dataManager.modules().count) {
+                    moduleID = dataManager.modules()[theIndex].id
+                }
             }
         }
         
@@ -692,9 +725,9 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
                 if (selectedModule == 0) {
                     friendsInModule.removeAll()
                     selectedStudent = 0
-                    compareToButton.setTitle(localized("no_one"), for: UIControlState())
-                    compareToSelectorView.alpha = 0.5
-                    compareToSelectorView.isUserInteractionEnabled = false
+                    compareToButton.setTitle(localized("compare_to"), for: UIControlState())
+                    compareToButton.alpha = 0.5
+                    compareToButton.isUserInteractionEnabled = false
                 } else if (moduleIndex >= 0 && moduleIndex < dataManager.modules().count) {
                     DownloadManager().getFriendsByModule(dataManager.currentStudent!.id, module: dataManager.modules()[moduleIndex].id, alertAboutInternet: false, completion: { (success, result, results, error) in
                         if let array = results {
@@ -735,10 +768,14 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         switch (sender){
         case sevenDaysSelectorButton:
             selectedPeriod = 0
+            sevenDaysSelectorButton.isSelected = true
+            twentyEightDaysSelectorButton.isSelected = false
             getEngagementData()
             break
         case twentyEightDaysSelectorButton:
             selectedPeriod = 1
+            sevenDaysSelectorButton.isSelected = false
+            twentyEightDaysSelectorButton.isSelected = true
             getEngagementData()
             break
         default: break

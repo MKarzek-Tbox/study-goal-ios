@@ -121,14 +121,25 @@ class AttainmentViewController: UIViewController, UITableViewDataSource, UITable
         xMGR.getAttainment() { (success, result, results, error) in
             self.attainmentData.removeAll()
             if (results != nil) {
+                print(results)
                 for (_, item) in results!.enumerated() {
                     if let dictionary = item as? NSDictionary {
                         if let grade = dictionary["ASSESS_AGREED_GRADE"] as? String {
+                            print("found grade \(grade)")
                             if let moduleName = dictionary["X_MOD_NAME"] as? String {
+                                print("found module \(moduleName)")
                                 if let dateString = dictionary["CREATED_AT"] as? String {
-                                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                                    if let temp = dateString.components(separatedBy: ".").first {
-                                        if let date = dateFormatter.date(from: temp.replacingOccurrences(of: "T", with: " ")) {
+                                    print("found date \(dateString)")
+                                    if(!demo()){
+                                        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                                        if let temp = dateString.components(separatedBy: ".").first {
+                                            if let date = dateFormatter.date(from: temp.replacingOccurrences(of: "T", with: " ")) {
+                                                self.attainmentData.append(AttainmentObject(date: date, moduleName: moduleName, grade: grade))
+                                            }
+                                        }
+                                    } else {
+                                        dateFormatter.dateFormat = "yyyy-MM-dd"
+                                        if let date = dateFormatter.date(from: dateString) {
                                             self.attainmentData.append(AttainmentObject(date: date, moduleName: moduleName, grade: grade))
                                         }
                                     }

@@ -77,6 +77,7 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         
         self.attendanceData.removeAll()
         getAttendance {
+            self.loadHighChart()
             print("requested events attended")
         }
     }
@@ -115,12 +116,7 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventsAttendedCell", for: indexPath)
             
         if let attendanceCell = cell as? EventsAttendedCell {
-            if demo(){
-                //attainmentCell.nameLabel.text = attainmentDemoArray[indexPath.row]
-                //attainmentCell.positionLabel.text = String(arc4random_uniform(50))
-            } else if indexPath.row < attendanceData.count {
-                attendanceCell.loadEvents(events: attendanceData[indexPath.row])
-            }
+            attendanceCell.loadEvents(events: attendanceData[indexPath.row])
         }
 
         return cell
@@ -129,13 +125,7 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 
         if let attendanceCell = cell as? EventsAttendedCell {
-            if demo(){
-                //attainmentCell.nameLabel.text = attainmentDemoArray[indexPath.row]
-                //attainmentCell.positionLabel.text = String(arc4random_uniform(50))
-            }
-            if indexPath.row < attendanceData.count {
-                attendanceCell.loadEvents(events: attendanceData[indexPath.row])
-            }
+            attendanceCell.loadEvents(events: attendanceData[indexPath.row])
         }
     }
     
@@ -143,6 +133,7 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         self.limit = 20
         getAttendance {
             sender.endRefreshing()
+            self.loadHighChart()
         }
     }
     
@@ -177,10 +168,14 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
                             if let context = statement["context"] as? [String:Any]{
                                 if let extensions = context["extensions"] as? [String:Any]{
                                     activity = extensions["http://xapi.jisc.ac.uk/activity_type_id"] as? String
+                                    if let courseArea = extensions["http://xapi.jisc.ac.uk/courseArea"] as? [String:Any]{
+                                        module = courseArea["http://xapi.jisc.ac.uk/uddModInstanceID"] as? String
+                                    }
                                 }
                             }
                         }
                     }
+                    self.attendanceData.append(EventsAttendedObject(date: date!, time: time!, activity: activity!, module: module!))
                 }
             } else {
                 print("results is nil")
@@ -189,7 +184,7 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
             print("events array")
             print(self.attendanceData)
             
-            
+            self.attendanceData.sort(by: { $0.date.compare($1.date) == .orderedDescending})
             print("here is the sorted array ", self.attendanceData.sort(by: { $0.date.compare($1.date) == .orderedDescending}))
             
             print(self.attendanceData.count)
@@ -283,7 +278,7 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         self.view.endEditing(true)
         if(endDateFieldAll.text != localized("end")){
             getAttendance {
-                
+                self.loadHighChart()
             }
         }
     }
@@ -306,10 +301,143 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         self.view.endEditing(true)
         if(startDateFieldAll.text != localized("start")){
             getAttendance {
-                
+                self.loadHighChart()
             }
         }
     }
+    
+    private func loadHighChart() {
+        print("Loading HighChart")
+        var countArray:[Int] = []
+        var dateArray:[String] = []
+        let todaysDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let result = dateFormatter.string(from: todaysDate)
+        let twentyEightDaysAgo = Calendar.current.date(byAdding: .day, value: -34, to: Date())
+        let daysAgoResult = dateFormatter.string(from: twentyEightDaysAgo!)
+        
+        var urlStringCall = ""
+        if(!demo()){
+            urlStringCall = "https://api.datax.jisc.ac.uk/sg/weeklyattendance?startdate=\(daysAgoResult)&enddate=\(result)"
+        } else {
+            urlStringCall = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_fake_attendance_summary"
+        }
+        var request:URLRequest?
+        if let urlString = urlStringCall.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            if let url = URL(string: urlString) {
+                request = URLRequest(url: url)
+            }
+        }
+        if var request = request {
+            if let token = xAPIToken() {
+                request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            }
+            NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
+                
+                print("data received for events graph")
+                
+                do {
+                    if let data = data,
+                        let json = try JSONSerialization.jsonObject(with: data) as? [Any] {
+                        print("json count events graph \(json.count)")
+                        self.webView.isHidden = false
+                        for item in json {
+                            let object = item as? [String:Any]
+                            if let count = object?["count"] as? Int {
+                                countArray.append(count)
+                            }
+                            
+                            if let date = object?["date"] as? NSString {
+                                let dateString = date.substring(with: NSRange(location: 0, length: 10)) as String
+                                
+                                let desiredDateFormatter = DateFormatter()
+                                desiredDateFormatter.dateFormat = "dd-MM-yyyy"
+                                
+                                let makeDateFormatter = DateFormatter()
+                                makeDateFormatter.dateFormat = "yyyy-MM-dd"
+                                let makeDateFromDate = makeDateFormatter.date(from: dateString)
+                                
+                                let newDateFormatted = desiredDateFormatter.string(from: makeDateFromDate!)
+                                
+                                dateArray.append(newDateFormatted)
+                            }
+                        }
+                        
+                        do {
+                            guard let filePath = Bundle.main.path(forResource: "stats_attendance_high_chart", ofType: "html")
+                                else {
+                                    print ("File reading error")
+                                    self.noDataWebViewLabel.alpha = 1.0
+                                    return
+                            }
+                            
+                            self.webView.setNeedsLayout()
+                            self.webView.layoutIfNeeded()
+                            let w = self.webView.frame.size.width - 20
+                            let h = self.webView.frame.size.height - 20
+                            var contents = try String(contentsOfFile: filePath, encoding: .utf8)
+                            contents = contents.replacingOccurrences(of: "300px", with: "\(w)px")
+                            contents = contents.replacingOccurrences(of: "220px", with: "\(h)px")
+                            var countData:String = ""
+                            var dateData: String = ""
+                            for count in countArray {
+                                countData = countData + String(count) + ", "
+                            }
+                            var countDataFinal:String = ""
+                            if(countData.characters.count > 1){
+                                let endIndex = countData.index(countData.endIndex, offsetBy: -2)
+                                countDataFinal = "[" + countData.substring(to: endIndex) + "]"
+                                
+                                for date in dateArray {
+                                    dateData = dateData + "'\(date)'" + ", "
+                                }
+                                var dateDataFinal:String = ""
+                                let endIndexDate = dateData.index(dateData.endIndex, offsetBy: -2)
+                                
+                                dateDataFinal = "[" + dateData.substring(to: endIndexDate) + "]"
+                                
+                                print("\(countDataFinal)")
+                                print("\(dateDataFinal)")
+                                
+                                contents = contents.replacingOccurrences(of: "COUNT", with: countDataFinal)
+                                contents = contents.replacingOccurrences(of: "DATES", with: dateDataFinal)
+                            }
+                            if(dateArray.count == 0){
+                                self.noDataWebViewLabel.alpha = 1.0
+                                self.noDataWebViewLabel.textColor = UIColor.black
+                                self.noDataWebViewLabel.text = localized("no_data_available")
+                                self.noDataWebViewLabel.isHidden = false
+                            }
+                            
+                            let baseUrl = URL(fileURLWithPath: filePath)
+                            self.webView.loadHTMLString(contents as String, baseURL: baseUrl)
+                            
+                        } catch {
+                            print ("File HTML error for events graph")
+                            self.noDataWebViewLabel.alpha = 1.0
+                            self.noDataWebViewLabel.textColor = UIColor.black
+                            self.noDataWebViewLabel.text = localized("no_data_available")
+                            self.noDataWebViewLabel.isHidden = false
+                        }
+                    }
+                } catch {
+                    print("Error deserializing JSON for events graph: \(error)")
+                    self.noDataWebViewLabel.alpha = 1.0
+                    self.noDataWebViewLabel.textColor = UIColor.black
+                    self.noDataWebViewLabel.text = localized("no_data_available")
+                    self.noDataWebViewLabel.isHidden = false
+                    
+                }
+            }
+        } else {
+            self.noDataWebViewLabel.alpha = 1.0
+            self.noDataWebViewLabel.textColor = UIColor.black
+            self.noDataWebViewLabel.text = localized("no_data_available")
+            self.noDataWebViewLabel.isHidden = false
+        }
+    }
+
 
     @IBAction func showModuleSelector(_ sender:UIButton) {
         var array:[String] = [String]()
@@ -357,7 +485,7 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
                 //specific call
             }
             getAttendance {
-                
+                self.loadHighChart()
             }
         }
     }

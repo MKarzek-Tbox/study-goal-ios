@@ -444,8 +444,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                                     }
                                 }
                             }
-                            
-                            
                         }
                     }
                     //Uncomment the following line to populate the eventsAttended table
