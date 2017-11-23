@@ -125,30 +125,17 @@ class AttainmentViewController: UIViewController, UITableViewDataSource, UITable
                 for (_, item) in results!.enumerated() {
                     if let dictionary = item as? NSDictionary {
                         if let grade = dictionary["ASSESS_AGREED_GRADE"] as? String {
-                            print("found grade \(grade)")
                             if let moduleName = dictionary["X_MOD_NAME"] as? String {
-                                print("found module \(moduleName)")
                                 if let dateString = dictionary["CREATED_AT"] as? String {
-                                    print("found date \(dateString)")
-                                    if(!demo()){
-                                        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                                        if let temp = dateString.components(separatedBy: ".").first {
-                                            if let date = dateFormatter.date(from: temp.replacingOccurrences(of: "T", with: " ")) {
-                                                self.attainmentData.append(AttainmentObject(date: date, moduleName: moduleName, grade: grade))
-                                            }
-                                        }
-                                    } else {
-                                        dateFormatter.dateFormat = "yyyy-MM-dd"
-                                        if let date = dateFormatter.date(from: dateString) {
-                                            self.attainmentData.append(AttainmentObject(date: date, moduleName: moduleName, grade: grade))
-                                        }
+                                    dateFormatter.dateFormat = "yyyy-MM-dd"
+                                    if let date = dateFormatter.date(from: dateString) {
+                                        self.attainmentData.append(AttainmentObject(date: date, moduleName: moduleName, grade: grade))
                                     }
                                 }
                             }
                         }
                     }
                 }
-                
             } else {
                 print("No results")
             }

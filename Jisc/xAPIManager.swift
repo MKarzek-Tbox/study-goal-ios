@@ -509,7 +509,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         if(demo()){
             startConnectionWithRequest(createGetRequestWithFullPath("https://stuapp.analytics.alpha.jisc.ac.uk/fn_fake_attainment", withJWT: true))
         } else {
-           startConnectionWithRequest(createGetRequest(xAPIGetAttainmentPath, withJWT: true))
+           startConnectionWithRequest(createGetRequestWithFullPath("https://app.analytics.alpha.jisc.ac.uk/v2/attainment", withJWT: true))
         }
     }
 
