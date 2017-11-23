@@ -144,6 +144,8 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
                 noDataLabel.textAlignment = .center
                 self.tableView.backgroundView  = noDataLabel
                 self.tableView.separatorStyle  = .none
+            } else {
+                self.tableView.backgroundView = nil
             }
             completion()
         }
