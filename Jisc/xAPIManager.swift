@@ -466,7 +466,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
     func getActivityPoints(_ period:kXAPIActivityPointsPeriod, completion:@escaping xAPICompletionBlock) {
         completionBlock = completion
         if(!demo()) {
-            startConnectionWithRequest(createGetRequest("\(xAPIGetActivityPointsPath)?scope=\(period.rawValue)", withJWT: true))
+            startConnectionWithRequest(createGetRequestWithFullPath("https://app.analytics.alpha.jisc.ac.uk/v2/activity/points?scope=\(period.rawValue)", withJWT: true))
         } else {
             if(period.rawValue == "7d"){
                 startConnectionWithRequest(createGetRequestWithFullPath("https://stuapp.analytics.alpha.jisc.ac.uk/fn_fake_activity_7d", withJWT: true))
