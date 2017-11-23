@@ -547,7 +547,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         if(demo()){
             startConnectionWithRequest(createGetRequestWithFullPath("https://stuapp.analytics.alpha.jisc.ac.uk/fn_fake_vle_activity", withJWT: true))
         } else {
-            startConnectionWithRequest(createGetRequest(path, withJWT: true))
+            startConnectionWithRequest(createGetRequestWithFullPath("https://app.analytics.alpha.jisc.ac.uk/\(path)", withJWT: true))
         }
     }
     func checkMod(testUrl:String){

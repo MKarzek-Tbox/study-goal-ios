@@ -656,7 +656,6 @@ class DataManager: NSObject {
     
     func activityTypeWithName(_ name:String) -> ActivityType? {
         let fetchRequest:NSFetchRequest<ActivityType> = NSFetchRequest(entityName: activityTypeEntityName)
-        //		fetchRequest.predicate = NSPredicate(format: "name == %@", name)
         fetchRequest.predicate = NSPredicate(format: "englishName == %@", name)
         var activityType:ActivityType? = nil
         do {
@@ -704,7 +703,6 @@ class DataManager: NSObject {
     
     func activitiesWithType(_ type:ActivityType) -> [Activity] {
         let fetchRequest:NSFetchRequest<Activity> = NSFetchRequest(entityName: activityEntityName)
-        //		fetchRequest.predicate = NSPredicate(format: "ANY activityTypes.name == %@", type.name)
         fetchRequest.predicate = NSPredicate(format: "ANY activityTypes.englishName == %@", type.englishName)
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         var array:[Activity] = [Activity]()
@@ -822,7 +820,6 @@ class DataManager: NSObject {
     
     func myFeeds() -> [Feed] {
         let fetchRequest:NSFetchRequest<Feed> = NSFetchRequest(entityName: feedEntityName)
-        //		fetchRequest.predicate = NSPredicate(format: "to == %@ AND isHidden == FALSE", currentStudent!.id)
         fetchRequest.predicate = NSPredicate(format: "isHidden == FALSE")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdDate", ascending: false)]
         var array:[Feed] = [Feed]()
@@ -1111,30 +1108,6 @@ class DataManager: NSObject {
             completion(true, "")
         })
     }
-    
-    //MARK: Get Activity Points
-    
-    //	func getStudentActivityPoints(silent:Bool, completion:dataManagerCompletionBlock) {
-    //		let mgr = DownloadManager()
-    //		mgr.silent = silent
-    //		mgr.getActivityPoints(self.currentStudent!.id, alertAboutInternet: false, completion: { (success, result, results, error) -> Void in
-    //			self.currentStudent!.lastWeekActivityPoints = 0
-    //			self.currentStudent!.totalActivityPoints = 0
-    //			if (success) {
-    //				if (result != nil) {
-    //					let lastWeek = result!["last_week_activity_points"]?.integerValue
-    //					if (lastWeek != nil) {
-    //						self.currentStudent!.lastWeekActivityPoints = lastWeek!
-    //					}
-    //					let total = result!["total_activity_points"]?.integerValue
-    //					if (total != nil) {
-    //						self.currentStudent!.totalActivityPoints = total!
-    //					}
-    //				}
-    //			}
-    //			completion(success: true, failureReason: "")
-    //		})
-    //	}
     
     //MARK: Get Modules
     

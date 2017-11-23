@@ -26,7 +26,6 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
         
 		targetsTableView.register(UINib(nibName: kTargetCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kTargetCellIdentifier)
 		targetsTableView.contentInset = UIEdgeInsetsMake(20.0, 0, 20.0, 0)
-        //London Developer July 24,2017
         var urlString = ""
         if(!dataManager.developerMode){
             urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-main&contentName=MainTargetsPage"
@@ -34,6 +33,7 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
             urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-main&contentName=MainTargetsPage"
         }
         xAPIManager().checkMod(testUrl:urlString)
+        targetsTableView.reloadData()
 	}
 	
 	override var preferredStatusBarStyle : UIStatusBarStyle {
@@ -57,26 +57,18 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 	}
 	
 	@IBAction func newTarget(_ sender:UIButton) {
-		/*if demo() {
-			let alert = UIAlertController(title: "", message: localized("demo_mode_addtarget"), preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
-			navigationController?.present(alert, animated: true, completion: nil)
-		} else {*/
-			let vc = NewTargetVC()
-			navigationController?.pushViewController(vc, animated: true)
-		//}
+        let vc = NewTargetVC()
+        navigationController?.pushViewController(vc, animated: true)
 	}
     
     @IBAction func recurringTargetSegmentAction(_ sender: Any) {
         if (recurringTargetSegmentControl.selectedSegmentIndex == 0){
             let vc = SingleTargetVC()
             navigationController?.pushViewController(vc, animated: false)
-
         } else {
             let vc = TargetVC()
             navigationController?.pushViewController(vc, animated: false)
         }
-        
     }
 	
 	//MARK: UITableView Datasource
@@ -120,11 +112,9 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 		if (aCellIsOpen) {
 			tableView.reloadData()
 		} else {
-            
 			let target = dataManager.targets()[indexPath.row]
 			let vc = TargetDetailsVC(target: target, index: indexPath.row)
 			navigationController?.pushViewController(vc, animated: true)
-
 		}
 	}
 }

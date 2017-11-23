@@ -37,6 +37,7 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
     var compareToSelectorView:CustomPickerView = CustomPickerView()
     var friendsInModule = [Friend]()
     
+    let periodArray:[kXAPIEngagementScope] = [.SevenDays, .ThirtyDays]
     var graphType = GraphType.Bar
     var graphTypePath = "bargraph"
     var vleActivityOptions:(me:[Double]?, myMax:Double, otherStudent:[Double]?, otherStudentMax:Double, columnNames:[String]?)? = nil
@@ -62,7 +63,7 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
     func getEngagementData() {
         self.webViewNullMessage.isHidden = true
         
-        let period = periods[selectedPeriod]
+        let period = periodArray[selectedPeriod]
         var moduleID:String? = nil
         var courseID:String? = nil
         var studentID:String? = nil
@@ -238,20 +239,20 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
             switch (period) {
             case .Overall:
                 if (result != nil) {
-                    if let pointsArray = result!["result"] as? NSArray {
-                       // let info = infoFromXAPIOverall(pointsArray)
-                        //let dates = info.dates
-                        //myValues = info.myValues
-                        //otherStudentValues = info.otherValues
+                    /*if let pointsArray = result!["result"] as? NSArray {
+                        let info = infoFromXAPIOverall(pointsArray)
+                        let dates = info.dates
+                        myValues = info.myValues
+                        otherStudentValues = info.otherValues
                         columnNames = [String]()
-                        /*for (_, item) in dates.enumerated() {
+                        for (_, item) in dates.enumerated() {
                             dateFormatter.dateFormat = "dd MMM"
                             let month = dateFormatter.string(from: item)
                             dateFormatter.dateFormat = "yy"
                             let year = dateFormatter.string(from: item)
                             columnNames?.append("\(month) '\(year)")
-                        }*/
-                    }
+                        }
+                    }*/
                 }
                 break
             case .SevenDays:
@@ -333,7 +334,7 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
                 
                 break
             case .ThirtyDays:
-                //columnNames = columnNamesXAPI30Days()
+                columnNames = columnNamesXAPI30Days()
                 myValues = [0.0, 0.0, 0.0, 0.0]
                 if (result != nil) {
                     if let keys = result!.allKeys as? [String] {
@@ -357,6 +358,7 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
                             let studentID = stringFromDictionary(dictionary, key: "STUDENT_ID")
                             if demo() {
                                 if studentID.lowercased() == "demouser" {
+                                    print("student id containts demo")
                                     if let keys = values.allKeys as? [String] {
                                         for (_, item) in keys.enumerated() {
                                             let absValue = abs((item as NSString).integerValue)
@@ -372,6 +374,7 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
                                         }
                                     }
                                 } else {
+                                    print("student id not containts demo")
                                     if let keys = values.allKeys as? [String] {
                                         for (_, item) in keys.enumerated() {
                                             let absValue = abs((item as NSString).integerValue)
@@ -389,6 +392,7 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
                                 }
                             } else {
                                 if studentID.contains(dataManager.currentStudent!.jisc_id) {
+                                    print("student id containts current students id")
                                     if let keys = values.allKeys as? [String] {
                                         for (_, item) in keys.enumerated() {
                                             let absValue = abs((item as NSString).integerValue)
@@ -404,6 +408,7 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
                                         }
                                     }
                                 } else {
+                                    print("student id not containts current students id")
                                     if let keys = values.allKeys as? [String] {
                                         for (_, item) in keys.enumerated() {
                                             let absValue = abs((item as NSString).integerValue)
@@ -469,8 +474,10 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
             var webData = ""
             
             if (self.vleActivityOptions?.columnNames != nil) {
+                print("date final is not nil but: \(self.vleActivityOptions!.columnNames!.description)")
                 dateDataFinal = self.vleActivityOptions!.columnNames!.description
             } else {
+                print("date final is nil")
                 dateDataFinal = ""
             }
             
@@ -524,15 +531,15 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
              var webData = ""
              
              if (self.vleActivityOptions?.columnNames != nil) {
-             dateDataFinal = self.vleActivityOptions!.columnNames!.description
+                dateDataFinal = self.vleActivityOptions!.columnNames!.description
              } else {
-             dateDataFinal = ""
+                dateDataFinal = ""
              }
              
              if (self.vleActivityOptions?.me != nil) {
-             countDateFinal = self.vleActivityOptions!.me!.description
+                countDateFinal = self.vleActivityOptions!.me!.description
              } else {
-             countDateFinal = ""
+                countDateFinal = ""
              }
              
              if(compareToButton.titleLabel?.text == localized("no_one") || compareToButton.titleLabel?.text == localized("compare_to")) {
@@ -674,7 +681,7 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         moduleSelectorView = CustomPickerView.create(localized("filter"), delegate: self, contentArray: array, selectedItem: selectedModule)
         moduleSelectorView.centerIndexes = centeredIndexes
         view.addSubview(moduleSelectorView)
-        let period = periods[selectedPeriod]
+        let period = periodArray[selectedPeriod]
         var moduleID:String? = nil
         var courseID:String? = nil
         
@@ -803,4 +810,28 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         default: break
         }
     }
+    
+    func columnNamesXAPI30Days() -> [String] {
+        var names:[String] = [String]()
+        dateFormatter.dateFormat = "yyyy/M"
+        let calendar = Calendar.current
+        var dayComponent = DateComponents()
+        dayComponent.day = 6
+        
+        var dates = [Date]()
+        dates.append(Date().addingTimeInterval(-(86400.0 * 6)))
+        dates.append(Date().addingTimeInterval(-(86400.0 * 13)))
+        dates.append(Date().addingTimeInterval(-(86400.0 * 20)))
+        dates.append(Date().addingTimeInterval(-(86400.0 * 27)))
+        
+        for (_, item) in dates.enumerated() {
+            let lastDayDate = (calendar as NSCalendar).date(byAdding: dayComponent, to: item, options: .matchStrictly)
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            if let date = lastDayDate {
+                names.append(dateFormatter.string(from: date))
+            }
+        }
+        return names.reversed()
+    }
+
 }

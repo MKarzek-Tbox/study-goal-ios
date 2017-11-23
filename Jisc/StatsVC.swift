@@ -2050,7 +2050,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     //MARK: CustomPickerView Delegate
     
     func view(_ view: CustomPickerView, selectedRow: Int) {
-        
         switch (view) {
         case moduleSelectorView:
             if (selectedModule != selectedRow) {
@@ -2103,10 +2102,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                     let student = friendsInTheSameCourse()[selectedStudent - 1]
                     compareToButton.setTitle("\(student.firstName) \(student.lastName)", for: UIControlState())
                     comparisonStudentName.text = "\(student.firstName) \(student.lastName)"
-                    /*UIView.animate(withDuration: 0.25, animations: { () -> Void in
-                        self.blueDot.alpha = 1.0
-                        self.comparisonStudentName.alpha = 1.0
-                    })*/
                     //				} else if (selectedStudent == friendsInTheSameCourse().count + 1) {
                     //					compareToButton.setTitle(localized("top_10_percent"), for: UIControlState())
                     //					comparisonStudentName.text = localized("top_10_percent")
@@ -2118,10 +2113,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 } else if (selectedStudent == friendsInTheSameCourse().count + 1) {
                     compareToButton.setTitle(localized("average"), for: UIControlState())
                     comparisonStudentName.text = localized("average")
-                    /*UIView.animate(withDuration: 0.25, animations: { () -> Void in
-                        self.blueDot.alpha = 1.0
-                        self.comparisonStudentName.alpha = 1.0
-                    })*/
                 }
                 getEngagementData()
             }
