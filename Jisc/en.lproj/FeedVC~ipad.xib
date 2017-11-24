@@ -41,68 +41,55 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ukK-yt-Ndy">
-                    <rect key="frame" x="0.0" y="0.0" width="1024" height="60"/>
+                    <rect key="frame" x="0.0" y="0.0" width="1024" height="124"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightBlue" translatesAutoresizingMaskIntoConstraints="NO" id="K7a-1n-psX">
-                            <rect key="frame" x="0.0" y="0.0" width="1024" height="60"/>
+                            <rect key="frame" x="0.0" y="0.0" width="1024" height="124"/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity Feed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcW-zO-QQB" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="450.5" y="28" width="124.5" height="22"/>
-                            <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="22"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Activity Feed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcW-zO-QQB" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
+                            <rect key="frame" x="415" y="42" width="194" height="43.5"/>
+                            <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="37"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="activity_feed"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JjQ-TZ-Wku">
-                            <rect key="frame" x="984" y="20" width="40" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="8UB-bl-mNZ"/>
-                                <constraint firstAttribute="width" constant="40" id="wuz-qT-lqR"/>
-                            </constraints>
-                            <state key="normal" image="button:JjQ-TZ-Wku:image"/>
-                            <connections>
-                                <action selector="search:" destination="-1" eventType="touchUpInside" id="1bf-NJ-hvD"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dwX-Tp-tg2">
-                            <rect key="frame" x="0.0" y="20" width="40" height="40"/>
+                            <rect key="frame" x="37" y="35" width="55" height="55"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="40" id="9CS-1G-39q"/>
+                                <constraint firstAttribute="width" constant="55" id="9CS-1G-39q"/>
                                 <constraint firstAttribute="width" secondItem="dwX-Tp-tg2" secondAttribute="height" multiplier="1:1" id="nhn-Rg-4AH"/>
                             </constraints>
-                            <state key="normal" image="openMenuButton"/>
+                            <state key="normal" backgroundImage="openMenuButton"/>
                             <connections>
                                 <action selector="openMenu:" destination="-1" eventType="touchUpInside" id="9TT-KS-LIj"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jisc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBW-Un-1jl" customClass="AppTitleLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="45" y="32" width="27.5" height="17"/>
-                            <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Jisc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBW-Un-1jl" customClass="AppTitleLabel" customModule="Jisc" customModuleProvider="target">
+                            <rect key="frame" x="113" y="46" width="53.5" height="35"/>
+                            <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="30"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="CBW-Un-1jl" firstAttribute="centerY" secondItem="dwX-Tp-tg2" secondAttribute="centerY" id="0Ny-CQ-cE7"/>
-                        <constraint firstAttribute="bottom" secondItem="PcW-zO-QQB" secondAttribute="bottom" constant="10" id="3cB-dy-7Mj"/>
-                        <constraint firstItem="dwX-Tp-tg2" firstAttribute="leading" secondItem="ukK-yt-Ndy" secondAttribute="leading" id="4cg-IS-LvT"/>
+                        <constraint firstItem="CBW-Un-1jl" firstAttribute="centerY" secondItem="dwX-Tp-tg2" secondAttribute="centerY" constant="1" id="0Ny-CQ-cE7"/>
+                        <constraint firstAttribute="bottom" secondItem="PcW-zO-QQB" secondAttribute="bottom" constant="38.5" id="3cB-dy-7Mj"/>
+                        <constraint firstItem="dwX-Tp-tg2" firstAttribute="leading" secondItem="ukK-yt-Ndy" secondAttribute="leading" constant="37" id="4cg-IS-LvT"/>
                         <constraint firstAttribute="bottom" secondItem="K7a-1n-psX" secondAttribute="bottom" id="D5v-Xv-fdt"/>
                         <constraint firstItem="K7a-1n-psX" firstAttribute="leading" secondItem="ukK-yt-Ndy" secondAttribute="leading" id="HVZ-Pw-4q2"/>
                         <constraint firstItem="K7a-1n-psX" firstAttribute="top" secondItem="ukK-yt-Ndy" secondAttribute="top" id="VfI-Rl-7RQ"/>
                         <constraint firstAttribute="trailing" secondItem="K7a-1n-psX" secondAttribute="trailing" id="WmL-Xh-3ur"/>
                         <constraint firstItem="PcW-zO-QQB" firstAttribute="centerX" secondItem="ukK-yt-Ndy" secondAttribute="centerX" id="Wy6-BW-MBW"/>
-                        <constraint firstAttribute="trailing" secondItem="JjQ-TZ-Wku" secondAttribute="trailing" id="YIx-lr-n4y"/>
-                        <constraint firstAttribute="bottom" secondItem="JjQ-TZ-Wku" secondAttribute="bottom" id="ZWI-XT-3co"/>
-                        <constraint firstItem="dwX-Tp-tg2" firstAttribute="top" secondItem="ukK-yt-Ndy" secondAttribute="top" constant="20" id="by2-1K-rqs"/>
-                        <constraint firstAttribute="height" constant="60" id="cZM-4C-l8y"/>
-                        <constraint firstItem="CBW-Un-1jl" firstAttribute="leading" secondItem="dwX-Tp-tg2" secondAttribute="trailing" constant="5" id="cgE-5M-RqH"/>
+                        <constraint firstItem="dwX-Tp-tg2" firstAttribute="top" secondItem="ukK-yt-Ndy" secondAttribute="top" constant="35" id="by2-1K-rqs"/>
+                        <constraint firstAttribute="height" constant="124" id="cZM-4C-l8y"/>
+                        <constraint firstItem="CBW-Un-1jl" firstAttribute="leading" secondItem="dwX-Tp-tg2" secondAttribute="trailing" constant="21" id="cgE-5M-RqH"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="126" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fnt-Uh-q2a">
-                    <rect key="frame" x="0.0" y="60" width="1024" height="708"/>
+                    <rect key="frame" x="0.0" y="124" width="1024" height="644"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -129,7 +116,7 @@
                     </connections>
                 </button>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZR6-uH-PmM" customClass="LocalizableView" customModule="Jisc" customModuleProvider="target">
-                    <rect key="frame" x="490" y="375" width="45.5" height="20"/>
+                    <rect key="frame" x="489.5" y="374.5" width="45.5" height="20"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tdq-e6-JVF" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="45.5" height="20"/>
@@ -324,13 +311,13 @@
                 <constraint firstItem="ZR6-uH-PmM" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="MnI-oC-Svk"/>
                 <constraint firstAttribute="trailing" secondItem="NQm-Yh-1lB" secondAttribute="trailing" id="Vdm-Vp-Smd"/>
                 <constraint firstItem="ukK-yt-Ndy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="W41-Uk-ZHm"/>
-                <constraint firstItem="fnt-Uh-q2a" firstAttribute="top" secondItem="uT8-AJ-kwh" secondAttribute="bottom" id="WEj-lt-DyG"/>
+                <constraint firstItem="fnt-Uh-q2a" firstAttribute="top" secondItem="uT8-AJ-kwh" secondAttribute="bottom" constant="64" id="WEj-lt-DyG"/>
                 <constraint firstAttribute="bottom" secondItem="fnt-Uh-q2a" secondAttribute="bottom" id="aDJ-P6-pc1"/>
                 <constraint firstItem="ZR6-uH-PmM" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dcF-hx-3de"/>
                 <constraint firstAttribute="trailing" secondItem="E4z-Wv-PuN" secondAttribute="trailing" constant="10" id="fcp-34-XVT"/>
                 <constraint firstItem="ukK-yt-Ndy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kbz-G3-RBs"/>
-                <constraint firstItem="NQm-Yh-1lB" firstAttribute="top" secondItem="ukK-yt-Ndy" secondAttribute="bottom" id="lXl-p1-bY9"/>
-                <constraint firstItem="uT8-AJ-kwh" firstAttribute="top" secondItem="ukK-yt-Ndy" secondAttribute="bottom" id="nYY-ra-ts4"/>
+                <constraint firstItem="NQm-Yh-1lB" firstAttribute="top" secondItem="ukK-yt-Ndy" secondAttribute="bottom" constant="-64" id="lXl-p1-bY9"/>
+                <constraint firstItem="uT8-AJ-kwh" firstAttribute="top" secondItem="ukK-yt-Ndy" secondAttribute="bottom" constant="-64" id="nYY-ra-ts4"/>
                 <constraint firstAttribute="trailing" secondItem="yIu-rF-5vE" secondAttribute="trailing" id="q8O-8H-4ud"/>
                 <constraint firstAttribute="bottom" secondItem="NQm-Yh-1lB" secondAttribute="bottom" id="wwr-Og-fTs"/>
             </constraints>
@@ -345,92 +332,6 @@
         </view>
     </objects>
     <resources>
-        <image name="button:JjQ-TZ-Wku:image" width="23" height="23">
-            <mutableData key="keyedArchiveRepresentation">
-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
-AAcUAAAAOHd0cHQAAAdMAAAAFHJYWVoAAAdgAAAAFGdYWVoAAAd0AAAAFGJYWVoAAAeIAAAAFHJUUkMA
-AAecAAAADmNoYWQAAAesAAAALGJUUkMAAAecAAAADmdUUkMAAAecAAAADmRlc2MAAAAAAAAAFEdlbmVy
-aWMgUkdCIFByb2ZpbGUAAAAAAAAAAAAAABRHZW5lcmljIFJHQiBQcm9maWxlAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABtbHVjAAAAAAAAAB8AAAAMc2tTSwAAACgA
-AAGEZGFESwAAAC4AAAGsY2FFUwAAACQAAAHadmlWTgAAACQAAAH+cHRCUgAAACYAAAIidWtVQQAAACoA
-AAJIZnJGVQAAACgAAAJyaHVIVQAAACgAAAKaemhUVwAAABYAAALCbmJOTwAAACYAAALYY3NDWgAAACIA
-AAL+aGVJTAAAAB4AAAMgaXRJVAAAACgAAAM+cm9STwAAACQAAANmZGVERQAAACwAAAOKa29LUgAAABYA
-AAO2c3ZTRQAAACYAAALYemhDTgAAABYAAAPMamFKUAAAABoAAAPiZWxHUgAAACIAAAP8cHRQTwAAACYA
-AAQebmxOTAAAACgAAAREZXNFUwAAACYAAAQedGhUSAAAACQAAARsdHJUUgAAACIAAASQZmlGSQAAACgA
-AASyaHJIUgAAACgAAATacGxQTAAAACwAAAUCcnVSVQAAACIAAAUuYXJFRwAAACYAAAVQZW5VUwAAACYA
-AAV2AFYBYQBlAG8AYgBlAGMAbgD9ACAAUgBHAEIAIABwAHIAbwBmAGkAbABHAGUAbgBlAHIAZQBsACAA
-UgBHAEIALQBiAGUAcwBrAHIAaQB2AGUAbABzAGUAUABlAHIAZgBpAGwAIABSAEcAQgAgAGcAZQBuAOgA
-cgBpAGMAQx6lAHUAIABoAOwAbgBoACAAUgBHAEIAIABDAGgAdQBuAGcAUABlAHIAZgBpAGwAIABSAEcA
-QgAgAEcAZQBuAOkAcgBpAGMAbwQXBDAEMwQwBDsETAQ9BDgEOQAgBD8EQAQ+BEQEMAQ5BDsAIABSAEcA
-QgBQAHIAbwBmAGkAbAAgAGcA6QBuAOkAcgBpAHEAdQBlACAAUgBWAEIAwQBsAHQAYQBsAOEAbgBvAHMA
-IABSAEcAQgAgAHAAcgBvAGYAaQBskBp1KAAgAFIARwBCACCCcl9pY8+P8ABHAGUAbgBlAHIAaQBzAGsA
-IABSAEcAQgAtAHAAcgBvAGYAaQBsAE8AYgBlAGMAbgD9ACAAUgBHAEIAIABwAHIAbwBmAGkAbAXkBegF
-1QXkBdkF3AAgAFIARwBCACAF2wXcBdwF2QBQAHIAbwBmAGkAbABvACAAUgBHAEIAIABnAGUAbgBlAHIA
-aQBjAG8AUAByAG8AZgBpAGwAIABSAEcAQgAgAGcAZQBuAGUAcgBpAGMAQQBsAGwAZwBlAG0AZQBpAG4A
-ZQBzACAAUgBHAEIALQBQAHIAbwBmAGkAbMd8vBgAIABSAEcAQgAg1QS4XNMMx3xmbpAaACAAUgBHAEIA
-IGPPj/Blh072TgCCLAAgAFIARwBCACAw1zDtMNUwoTCkMOsDkwO1A70DuQO6A8wAIAPAA8EDvwPGA68D
-uwAgAFIARwBCAFAAZQByAGYAaQBsACAAUgBHAEIAIABnAGUAbgDpAHIAaQBjAG8AQQBsAGcAZQBtAGUA
-ZQBuACAAUgBHAEIALQBwAHIAbwBmAGkAZQBsDkIOGw4jDkQOHw4lDkwAIABSAEcAQgAgDhcOMQ5IDicO
-RA4bAEcAZQBuAGUAbAAgAFIARwBCACAAUAByAG8AZgBpAGwAaQBZAGwAZQBpAG4AZQBuACAAUgBHAEIA
-LQBwAHIAbwBmAGkAaQBsAGkARwBlAG4AZQByAGkBDQBrAGkAIABSAEcAQgAgAHAAcgBvAGYAaQBsAFUA
-bgBpAHcAZQByAHMAYQBsAG4AeQAgAHAAcgBvAGYAaQBsACAAUgBHAEIEHgQxBEkEOAQ5ACAEPwRABD4E
-RAQ4BDsETAAgAFIARwBCBkUGRAZBACAGKgY5BjEGSgZBACAAUgBHAEIAIAYnBkQGOQYnBkUARwBlAG4A
-ZQByAGkAYwAgAFIARwBCACAAUAByAG8AZgBpAGwAZXRleHQAAAAAQ29weXJpZ2h0IDIwMDcgQXBwbGUg
-SW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC4AWFlaIAAAAAAAAPNSAAEAAAABFs9YWVogAAAAAAAAdE0A
-AD3uAAAD0FhZWiAAAAAAAABadQAArHMAABc0WFlaIAAAAAAAACgaAAAVnwAAuDZjdXJ2AAAAAAAAAAEB
-zQAAc2YzMgAAAAAAAQxCAAAF3v//8yYAAAeSAAD9kf//+6L///2jAAAD3AAAwGzSJSYnKFokY2xhc3Nu
-YW1lWCRjbGFzc2VzXxAQTlNCaXRtYXBJbWFnZVJlcKMnKSpaTlNJbWFnZVJlcFhOU09iamVjdNIlJiwt
-V05TQXJyYXmiLCrSJSYvMF5OU011dGFibGVBcnJheaMvLCrTMjMKNDU2V05TV2hpdGVcTlNDb2xvclNw
-YWNlRDAgMAAQA4AM0iUmODlXTlNDb2xvcqI4KtIlJjs8V05TSW1hZ2WiOypfEA9OU0tleWVkQXJjaGl2
-ZXLRP0BUcm9vdIABAAgAEQAaACMALQAyADcARgBMAFcAXgBlAHIAeQCBAIMAhQCKAIwAjgCXAJwApwCp
-AKsArQCyALUAtwC5ALsAvQDCANkA2wDdEcMRyBHTEdwR7xHzEf4SBxIMEhQSFxIcEisSLxI2Ej4SSxJQ
-ElISVBJZEmESZBJpEnESdBKGEokSjgAAAAAAAAIBAAAAAAAAAEEAAAAAAAAAAAAAAAAAABKQA
-</mutableData>
-        </image>
         <image name="lightBlue" width="10" height="10"/>
         <image name="newMessageIcon" width="22" height="22"/>
         <image name="openMenuButton" width="22" height="22"/>
