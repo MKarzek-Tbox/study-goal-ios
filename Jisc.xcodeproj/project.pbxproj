@@ -43,6 +43,7 @@
 		97A245161F8F95EC00CD9239 /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A245141F8F95EC00CD9239 /* AttendanceViewController.swift */; };
 		97A245171F8F95EC00CD9239 /* AttendanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97A245151F8F95EC00CD9239 /* AttendanceViewController.xib */; };
 		97BFBAEB1FC833C000F17626 /* SingleTargetVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97BFBAEA1FC833C000F17626 /* SingleTargetVC~ipad.xib */; };
+		97BFBAF21FC85F3200F17626 /* PointsCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97BFBAF11FC85F3200F17626 /* PointsCell~ipad.xib */; };
 		DA0081E01DF833D50034786A /* splash_screen.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DA0081DF1DF833D50034786A /* splash_screen.mp4 */; };
 		DA0081E21DF833DD0034786A /* splash_screen_iPad.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DA0081E11DF833DD0034786A /* splash_screen_iPad.mp4 */; };
 		DA0BDBF31E850FFD00166E16 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA0BDBF21E850FFD00166E16 /* LoginVC.xib */; };
@@ -348,6 +349,7 @@
 		97A245141F8F95EC00CD9239 /* AttendanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
 		97A245151F8F95EC00CD9239 /* AttendanceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttendanceViewController.xib; sourceTree = "<group>"; };
 		97BFBAEA1FC833C000F17626 /* SingleTargetVC~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SingleTargetVC~ipad.xib"; sourceTree = "<group>"; };
+		97BFBAF11FC85F3200F17626 /* PointsCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PointsCell~ipad.xib"; sourceTree = "<group>"; };
 		AA5AB1488B3C5169A21992B9 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE36E7B48A149906611638BD /* Pods-Jisc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jisc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jisc/Pods-Jisc.debug.xcconfig"; sourceTree = "<group>"; };
 		D1C2B6248A9A876366B5C2F7 /* Pods-Jisc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jisc.release.xcconfig"; path = "Pods/Target Support Files/Pods-Jisc/Pods-Jisc.release.xcconfig"; sourceTree = "<group>"; };
@@ -712,6 +714,7 @@
 			isa = PBXGroup;
 			children = (
 				9766E2251F94B94C00963DD8 /* ActivityPointsViewController~ipad.xib */,
+				97BFBAF11FC85F3200F17626 /* PointsCell~ipad.xib */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -1295,6 +1298,7 @@
 		DAD1D7F11C50F040005BA786 /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
+				DAB0C87B1C4CEAE700F7A3C6 /* TargetDetailsVC.xib */,
 				804FD2FE1F3B68E4002FEDDB /* RecurringTargetVC.xib */,
 				800B167B1F46F39C0000D633 /* SingleTargetVC.xib */,
 				DAB0C8631C4CEA8900F7A3C6 /* TargetVC.xib */,
@@ -1312,7 +1316,6 @@
 				DA6CFB071BE11A85004A5FB0 /* TargetCell.xib */,
 				DA6CFB021BE119EA004A5FB0 /* NewTargetVC.swift */,
 				DAB148EB1BE2336B0092FF17 /* TargetDetailsVC.swift */,
-				DAB0C87B1C4CEAE700F7A3C6 /* TargetDetailsVC.xib */,
 				DABB0CC61C5A1248001A291D /* SingleTargetDetails */,
 				80110A601F4B4E7F00FBF51D /* SingleTargetCell.swift */,
 				80110A611F4B4E7F00FBF51D /* SingleTargetCell.xib */,
@@ -1630,6 +1633,7 @@
 				8005369C1F716A8B00A05FEA /* StatsVC~ipad.xib in Resources */,
 				DA43DA3F1C58C1FC0092701F /* EngagementIcons.xcassets in Resources */,
 				DAB0C7D71C4CE8BA00F7A3C6 /* OneFeedItemCell.xib in Resources */,
+				97BFBAF21FC85F3200F17626 /* PointsCell~ipad.xib in Resources */,
 				DAB0C8911C4CEB3700F7A3C6 /* MyFriendsVC.xib in Resources */,
 				DA4085B41EE6A8D50012A561 /* MenuView.xib in Resources */,
 				9766E20D1F90C40C00963DD8 /* AttainmentViewController~ipad.xib in Resources */,
