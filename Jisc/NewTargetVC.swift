@@ -81,8 +81,10 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        topSegmentControl.setTitle(localized("single"), forSegmentAt: 0)
-        topSegmentControl.setTitle(localized("recurring"), forSegmentAt: 1)
+        if(!iPad){
+            topSegmentControl.setTitle(localized("single"), forSegmentAt: 0)
+            topSegmentControl.setTitle(localized("recurring"), forSegmentAt: 1)
+        }
         
         if (theTarget != nil) {
             print("editing mode for recurring targets entered")
@@ -101,7 +103,9 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
                 selectedModule += 1
             }
             titleLabel.text = localized("edit_target")
-            topSegmentControl.isHidden = true
+            if(!iPad){
+                topSegmentControl.isHidden = true
+            }
         }
         
         hoursPicker.selectRow(selectedHours, inComponent: 0, animated: false)
@@ -161,25 +165,19 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
         initialSpan = timeSpan
         initialSelectedModule = selectedModule
         initialReason = because
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //moduleLabel.text = "Module"
-        // recurringDatePicker.minimumDate = Date()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
-    
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }
-    
     
     @IBAction func goBack(_ sender:UIButton) {
         if (changesWereMade()) {
@@ -187,28 +185,22 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
         } else {
             _ = navigationController?.popViewController(animated: true)
             _ = navigationController?.popViewController(animated: true)
-
         }
     }
     
     @IBAction func topSegmentControlAction(_ sender: Any) {
         if (topSegmentControl.selectedSegmentIndex == 1){
-                        let vc = RecurringTargetVC()
-                        navigationController?.pushViewController(vc, animated: false)
-            //Bundle.main.loadNibNamed("NewTargetVC", owner: self, options: nil)
+            let vc = RecurringTargetVC()
+            navigationController?.pushViewController(vc, animated: false)
         } else {
-                        let vc = RecurringTargetVC()
-                        navigationController?.pushViewController(vc, animated: false)
-            //Bundle.main.loadNibNamed("RecurringTargetVC", owner: self, options: nil)
+            let vc = RecurringTargetVC()
+            navigationController?.pushViewController(vc, animated: false)
         }
-        
     }
+    
     @IBAction func recurringSegmentControlAction(_ sender: Any) {
         if (recurringSegmentControl.selectedSegmentIndex == 0){
-            //let vc = RecurringTargetVC()
-            //navigationController?.pushViewController(vc, animated: true)
             Bundle.main.loadNibNamed("RecurringTargetVC", owner: self, options: nil)
-            
         } else {
             Bundle.main.loadNibNamed("NewTargetVC", owner: self, options: nil)
         }
@@ -283,7 +275,9 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
         return conflictExists
     }
     
+    /* save recurring target action */
     @IBAction func saveTarget(_ sender:UIButton) {
+        print("saving recurring target")
         if(demo()){
             let alert = UIAlertController(title: "", message: localized("demo_mode_addtarget"), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
@@ -313,20 +307,15 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
                 }
                 target.because = because
                 if (theTarget != nil) {
+                    print("recurring target saving changes of target")
                     dataManager.editTarget(theTarget!, completion: { (success, failureReason) -> Void in
                         if (success) {
-                            for (_, item) in target.stretchTargets.enumerated() {
-                                dataManager.deleteObject(item as! NSManagedObject)
-                            }
-                            dataManager.deleteObject(target)
                             AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
-                                //_ = self.navigationController?.popViewController(animated: true)
                                 let vc = TargetVC()
                                 self.navigationController?.pushViewController(vc, animated: false)
                             }
                         } else {
                             AlertView.showAlert(false, message: failureReason) { (done) -> Void in
-                               // _ = self.navigationController?.popViewController(animated: true)
                                 let vc = TargetVC()
                                 self.navigationController?.pushViewController(vc, animated: false)
                             }
@@ -337,17 +326,14 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
                         if (success) {
                             dataManager.deleteObject(target)
                             AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
-                                //_ = self.navigationController?.popViewController(animated: true)
                                 let vc = TargetVC()
                                 self.navigationController?.pushViewController(vc, animated: false)
 
                             }
                         } else {
                             AlertView.showAlert(false, message: failureReason) { (done) -> Void in
-                                //_ = self.navigationController?.popViewController(animated: true)
                                 let vc = TargetVC()
                                 self.navigationController?.pushViewController(vc, animated: false)
-
                             }
                         }
                     })
@@ -367,10 +353,7 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
             module = dataManager.moduleNameAtIndex(selectedModule - 1)!
         }
         if (myGoalTextField.text.isEmpty){
-            //Make sure to localize the following message
-            
             AlertView.showAlert(false, message: localized("Make sure to fill in My Goal section")) { (done) -> Void in
-                //self.dismiss(animated: true, completion: nil)
             }
         }
         let myBody = "student_id=\(dataManager.currentStudent!.id)&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en&reason=\(noteTextView.text!)"
@@ -387,19 +370,17 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
                 _ = self.navigationController?.popViewController(animated: true)
             }
         }
-        
-        
     }
     
     @IBAction func datePickerAction(_ sender: Any) {
         recurringDatePicker.minimumDate = Date()
         
     }
+    
     //MARK: UIAlertView Delegate
     
     func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         if (buttonIndex == 0) {
-            //_ = navigationController?.popViewController(animated: true)
             let vc = TargetVC()
             navigationController?.pushViewController(vc, animated: true)
 

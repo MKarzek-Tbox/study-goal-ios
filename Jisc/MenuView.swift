@@ -68,10 +68,8 @@ class MenuView: UIView {
 			} else {
 				view.feed()
 			}
-            print("issocial");
 
 		} else {
-            print("not social");
 			lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Feed, previousButton: lastButton, isLastButton: false, parent: view)
             lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Friends, previousButton: lastButton, isLastButton: false, parent: view)
             lastButton = StatsMenuButton.insertSelfinView(view.menuContent, buttonType: .Stats, previousButton: lastButton, isLastButton: false, parent: view)
@@ -155,8 +153,7 @@ class MenuView: UIView {
 	
 	func open() {
         let view = Bundle.main.loadNibNamed("MenuView", owner: nil, options: nil)!.first as! MenuView
-        view.profileImage.loadImageWithLink("\(hostPath)\(dataManager.currentStudent!.photo)", type: .profile) { () -> Void in
-            print("Picture code from open function should have been called")
+        view.profileImage.loadImageWithLink("\(hostPath)\(dataManager.currentStudent!.photo)", type: .profile) { () -> Void in 
         }
 
 		isUserInteractionEnabled = true

@@ -78,7 +78,6 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         self.attendanceData.removeAll()
         getAttendance {
             self.loadHighChart()
-            print("requested events attended")
         }
     }
 
@@ -144,7 +143,6 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         xMGR.silent = true
         xMGR.getEventsAttended(skip: 0, limit: self.limit) { (success, result, results, error) in
             if (results != nil){
-                print("receiving data")
                 for event in results! {
                     var date:String?
                     var time:String?
@@ -177,15 +175,11 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
                     }
                     self.attendanceData.append(EventsAttendedObject(date: date!, time: time!, activity: activity!, module: module!))
                 }
-            } else {
-                print("results is nil")
             }
             
-            print("events array")
             print(self.attendanceData)
             
             self.attendanceData.sort(by: { $0.date.compare($1.date) == .orderedDescending})
-            print("here is the sorted array ", self.attendanceData.sort(by: { $0.date.compare($1.date) == .orderedDescending}))
             
             print(self.attendanceData.count)
             self.tableView.reloadData()
@@ -307,7 +301,6 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     private func loadHighChart() {
-        print("Loading HighChart")
         var countArray:[Int] = []
         var dateArray:[String] = []
         let todaysDate = Date()
@@ -334,13 +327,9 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
                 request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             }
             NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
-                
-                print("data received for events graph")
-                
                 do {
                     if let data = data,
                         let json = try JSONSerialization.jsonObject(with: data) as? [Any] {
-                        print("json count events graph \(json.count)")
                         self.webView.isHidden = false
                         for item in json {
                             let object = item as? [String:Any]
@@ -396,9 +385,6 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
                                 let endIndexDate = dateData.index(dateData.endIndex, offsetBy: -2)
                                 
                                 dateDataFinal = "[" + dateData.substring(to: endIndexDate) + "]"
-                                
-                                print("\(countDataFinal)")
-                                print("\(dateDataFinal)")
                                 
                                 contents = contents.replacingOccurrences(of: "COUNT", with: countDataFinal)
                                 contents = contents.replacingOccurrences(of: "DATES", with: dateDataFinal)

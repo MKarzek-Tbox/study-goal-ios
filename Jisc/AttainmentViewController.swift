@@ -54,9 +54,7 @@ class AttainmentViewController: UIViewController, UITableViewDataSource, UITable
         
         //get attainment date
         attainmentData.removeAll()
-        getAttainmentData {
-            print("Getting Attainment data")
-        }
+        getAttainmentData { }
     }
 
     override func didReceiveMemoryWarning() {
@@ -136,16 +134,10 @@ class AttainmentViewController: UIViewController, UITableViewDataSource, UITable
                         }
                     }
                 }
-            } else {
-                print("No results")
             }
             self.attainmentData.sort(by: { (obj1:AttainmentObject, obj2:AttainmentObject) -> Bool in
                 return (obj2.date.compare(obj1.date) != .orderedDescending)
             })
-            
-            if(self.attainmentData.count == 0){
-                print("noattain!")
-            }
             self.tableView.reloadData()
             
             //set null message
@@ -199,27 +191,17 @@ class AttainmentViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func view(_ view: CustomPickerView, selectedRow: Int) {
-        print("selectedRow: \(selectedRow)")
         if (selectedModule != selectedRow) {
             selectedModule = selectedRow
             if(selectedModule == 0){
                 moduleButton.setTitle(localized("filter_modules"), for: UIControlState())
-                getAttainmentData {
-                    print("getting all attainment data")
-                }
+                getAttainmentData { }
             } else {
                 moduleButton.setTitle(view.contentArray[selectedRow], for: UIControlState())
                 let moduleIndex = selectedModule - (1 + dataManager.courses().count)
-                print("selected module: \(moduleIndex) name: \(dataManager.modules()[moduleIndex].name)")
                 if (moduleIndex >= 0 && moduleIndex < dataManager.modules().count) {
                     moduleButton.setTitle(dataManager.modules()[moduleIndex].name, for: UIControlState())
-                    getAttainmentData {
-                        print("getting filtered data")
-                    }
-                } else {
-                    getAttainmentData {
-                        print("getting all attainment data")
-                    }
+                    getAttainmentData { }
                 }
             }
         }

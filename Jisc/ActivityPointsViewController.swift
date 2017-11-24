@@ -66,9 +66,7 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
         tableView.register(UINib(nibName: kPointsCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kPointsCellIdentifier)
         tableView.tableFooterView = UIView()
         
-        getActivityPoints(period: .SevenDays) {
-            print("getting activity points")
-        }
+        getActivityPoints(period: .SevenDays) { }
     }
 
     override func didReceiveMemoryWarning() {
@@ -130,8 +128,6 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
                         }
                     }
                 }
-            } else {
-                print("result is nil")
             }
             self.loadPieChart()
             
@@ -188,8 +184,7 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
                 let baseUrl = URL(fileURLWithPath: filePath)
                 webView.loadHTMLString(contents as String, baseURL: baseUrl)
             } catch {
-                print("File HTML error on pie chart")
-                print("no results for points graph found")
+                print("File HTML error on pie chart") 
             }
         }
     }

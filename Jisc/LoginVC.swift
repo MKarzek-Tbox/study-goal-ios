@@ -135,14 +135,11 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
 			}
 		}
 		if shouldRememberMe() {
-			print("REMEMBER")
 			if JWTStillValid() {
-				print("VALID")
 				let type = currentUserType()
 				var somethingWentWrong = false
 				switch type {
 				case .regular:
-					print("REGULAR")
 					let institutions = dataManager.institutions().filter({ (institution) -> Bool in
 						var included = false
 						if institution.id == pickedInstitutionId() {
@@ -157,7 +154,6 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
 					}
 					break
 				case .staff:
-					print("STAFF")
 					let institutions = dataManager.institutions().filter({ (institution) -> Bool in
 						var included = false
 						if institution.id == pickedInstitutionId() {
@@ -172,29 +168,25 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
 					}
 					break
 				case .social:
-					print("SOCIAL")
 					dataManager.pickedInstitution = dataManager.socialInstitution()
 					let socialData = getSocialData()
 					if !socialData.email.isEmpty && !socialData.name.isEmpty && !socialData.userId.isEmpty {
-						print("LOGIN")
 						socialLogin(email: socialData.email, name: socialData.name, userId: socialData.userId)
 					} else {
-						print("FAIL")
+						print("social login failed")
 						setRememberMe(false)
 						clearXAPIToken()
 					}
 					break
 				case .demo:
-					print("DEMO")
 					dataManager.pickedInstitution = dataManager.demoInstitution()
 					break
 				}
 				if somethingWentWrong {
-					print("SOMETHING WENT WRONG")
+					print("error logging in, someting went wrong")
 					setRememberMe(false)
 					clearXAPIToken()
 				} else if type != .social {
-					print("LOGIN")
 					xAPIManager().getStudentDetails({ (success, result, results, error) in
 						var loginSuccessful = false
 						if let result = result {
@@ -205,7 +197,6 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
 							}
 						}
 						if (loginSuccessful) {
-							print("SUCCESS")
 							if type == .staff {
 								if let staffId = result?["STAFF_ID"] as? String {
 									NotificationCenter.default.post(name: Notification.Name(rawValue: xAPILoginCompleteNotification), object: staffId)
@@ -217,14 +208,14 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
 							}
 							self.dismiss(animated: true, completion: {})
 						} else {
-							print("FAIL")
+							print("login failed")
 							setRememberMe(false)
 							clearXAPIToken()
 						}
 					})
 				}
 			} else {
-				print("NOT VALID")
+				print("login not valid")
 				setRememberMe(false)
 				clearXAPIToken()
 			}

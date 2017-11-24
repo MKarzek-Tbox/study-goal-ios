@@ -19,7 +19,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     var arrayOfResponses: [[String:Any]] = []
     var arrayOfResponses2: [[String:Any]] = []
     var noHeight = 0.0
-    //var demoData:[String] = ["These Single Targets are for demo purposes only, login to use the full functionality","3 DAYS OVERDUE! Read 2 chapters for history class ","Do maths assignment by tomorrow because it is due", "Swipe to the left to to edit, delete and mark as done", "You can accept or deny certain tutor set targert", "Switch between single or recurring targets that you want to post", "The icons indicate the urgency of the due date for that specific target"]
     var refreshTimer:Timer?
 
 
@@ -33,8 +32,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         singleTargetTableView.register(UINib(nibName: kTargetCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kTargetCellIdentifier)
         singleTargetSegmentControl.selectedSegmentIndex = 0
         singleTargetTableView.contentInset = UIEdgeInsetsMake(20.0, 0, 20.0, 0)
-        //refreshTimer = Timer(timeInterval: 30, target: self, selector: #selector(FeedVC.refreshFeeds(_:)), userInfo:nil, repeats: true)
-        //RunLoop.current.add(refreshTimer!, forMode: RunLoopMode.commonModes)
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(SingleTargetVC.manuallyRefreshFeeds(_:)), for: UIControlEvents.valueChanged)
         singleTargetTableView.addSubview(refreshControl)
@@ -42,7 +39,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         singleTargetTableView.delegate = self
         singleTargetTableView.dataSource = self
         singleTargetTableView.reloadData()
-        //London Developer July 24,2017
         var urlString = ""
         if(!dataManager.developerMode){
             urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-main&contentName=MainTargetsPage"
@@ -58,18 +54,14 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                                                selector: #selector(callGetToDoList),
                                                name: NSNotification.Name(rawValue: "getToDoList"),
                                                object: nil)
-
     }
-    
     
     func manuallyRefreshFeeds(_ sender:UIRefreshControl) {
         getTodoListData()
         self.singleTargetTableView.reloadData()
         sender.endRefreshing()
-        
     }
 
-    
     func doThisWhenNotify(){
         let vc = RecurringTargetVC()
         vc.cameFromEditing()
@@ -109,7 +101,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             let vc = TargetVC()
             navigationController?.pushViewController(vc, animated: false)
         }
-        
     }
     
     private func getTodoListData(){

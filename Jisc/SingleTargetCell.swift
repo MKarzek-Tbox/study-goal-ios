@@ -92,6 +92,7 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
             completionColorView.backgroundColor = redSingleTargetColor
         }
     }
+    
     @IBAction func editSingleTarget(_ sender: Any) {
         print("edit for single target called")
         NotificationCenter.default.post(name: Notification.Name(rawValue: myNotificationKey), object: self)
@@ -114,9 +115,7 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
             alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
             navigationController?.present(alert, animated: true, completion: nil)
         } else {
-           // if (indexPath != nil) {
-                UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_target"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
-            //}
+            UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_target"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
         }
     }
     
@@ -173,16 +172,13 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
             self.layoutIfNeeded()
         }, completion: { (done) -> Void in
             NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeSingleTargetCellSelectedStyleOff), object: nil)
-           // self.parent?.aSingleCellIsOpen = true
         })
     }
     
     func closeCellOptions() {
         NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeSingleTargetCellSelectedStyleOn), object: nil)
-        //parent?.aSingleCellIsOpen = false
         optionsState = .closed
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            //self.contentTrailingConstraint.constant = 0.0
             self.optionsButtonsView.setNeedsLayout()
             self.layoutIfNeeded()
         }) 

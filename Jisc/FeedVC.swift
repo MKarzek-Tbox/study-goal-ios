@@ -211,7 +211,6 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 	}
 	
     func deleteThis(indexPath: IndexPath){
-        print("attempting delete");
         let alert = UIAlertController(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_message"), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: localized("yes"), style: .destructive, handler: { (action) in
             let feed = dataManager.myFeeds()[indexPath.row]

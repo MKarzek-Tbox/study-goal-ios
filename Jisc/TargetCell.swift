@@ -95,10 +95,8 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 			completionColorView.backgroundColor = redTargetColor
 		}
 	}
+    
     @IBAction func markAsDoneAction(_ sender: Any) {
-//        let alert = UIAlertController(title: "", message: "Marking this Target as done", preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
-//        navigationController?.present(alert, animated: true, completion: nil)
         if demo(){
             let alert = UIAlertController(title: "", message: localized("demo_mode_mark_as_done_target"), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
@@ -165,11 +163,6 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
     }
 	
 	@IBAction func editTarget(_ sender:UIButton) {
-//		if demo() {
-//			let alert = UIAlertController(title: "", message: localized("demo_mode_edit_target"), preferredStyle: .alert)
-//			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
-//			navigationController?.present(alert, animated: true, completion: nil)
-//        } else {
         if(kButtonsWidth > 200){
             if (indexPath != nil) {
                 print("indy2\(String(describing: indexPath?.row))")
@@ -196,14 +189,9 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
                 let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
                 let vc = RecurringTargetVC(target: target)
                 navigationController?.pushViewController(vc, animated: true)
-                
-                //NotificationCenter.default.post(name: Notification.Name(rawValue: myNotificationKey), object: self)
-
-            } else {
-
             }
-        }else{
-        closeCellOptions()
+        } else {
+            closeCellOptions()
             if (indexPath != nil) {
                 print("edit for recurring target called")
                 let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
@@ -211,8 +199,8 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
                 navigationController?.pushViewController(vc, animated: true)
             }
         }
-		//}
 	}
+    
 	@IBAction func deleteTarget(_ sender:UIButton) {
 		if demo() {
 			let alert = UIAlertController(title: "", message: localized("demo_mode_delete_target"), preferredStyle: .alert)
@@ -238,8 +226,6 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
                             let alert = UIAlertController(title: "Tutor Target", message: "You can’t remove this task as it was set by your teacher", preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                             self.navigationController?.present(alert, animated: true, completion: nil)
-
-
                         }
                     }
                     
@@ -251,7 +237,6 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 
                     UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_target"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
                     print("indy\(String(describing: indexPath?.row))")
-                    
                 } else {
                     print("no indexPath")
                 }
@@ -261,10 +246,6 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
                     UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_target"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
                 }
             }
-
-//			if (indexPath != nil) {
-//				UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_target"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
-//			}
 		}
 	}
 	
@@ -322,7 +303,6 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 			}, completion: { (done) -> Void in
 				NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeTargetCellSelectedStyleOff), object: nil)
 				self.parent?.aCellIsOpen = true
-                print("opening cell here")
                 self.optionsOpened = true
 		}) 
 	}

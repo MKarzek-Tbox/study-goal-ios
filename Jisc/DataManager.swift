@@ -381,23 +381,6 @@ class DataManager: NSObject {
         array.append(contentsOf: runningActivities())
         array.append(contentsOf: finishedActivities())
         return array
-        
-        //		let fetchRequest = NSFetchRequest(entityName: activityLogEntityName)
-        //		fetchRequest.predicate = NSPredicate(format: "student.id == %@", currentStudent!.id)
-        //		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-        //		var array:[ActivityLog] = [ActivityLog]()
-        //		do {
-        //			let logs = try managedContext.executeFetchRequest(fetchRequest)
-        //			for (_, item) in logs.enumerate() {
-        //				let object = item as? ActivityLog
-        //				if (object != nil) {
-        //					array.append(object!)
-        //				}
-        //			}
-        //		} catch let error as NSError {
-        //			print("get ALL activities error: \(error.localizedDescription)")
-        //		}
-        //		return array
     }
     
     func finishedActivities() -> [ActivityLog] {

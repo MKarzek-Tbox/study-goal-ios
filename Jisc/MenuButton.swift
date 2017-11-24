@@ -108,9 +108,7 @@ class MenuButton: UIView {
             if self.type == type {
                 button.isSelected = true
                 if let stats = self as? StatsMenuButton {
-
                 }else {
-                    print("notify here")
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadData"), object: nil)
                 }
             } else {
