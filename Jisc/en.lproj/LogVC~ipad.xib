@@ -103,7 +103,7 @@
                     </connections>
                 </tableView>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ga-Gf-n40" customClass="LocalizableView" customModule="Jisc" customModuleProvider="target">
-                    <rect key="frame" x="487.5" y="372.5" width="49" height="23.5"/>
+                    <rect key="frame" x="488.5" y="372.5" width="49" height="23.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCS-nI-9Fu" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="49" height="23.5"/>

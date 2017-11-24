@@ -42,6 +42,7 @@
 		97A2450E1F8F7A9200CD9239 /* AttainmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97A2450C1F8F7A9200CD9239 /* AttainmentCell.xib */; };
 		97A245161F8F95EC00CD9239 /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A245141F8F95EC00CD9239 /* AttendanceViewController.swift */; };
 		97A245171F8F95EC00CD9239 /* AttendanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97A245151F8F95EC00CD9239 /* AttendanceViewController.xib */; };
+		97BFBAEB1FC833C000F17626 /* SingleTargetVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97BFBAEA1FC833C000F17626 /* SingleTargetVC~ipad.xib */; };
 		DA0081E01DF833D50034786A /* splash_screen.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DA0081DF1DF833D50034786A /* splash_screen.mp4 */; };
 		DA0081E21DF833DD0034786A /* splash_screen_iPad.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DA0081E11DF833DD0034786A /* splash_screen_iPad.mp4 */; };
 		DA0BDBF31E850FFD00166E16 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA0BDBF21E850FFD00166E16 /* LoginVC.xib */; };
@@ -346,6 +347,7 @@
 		97A2450C1F8F7A9200CD9239 /* AttainmentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttainmentCell.xib; sourceTree = "<group>"; };
 		97A245141F8F95EC00CD9239 /* AttendanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
 		97A245151F8F95EC00CD9239 /* AttendanceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttendanceViewController.xib; sourceTree = "<group>"; };
+		97BFBAEA1FC833C000F17626 /* SingleTargetVC~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SingleTargetVC~ipad.xib"; sourceTree = "<group>"; };
 		AA5AB1488B3C5169A21992B9 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE36E7B48A149906611638BD /* Pods-Jisc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jisc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jisc/Pods-Jisc.debug.xcconfig"; sourceTree = "<group>"; };
 		D1C2B6248A9A876366B5C2F7 /* Pods-Jisc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jisc.release.xcconfig"; path = "Pods/Target Support Files/Pods-Jisc/Pods-Jisc.release.xcconfig"; sourceTree = "<group>"; };
@@ -1285,6 +1287,7 @@
 			children = (
 				DAB0C8691C4CEA9E00F7A3C6 /* TargetVC~ipad.xib */,
 				DAB0C8751C4CEAC400F7A3C6 /* NewTargetVC~ipad.xib */,
+				97BFBAEA1FC833C000F17626 /* SingleTargetVC~ipad.xib */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -1601,6 +1604,7 @@
 				DA593EC11E97986C00B54909 /* BarChartHTMLCompare in Resources */,
 				DA593EC81E97A29900B54909 /* BarChartHTMLSimple in Resources */,
 				DA11B6AD1E7164E600F823B8 /* CheckinVC.xib in Resources */,
+				97BFBAEB1FC833C000F17626 /* SingleTargetVC~ipad.xib in Resources */,
 				DA593ECB1E97A2BD00B54909 /* LineChartHTMLCompare in Resources */,
 				DA3F7B871C996B9B00E15678 /* ConsentVC.xib in Resources */,
 				DAB0C7EF1C4CE91A00F7A3C6 /* NewRequestCell.xib in Resources */,
