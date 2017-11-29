@@ -13,13 +13,13 @@ import Foundation
 import CoreData
 
 extension Feed {
-	
-	@NSManaged var activityType: String
-	@NSManaged var createdDate: Date
-	@NSManaged var from: String
-	@NSManaged var id: String
-	@NSManaged var message: String
-	@NSManaged var to: String
-	@NSManaged var isHidden: NSNumber
-	
+    
+    @NSManaged var activityType: String
+    @NSManaged var createdDate: Date
+    @NSManaged var from: String
+    @NSManaged var id: String
+    @NSManaged var message: String
+    @NSManaged var to: String
+    @NSManaged var isHidden: NSNumber
+    
 }

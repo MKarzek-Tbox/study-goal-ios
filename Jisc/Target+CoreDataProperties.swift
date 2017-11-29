@@ -13,18 +13,18 @@ import Foundation
 import CoreData
 
 extension Target {
-	
-	@NSManaged var because: String
-	@NSManaged var createdDate: Date
-	@NSManaged var id: String
-	@NSManaged var modifiedDate: Date
-	@NSManaged var status: NSNumber
-	@NSManaged var timeSpan: String
-	@NSManaged var totalTime: NSNumber
-	@NSManaged var activity: Activity
-	@NSManaged var activityType: ActivityType
-	@NSManaged var module: Module?
-	@NSManaged var student: Student
-	@NSManaged var stretchTargets: NSSet
-	
+    
+    @NSManaged var because: String
+    @NSManaged var createdDate: Date
+    @NSManaged var id: String
+    @NSManaged var modifiedDate: Date
+    @NSManaged var status: NSNumber
+    @NSManaged var timeSpan: String
+    @NSManaged var totalTime: NSNumber
+    @NSManaged var activity: Activity
+    @NSManaged var activityType: ActivityType
+    @NSManaged var module: Module?
+    @NSManaged var student: Student
+    @NSManaged var stretchTargets: NSSet
+    
 }

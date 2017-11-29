@@ -23,7 +23,7 @@ class EventsAttendedObject {
 }
 
 class AttendanceViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CustomPickerViewDelegate {
-
+    
     @IBOutlet weak var segmentControl:UISegmentedControl!
     @IBOutlet weak var attendanceAllView:UIView!
     @IBOutlet weak var attendanceSummaryView:UIView!
@@ -80,7 +80,7 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
             self.loadHighChart()
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -111,18 +111,18 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventsAttendedCell", for: indexPath)
-            
+        
         if let attendanceCell = cell as? EventsAttendedCell {
             attendanceCell.loadEvents(events: attendanceData[indexPath.row])
         }
-
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-
+        
         if let attendanceCell = cell as? EventsAttendedCell {
             attendanceCell.loadEvents(events: attendanceData[indexPath.row])
         }
@@ -197,7 +197,7 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
             } else {
                 self.noDataWebViewLabel.isHidden = true
             }
-
+            
             completion()
         }
     }
@@ -423,8 +423,8 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
             self.noDataWebViewLabel.isHidden = false
         }
     }
-
-
+    
+    
     @IBAction func showModuleSelector(_ sender:UIButton) {
         var array:[String] = [String]()
         array.append(localized("all_modules"))
@@ -443,7 +443,7 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
                 moduleID = dataManager.modules()[theIndex].id
             }
         }
-
+        
         var urlString = ""
         if(!dataManager.developerMode){
             urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main-module&contentName=MainStatsFilteredByModule&modid=\(String(describing: moduleID))"

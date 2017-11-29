@@ -13,9 +13,9 @@ import Foundation
 import CoreData
 
 extension Course {
-
+    
     @NSManaged var id: String
     @NSManaged var name: String
     @NSManaged var student: Student
-
+    
 }

@@ -9,5 +9,7 @@
 import UIKit
 
 class ViewWithRoundedCorners: UIView {
+    
 	@IBInspectable var cornerRadius:CGFloat = 0.0
+    
 }

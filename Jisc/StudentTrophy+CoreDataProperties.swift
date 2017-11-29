@@ -13,10 +13,10 @@ import Foundation
 import CoreData
 
 extension StudentTrophy {
-	
-	@NSManaged var id: String
-	@NSManaged var total: NSNumber
-	@NSManaged var trophy: Trophy
-	@NSManaged var owner: Student
-	
+    
+    @NSManaged var id: String
+    @NSManaged var total: NSNumber
+    @NSManaged var trophy: Trophy
+    @NSManaged var owner: Student
+    
 }

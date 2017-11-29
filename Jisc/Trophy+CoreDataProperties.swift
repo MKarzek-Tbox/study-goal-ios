@@ -13,13 +13,13 @@ import Foundation
 import CoreData
 
 extension Trophy {
-	
-	@NSManaged var activityName: String
-	@NSManaged var count: String
-	@NSManaged var id: String
-	@NSManaged var name: String
-	@NSManaged var statement: String
-	@NSManaged var type: String
-	@NSManaged var studentTrophies: NSSet
-	
+    
+    @NSManaged var activityName: String
+    @NSManaged var count: String
+    @NSManaged var id: String
+    @NSManaged var name: String
+    @NSManaged var statement: String
+    @NSManaged var type: String
+    @NSManaged var studentTrophies: NSSet
+    
 }

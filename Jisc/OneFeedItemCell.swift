@@ -28,7 +28,7 @@ class OneFeedItemCell: LocalizableCell {
     
     var theFeed:Feed?
     weak var parent:FeedVC?
-
+    
     @IBOutlet var buttonsWithLargeTitles:[BigTitleButton] = []
     @IBOutlet weak var cellBG:UIView!
     
@@ -65,7 +65,7 @@ class OneFeedItemCell: LocalizableCell {
     func changeSelectedStyleOff() {
         selectionStyle = .none
     }
-
+    
     
     func changeFontSizeToFit(_ button:BigTitleButton) {
         if (button.titleLabel != nil) {
@@ -97,7 +97,6 @@ class OneFeedItemCell: LocalizableCell {
     
     func loadProfilePicture(_ link:String) {
         userImage.loadImageWithLink(link, type: .profile, completion: nil)
-        //userOptionsImage.loadImageWithLink(link, type: .profile, completion: nil)
     }
     
     func loadFeedPost(_ feed:Feed) {
@@ -135,8 +134,6 @@ class OneFeedItemCell: LocalizableCell {
         if (feed.isMine()) {
             attributedText.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0), range: NSMakeRange(0, feed.message.characters.count))
         } else {
-            //			attributedText.addAttribute(NSForegroundColorAttributeName, value: lilacColor, range: NSMakeRange(0, 8))
-            //			attributedText.addAttribute(NSForegroundColorAttributeName, value: UIColor.darkGrayColor(), range: NSMakeRange(8, text.characters.count - 8))
             attributedText.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0), range: NSMakeRange(0, feed.message.characters.count))
         }
         contentText.attributedText = attributedText
@@ -167,10 +164,10 @@ class OneFeedItemCell: LocalizableCell {
         activityViewController.popoverPresentationController?.sourceView = sender
         activityViewController.popoverPresentationController?.sourceRect = sender.frame
         
-
+        
         navigationController?.present(activityViewController, animated: true, completion: nil)
         
-
+        
     }
     
     func showShareButtons() {
@@ -292,7 +289,7 @@ class OneFeedItemCell: LocalizableCell {
                         self.parent?.aCellIsOpen = false
                         self.optionsState = .closed
                         self.closeCellOptions()
-
+                        
                     })
                 } else {
                     var failureReason = kDefaultFailureReason
@@ -309,7 +306,7 @@ class OneFeedItemCell: LocalizableCell {
                         AlertView.showAlert(false, message: failureReason, completion: nil)
                     }
                     self.closeCellOptions()
-
+                    
                 }
             })
         }))
@@ -317,8 +314,8 @@ class OneFeedItemCell: LocalizableCell {
         navigationController?.present(alert, animated: true, completion: nil)
         
         
-   }
-
+    }
+    
     @IBAction func deleteFriend(_ sender:UIButton) {
         hideOptions()
         if (theFeed != nil) {
@@ -409,5 +406,5 @@ class OneFeedItemCell: LocalizableCell {
             self.layoutIfNeeded()
         }) 
     }
-
+    
 }

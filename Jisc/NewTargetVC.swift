@@ -17,15 +17,14 @@ let targetGoalPlaceholder = localized("Add a goal to this target")
 
 class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate, UIAlertViewDelegate, CustomPickerViewDelegate, UITextFieldDelegate {
     
-    
     @IBOutlet weak var topSegmentControl: UISegmentedControl!
     @IBOutlet weak var recurringSegmentControl: UISegmentedControl!
     
-    @IBOutlet weak var myGoalTextField: UITextView! //H
-    @IBOutlet weak var recurringDatePicker: UIDatePicker!//H
+    @IBOutlet weak var myGoalTextField: UITextView!
+    @IBOutlet weak var recurringDatePicker: UIDatePicker!
     @IBOutlet weak var recurringBecauseTextField: UITextView!
     
-    @IBOutlet weak var moduleLabel: LocalizableLabel! //H
+    @IBOutlet weak var moduleLabel: LocalizableLabel!
     @IBOutlet weak var activityTypeButton:UIButton!
     @IBOutlet weak var chooseActivityButton:UIButton!
     @IBOutlet weak var intervalButton:UIButton!
@@ -33,10 +32,10 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
     @IBOutlet weak var minutesPicker:UIPickerView!
     @IBOutlet weak var closeTimePickerButton:UIButton!
     @IBOutlet weak var timePickerBottomSpace:NSLayoutConstraint!
-    @IBOutlet weak var moduleButton:UIButton! //H
+    @IBOutlet weak var moduleButton:UIButton!
     @IBOutlet weak var contentScroll:UIScrollView!
     @IBOutlet weak var scrollBottomSpace:NSLayoutConstraint!
-    @IBOutlet weak var noteTextView:UITextView! //H
+    @IBOutlet weak var noteTextView:UITextView!
     @IBOutlet weak var hoursTextField:UITextField!
     @IBOutlet weak var minutesTextField:UITextField!
     @IBOutlet weak var toolbar:UIView!
@@ -49,7 +48,7 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
     var selectedTimeSpan:Int = 0
     var selectedModule:Int = 0
     var theTarget:Target?
-    @IBOutlet weak var titleLabel:UILabel! //H
+    @IBOutlet weak var titleLabel:UILabel!
     var isEditingTarget:Bool = false
     @IBOutlet weak var addModuleView:UIView!
     @IBOutlet weak var addModuleTextField:UITextField!
@@ -275,7 +274,6 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
         return conflictExists
     }
     
-    /* save recurring target action */
     @IBAction func saveTarget(_ sender:UIButton) {
         print("saving recurring target")
         if(demo()){
@@ -298,7 +296,7 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
                 target.totalTime = ((selectedHours * 60) + selectedMinutes) as NSNumber
                 target.timeSpan = timeSpan.rawValue
                 if (selectedModule > 0 && selectedModule - 1 < dataManager.modules().count) {
-                    target.module = dataManager.modules()[selectedModule - 1]                    
+                    target.module = dataManager.modules()[selectedModule - 1]
                     xAPIManager().checkMod(testUrl:"https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add-recurring&contentName=addRecurringTargets&modid=\(String(describing: target.module))")
                 } else {
                     
@@ -328,7 +326,7 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
                             AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
                                 let vc = TargetVC()
                                 self.navigationController?.pushViewController(vc, animated: false)
-
+                                
                             }
                         } else {
                             AlertView.showAlert(false, message: failureReason) { (done) -> Void in
@@ -383,7 +381,7 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
         if (buttonIndex == 0) {
             let vc = TargetVC()
             navigationController?.pushViewController(vc, animated: true)
-
+            
         } else {
             saveTarget(UIButton())
         }
@@ -572,7 +570,6 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
     
     @IBAction func closeTextView(_ sender:UIBarButtonItem) {
         noteTextView.resignFirstResponder()
-        //recurringBecauseTextField.resignFirstResponder()
         because = noteTextView.text
         if (because == targetReasonPlaceholder) {
             because = ""

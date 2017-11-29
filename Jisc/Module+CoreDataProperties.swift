@@ -13,11 +13,11 @@ import Foundation
 import CoreData
 
 extension Module {
-	
-	@NSManaged var id: String
-	@NSManaged var name: String
-	@NSManaged var activityLogs: NSSet
-	@NSManaged var students: NSSet
-	@NSManaged var targets: NSSet
-	
+    
+    @NSManaged var id: String
+    @NSManaged var name: String
+    @NSManaged var activityLogs: NSSet
+    @NSManaged var students: NSSet
+    @NSManaged var targets: NSSet
+    
 }

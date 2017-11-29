@@ -11,7 +11,7 @@ import UIKit
 class AppUsageViewController: UIViewController {
     
     @IBOutlet weak var titleLabel:UILabel!
-
+    
     var rightColumnArray:Array = ["0","0","0","0","0"]
     
     @IBOutlet weak var targetsMet: LocalizableLabel!
@@ -27,25 +27,25 @@ class AppUsageViewController: UIViewController {
     
     @IBOutlet weak var endDateField: UITextField!
     var endDatePicker = UIDatePicker()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         xAPIManager().checkMod(testUrl:"https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=app-usage&contentName=appUsage")
         customiseLayout()
-    
+        
         loadData()
     }
-
+    
     @IBAction func openMenu(_ sender: Any) {
         DELEGATE.menuView?.open()
     }
-
+    
     func customiseLayout(){
         startDateField.layer.borderColor = UIColor(red: 192.0/255.0, green: 159.0/255.0, blue: 246.0/255.0, alpha: 1.0).cgColor
         startDateField.layer.borderWidth = 1.5
         startDateField.layer.cornerRadius = 8
         startDateField.layer.masksToBounds = true
-   
+        
         startDatePicker.datePickerMode = UIDatePickerMode.date
         startDatePicker.maximumDate = Date()
         let startToolbar = UIToolbar()
@@ -112,7 +112,7 @@ class AppUsageViewController: UIViewController {
             databaseFormatter.dateFormat = databaseDateFormat
             let startDate = databaseFormatter.string(from: startDatePicker.date)
             let endDate = databaseFormatter.string(from: endDatePicker.date)
-        
+            
             let startDateArray = startDate.components(separatedBy: "/")
             let startDateCall = "\(startDateArray[2])-\(startDateArray[1])-\(startDateArray[0])"
             let endDateArray = endDate.components(separatedBy: "/")

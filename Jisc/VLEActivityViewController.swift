@@ -9,12 +9,12 @@
 import UIKit
 
 class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
-
+    
     @IBOutlet weak var segmentControl:UISegmentedControl!
     @IBOutlet weak var webView:UIWebView!
     @IBOutlet weak var webViewLineiPad:UIWebView!
     @IBOutlet weak var webViewNullMessage:UILabel!
-
+    
     @IBOutlet weak var startDateField:UITextField!
     @IBOutlet weak var endDateField:UITextField!
     
@@ -42,6 +42,11 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
     var graphTypePath = "bargraph"
     var vleActivityOptions:(me:[Double]?, myMax:Double, otherStudent:[Double]?, otherStudentMax:Double, columnNames:[String]?)? = nil
     
+    enum GraphType {
+        case Line
+        case Bar
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,7 +60,7 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         
         getEngagementData()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -92,7 +97,7 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
                 studentID = localized("average_small")
             }
         }
-
+        
         let completion:downloadCompletionBlock = {(success, result, results, error) in
             self.vleActivityOptions = nil
             if (success) {
@@ -240,19 +245,19 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
             case .Overall:
                 if (result != nil) {
                     /*if let pointsArray = result!["result"] as? NSArray {
-                        let info = infoFromXAPIOverall(pointsArray)
-                        let dates = info.dates
-                        myValues = info.myValues
-                        otherStudentValues = info.otherValues
-                        columnNames = [String]()
-                        for (_, item) in dates.enumerated() {
-                            dateFormatter.dateFormat = "dd MMM"
-                            let month = dateFormatter.string(from: item)
-                            dateFormatter.dateFormat = "yy"
-                            let year = dateFormatter.string(from: item)
-                            columnNames?.append("\(month) '\(year)")
-                        }
-                    }*/
+                     let info = infoFromXAPIOverall(pointsArray)
+                     let dates = info.dates
+                     myValues = info.myValues
+                     otherStudentValues = info.otherValues
+                     columnNames = [String]()
+                     for (_, item) in dates.enumerated() {
+                     dateFormatter.dateFormat = "dd MMM"
+                     let month = dateFormatter.string(from: item)
+                     dateFormatter.dateFormat = "yy"
+                     let year = dateFormatter.string(from: item)
+                     columnNames?.append("\(month) '\(year)")
+                     }
+                     }*/
                 }
                 break
             case .SevenDays:
@@ -511,59 +516,59 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
             webView.loadHTMLString(contents as String, baseURL: baseUrl)
             
             if(iPad){
-             guard let filePath = Bundle.main.path(forResource: "linegraph", ofType: "html")
-             else {
-             print ("File reading error")
-             return
-             }
-             
-             webViewLineiPad.setNeedsLayout()
-             webViewLineiPad.layoutIfNeeded()
-             let w = webViewLineiPad.frame.size.width - 20
-             let h = webViewLineiPad.frame.size.height - 20
-             var contents = try String(contentsOfFile: filePath, encoding: .utf8)
-             contents = contents.replacingOccurrences(of: "300px", with: "\(w)px")
-             contents = contents.replacingOccurrences(of: "220px", with: "\(h)px")
-             
-             var dateDataFinal = ""
-             var countDateFinal = ""
-             var otherStudentFinal = ""
-             var webData = ""
-             
-             if (self.vleActivityOptions?.columnNames != nil) {
-                dateDataFinal = self.vleActivityOptions!.columnNames!.description
-             } else {
-                dateDataFinal = ""
-             }
-             
-             if (self.vleActivityOptions?.me != nil) {
-                countDateFinal = self.vleActivityOptions!.me!.description
-             } else {
-                countDateFinal = ""
-             }
-             
-             if(compareToButton.titleLabel?.text == localized("no_one") || compareToButton.titleLabel?.text == localized("compare_to")) {
-             webData = "series: [{name:'\(localized("me"))',data: \(countDateFinal)}], xAxis: { categories: \(dateDataFinal)}"
-             webData = webData.replacingOccurrences(of: "\"", with: "'")
-             
-             } else {
-             if(self.vleActivityOptions?.otherStudent != nil){
-             otherStudentFinal = self.vleActivityOptions!.otherStudent!.description
-             } else {
-             otherStudentFinal = ""
-             }
-             
-             webData = "series: [{name:'\(localized("me"))',data: \(countDateFinal)},"
-             webData.append("{name:'\(localized(compareToButton.titleLabel!.text!))',data: \(otherStudentFinal)}], xAxis: { categories: \(dateDataFinal)")
-             webData.append("}")
-             webData = webData.replacingOccurrences(of: "\"", with: "'")
-             }
-             
-             print("webData \(webData)")
-             
-             contents = contents.replacingOccurrences(of: "<<<REPLACE_DATA_HERE>>>", with: webData)
-             let baseUrl = URL(fileURLWithPath: filePath)
-             webViewLineiPad.loadHTMLString(contents as String, baseURL: baseUrl)
+                guard let filePath = Bundle.main.path(forResource: "linegraph", ofType: "html")
+                    else {
+                        print ("File reading error")
+                        return
+                }
+                
+                webViewLineiPad.setNeedsLayout()
+                webViewLineiPad.layoutIfNeeded()
+                let w = webViewLineiPad.frame.size.width - 20
+                let h = webViewLineiPad.frame.size.height - 20
+                var contents = try String(contentsOfFile: filePath, encoding: .utf8)
+                contents = contents.replacingOccurrences(of: "300px", with: "\(w)px")
+                contents = contents.replacingOccurrences(of: "220px", with: "\(h)px")
+                
+                var dateDataFinal = ""
+                var countDateFinal = ""
+                var otherStudentFinal = ""
+                var webData = ""
+                
+                if (self.vleActivityOptions?.columnNames != nil) {
+                    dateDataFinal = self.vleActivityOptions!.columnNames!.description
+                } else {
+                    dateDataFinal = ""
+                }
+                
+                if (self.vleActivityOptions?.me != nil) {
+                    countDateFinal = self.vleActivityOptions!.me!.description
+                } else {
+                    countDateFinal = ""
+                }
+                
+                if(compareToButton.titleLabel?.text == localized("no_one") || compareToButton.titleLabel?.text == localized("compare_to")) {
+                    webData = "series: [{name:'\(localized("me"))',data: \(countDateFinal)}], xAxis: { categories: \(dateDataFinal)}"
+                    webData = webData.replacingOccurrences(of: "\"", with: "'")
+                    
+                } else {
+                    if(self.vleActivityOptions?.otherStudent != nil){
+                        otherStudentFinal = self.vleActivityOptions!.otherStudent!.description
+                    } else {
+                        otherStudentFinal = ""
+                    }
+                    
+                    webData = "series: [{name:'\(localized("me"))',data: \(countDateFinal)},"
+                    webData.append("{name:'\(localized(compareToButton.titleLabel!.text!))',data: \(otherStudentFinal)}], xAxis: { categories: \(dateDataFinal)")
+                    webData.append("}")
+                    webData = webData.replacingOccurrences(of: "\"", with: "'")
+                }
+                
+                print("webData \(webData)")
+                
+                contents = contents.replacingOccurrences(of: "<<<REPLACE_DATA_HERE>>>", with: webData)
+                let baseUrl = URL(fileURLWithPath: filePath)
+                webViewLineiPad.loadHTMLString(contents as String, baseURL: baseUrl)
             }
         } catch {
             print ("File HTML error")
@@ -766,7 +771,7 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
                 }
                 getEngagementData()
             }
-        break
+            break
         case compareToSelectorView:
             if (selectedStudent != selectedRow) {
                 selectedStudent = selectedRow
@@ -775,20 +780,20 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
                 } else if ((selectedStudent - 1) < friendsInTheSameCourse().count) {
                     let student = friendsInTheSameCourse()[selectedStudent - 1]
                     compareToButton.setTitle("\(student.firstName) \(student.lastName)", for: UIControlState())
-        //				} else if (selectedStudent == friendsInTheSameCourse().count + 1) {
-        //					compareToButton.setTitle(localized("top_10_percent"), for: UIControlState())
-        //					comparisonStudentName.text = localized("top_10_percent")
-        //					UIView.animate(withDuration: 0.25, animations: { () -> Void in
-        //						self.blueDot.alpha = 1.0
-        //						self.comparisonStudentName.alpha = 1.0
-        //					})
-        //				} else if (selectedStudent == friendsInTheSameCourse().count + 2) {
+                    //				} else if (selectedStudent == friendsInTheSameCourse().count + 1) {
+                    //					compareToButton.setTitle(localized("top_10_percent"), for: UIControlState())
+                    //					comparisonStudentName.text = localized("top_10_percent")
+                    //					UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                    //						self.blueDot.alpha = 1.0
+                    //						self.comparisonStudentName.alpha = 1.0
+                    //					})
+                    //				} else if (selectedStudent == friendsInTheSameCourse().count + 2) {
                 } else if (selectedStudent == friendsInTheSameCourse().count + 1) {
                     compareToButton.setTitle(localized("average"), for: UIControlState())
                 }
                 getEngagementData()
             }
-        break
+            break
         default:break
         }
     }
@@ -833,5 +838,5 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         }
         return names.reversed()
     }
-
+    
 }

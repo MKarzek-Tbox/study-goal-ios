@@ -13,8 +13,8 @@ import Foundation
 import CoreData
 
 extension MarkValue {
-	
-	@NSManaged var value: NSNumber
-	@NSManaged var mark: Mark
-	
+    
+    @NSManaged var value: NSNumber
+    @NSManaged var mark: Mark
+    
 }

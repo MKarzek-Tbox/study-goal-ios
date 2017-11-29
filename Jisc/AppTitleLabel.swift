@@ -9,13 +9,10 @@
 import UIKit
 
 class AppTitleLabel: UILabel {
-	
-	override func awakeFromNib() {
-		super.awakeFromNib()
-//		if (dataManager.currentStudent != nil) {
-//			text = dataManager.currentStudent!.institution.name
-//		}
-		text = "Jisc"
-	}
-	
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        text = "Jisc"
+    }
+    
 }

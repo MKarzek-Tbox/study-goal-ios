@@ -13,12 +13,12 @@ import Foundation
 import CoreData
 
 extension Institution {
-	
-	@NSManaged var accessKey: String
-	@NSManaged var id: String
-	@NSManaged var isLearningAnalytics: NSNumber
-	@NSManaged var name: String
-	@NSManaged var secret: String
-	@NSManaged var students: NSSet
-	
+    
+    @NSManaged var accessKey: String
+    @NSManaged var id: String
+    @NSManaged var isLearningAnalytics: NSNumber
+    @NSManaged var name: String
+    @NSManaged var secret: String
+    @NSManaged var students: NSSet
+    
 }

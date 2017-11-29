@@ -13,14 +13,14 @@ import Foundation
 import CoreData
 
 extension Activity {
-	
-	@NSManaged var id: String
-	@NSManaged var englishName: String
-	@NSManaged var name: String
-	@NSManaged var past: String
-	@NSManaged var present: String
-	@NSManaged var activityLogs: NSSet
-	@NSManaged var activityTypes: NSSet
-	@NSManaged var targets: NSSet
-	
+    
+    @NSManaged var id: String
+    @NSManaged var englishName: String
+    @NSManaged var name: String
+    @NSManaged var past: String
+    @NSManaged var present: String
+    @NSManaged var activityLogs: NSSet
+    @NSManaged var activityTypes: NSSet
+    @NSManaged var targets: NSSet
+    
 }

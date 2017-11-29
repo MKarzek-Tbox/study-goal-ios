@@ -13,12 +13,12 @@ import CoreData
 class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate, UIAlertViewDelegate, CustomPickerViewDelegate, UITextFieldDelegate  {
     @IBOutlet weak var topSegmentControl: UISegmentedControl!
     
-    @IBOutlet weak var myGoalTextField: UITextView! //H
-    @IBOutlet weak var recurringDatePicker: UIDatePicker!//H
+    @IBOutlet weak var myGoalTextField: UITextView!
+    @IBOutlet weak var recurringDatePicker: UIDatePicker!
     @IBOutlet weak var recurringBecauseTextField: UITextView!
     
-    @IBOutlet weak var moduleLabel: LocalizableLabel! //H
-    @IBOutlet weak var recurringSegmentControl: UISegmentedControl! // H
+    @IBOutlet weak var moduleLabel: LocalizableLabel!
+    @IBOutlet weak var recurringSegmentControl: UISegmentedControl!
     @IBOutlet weak var activityTypeButton:UIButton!
     @IBOutlet weak var chooseActivityButton:UIButton!
     @IBOutlet weak var intervalButton:UIButton!
@@ -26,10 +26,10 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
     @IBOutlet weak var minutesPicker:UIPickerView!
     @IBOutlet weak var closeTimePickerButton:UIButton!
     @IBOutlet weak var timePickerBottomSpace:NSLayoutConstraint!
-    @IBOutlet weak var moduleButton:UIButton! //H
+    @IBOutlet weak var moduleButton:UIButton!
     @IBOutlet weak var contentScroll:UIScrollView!
     @IBOutlet weak var scrollBottomSpace:NSLayoutConstraint!
-    @IBOutlet weak var noteTextView:UITextView! //H
+    @IBOutlet weak var noteTextView:UITextView!
     @IBOutlet weak var hoursTextField:UITextField!
     @IBOutlet weak var minutesTextField:UITextField!
     @IBOutlet weak var toolbar:UIView!
@@ -43,7 +43,7 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
     var selectedTimeSpan:Int = 0
     var selectedModule:Int = 0
     var theTarget:Target?
-    @IBOutlet weak var titleLabel:UILabel! //H
+    @IBOutlet weak var titleLabel:UILabel!
     var isEditingTarget:Bool = false
     @IBOutlet weak var addModuleView:UIView!
     @IBOutlet weak var addModuleTextField:UITextField!
@@ -366,10 +366,8 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
                 module = dataManager.moduleNameAtIndex(selectedModule - 1)!
             }
             if (myGoalTextField.text.isEmpty || myGoalTextField.text == targetGoalPlaceholder){
-                //Make sure to localize the following message
                 
                 AlertView.showAlert(false, message: localized("Make sure to fill in My Goal section")) { (done) -> Void in
-                    //self.dismiss(animated: true, completion: nil)
                 }
                 return
             }
@@ -412,7 +410,6 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
                 myBody = myBody + "&record_id=\(recordId)"
                 print(myBody)
                 
-                //let somethingWentWrong = xAPIManager().editSingleTarget(body: myBody)
                 let somethingWentWrong = xAPIManager().postRequest(testUrl: urlStringEdit, body: myBody)
                 
                 if (somethingWentWrong){
@@ -450,12 +447,11 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
                     }
                     
                 } else {
-                    let editedDateObject = defaults.object(forKey: "EditedDate") //as! Date
+                    let editedDateObject = defaults.object(forKey: "EditedDate")
                     if (editedDateObject != nil){
                         let formatter = DateFormatter()
                         formatter.dateFormat = "yyyy-MM-dd"
                         let TestDateTime = formatter.string(from: recurringDatePicker.date)
-                        //  recurringDatePicker.date = TestDateTime!
                         defaults.set(TestDateTime, forKey: "EditedDate")
                         
                     }
@@ -466,33 +462,16 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
             let secondsInYear = 365 * 24 * 60 * 60
             recurringDatePicker.maximumDate = Date(timeInterval: TimeInterval(secondsInYear), since: Date())
         }
-        //        let defaults = UserDefaults.standard
-        //        let editedDateObject = defaults.object(forKey: "EditedDate") as! Date
-        //        recurringDatePicker.date = editedDateObject
-        
     }
     
-    func keyboardWillShow(notification: NSNotification) {
-        //        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-        //            if self.contentScroll.contentOffset.y != 0{
-        //                self.contentScroll.contentOffset.y += 330
-        //            }
-        //        }
-    }
+    func keyboardWillShow(notification: NSNotification) { }
     
-    func keyboardWillHide(notification: NSNotification) {
-        /*if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-         if self.view.frame.origin.y != 0{
-         self.view.frame.origin.y += keyboardSize.height
-         }
-         }*/
-    }
+    func keyboardWillHide(notification: NSNotification) { }
     
     //MARK: UIAlertView Delegate
     
     func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         if (buttonIndex == 0) {
-            //_ = navigationController?.popViewController(animated: false)
             let vc = SingleTargetVC()
             navigationController?.pushViewController(vc, animated: true)
             
@@ -709,7 +688,6 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
                 goal = ""
             }
         }
-        
     }
     
     //MARK: UIPickerView Datasource

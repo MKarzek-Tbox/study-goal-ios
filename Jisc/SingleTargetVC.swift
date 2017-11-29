@@ -20,8 +20,8 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     var arrayOfResponses2: [[String:Any]] = []
     var noHeight = 0.0
     var refreshTimer:Timer?
-
-
+    
+    
     @IBOutlet weak var singleTargetSegmentControl: UISegmentedControl!
     
     override func viewDidLoad() {
@@ -35,7 +35,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(SingleTargetVC.manuallyRefreshFeeds(_:)), for: UIControlEvents.valueChanged)
         singleTargetTableView.addSubview(refreshControl)
-
+        
         singleTargetTableView.delegate = self
         singleTargetTableView.dataSource = self
         singleTargetTableView.reloadData()
@@ -61,7 +61,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         self.singleTargetTableView.reloadData()
         sender.endRefreshing()
     }
-
+    
     func doThisWhenNotify(){
         let vc = RecurringTargetVC()
         vc.cameFromEditing()
@@ -82,11 +82,11 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         super.viewDidAppear(animated)
         singleTargetTableView.reloadData()
     }
-
+    
     @IBAction func openMenuAction(_ sender: Any) {
         DELEGATE.menuView?.open()
     }
-
+    
     @IBAction func newTargetAction(_ sender: Any) {
         let vc = RecurringTargetVC()
         navigationController?.pushViewController(vc, animated: true)
@@ -110,9 +110,9 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         var urlStringCall = ""
         
         if social(){
-         urlStringCall = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_get_todo_list?is_social=true&language=en&is_social=no"
+            urlStringCall = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_get_todo_list?is_social=true&language=en&is_social=no"
         } else {
-         urlStringCall = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_get_todo_list?student_id=\(dataManager.currentStudent!.id)&language=en&is_social=no"
+            urlStringCall = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_get_todo_list?student_id=\(dataManager.currentStudent!.id)&language=en&is_social=no"
         }
         
         var request:URLRequest?
@@ -130,42 +130,39 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                     if let data = data,
                         let json = try JSONSerialization.jsonObject(with: data) as? [Any] {
                         
-                            for item in json {
-                                let object = item as? [String:Any]
-                                let singleDictionary = object
-                                let status = singleDictionary?["from_tutor"] as! String
-                                let status2 = singleDictionary?["is_accepted"] as! String
-                                let status3 = singleDictionary?["status"] as! String
-                                
-                                if (status3 == "1" ){
-                                    print("complete task")
-                                } else if(status == "yes" && status2 == "0"){
-                                    self.arrayOfResponses2.append(object!)
-                                } else {
-                                    self.arrayOfResponses.append(object!)
-                                }
-                                print("it works \(status)");
-                                
-
+                        for item in json {
+                            let object = item as? [String:Any]
+                            let singleDictionary = object
+                            let status = singleDictionary?["from_tutor"] as! String
+                            let status2 = singleDictionary?["is_accepted"] as! String
+                            let status3 = singleDictionary?["status"] as! String
+                            
+                            if (status3 == "1" ){
+                                print("complete task")
+                            } else if(status == "yes" && status2 == "0"){
+                                self.arrayOfResponses2.append(object!)
+                            } else {
+                                self.arrayOfResponses.append(object!)
                             }
+                            print("it works \(status)");
+                            
+                            
+                        }
                         for item in self.arrayOfResponses2{
                             self.arrayOfResponses.insert(item, at: 0)
-
+                            
                         }
                         let defaults = UserDefaults.standard
-
+                        
                         defaults.set(self.arrayOfResponses, forKey: "AllTheSingleTargets") //My goal text
-
+                        
                         self.singleTargetTableView.reloadData()
-
+                        
                     }
                 } catch {
                     print("Error deserializing JSON: \(error)")
                 }
             }
-            //startConnectionWithRequest(request)
-        } else {
-            // completionBlock?(false, nil, nil, "Error creating the url request")
         }
     }
     
@@ -180,9 +177,9 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         let theCell = tableView.dequeueReusableCell(withIdentifier: kTargetCellIdentifier) as! TargetCell
         theCell.completionColorView.isHidden = true
         print(indexPath.row)
-
+        
         print("This is the array of responses in SingleTargetVC", arrayOfResponses)
-        let singleDictionary = arrayOfResponses[indexPath.row] 
+        let singleDictionary = arrayOfResponses[indexPath.row]
         let describe = singleDictionary["description"] as! String
         let endDate = singleDictionary["end_date"] as! String
         let module = singleDictionary["module"] as! String
@@ -192,10 +189,9 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         if (status == "0"){
         }
         if(status == "yes" && status2 == "0"){
-            //theCell.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
+            
         } else if (status == "yes" && status2 == "2"){
-            //theCell.backgroundColor = UIColor.red
-            //theCell.isHidden = true
+            
         } else {
             print("This is the array of responses in SingleTargetVC", arrayOfResponses)
             let singleDictionary = arrayOfResponses[indexPath.row]
@@ -205,10 +201,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             let reason = singleDictionary["reason"] as! String
             let status = singleDictionary["from_tutor"] as! String
             let status2 = singleDictionary["is_accepted"] as! String
-            if (status == "0"){
-                //theCell.isHidden = true
-                
-            }
+            
             if(status == "yes" && status2 == "0"){
                 theCell.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
             } else if (status == "yes" && status2 == "2"){
@@ -219,19 +212,15 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             }
             let todaysDateObject = Date()
             
-            //The date formatter of the incoming JSON date
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "y-MM-dd"
             dateFormatter.locale = Locale.init(identifier: "en_GB")
-            //Formatting the date to something like Monday August 21, 2017
+            
             let dateObj = dateFormatter.date(from: endDate)
             dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
             let finalDate = dateFormatter.string(from: dateObj!)
             
-            //Setting up some variables to compare today's date with the date incoming from the JSON and
-            //how long ago it was
             let calendar = Calendar.current
-            // Replace the hour (time) of both dates with 00:00 for a fair full day comparision.
             let date1 = calendar.startOfDay(for: todaysDateObject)
             let date2 = calendar.startOfDay(for: dateObj!)
             
@@ -239,7 +228,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             let numberOfDaysAgo = components.day
             
             var finalText = ""
-            //Checks to see if the module, reason sections are empty and returning the appropriate date.
             if (module.isEmpty || module == "no_module" || module.uppercased() == "NO MODULE" || module == "No Module"){
                 if (Calendar.current.isDateInTomorrow(dateObj!)){
                     if (reason.isEmpty || reason == "Add a reason to keep this target"){
@@ -282,15 +270,16 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                 }
             } else {
                 if (Calendar.current.isDateInTomorrow(dateObj!)){
-                    finalText = "\(describe) by tomorrow"// because \(reason.lowercased())"
+                    finalText = "\(describe) by tomorrow"
                 } else if (Calendar.current.isDateInToday(dateObj!)){
-                    finalText = "\(describe) by end of today"//  because \(reason.lowercased())"
+                    finalText = "\(describe) by end of today"
                 } else if (numberOfDaysAgo! < 0){
-                    finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe)"// because \(reason.lowercased())"
+                    finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe)"
                 } else {
-                    finalText = "\(describe) by \(finalDate)"// because \(reason.lowercased())"
+                    finalText = "\(describe) by \(finalDate)"
                 }
             }
+            
             /*
              1. Cool is for if there are more than 7 days remaining
              2. watch_time is for fewer than 7 days but more than 2 days before end date.
@@ -298,7 +287,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
              4. watch_time_panik for same day
              5. watch_time_break for overdue
              */
-            //Setting in the appropriate images
             theCell.targetTypeIcon.image = nil
             if (numberOfDaysAgo! >= 7) {
                 theCell.targetTypeIcon.image = UIImage(named: "cool")
@@ -312,7 +300,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                 theCell.targetTypeIcon.image = UIImage(named: "watch_time_break")
             }
             
-            //theCell.textLabel?.adjustsFontSizeToFitWidth = true
             theCell.textLabel?.numberOfLines = 6
             theCell.completionColorView.isHidden = true
             theCell.titleLabel.text = finalText
@@ -328,18 +315,13 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         let status = singleDictionary["status"] as! String
         let status1 = singleDictionary["from_tutor"] as! String
         let status2 = singleDictionary["is_accepted"] as! String
-        if (status == "0"){
-            //theCell.isHidden = true
-            
-        }
+        
         if(status1 == "yes" && status2 == "0"){
             return 108.0
         } else if (status1 == "yes" && status2 == "2"){
             return 0.0
-            //theCell.isHidden = true
         }  else if (status1 == "yes" && status2 == "1"){
             return 0.0
-            //theCell.isHidden = true
         } else {
             return 108.0
         }
@@ -352,8 +334,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         
         let theCell:TargetCell? = cell as? TargetCell
         theCell?.completionColorView.isHidden = true
-  if (theCell != nil) {
-//            theCell!.loadTarget(dataManager.targets()[indexPath.row], isLast:(indexPath.row == (dataManager.targets().count - 1)))
+        if (theCell != nil) {
             theCell!.indexPath = indexPath
             theCell!.tableView = tableView
             theCell!.navigationController = navigationController
@@ -361,17 +342,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if (aSingleCellIsOpen) {
-//            tableView.reloadData()
-//        } else {
-//            let target = dataManager.targets()[indexPath.row]
-//            let vc = TargetDetailsVC(target: target, index: indexPath.row)
-//            navigationController?.pushViewController(vc, animated: true)
-//            
-//        }
-        if demo(){
-        
-        } else {
+        if(!demo()) {
             let singleDictionary = arrayOfResponses[indexPath.row]
             let status = singleDictionary["from_tutor"] as! String
             let status2 = singleDictionary["is_accepted"] as! String
@@ -394,15 +365,11 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                         
                     } else {
                         dictionaryfordis.updateValue("no", forKey: "is_social")
-                        
                     }
-                    //            let url = ""
-                    //            let body = ""
-                    //            xAPIManager().postRequest(testUrl: <#T##String#>, body: <#T##String#>)
+                    
                     DownloadManager().editToDo(dictionary:dictionaryfordis)
                     xAPIManager().checkMod(testUrl:"https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-accept-tutor-target&contentName=acceptTarget")
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        // your code here
                         self.getTodoListData()
                     }
                 }))
@@ -413,7 +380,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                     }
                     alert2.addAction(UIAlertAction(title: localized("ok"), style: .default, handler: { (action) in
                         if let field = alert2.textFields?[0] {
-                            // store your data
                             print("\(field.text!)")
                             var dictionaryfordis = [String:String]()
                             dictionaryfordis.updateValue("2", forKey: "is_accepted")
@@ -435,7 +401,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                             DownloadManager().editToDo(dictionary:dictionaryfordis)
                             xAPIManager().checkMod(testUrl:"https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-decline-tutor-target&contentName=declineTarget")
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                                // your code here
                                 self.getTodoListData()
                             }
                         } else {
@@ -457,10 +422,8 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                             }
                             DownloadManager().editToDo(dictionary:dictionaryfordis)
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                                // your code here
                                 self.getTodoListData()
                             }
-                            // user did not fill field
                         }
                     }))
                     self.navigationController?.present(alert2, animated: true, completion: nil)
@@ -472,13 +435,11 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                 if let cell = tableView.cellForRow(at: indexPath) as? TargetCell {
                     if(!cell.optionsOpened){
                         cell.openCellOptions()
-                        //cell.optionsOpened = true
                     } else {
                         cell.closeCellOptions()
-                        //cell.optionsOpened = false
                     }
                 }
             }
         }
-        }
+    }
 }

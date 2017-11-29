@@ -18,11 +18,6 @@ let managedContext = DELEGATE.managedObjectContext
 let dataManager = DataManager()
 
 var runningActivititesTimer:Timer!
-
-/*
- An activity must be stopped after 3 hours
- */
-
 let maximumMinutesActivity = 180
 
 func readModel() -> (context:NSManagedObjectContext, id:String, name:String, present:String, past:String, english:String) {
@@ -298,7 +293,6 @@ class DataManager: NSObject {
             }
         }
         runningActivititesTimer.invalidate()
-        //DELEGATE.mainController?.feedViewController.refreshTimer?.invalidate()
         dataManager.currentStudent = nil
         dataManager.firstTrophyCheck = true
         clearXAPIToken()
@@ -489,8 +483,8 @@ class DataManager: NSObject {
             print("get targets error: \(error.localizedDescription)")
         }
         return array
-}
-
+    }
+    
     
     //MARK: Stretch Targets
     
@@ -1014,8 +1008,8 @@ class DataManager: NSObject {
                 })
             })
         })
-}
-
+    }
+    
     
     func loginStudent(_ instituteID:String, email:String, password:String, completion:@escaping dataManagerCompletionBlock) {
         cleanUserSpecificData()
@@ -1138,7 +1132,6 @@ class DataManager: NSObject {
                         }
                         if let modules = result!["modules"] as? [NSDictionary] {
                             for (_, item) in modules.enumerated() {
-                                //							let object = Module.insertInManagedObjectContext(managedContext, array: array)
                                 let object = Module.insertInManagedObjectContext(managedContext, dictionary: item)
                                 self.currentStudent!.addModule(object)
                             }
@@ -1151,10 +1144,6 @@ class DataManager: NSObject {
                         self.deleteObject(item)
                     }
                     self.safelySaveContext()
-                    //				var array = [String]()
-                    //				array.append(localized("no_module"))
-                    //				array.append("")
-                    //				let object = Module.insertInManagedObjectContext(managedContext, array: array)
                     let object = Module.insertInManagedObjectContext(managedContext, dictionary: ["":localized("no_module")])
                     self.currentStudent!.addModule(object)
                 }
@@ -1165,36 +1154,6 @@ class DataManager: NSObject {
                 completion(success, reason)
             }
         }
-        //		DownloadManager().getStudentModules(currentStudent!.id, alertAboutInternet: false) { (success, result, results, error) -> Void in
-        //			if (success) {
-        //				if (results != nil) {
-        //					for (_, item) in results!.enumerate() {
-        //						let dictionary = item as? NSDictionary
-        //						if (dictionary != nil) {
-        //							let object = Module.insertInManagedObjectContext(managedContext, dictionary: dictionary!)
-        //							self.currentStudent!.addModule(object)
-        //						}
-        //					}
-        //					self.safelySaveContext()
-        //				}
-        //			}
-        //			if (!self.currentStudent!.institution.isLearningAnalytics.boolValue) {
-        //				for (_, item) in self.modules().enumerate() {
-        //					self.deleteObject(item)
-        //				}
-        //				self.safelySaveContext()
-        //				var dictionary = [String:String]()
-        //				dictionary["module_id"] = ""
-        //				dictionary["module_name"] = localized("no_module")
-        //				let object = Module.insertInManagedObjectContext(managedContext, dictionary: dictionary)
-        //				self.currentStudent!.addModule(object)
-        //			}
-        //			var reason = kDefaultFailureReason
-        //			if (error != nil) {
-        //				reason = error!
-        //			}
-        //			completion(success: success, failureReason:reason)
-        //		}
     }
     
     //MARK: Manage Activity Logs
@@ -1220,7 +1179,6 @@ class DataManager: NSObject {
                                 }
                             }
                             var moduleOk = false
-                            //							let module = self.moduleWithID(stringFromDictionary(dictionary!, key: "module_id"))
                             let module = self.moduleWithID(stringFromDictionary(dictionary!, key: "module"))
                             if (module != nil) {
                                 object.module = module!
@@ -1270,7 +1228,6 @@ class DataManager: NSObject {
                                 }
                             }
                             var moduleOk = false
-                            //							let module = self.moduleWithID(stringFromDictionary(dictionary!, key: "module_id"))
                             let module = self.moduleWithID(stringFromDictionary(dictionary!, key: "module"))
                             if (module != nil) {
                                 object.module = module!
@@ -1373,7 +1330,6 @@ class DataManager: NSObject {
                                     activitiesOk = true
                                 }
                             }
-                            //							let module = self.moduleWithID(stringFromDictionary(dictionary!, key: "module_id"))
                             let module = self.moduleWithID(stringFromDictionary(dictionary!, key: "module"))
                             if (module != nil) {
                                 object.module = module!
@@ -1399,15 +1355,7 @@ class DataManager: NSObject {
     }
     
     func refreshStudentTargets(_ success:Bool, error:String?, completion:@escaping dataManagerCompletionBlock) {
-        //		if (success) {
         getStudentTargets(completion)
-        //		} else {
-        //			var reason = kDefaultFailureReason
-        //			if (error != nil) {
-        //				reason = error!
-        //			}
-        //			completion(success: false, failureReason:reason)
-        //		}
     }
     
     func addTarget(_ target:Target, completion:@escaping dataManagerCompletionBlock) {
@@ -1534,7 +1482,7 @@ class DataManager: NSObject {
                 AlertView.showAlert(false, message: failureReason, completion: nil)
             }
         }
-}
+    }
     
     func editStretchTarget(_ stretchTargetID:String, minutes:Int, completion:@escaping dataManagerCompletionBlock) {
         DownloadManager().editStretchTarget(stretchTargetID, stretchTimeInMinutes: minutes, alertAboutInternet: true) { (success, result, results, error) -> Void in
@@ -1745,7 +1693,6 @@ class DataManager: NSObject {
         }
     }
     
-    
     //MARK: Marks
     
     func getStudentMarks(_ completion:@escaping dataManagerCompletionBlock) {
@@ -1767,7 +1714,6 @@ class DataManager: NSObject {
                                     let keys3 = result3!.allKeys
                                     for (_, markName) in keys3.enumerated() {
                                         let studentID = self.currentStudent!.id
-                                        //										let name = "\(moduleID2)_\(markName)"
                                         let name = "\(markName)"
                                         let object = Mark.insertInManagedObjectContext(managedContext, studentID: studentID, moduleID: "\(moduleID)", markName: name)
                                         self.currentStudent!.addMark(object)
@@ -1865,27 +1811,6 @@ class DataManager: NSObject {
             }
         }
         return dictionary
-        
-        //		var sum = 0
-        //		var dictionary = [Int:Int]()
-        //		for (_, item) in values.enumerate() {
-        //			let integer = item.integerValue
-        //			if (integer != nil) {
-        //				let existing = dictionary[integer!]
-        //				if (existing == nil) {
-        //					sum += integer
-        //					dictionary[integer!] = 0
-        //				}
-        //			}
-        //		}
-        //
-        //		let ordered = dictionary.keys.sort().reverse()
-        //
-        //		for (index, item) in ordered.enumerate() {
-        //			dictionary[item] = (((index + 1) * 100) / (dictionary.count))
-        //		}
-        //
-        //		return dictionary
     }
     
     func getStudentAssignmentRankings(_ completion:@escaping dataManagerCompletionBlock) {

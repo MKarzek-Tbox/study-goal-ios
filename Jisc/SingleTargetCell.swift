@@ -28,11 +28,11 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
     weak var tableView:UITableView?
     weak var navigationController:UINavigationController?
     @IBOutlet weak var contentTrailingConstraint:NSLayoutConstraint!
-
+    
     @IBOutlet weak var optionsButtonsView:UIView!
     var optionsState:kOptionsState = .closed
     var panStartPoint:CGPoint = CGPoint.zero
-
+    
     weak var parent:TargetVC?
     
     override func awakeFromNib() {
@@ -97,7 +97,7 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
         print("edit for single target called")
         NotificationCenter.default.post(name: Notification.Name(rawValue: myNotificationKey), object: self)
     }
-
+    
     @IBAction func editTarget(_ sender:UIButton) {
         print("edit for single target called without notification")
         let vc = RecurringTargetVC()
@@ -181,7 +181,7 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.optionsButtonsView.setNeedsLayout()
             self.layoutIfNeeded()
-        }) 
+        })
     }
     
     //MARK: UIAlertView Delegate

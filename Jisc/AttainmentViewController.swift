@@ -36,7 +36,7 @@ class AttainmentViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var moduleButton:UIButton!
     var moduleSelectorView:CustomPickerView = CustomPickerView()
     var selectedModule:Int = 0
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,7 +56,7 @@ class AttainmentViewController: UIViewController, UITableViewDataSource, UITable
         attainmentData.removeAll()
         getAttainmentData { }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -77,10 +77,7 @@ class AttainmentViewController: UIViewController, UITableViewDataSource, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: kAttainmentCellIdentifier, for: indexPath)
         
         if let attainmentCell = cell as? AttainmentCell {
-            if demo(){
-                //attainmentCell.nameLabel.text = attainmentDemoArray[indexPath.row]
-                //attainmentCell.positionLabel.text = String(arc4random_uniform(50))
-            } else if indexPath.row < attainmentData.count {
+            if indexPath.row < attainmentData.count {
                 let attObject = attainmentData[indexPath.row]
                 attainmentCell.loadAttainmentObject(attObject)
             } else {
@@ -92,10 +89,6 @@ class AttainmentViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let attainmentCell = cell as? AttainmentCell {
-            if demo(){
-                //attainmentCell.nameLabel.text = attainmentDemoArray[indexPath.row]
-                //attainmentCell.positionLabel.text = String(arc4random_uniform(50))
-            }
             if indexPath.row < attainmentData.count {
                 let attObject = attainmentData[indexPath.row]
                 attainmentCell.loadAttainmentObject(attObject)

@@ -16,15 +16,14 @@ class AttainmentCell: UITableViewCell {
     @IBOutlet weak var dateLabel:UILabel!
     @IBOutlet weak var moduleLabel:UILabel!
     @IBOutlet weak var markLabel:UILabel!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
-        //super.setSelected(selected, animated: animated)
     }
-
+    
     func loadAttainmentObject(_ object:AttainmentObject?) {
         if let object = object {
             dateFormatter.dateFormat = "dd/MM/yy"

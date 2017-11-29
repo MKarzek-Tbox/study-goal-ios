@@ -13,12 +13,12 @@ import Foundation
 import CoreData
 
 extension StretchTarget {
-	
-	@NSManaged var createdDate: Date
-	@NSManaged var id: String
-	@NSManaged var status: NSNumber
-	@NSManaged var stretchTime: NSNumber
-	@NSManaged var student: Student
-	@NSManaged var target: Target
-	
+    
+    @NSManaged var createdDate: Date
+    @NSManaged var id: String
+    @NSManaged var status: NSNumber
+    @NSManaged var stretchTime: NSNumber
+    @NSManaged var student: Student
+    @NSManaged var target: Target
+    
 }

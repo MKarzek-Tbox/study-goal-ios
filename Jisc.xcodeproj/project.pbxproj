@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8005369C1F716A8B00A05FEA /* StatsVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C8031C4CE94F00F7A3C6 /* StatsVC~ipad.xib */; };
 		800B167C1F46F39C0000D633 /* SingleTargetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800B167A1F46F39C0000D633 /* SingleTargetVC.swift */; };
 		800B167D1F46F39C0000D633 /* SingleTargetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 800B167B1F46F39C0000D633 /* SingleTargetVC.xib */; };
 		800C2DC51F28EBD5006A078B /* stats_attendance_high_chart.html in Resources */ = {isa = PBXBuildFile; fileRef = 800C2DC41F28EBD5006A078B /* stats_attendance_high_chart.html */; };
@@ -86,7 +85,6 @@
 		DA425AA81BD4E77F00C77D76 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA425AA71BD4E77F00C77D76 /* DownloadManager.swift */; };
 		DA425AAA1BD4E9D500C77D76 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA425AA91BD4E9D500C77D76 /* LoadingView.swift */; };
 		DA425AAC1BD4E9E800C77D76 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA425AAB1BD4E9E800C77D76 /* LoadingView.xib */; };
-		DA425AB51BD5116D00C77D76 /* LoginVC-OLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA425AB31BD5116D00C77D76 /* LoginVC-OLD.swift */; };
 		DA425ABC1BD51ACE00C77D76 /* ViewWithRoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA425ABB1BD51ACE00C77D76 /* ViewWithRoundedCorners.swift */; };
 		DA425AD31BD52E0B00C77D76 /* InstituteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA425AD11BD52E0B00C77D76 /* InstituteCell.swift */; };
 		DA425AD41BD52E0B00C77D76 /* InstituteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA425AD21BD52E0B00C77D76 /* InstituteCell.xib */; };
@@ -119,14 +117,12 @@
 		DA76411D1BD7BE4000A7D5C1 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76411C1BD7BE4000A7D5C1 /* AlertView.swift */; };
 		DA7641241BD7CC0800A7D5C1 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7641221BD7CC0800A7D5C1 /* SettingsVC.swift */; };
 		DA7F1D261BD8CFA9004EA957 /* UIImageEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7F1D251BD8CFA9004EA957 /* UIImageEffects.swift */; };
-		DA7F1D2B1BD8E1A3004EA957 /* MyFriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7F1D291BD8E1A3004EA957 /* MyFriendsVC.swift */; };
 		DA7F1D2F1BD8E463004EA957 /* OneFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7F1D2D1BD8E463004EA957 /* OneFriendCell.swift */; };
 		DA7F1D3F1BD8FBD9004EA957 /* SelectHomeScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7F1D3D1BD8FBD9004EA957 /* SelectHomeScreenVC.swift */; };
 		DA7F1D431BD9035B004EA957 /* TrophiesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7F1D411BD9035B004EA957 /* TrophiesVC.swift */; };
 		DA7F1D471BD905E1004EA957 /* SelectLanguageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7F1D451BD905E1004EA957 /* SelectLanguageVC.swift */; };
 		DA7F1D531BD91882004EA957 /* OneFeedItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7F1D511BD91882004EA957 /* OneFeedItemCell.swift */; };
 		DA819EA21BDA20D900810C14 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = DA819EA11BDA20D900810C14 /* Podfile */; };
-		DA868B181BE79C0E00032225 /* EngagementGraphVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA868B161BE79C0E00032225 /* EngagementGraphVC.swift */; };
 		DA9904EA1C046B6F00B6013C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9904E91C046B6F00B6013C /* MessageUI.framework */; };
 		DA9C72841C9815A10012B5DD /* xAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9C72831C9815A10012B5DD /* xAPIManager.swift */; };
 		DAA19AD11C7F263700227893 /* AppTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA19AD01C7F263700227893 /* AppTitleLabel.swift */; };
@@ -137,12 +133,10 @@
 		DAA2AEC21BCE7E7400ED796A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAA2AEC11BCE7E7400ED796A /* UIKit.framework */; };
 		DAA2AEC51BCE7EAF00ED796A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAA2AEC41BCE7EAF00ED796A /* Foundation.framework */; };
 		DAA2AEF21BCE85C000ED796A /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2AEF01BCE85C000ED796A /* FeedVC.swift */; };
-		DAA2AEF61BCE85CD00ED796A /* StatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2AEF41BCE85CD00ED796A /* StatsVC.swift */; };
 		DAA2AEFA1BCE85DB00ED796A /* LogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2AEF81BCE85DB00ED796A /* LogVC.swift */; };
 		DAA2AEFE1BCE85E600ED796A /* TargetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2AEFC1BCE85E600ED796A /* TargetVC.swift */; };
 		DAA4BEAC1BF383DF0057AEF9 /* SingleTargetDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA4BEAB1BF383DF0057AEF9 /* SingleTargetDetailsView.swift */; };
 		DAAB37E71BDA63D800D56BDE /* GraphGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB37E61BDA63D800D56BDE /* GraphGenerator.swift */; };
-		DAB0C7BF1C4CE82500F7A3C6 /* LoginVC-OLD.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C7C11C4CE82500F7A3C6 /* LoginVC-OLD.xib */; };
 		DAB0C7CB1C4CE88700F7A3C6 /* FeedVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C7CD1C4CE88700F7A3C6 /* FeedVC.xib */; };
 		DAB0C7D11C4CE8A000F7A3C6 /* FeedVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C7D31C4CE8A000F7A3C6 /* FeedVC~ipad.xib */; };
 		DAB0C7D71C4CE8BA00F7A3C6 /* OneFeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C7D91C4CE8BA00F7A3C6 /* OneFeedItemCell.xib */; };
@@ -151,9 +145,6 @@
 		DAB0C7E91C4CE90C00F7A3C6 /* FoundStudentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C7EB1C4CE90C00F7A3C6 /* FoundStudentCell.xib */; };
 		DAB0C7EF1C4CE91A00F7A3C6 /* NewRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C7F11C4CE91A00F7A3C6 /* NewRequestCell.xib */; };
 		DAB0C7F51C4CE92700F7A3C6 /* MyFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C7F71C4CE92700F7A3C6 /* MyFriendCell.xib */; };
-		DAB0C7FB1C4CE93D00F7A3C6 /* StatsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C7FD1C4CE93D00F7A3C6 /* StatsVC.xib */; };
-		DAB0C80D1C4CE97400F7A3C6 /* EngagementGraphVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C80F1C4CE97400F7A3C6 /* EngagementGraphVC.xib */; };
-		DAB0C8131C4CE98C00F7A3C6 /* EngagementGraphVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C8151C4CE98C00F7A3C6 /* EngagementGraphVC~ipad.xib */; };
 		DAB0C8251C4CE9C700F7A3C6 /* LogVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C8271C4CE9C700F7A3C6 /* LogVC.xib */; };
 		DAB0C82B1C4CE9DB00F7A3C6 /* LogVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C82D1C4CE9DB00F7A3C6 /* LogVC~ipad.xib */; };
 		DAB0C8311C4CE9EF00F7A3C6 /* NewActivityVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C8331C4CE9EF00F7A3C6 /* NewActivityVC.xib */; };
@@ -169,7 +160,6 @@
 		DAB0C8791C4CEAE700F7A3C6 /* TargetDetailsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C87B1C4CEAE700F7A3C6 /* TargetDetailsVC.xib */; };
 		DAB0C8851C4CEB1200F7A3C6 /* SettingsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C8871C4CEB1200F7A3C6 /* SettingsVC.xib */; };
 		DAB0C88B1C4CEB2400F7A3C6 /* SettingsVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C88D1C4CEB2400F7A3C6 /* SettingsVC~ipad.xib */; };
-		DAB0C8911C4CEB3700F7A3C6 /* MyFriendsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C8931C4CEB3700F7A3C6 /* MyFriendsVC.xib */; };
 		DAB0C89D1C4CEB5900F7A3C6 /* OneFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C89F1C4CEB5900F7A3C6 /* OneFriendCell.xib */; };
 		DAB0C8A31C4CEB6800F7A3C6 /* SelectHomeScreenVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C8A51C4CEB6800F7A3C6 /* SelectHomeScreenVC.xib */; };
 		DAB0C8AF1C4CEBF500F7A3C6 /* TrophiesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C8B11C4CEBF500F7A3C6 /* TrophiesVC.xib */; };
@@ -224,7 +214,6 @@
 		DAD66C691C52222800074B79 /* TrophiesGoldBig.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAD66C651C52222800074B79 /* TrophiesGoldBig.xcassets */; };
 		DAD66C6F1C52336400074B79 /* TrophiesSilverBig.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAD66C6E1C52336400074B79 /* TrophiesSilverBig.xcassets */; };
 		DAD66C951C523A2900074B79 /* TrophiesSilver.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAD66C941C523A2900074B79 /* TrophiesSilver.xcassets */; };
-		DAD66C9C1C52745500074B79 /* LoginVC~ipad-OLD.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAD66C9A1C52745500074B79 /* LoginVC~ipad-OLD.xib */; };
 		DAD66CA41C5279FC00074B79 /* CustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD66CA31C5279FC00074B79 /* CustomPickerView.swift */; };
 		DAD66CA61C527A1200074B79 /* CustomPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAD66CA51C527A1200074B79 /* CustomPickerView.xib */; };
 		DAD6AE251C57B0AB00BCBBDD /* TrophiesCelliPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD6AE231C57B0AB00BCBBDD /* TrophiesCelliPad.swift */; };
@@ -402,7 +391,6 @@
 		DA425AA71BD4E77F00C77D76 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		DA425AA91BD4E9D500C77D76 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		DA425AAB1BD4E9E800C77D76 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
-		DA425AB31BD5116D00C77D76 /* LoginVC-OLD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginVC-OLD.swift"; sourceTree = "<group>"; };
 		DA425ABB1BD51ACE00C77D76 /* ViewWithRoundedCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewWithRoundedCorners.swift; sourceTree = "<group>"; };
 		DA425AD11BD52E0B00C77D76 /* InstituteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstituteCell.swift; sourceTree = "<group>"; };
 		DA425AD21BD52E0B00C77D76 /* InstituteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InstituteCell.xib; sourceTree = "<group>"; };
@@ -439,14 +427,12 @@
 		DA76411C1BD7BE4000A7D5C1 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		DA7641221BD7CC0800A7D5C1 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		DA7F1D251BD8CFA9004EA957 /* UIImageEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageEffects.swift; sourceTree = "<group>"; };
-		DA7F1D291BD8E1A3004EA957 /* MyFriendsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFriendsVC.swift; sourceTree = "<group>"; };
 		DA7F1D2D1BD8E463004EA957 /* OneFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneFriendCell.swift; sourceTree = "<group>"; };
 		DA7F1D3D1BD8FBD9004EA957 /* SelectHomeScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectHomeScreenVC.swift; sourceTree = "<group>"; };
 		DA7F1D411BD9035B004EA957 /* TrophiesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrophiesVC.swift; sourceTree = "<group>"; };
 		DA7F1D451BD905E1004EA957 /* SelectLanguageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLanguageVC.swift; sourceTree = "<group>"; };
 		DA7F1D511BD91882004EA957 /* OneFeedItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneFeedItemCell.swift; sourceTree = "<group>"; };
 		DA819EA11BDA20D900810C14 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		DA868B161BE79C0E00032225 /* EngagementGraphVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngagementGraphVC.swift; sourceTree = "<group>"; };
 		DA9904E91C046B6F00B6013C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		DA9C72831C9815A10012B5DD /* xAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xAPIManager.swift; sourceTree = "<group>"; };
 		DA9D2CAD1DA299A500C842B4 /* Jisc3.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc3.1.xcdatamodel; sourceTree = "<group>"; };
@@ -462,14 +448,12 @@
 		DAA2AEC11BCE7E7400ED796A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DAA2AEC41BCE7EAF00ED796A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DAA2AEF01BCE85C000ED796A /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
-		DAA2AEF41BCE85CD00ED796A /* StatsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsVC.swift; sourceTree = "<group>"; };
 		DAA2AEF81BCE85DB00ED796A /* LogVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogVC.swift; sourceTree = "<group>"; };
 		DAA2AEFC1BCE85E600ED796A /* TargetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetVC.swift; sourceTree = "<group>"; };
 		DAA4BEAB1BF383DF0057AEF9 /* SingleTargetDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTargetDetailsView.swift; sourceTree = "<group>"; };
 		DAAB37E61BDA63D800D56BDE /* GraphGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphGenerator.swift; sourceTree = "<group>"; };
 		DAADB8CD1C48E3930000CAD4 /* Jisc2.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc2.0.xcdatamodel; sourceTree = "<group>"; };
 		DAADB8CE1C4916620000CAD4 /* Jisc2.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc2.1.xcdatamodel; sourceTree = "<group>"; };
-		DAB0C7C01C4CE82500F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/LoginVC-OLD.xib"; sourceTree = "<group>"; };
 		DAB0C7CC1C4CE88700F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FeedVC.xib; sourceTree = "<group>"; };
 		DAB0C7D21C4CE8A000F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/FeedVC~ipad.xib"; sourceTree = "<group>"; };
 		DAB0C7D81C4CE8BA00F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OneFeedItemCell.xib; sourceTree = "<group>"; };
@@ -478,10 +462,6 @@
 		DAB0C7EA1C4CE90C00F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FoundStudentCell.xib; sourceTree = "<group>"; };
 		DAB0C7F01C4CE91A00F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NewRequestCell.xib; sourceTree = "<group>"; };
 		DAB0C7F61C4CE92700F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MyFriendCell.xib; sourceTree = "<group>"; };
-		DAB0C7FC1C4CE93D00F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/StatsVC.xib; sourceTree = "<group>"; };
-		DAB0C8021C4CE94F00F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/StatsVC~ipad.xib"; sourceTree = "<group>"; };
-		DAB0C80E1C4CE97400F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/EngagementGraphVC.xib; sourceTree = "<group>"; };
-		DAB0C8141C4CE98C00F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/EngagementGraphVC~ipad.xib"; sourceTree = "<group>"; };
 		DAB0C8261C4CE9C700F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LogVC.xib; sourceTree = "<group>"; };
 		DAB0C82C1C4CE9DB00F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/LogVC~ipad.xib"; sourceTree = "<group>"; };
 		DAB0C8321C4CE9EF00F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NewActivityVC.xib; sourceTree = "<group>"; };
@@ -497,7 +477,6 @@
 		DAB0C87A1C4CEAE700F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TargetDetailsVC.xib; sourceTree = "<group>"; };
 		DAB0C8861C4CEB1200F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SettingsVC.xib; sourceTree = "<group>"; };
 		DAB0C88C1C4CEB2400F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/SettingsVC~ipad.xib"; sourceTree = "<group>"; };
-		DAB0C8921C4CEB3700F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MyFriendsVC.xib; sourceTree = "<group>"; };
 		DAB0C89E1C4CEB5900F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OneFriendCell.xib; sourceTree = "<group>"; };
 		DAB0C8A41C4CEB6800F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SelectHomeScreenVC.xib; sourceTree = "<group>"; };
 		DAB0C8B01C4CEBF500F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TrophiesVC.xib; sourceTree = "<group>"; };
@@ -561,7 +540,6 @@
 		DAD66C6E1C52336400074B79 /* TrophiesSilverBig.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TrophiesSilverBig.xcassets; sourceTree = "<group>"; };
 		DAD66C941C523A2900074B79 /* TrophiesSilver.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TrophiesSilver.xcassets; sourceTree = "<group>"; };
 		DAD66C961C523CAE00074B79 /* Jisc2.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc2.2.xcdatamodel; sourceTree = "<group>"; };
-		DAD66C9B1C52745500074B79 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/LoginVC~ipad-OLD.xib"; sourceTree = "<group>"; };
 		DAD66CA31C5279FC00074B79 /* CustomPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPickerView.swift; sourceTree = "<group>"; };
 		DAD66CA51C527A1200074B79 /* CustomPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomPickerView.xib; sourceTree = "<group>"; };
 		DAD6AE231C57B0AB00BCBBDD /* TrophiesCelliPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrophiesCelliPad.swift; sourceTree = "<group>"; };
@@ -1128,7 +1106,6 @@
 			isa = PBXGroup;
 			children = (
 				DA0BDBF61E8557D700166E16 /* LoginVC~ipad.xib */,
-				DAD66C9A1C52745500074B79 /* LoginVC~ipad-OLD.xib */,
 				DA2093FF1E69BDA3001D979A /* SocialLoginVC~ipad.xib */,
 			);
 			name = iPad;
@@ -1138,7 +1115,6 @@
 			isa = PBXGroup;
 			children = (
 				DA0BDBF21E850FFD00166E16 /* LoginVC.xib */,
-				DAB0C7C11C4CE82500F7A3C6 /* LoginVC-OLD.xib */,
 				DA2093FC1E69BD76001D979A /* SocialLoginVC.xib */,
 			);
 			name = iPhone;
@@ -1148,7 +1124,6 @@
 			isa = PBXGroup;
 			children = (
 				DA0BDBF41E8521E900166E16 /* LoginVC.swift */,
-				DA425AB31BD5116D00C77D76 /* LoginVC-OLD.swift */,
 				DA425AD11BD52E0B00C77D76 /* InstituteCell.swift */,
 				DA425AD21BD52E0B00C77D76 /* InstituteCell.xib */,
 				DA162E241CAD39B100E0C3D0 /* xAPILoginVC.swift */,
@@ -1186,35 +1161,13 @@
 			name = Common;
 			sourceTree = "<group>";
 		};
-		DAD1D7E71C50EF7D005BA786 /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-				DAB0C8031C4CE94F00F7A3C6 /* StatsVC~ipad.xib */,
-				DAB0C8151C4CE98C00F7A3C6 /* EngagementGraphVC~ipad.xib */,
-			);
-			name = iPad;
-			sourceTree = "<group>";
-		};
-		DAD1D7E81C50EF7F005BA786 /* iPhone */ = {
-			isa = PBXGroup;
-			children = (
-				DAB0C7FD1C4CE93D00F7A3C6 /* StatsVC.xib */,
-				DAB0C80F1C4CE97400F7A3C6 /* EngagementGraphVC.xib */,
-			);
-			name = iPhone;
-			sourceTree = "<group>";
-		};
 		DAD1D7E91C50EF81005BA786 /* GraphAssets */ = {
 			isa = PBXGroup;
 			children = (
-				DAD1D7E71C50EF7D005BA786 /* iPad */,
-				DAD1D7E81C50EF7F005BA786 /* iPhone */,
 				DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */,
 				800C2DC41F28EBD5006A078B /* stats_attendance_high_chart.html */,
 				8017FBE11F7E89560012B73F /* bargraph.html */,
 				8017FBDD1F7E89540012B73F /* linegraph.html */,
-				DAA2AEF41BCE85CD00ED796A /* StatsVC.swift */,
-				DA868B161BE79C0E00032225 /* EngagementGraphVC.swift */,
 				DA593EC51E979B0B00B54909 /* ChartHTMLManager.swift */,
 				DA593EC71E97A29900B54909 /* BarChartHTMLSimple */,
 				DA593EC01E97986C00B54909 /* BarChartHTMLCompare */,
@@ -1338,8 +1291,6 @@
 			children = (
 				DD65183F1F22030A00003916 /* PrivacyWebViewVC.swift */,
 				DD6518401F22030A00003916 /* PrivacyWebViewVC.xib */,
-				DA7F1D291BD8E1A3004EA957 /* MyFriendsVC.swift */,
-				DAB0C8931C4CEB3700F7A3C6 /* MyFriendsVC.xib */,
 				DA7F1D3D1BD8FBD9004EA957 /* SelectHomeScreenVC.swift */,
 				DAB0C8A51C4CEB6800F7A3C6 /* SelectHomeScreenVC.xib */,
 				DA7F1D451BD905E1004EA957 /* SelectLanguageVC.swift */,
@@ -1571,7 +1522,6 @@
 				97A245171F8F95EC00CD9239 /* AttendanceViewController.xib in Resources */,
 				DA4085B81EE6AFE50012A561 /* MenuButton.xib in Resources */,
 				DAC32DC91BCF9F5B00C4FBF5 /* MyriadPro-Regular.otf in Resources */,
-				DAD66C9C1C52745500074B79 /* LoginVC~ipad-OLD.xib in Resources */,
 				DD6518421F22030A00003916 /* PrivacyWebViewVC.xib in Resources */,
 				DAB0C8551C4CEA6600F7A3C6 /* ActivityDetailsVC.xib in Resources */,
 				8014B5F11F44BCD6001BF4E4 /* TermsViewController.xib in Resources */,
@@ -1586,7 +1536,6 @@
 				DA0BDBF31E850FFD00166E16 /* LoginVC.xib in Resources */,
 				DAD573941C3D46360080B49B /* TrophiesCell.xib in Resources */,
 				8017FBE31F7E89580012B73F /* bargraph.html in Resources */,
-				DAB0C7FB1C4CE93D00F7A3C6 /* StatsVC.xib in Resources */,
 				DA162E271CAD39B100E0C3D0 /* xAPILoginVC.xib in Resources */,
 				971DEEF31F94C38900F8731E /* VLEActivityViewController~ipad.xib in Resources */,
 				DAB0C83D1C4CEA1600F7A3C6 /* LogActivityVC.xib in Resources */,
@@ -1625,16 +1574,13 @@
 				9766E21D1F90CE9300963DD8 /* ActivityPointsViewController.xib in Resources */,
 				DAB0C8BB1C4CEC2300F7A3C6 /* NewTrophyAlert.xib in Resources */,
 				DAB0C8AF1C4CEBF500F7A3C6 /* TrophiesVC.xib in Resources */,
-				DAB0C7BF1C4CE82500F7A3C6 /* LoginVC-OLD.xib in Resources */,
 				DAB0C8251C4CE9C700F7A3C6 /* LogVC.xib in Resources */,
 				DAB0C8671C4CEA9E00F7A3C6 /* TargetVC~ipad.xib in Resources */,
 				809129DD1F571829008DD0BE /* EventsAttendedCell.xib in Resources */,
 				DA0F577F1C3EA2A700FF5B7A /* trophies.plist in Resources */,
-				8005369C1F716A8B00A05FEA /* StatsVC~ipad.xib in Resources */,
 				DA43DA3F1C58C1FC0092701F /* EngagementIcons.xcassets in Resources */,
 				DAB0C7D71C4CE8BA00F7A3C6 /* OneFeedItemCell.xib in Resources */,
 				97BFBAF21FC85F3200F17626 /* PointsCell~ipad.xib in Resources */,
-				DAB0C8911C4CEB3700F7A3C6 /* MyFriendsVC.xib in Resources */,
 				DA4085B41EE6A8D50012A561 /* MenuView.xib in Resources */,
 				9766E20D1F90C40C00963DD8 /* AttainmentViewController~ipad.xib in Resources */,
 				DAB0C8311C4CE9EF00F7A3C6 /* NewActivityVC.xib in Resources */,
@@ -1644,9 +1590,7 @@
 				8017FBE21F7E89580012B73F /* linegraph.html in Resources */,
 				DAD6AE261C57B0AB00BCBBDD /* TrophiesCelliPad.xib in Resources */,
 				DA425AD41BD52E0B00C77D76 /* InstituteCell.xib in Resources */,
-				DAB0C8131C4CE98C00F7A3C6 /* EngagementGraphVC~ipad.xib in Resources */,
 				DAB0C7E91C4CE90C00F7A3C6 /* FoundStudentCell.xib in Resources */,
-				DAB0C80D1C4CE97400F7A3C6 /* EngagementGraphVC.xib in Resources */,
 				DA2094001E69BDA3001D979A /* SocialLoginVC~ipad.xib in Resources */,
 				DAD8BD7C1DB8C4DC004F21DE /* DoubleBarView.xib in Resources */,
 				DAC369EF1CC7BBA000F156B1 /* xAPIRegisterVC.xib in Resources */,
@@ -1748,7 +1692,6 @@
 				DAFBC4501BFB2B6800E87023 /* StretchTarget.swift in Sources */,
 				DD6518411F22030A00003916 /* PrivacyWebViewVC.swift in Sources */,
 				DA3F7B861C996B9B00E15678 /* ConsentVC.swift in Sources */,
-				DA868B181BE79C0E00032225 /* EngagementGraphVC.swift in Sources */,
 				80110A621F4B4E7F00FBF51D /* SingleTargetCell.swift in Sources */,
 				DAD573931C3D46360080B49B /* TrophiesCell.swift in Sources */,
 				DAB0C8E81C4D20DF00F7A3C6 /* BundleLocalization.m in Sources */,
@@ -1795,12 +1738,10 @@
 				DADF81C11BD646C800332F00 /* ActivityDetailsVC.swift in Sources */,
 				DA366D311BDE6C7900EC555E /* FoundStudentCell.swift in Sources */,
 				DABB0CCA1C5A2553001A291D /* TargetGraphChart.swift in Sources */,
-				DAA2AEF61BCE85CD00ED796A /* StatsVC.swift in Sources */,
 				DAD4C8211BF4E78E001C4435 /* FriendRequest+CoreDataProperties.swift in Sources */,
 				DAA2AEF21BCE85C000ED796A /* FeedVC.swift in Sources */,
 				DAA2AEBC1BCE79EA00ED796A /* Constants.swift in Sources */,
 				DA0F57791C3E972F00FF5B7A /* NewTrophyAlert.swift in Sources */,
-				DA7F1D2B1BD8E1A3004EA957 /* MyFriendsVC.swift in Sources */,
 				DA7F1D2F1BD8E463004EA957 /* OneFriendCell.swift in Sources */,
 				8056FCF81F5EFD06003FBD17 /* AppUsageViewController.swift in Sources */,
 				DA7F1D431BD9035B004EA957 /* TrophiesVC.swift in Sources */,
@@ -1829,7 +1770,6 @@
 				8014B5F01F44BCD6001BF4E4 /* TermsViewController.swift in Sources */,
 				DAD644E01C623FFD00AA62E8 /* LocalizableView.swift in Sources */,
 				80847D7D1F4DE52B00052B11 /* EventsAttendedCell.swift in Sources */,
-				DA425AB51BD5116D00C77D76 /* LoginVC-OLD.swift in Sources */,
 				DAD4C8241BF4E78E001C4435 /* Colleague.swift in Sources */,
 				DA26FB451C6CCD1500FB8CF5 /* MyFriendsView.swift in Sources */,
 				DA7641241BD7CC0800A7D5C1 /* SettingsVC.swift in Sources */,
@@ -1878,14 +1818,6 @@
 				804FD2FF1F3B68E4002FEDDB /* en */,
 			);
 			name = RecurringTargetVC.xib;
-			sourceTree = "<group>";
-		};
-		DAB0C7C11C4CE82500F7A3C6 /* LoginVC-OLD.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DAB0C7C01C4CE82500F7A3C6 /* en */,
-			);
-			name = "LoginVC-OLD.xib";
 			sourceTree = "<group>";
 		};
 		DAB0C7CD1C4CE88700F7A3C6 /* FeedVC.xib */ = {
@@ -1950,38 +1882,6 @@
 				DAB0C7F61C4CE92700F7A3C6 /* en */,
 			);
 			name = MyFriendCell.xib;
-			sourceTree = "<group>";
-		};
-		DAB0C7FD1C4CE93D00F7A3C6 /* StatsVC.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DAB0C7FC1C4CE93D00F7A3C6 /* en */,
-			);
-			name = StatsVC.xib;
-			sourceTree = "<group>";
-		};
-		DAB0C8031C4CE94F00F7A3C6 /* StatsVC~ipad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DAB0C8021C4CE94F00F7A3C6 /* en */,
-			);
-			name = "StatsVC~ipad.xib";
-			sourceTree = "<group>";
-		};
-		DAB0C80F1C4CE97400F7A3C6 /* EngagementGraphVC.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DAB0C80E1C4CE97400F7A3C6 /* en */,
-			);
-			name = EngagementGraphVC.xib;
-			sourceTree = "<group>";
-		};
-		DAB0C8151C4CE98C00F7A3C6 /* EngagementGraphVC~ipad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DAB0C8141C4CE98C00F7A3C6 /* en */,
-			);
-			name = "EngagementGraphVC~ipad.xib";
 			sourceTree = "<group>";
 		};
 		DAB0C8271C4CE9C700F7A3C6 /* LogVC.xib */ = {
@@ -2104,14 +2004,6 @@
 			name = "SettingsVC~ipad.xib";
 			sourceTree = "<group>";
 		};
-		DAB0C8931C4CEB3700F7A3C6 /* MyFriendsVC.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DAB0C8921C4CEB3700F7A3C6 /* en */,
-			);
-			name = MyFriendsVC.xib;
-			sourceTree = "<group>";
-		};
 		DAB0C89F1C4CEB5900F7A3C6 /* OneFriendCell.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2159,14 +2051,6 @@
 				DAD644CB1C6227CA00AA62E8 /* cy */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		DAD66C9A1C52745500074B79 /* LoginVC~ipad-OLD.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DAD66C9B1C52745500074B79 /* en */,
-			);
-			name = "LoginVC~ipad-OLD.xib";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

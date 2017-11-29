@@ -40,7 +40,8 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
         self.statsMenuButtonsTable.register(UITableViewCell.self, forCellReuseIdentifier: "MenuCell")
         UIView.animate(withDuration: 0.25) {
             self.arrow.transform = CGAffineTransform(rotationAngle: .pi / 2.0)
-            self.buttonsHeight.constant = 40 * 4 //This constant multiplication multiplies the height by the number of buttons shown, for example 40 * 4(buttons) or 40 *6(buttons) Adjust it as necesary.
+            //This constant multiplication multiplies the height by the number of buttons shown, for example 40 * 4(buttons) or 40 * 6(buttons) Adjust it as necesary.
+            self.buttonsHeight.constant = 40 * 4
             self.parent?.layoutIfNeeded()
         }
         var result = ""
@@ -50,9 +51,7 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
             result = defaults.object(forKey: "SettingsReturnAttendance") as! String
         }
         
-        //let attainmentResult = defaults.object(forKey: "SettingsReturnAttainment") as! String
         if !demo(){
-            
             // Show events attended and events summary menu items when response contains true.
             if (result.range(of: "true") == nil){
                 attendanceButton.alpha = 1.0
@@ -63,12 +62,6 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
                 eventsAttendedButton.alpha = 1.0
                 //leaderboardsButton.alpha = 0.0
             }
-            //        if (attainmentResult.range(of: "false") != nil){
-            //            attainmentButton.alpha = 1.0
-            //        } else {
-            //            attainmentButton.alpha = 0.0
-            //        }
-            
         }
     }
     
@@ -119,12 +112,13 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 self.parent?.statsActivityPointsViewController
             }
-        /*} else if indexPath.row == 1 {
-            parent?.close(nil)
-            parent?.appUsage()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                self.parent?.appUsageViewController
-            }*/
+            /* used for future implementation of app usage
+             } else if indexPath.row == 1 {
+             parent?.close(nil)
+             parent?.appUsage()
+             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+             self.parent?.appUsageViewController
+             }*/
         } else if indexPath.row == 1 {
             parent?.close(nil)
             parent?.statsAttainment()

@@ -48,8 +48,8 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
     
     var moduleSelectorView:CustomPickerView = CustomPickerView()
     var selectedModule = 0
-
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,14 +61,14 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
         
         customizeLayout()
         setupDatePickers()
-
+        
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.register(UINib(nibName: kPointsCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kPointsCellIdentifier)
         tableView.tableFooterView = UIView()
         
         getActivityPoints(period: .SevenDays) { }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -184,7 +184,7 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
                 let baseUrl = URL(fileURLWithPath: filePath)
                 webView.loadHTMLString(contents as String, baseURL: baseUrl)
             } catch {
-                print("File HTML error on pie chart") 
+                print("File HTML error on pie chart")
             }
         }
     }

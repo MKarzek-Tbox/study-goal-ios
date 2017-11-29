@@ -13,11 +13,11 @@ import Foundation
 import CoreData
 
 extension ActivityType {
-	
-	@NSManaged var englishName: String
-	@NSManaged var name: String
-	@NSManaged var activities: NSSet
-	@NSManaged var activityLogs: NSSet
-	@NSManaged var targets: NSSet
-	
+    
+    @NSManaged var englishName: String
+    @NSManaged var name: String
+    @NSManaged var activities: NSSet
+    @NSManaged var activityLogs: NSSet
+    @NSManaged var targets: NSSet
+    
 }

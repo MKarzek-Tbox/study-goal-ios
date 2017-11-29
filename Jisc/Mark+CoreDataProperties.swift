@@ -13,10 +13,10 @@ import Foundation
 import CoreData
 
 extension Mark {
-	
-	@NSManaged var name: String
-	@NSManaged var module: Module
-	@NSManaged var values: NSSet
-	@NSManaged var student: Student
-	
+    
+    @NSManaged var name: String
+    @NSManaged var module: Module
+    @NSManaged var values: NSSet
+    @NSManaged var student: Student
+    
 }

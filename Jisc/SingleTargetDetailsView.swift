@@ -190,7 +190,6 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
         super.awakeFromNib()
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(SingleTargetDetailsView.panAction(_:)))
         panGesture.delegate = self
-        //self.addGestureRecognizer(panGesture)
         contentScroll.contentInset = UIEdgeInsets.zero
         layoutIfNeeded()
     }
@@ -252,19 +251,6 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
     }
     
     @IBAction func startNewActivity(_ sender:UIButton) {
-        //		DELEGATE.mainController?.selectedIndex = kHomeScreenTab.Log.rawValue
-        //		var module:Int = 0
-        //		var activityType:Int = 0
-        //		var activity:Int = 0
-        //		if (theTarget != nil) {
-        //			if (theTarget!.module != nil) {
-        //				module = dataManager.indexOfModuleWithID(theTarget!.module!.id)!
-        //			}
-        //			activityType = dataManager.indexOfActivityType(theTarget!.activityType)!
-        //			activity = dataManager.indexOfActivityWithName(theTarget!.activity.englishName, type: theTarget!.activityType)!
-        //		}
-        //		DELEGATE.mainController?.logViewController.goToReportActivity(module, activityType: activityType, activity: activity)
-        
         var array:[String] = [String]()
         array.append(localized("report_activity"))
         array.append(localized("log_recent"))
@@ -534,7 +520,7 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
             self.optionsButtonsWidth.constant = kButtonsWidth
             self.optionsButtonsView.setNeedsLayout()
             self.layoutIfNeeded()
-        }) 
+        })
     }
     
     func closeCellOptions() {
@@ -543,6 +529,6 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
             self.optionsButtonsWidth.constant = 0.0
             self.optionsButtonsView.setNeedsLayout()
             self.layoutIfNeeded()
-        }) 
+        })
     }
 }

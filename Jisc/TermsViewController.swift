@@ -9,7 +9,7 @@
 import UIKit
 
 class TermsViewController: UIViewController {
-
+    
     @IBOutlet weak var termsWebView: UIWebView!
     @IBOutlet weak var disagreeButton: UIButton!
     @IBOutlet weak var agreeButton: UIButton!
@@ -17,27 +17,22 @@ class TermsViewController: UIViewController {
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let authorizationURL = URL(string:"https://docs.analytics.alpha.jisc.ac.uk/docs/study-goal/App-service-terms-and-conditions")
         let request = URLRequest(url: authorizationURL!)
         termsWebView.loadRequest(request)
-        // Do any additional setup after loading the view.
     }
-
-
+    
     @IBAction func agreeAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-          DELEGATE.menuView = MenuView.createView()
-
+        DELEGATE.menuView = MenuView.createView()
+        
     }
     
     @IBAction func disagreeAction(_ sender: Any) {
-        //self.dismiss(animated: true, completion: nil)
         let vc = LoginVC()
         self.navigationController?.present(vc, animated: true, completion: nil)
     }
-
 }

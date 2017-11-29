@@ -65,7 +65,7 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
     }
     @IBAction func backButton(_ sender: Any) {
         DELEGATE.menuView?.open()
-
+        
     }
     @IBAction func backspace(_ sender:UIButton?) {
         if let text = entryField.text {
@@ -154,7 +154,6 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
             let timestamp = "\(part1)T\(part2)Z"
             xAPIManager().checkIn(pin: currentPin, location: "\(location.coordinate.latitude),\(location.coordinate.longitude)", timestamp: timestamp, completion: { (success, dictionary, array, error) in
                 if error != nil {
-                    //Need to Localize the following
                     let alert = UIAlertController(title: "Server Error", message: "Our servers our currently experiencing difficulties", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default){
                         UIAlertAction in
@@ -167,7 +166,7 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
                     alert.addAction(okAction)
                     alert.addAction(cancelAction)
                     self.present(alert, animated: true, completion: nil)
-
+                    
                 }
                 
                 if array != nil {

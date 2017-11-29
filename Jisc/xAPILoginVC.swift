@@ -13,7 +13,6 @@ class xAPILoginVC: BaseViewController, UIWebViewDelegate {
     @IBOutlet weak var loginWebView:UIWebView!
     
     var idp = ""
-    //	let testIDP = "test-idp.ukfederation.org.uk/idp/shibboleth"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,9 +128,7 @@ class xAPILoginVC: BaseViewController, UIWebViewDelegate {
                 } catch {
                     print("json error: \(error)")
                 }
-                
             }
-            
         }
     }
 }
