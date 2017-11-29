@@ -43,10 +43,20 @@ class SocialLoginVC: BaseViewController, GIDSignInUIDelegate {
         }
     }
     
+    /**
+     Closes the social login view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func close(_ sender:UIButton?) {
         dismiss(animated: true, completion: nil)
     }
     
+    /**
+     Logs the user in via facbook.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func facebook(_ sender:UIButton?) {
         FBSDKLoginManager().logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
             if error == nil {
@@ -76,10 +86,20 @@ class SocialLoginVC: BaseViewController, GIDSignInUIDelegate {
         }
     }
     
+    /**
+     Logs the user in via google plus.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func googlePlus(_ sender:UIButton?) {
         GIDSignIn.sharedInstance().signIn()
     }
     
+    /**
+     Logs the user in via twitter. This method is not used in the current Study Goal version.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func twitter(_ sender:UIButton?) {
         Twitter().logIn(with: self) { (session, error) in
             if error == nil {

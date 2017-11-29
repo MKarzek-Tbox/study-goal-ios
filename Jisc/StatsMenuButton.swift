@@ -32,6 +32,9 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
         }
     }
     
+    /**
+     Expands the stats menu section.
+     */
     func expand() {
         expanded = true
         self.statsMenuButtonsTable.delegate = self
@@ -65,6 +68,9 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
         }
     }
     
+    /**
+     Collapses the stats menu section.
+     */
     func retract() {
         expanded = false
         UIView.animate(withDuration: 0.25) {
@@ -113,6 +119,8 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
                 self.parent?.statsActivityPointsViewController
             }
             /* used for future implementation of app usage
+             increase indexPath.rom check for the following buttons of app usage
+             
              } else if indexPath.row == 1 {
              parent?.close(nil)
              parent?.appUsage()
@@ -145,6 +153,9 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
         cell.textLabel?.textColor = UIColor.init(red: 151.0/255.0, green: 151.0/255.0, blue: 151.0/255.0, alpha: 1.0)
     }
     
+    /**
+     Removes highlight of table view cells.
+     */
     func unselectTableCells(){
         statsMenuButtonsTable.reloadData()
     }

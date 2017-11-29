@@ -21,10 +21,20 @@ enum UserType:String {
     case demo = "demo"
 }
 
+/**
+ Sets the user type.
+ 
+ :type: type to be set
+ */
 func setUserType(_ type:UserType) {
     NSKeyedArchiver.archiveRootObject(type.rawValue, toFile: filePath("UserType"))
 }
 
+/**
+ Gets the user type.
+ 
+ :returns: UserType - the current set user type
+ */
 func currentUserType() -> UserType {
     var userType = UserType.regular
     if let userTypeString = NSKeyedUnarchiver.unarchiveObject(withFile: filePath("UserType")) as? String {
@@ -35,10 +45,20 @@ func currentUserType() -> UserType {
     return userType
 }
 
+/**
+ Sets remember me value.
+ 
+ :value: the value to be set for remember me
+ */
 func setRememberMe(_ value:Bool) {
     NSKeyedArchiver.archiveRootObject(NSNumber(value: value), toFile: filePath("shouldRememberTheUser"))
 }
 
+/**
+ Gets the current set value for remember me.
+ 
+ :returns: Bool - value that is currently set for remember me option
+ */
 func shouldRememberMe() -> Bool {
     var shouldRememberMe = false
     if let value = NSKeyedUnarchiver.unarchiveObject(withFile: filePath("shouldRememberTheUser")) as? Bool {
@@ -47,10 +67,20 @@ func shouldRememberMe() -> Bool {
     return shouldRememberMe
 }
 
+/**
+ Sets the picked institution id.
+ 
+ :id: the id of the picked institution
+ */
 func setPickedinstitutionId(_ id:String) {
     NSKeyedArchiver.archiveRootObject(id, toFile: filePath("pickedInstitutionId"))
 }
 
+/**
+ Gets the currently selected institution id.
+ 
+ :returns: String - value of the currently picked institution id
+ */
 func pickedInstitutionId() -> String {
     var pickedInstitutionId = ""
     if let value = NSKeyedUnarchiver.unarchiveObject(withFile: filePath("pickedInstitutionId")) as? String {
@@ -59,6 +89,13 @@ func pickedInstitutionId() -> String {
     return pickedInstitutionId
 }
 
+/**
+ Saves the login data of a user logging in with social options.
+ 
+ :email: the users email address
+ :name: the users username
+ :userId: the users id
+ */
 func saveSocialData(email:String, name:String, userId:String) {
     var data = [String:String]()
     data["email"] = email
@@ -67,6 +104,11 @@ func saveSocialData(email:String, name:String, userId:String) {
     NSKeyedArchiver.archiveRootObject(data, toFile: "socialData")
 }
 
+/**
+ Gets the login data of a user logged in with social options.
+ 
+ :returns: (String, String, String) - email, username and user id of the logged in user
+ */
 func getSocialData() -> (email:String, name:String, userId:String) {
     var email = ""
     var name = ""
@@ -249,6 +291,13 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
         return UIStatusBarStyle.lightContent
     }
     
+    /**
+     Logges a user in using social login options.
+     
+     :email: the users email address
+     :name: the users username
+     :userId: the users id
+     */
     func socialLogin(email:String, name:String, userId:String) {
         dataManager.pickedInstitution = dataManager.socialInstitution()
         dataManager.socialLogin(email: email, name: name, userId: userId) { (success, failureReason) in
@@ -263,6 +312,12 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
             }
         }
     }
+    
+    /**
+     Organises a view into hierarchy.
+     
+     :subview: view to put in hierarchy
+     */
     func putViewInHierarchy(_ subview:UIView) {
         subview.alpha = 0.0
         view.addSubview(subview)
@@ -273,6 +328,11 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
         view.addConstraints([leading, trailing, top, bottom])
     }
     
+    /**
+     Filters the provided universities by the search string.
+     
+     :string: search string to filter the universities
+     */
     func filterInstitutions(_ string:String) {
         filteredInstitutions.removeAll()
         let fetchRequest:NSFetchRequest<Institution> = NSFetchRequest(entityName: institutionEntityName)
@@ -292,6 +352,11 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
         removeInstitutionWithName("Demo")
     }
     
+    /**
+     Removes the institutions name from the list according to the parameter given.
+     
+     :name: name of the institution to be removed
+     */
     func removeInstitutionWithName(_ name:String) {
         var institutionIndex = -1
         for (index, item) in filteredInstitutions.enumerated() {
@@ -305,6 +370,11 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
         }
     }
     
+    /**
+     Network call to log the user in.
+     
+     :notification: notification object
+     */
     func xAPILoginComplete(_ notification:Notification) {
         if let token = xAPIToken() {
             dataManager.loginWithXAPI(token, completion: { (success, failureReason) in
@@ -336,6 +406,9 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
         }
     }
     
+    /**
+     Loads step 1 of login process.
+     */
     func goToStep1() {
         UIView.animate(withDuration: 0.25) {
             self.loginStep2.alpha = 0.0
@@ -343,6 +416,9 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
         }
     }
     
+    /**
+     Loads step 2 of login process.
+     */
     func goToStep2() {
         UIView.animate(withDuration: 0.25) {
             self.loginStep2.alpha = 1.0
@@ -350,6 +426,9 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
         }
     }
     
+    /**
+     Loads step 3 of login process.
+     */
     func goToStep3() {
         UIView.animate(withDuration: 0.25) {
             self.loginStep2.alpha = 0.0
@@ -357,6 +436,11 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
         }
     }
     
+    /**
+     Sets the user type to student and enables login button.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func imAStudent(_ sender:UIButton?) {
         setUserType(.regular)
         studentButton.isSelected = true
@@ -364,6 +448,11 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
         nextButton.isEnabled = true
     }
     
+    /**
+     Sets the user type to member and enables login button.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func imAMemberOfStaff(_ sender:UIButton?) {
         setUserType(.staff)
         studentButton.isSelected = false
@@ -371,20 +460,40 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
         nextButton.isEnabled = true
     }
     
+    /**
+     Navigates to step 3 of login process.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func next(_ sender:UIButton?) {
         goToStep3()
     }
     
+    /**
+     Sets the remember me option enabled.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func rememberMe(_ sender:UIButton?) {
         rememberButton.isSelected = !rememberButton.isSelected
         setRememberMe(rememberButton.isSelected)
     }
     
+    /**
+     Sets the remember me option disabled.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func dontRememberMe(_ sender:UIButton?) {
         setRememberMe(false)
         goToStep3()
     }
     
+    /**
+     Starts the facebook social login process.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func facebook(_ sender:UIButton?) {
         setUserType(.social)
         FBSDKLoginManager().logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
@@ -415,15 +524,30 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
         }
     }
     
+    /**
+     Starts the google plus social login process.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func goolgePlus(_ sender:UIButton?) {
         setUserType(.social)
         GIDSignIn.sharedInstance().signIn()
     }
     
+    /**
+     Navigates back to the first view of login process.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func backToFirstPage(_ sender: UIButton) {
         goToStep1()
     }
     
+    /**
+     Loggs in demo user and navigates to main view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func demoMode(_ sender:UIButton?) {
         setUserType(.demo)
         setXAPIToken(demoXAPIToken)
@@ -549,6 +673,11 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
         instituteTextField.resignFirstResponder()
     }
     
+    //MARK: Developer Mode
+    
+    /**
+     Tracks taps on developer mode button and enables or disables it according to that.
+     */
     @IBAction func changeDeveloperMode(){
         developerModeCounter += 1
         if(developerModeCounter == 5){
@@ -562,6 +691,11 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
         }
     }
     
+    /**
+     Shows a android inspired toast message to display, that the developer mode is now active.
+     
+     :message: text to be displayed
+     */
     func showToast(message: String) {
         let toast = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 125, y: self.view.frame.size.height-100, width: 250, height: 35))
         toast.backgroundColor = UIColor.black.withAlphaComponent(0.6)

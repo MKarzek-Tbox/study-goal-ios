@@ -36,6 +36,12 @@ class FoundStudentCell: BasicSearchCell, UIAlertViewDelegate {
         loadProfilePicture("")
     }
     
+    /**
+     Initalises the cell for a friend.
+     
+     :colleague: friend to display
+     :status: status of the friendship
+     */
     func loadColleague(_ colleague:Colleague, status:FriendshipStatus) {
         theColleague = colleague
         nameLabel.text = "\(colleague.firstName) \(colleague.lastName)"
@@ -60,6 +66,11 @@ class FoundStudentCell: BasicSearchCell, UIAlertViewDelegate {
         }
     }
     
+    /**
+     Sends a request to the displayed friend.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func sendRequest(_ sender:UIButton) {
         if (theColleague != nil) {
             if (sender.isSelected) {

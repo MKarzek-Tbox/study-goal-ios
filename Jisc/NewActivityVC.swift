@@ -150,8 +150,6 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
     @IBAction func goBack(_ sender:UIButton) {
         timeActivityTimer?.invalidate()
         navigationController?.popViewController(animated: true)
-        
-        
     }
     
     func addModule() {
@@ -167,11 +165,6 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
         UIView.animate(withDuration: 0.25) {
             self.addModuleView.alpha = 0.0
         }
-    }
-    
-    @IBAction func settings(_ sender:UIButton) {
-        let vc = SettingsVC()
-        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func changeReminderTime(_ sender:UIButton) {

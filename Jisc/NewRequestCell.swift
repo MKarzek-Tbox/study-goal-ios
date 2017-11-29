@@ -26,12 +26,22 @@ class NewRequestCell: BasicSearchCell {
         loadProfilePicture("")
     }
     
+    /**
+     Initalises the cell to display the request.
+     
+     :request: request to be displayed
+     */
     func loadFriendRequest(_ request:FriendRequest) {
         theFriendRequest = request
         nameLabel.text = "\(request.firstName) \(request.lastName)"
         loadProfilePicture("\(hostPath)\(request.photo)")
     }
     
+    /**
+     Confirms the selected request.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func confirmRequest(_ sender:UIButton) {
         if (theFriendRequest != nil) {
             parent?.friendRequestToTakeActionWith = theFriendRequest
@@ -41,6 +51,11 @@ class NewRequestCell: BasicSearchCell {
         }
     }
     
+    /**
+     Removes the selected request.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func deleteRequest(_ sender:UIButton) {
         parent?.friendRequestToTakeActionWith = theFriendRequest
         parent?.deleteFriendRequest({ (success, result, results, error) -> Void in

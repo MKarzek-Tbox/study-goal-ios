@@ -50,16 +50,31 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
         super.viewDidAppear(animated)
     }
     
+    /**
+     Opens the menu drawer.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func openMenu(_ sender:UIButton?) {
         DELEGATE.menuView?.open()
     }
     
+    /**
+     Refreshs the feed table view.
+     
+     :sender: timer that triggered the action
+     */
     func refreshFeeds(_ sender:Timer) {
         dataManager.silentStudentFeedsRefresh(false) { (success, failureReason) -> Void in
             self.feedsTableView.reloadData()
         }
     }
     
+    /**
+     Refreshs the feed table manually by the user.
+     
+     :sender: UIRefreshControl that triggered the action
+     */
     func manuallyRefreshFeeds(_ sender:UIRefreshControl) {
         dataManager.silentStudentFeedsRefresh(true) { (success, failureReason) -> Void in
             self.feedsTableView.reloadData()
@@ -71,20 +86,20 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
         return UIStatusBarStyle.lightContent
     }
     
-    @IBAction func search(_ sender:UIButton) {
-        let vc = SearchVC()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    @IBAction func settings(_ sender:UIButton) {
-        let vc = SettingsVC()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
+    /**
+     Calculates the height og the post message.
+     
+     :returns: CGFloat - the calculated value.
+     */
     func openPostMessageHeight() -> CGFloat {
         return postButtonView.frame.origin.y + postButtonView.frame.size.height
     }
     
+    /**
+     Displays the post message view by moving it into sight.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func showPostMessageView(_ sender:UIButton) {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.blockView.alpha = 1.0
@@ -96,6 +111,11 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
         })
     }
     
+    /**
+     Hides the post message view by moving it out of sight.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func hidePostMessageView(_ sender:UIButton) {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.blockView.alpha = 0.0
@@ -107,6 +127,11 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
         })
     }
     
+    /**
+     Posts the post message via the network.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func postMessage(_ sender:UIButton) {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.blockView.alpha = 0.0
@@ -206,6 +231,11 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
         }
     }
     
+    /**
+     Removes the selected post message from the feed table view.
+     
+     :indexPath: table view cell that got triggered
+     */
     func deleteThis(indexPath: IndexPath){
         let alert = UIAlertController(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_message"), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: localized("yes"), style: .destructive, handler: { (action) in

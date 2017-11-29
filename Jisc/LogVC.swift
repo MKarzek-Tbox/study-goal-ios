@@ -42,10 +42,18 @@ class LogVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, Cus
         xAPIManager().checkMod(testUrl:urlString)
     }
     
+    /**
+     Opens menu drawer.
+     
+     :button: button that triggered the action
+     */
     @IBAction func openMenu(_ sender:UIButton?) {
         DELEGATE.menuView?.open()
     }
     
+    /**
+     Refresh activity logs table view.
+     */
     func refreshActivityLogs() {
         if (dataManager.runningActivities().count > 0) {
             activityActionButton.setImage(UIImage(named: "runningActivity"), for: UIControlState())
@@ -55,6 +63,11 @@ class LogVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, Cus
         activityLogsTable.reloadData()
     }
     
+    /**
+     Manually refresh activity logs by the user.
+     
+     :button: button that triggered the action
+     */
     func manuallyRefreshLogs(_ sender:UIRefreshControl) {
         dataManager.silentActivityLogsRefresh { (success, failureReason) -> Void in
             self.activityLogsTable.reloadData()
@@ -76,22 +89,26 @@ class LogVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, Cus
         activityLogsTable.reloadData()
     }
     
+    /**
+     Navigates to report activity view.
+     
+     :module: module id
+     :activityType: activity type id
+     :activity: activity id
+     */
     func goToReportActivity(_ module:Int, activityType:Int, activity:Int) {
-        if (dataManager.modules().count == 0) {
-            if (dataManager.runningActivities().count > 0) {
-                navigationController?.pushViewController(NewActivityVC(activity: dataManager.runningActivities()[0], atIndex: 0), animated: true)
-            } else {
-                navigationController?.pushViewController(NewActivityVC(module: module, activityType: activityType, activity: activity), animated: true)
-            }
+        if (dataManager.runningActivities().count > 0) {
+            navigationController?.pushViewController(NewActivityVC(activity: dataManager.runningActivities()[0], atIndex: 0), animated: true)
         } else {
-            if (dataManager.runningActivities().count > 0) {
-                navigationController?.pushViewController(NewActivityVC(activity: dataManager.runningActivities()[0], atIndex: 0), animated: true)
-            } else {
-                navigationController?.pushViewController(NewActivityVC(module: module, activityType: activityType, activity: activity), animated: true)
-            }
+            navigationController?.pushViewController(NewActivityVC(module: module, activityType: activityType, activity: activity), animated: true)
         }
     }
     
+    /**
+     Navigates to log new activity view.
+     
+     :button: button that triggered the action
+     */
     @IBAction func showNewActivitySelector(_ sender:UIButton) {
         if (dataManager.runningActivities().count > 0) {
             if (dataManager.modules().count == 0) {
@@ -106,11 +123,6 @@ class LogVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, Cus
             let logTypeSelectorView = CustomPickerView.create(localized("add"), delegate: self, contentArray: array, selectedItem: -1)
             view.addSubview(logTypeSelectorView)
         }
-    }
-    
-    @IBAction func settings(_ sender:UIButton) {
-        let vc = SettingsVC()
-        navigationController?.pushViewController(vc, animated: true)
     }
     
     override var preferredStatusBarStyle : UIStatusBarStyle {

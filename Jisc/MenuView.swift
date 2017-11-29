@@ -29,8 +29,12 @@ class MenuView: UIView {
     @IBOutlet weak var menuContent:UIView!
     @IBOutlet weak var closeButton:UIButton!
     @IBOutlet weak var menuLeading:NSLayoutConstraint!
+    
     var selectedIndex = 0
     
+    /**
+     Sets up menu drawer.
+     */
     class func createView() -> MenuView {
         let view = Bundle.main.loadNibNamed("MenuView", owner: nil, options: nil)!.first as! MenuView
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -44,7 +48,6 @@ class MenuView: UIView {
         }
         view.studentIdLabel.text = "\(localized("student_id")) : \(dataManager.currentStudent!.jisc_id)"
         view.profileImage.loadImageWithLink("\(hostPath)\(dataManager.currentStudent!.photo)", type: .profile) { () -> Void in
-            
         }
         var result = ""
         if !demo(){
@@ -67,7 +70,6 @@ class MenuView: UIView {
             } else {
                 view.feed()
             }
-            
         } else {
             lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Feed, previousButton: lastButton, isLastButton: false, parent: view)
             lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Friends, previousButton: lastButton, isLastButton: false, parent: view)
@@ -129,6 +131,9 @@ class MenuView: UIView {
         return view
     }
     
+    /**
+     Displays the menu drawer.
+     */
     func open() {
         let view = Bundle.main.loadNibNamed("MenuView", owner: nil, options: nil)!.first as! MenuView
         view.profileImage.loadImageWithLink("\(hostPath)\(dataManager.currentStudent!.photo)", type: .profile) { () -> Void in
@@ -142,7 +147,11 @@ class MenuView: UIView {
             self.closeButton.alpha = 1.0
         }
     }
-    
+    /**
+     Closes the menu drawer.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func close(_ sender:UIButton?) {
         isUserInteractionEnabled = false
         UIView.animate(withDuration: 0.25) {
@@ -152,6 +161,9 @@ class MenuView: UIView {
         }
     }
     
+    /**
+     Sets feed view as selected in menu drawer and changes the current view to feed view.
+     */
     func feed() {
         selectedIndex = 0
         NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Feed)
@@ -159,6 +171,9 @@ class MenuView: UIView {
         close(nil)
     }
     
+    /**
+     Sets friends view as selected in menu drawer and changes the current view to friends view.
+     */
     func friends() {
         selectedIndex = 1
         NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Friends)
@@ -166,6 +181,9 @@ class MenuView: UIView {
         close(nil)
     }
     
+    /**
+     Sets stats activity points view as selected in menu drawer and changes the current view to stats activity points view.
+     */
     func statsActivityPoints() {
         selectedIndex = 2
         NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Stats)
@@ -173,6 +191,9 @@ class MenuView: UIView {
         close(nil)
     }
     
+    /**
+     Sets stats app usage view as selected in menu drawer and changes the current view to stats app usage view.
+     */
     func appUsage() {
         selectedIndex = 2
         NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Stats)
@@ -180,6 +201,9 @@ class MenuView: UIView {
         close(nil)
     }
     
+    /**
+     Sets stats attainment view as selected in menu drawer and changes the current view to stats attainment view.
+     */
     func statsAttainment() {
         selectedIndex = 2
         NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Stats)
@@ -187,6 +211,9 @@ class MenuView: UIView {
         close(nil)
     }
     
+    /**
+     Sets stats attendance view as selected in menu drawer and changes the current view to stats attendance view.
+     */
     func statsAttendance() {
         selectedIndex = 2
         NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Stats)
@@ -194,6 +221,9 @@ class MenuView: UIView {
         close(nil)
     }
     
+    /**
+     Sets stats vle activity view as selected in menu drawer and changes the current view to stats vle activity view.
+     */
     func statsVLEActivity() {
         selectedIndex = 2
         NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Stats)
@@ -201,6 +231,9 @@ class MenuView: UIView {
         close(nil)
     }
     
+    /**
+     Sets checkin view as selected in menu drawer and changes the current view to checkin view.
+     */
     func checkin() {
         selectedIndex = 3
         NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Checkin)
@@ -208,6 +241,9 @@ class MenuView: UIView {
         close(nil)
     }
     
+    /**
+     Sets log view as selected in menu drawer and changes the current view to log view.
+     */
     func log() {
         selectedIndex = 4
         NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Log)
@@ -215,6 +251,9 @@ class MenuView: UIView {
         close(nil)
     }
     
+    /**
+     Sets target view as selected in menu drawer and changes the current view to target view.
+     */
     func target() {
         selectedIndex = 5
         NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Target)
@@ -222,6 +261,9 @@ class MenuView: UIView {
         close(nil)
     }
     
+    /**
+     Sets settings view as selected in menu drawer and changes the current view to settings view.
+     */
     func settings() {
         selectedIndex = 6
         NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Settings)
@@ -229,6 +271,9 @@ class MenuView: UIView {
         close(nil)
     }
     
+    /**
+     Triggers the logout action by creating an alert view.
+     */
     func logout() {
         let alert = UIAlertController(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_log_out"), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: localized("no"), style: .cancel, handler: nil))

@@ -42,6 +42,11 @@ class OneActivityCell: UITableViewCell, UIAlertViewDelegate {
 		NotificationCenter.default.addObserver(self, selector: #selector(OneActivityCell.changeSelectedStyleOff), name: NSNotification.Name(rawValue: kChangeActivityCellSelectedStyleOff), object: nil)
 	}
 	
+    /**
+     Gets executed if another cell opened the options so it closes the options of the current cell.
+     
+     :notification: notification object
+     */
 	func anotherCellOpenedOptions(_ notification:Notification) {
 		let senderCell = notification.object as? OneActivityCell
 		if (senderCell != nil) {
@@ -51,14 +56,26 @@ class OneActivityCell: UITableViewCell, UIAlertViewDelegate {
 		}
 	}
 	
+    /**
+     Sets selected style for on to gray.
+     */
 	func changeSelectedStyleOn() {
 		selectionStyle = .gray
 	}
 	
+    /**
+     Sets selected style for off the none.
+     */
 	func changeSelectedStyleOff() {
 		selectionStyle = .none
 	}
 	
+    /**
+     Sets the activity cell selected or unselected.
+     
+     :selected: state of selection
+     :animated: with or without animation
+     */
 	override func setSelected(_ selected: Bool, animated: Bool) {
 		super.setSelected(selected, animated: animated)
 		if (selected) {
@@ -76,6 +93,13 @@ class OneActivityCell: UITableViewCell, UIAlertViewDelegate {
 		closeCellOptions()
 	}
 	
+    /**
+     Initalises the cell with the activity object provided.
+     
+     :activity: activity object
+     :navigationController: current navigation controller
+     :tableView: current table view
+     */
 	func loadActivity(_ activity:ActivityLog, navigationController:UINavigationController?, tableView:UITableView?) {
 		theActivity = activity
 		let imageName = activity.activity.iconName(big: true)
@@ -91,6 +115,11 @@ class OneActivityCell: UITableViewCell, UIAlertViewDelegate {
 		layoutIfNeeded()
 	}
 	
+    /**
+     Deletes the selected activity.
+     
+     :button: button that triggered the action
+     */
 	@IBAction func deleteActivity(_ sender:UIButton) {
 		if demo() {
 			let alert = UIAlertController(title: "", message: localized("demo_mode_deleteactivitylog"), preferredStyle: .alert)
@@ -101,6 +130,11 @@ class OneActivityCell: UITableViewCell, UIAlertViewDelegate {
 		}
 	}
 	
+    /**
+     Navigates to the edit view for the selected activity.
+     
+     :button: button that triggered the action
+     */
 	@IBAction func editActivity(_ sender:UIButton) {
 		if demo() {
 			let alert = UIAlertController(title: "", message: localized("demo_mode_editactivitylog"), preferredStyle: .alert)
@@ -122,6 +156,11 @@ class OneActivityCell: UITableViewCell, UIAlertViewDelegate {
 	
 	//MARK: UIGestureRecognizer Delegate
 	
+    /**
+     Starts gesture recognition.
+     
+     :gestureRecognizer: recognizer that triggered the action
+     */
 	override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
 		var shouldBegin = true
 		let panGesture = gestureRecognizer as? UIPanGestureRecognizer
@@ -135,6 +174,11 @@ class OneActivityCell: UITableViewCell, UIAlertViewDelegate {
 		return shouldBegin
 	}
 	
+    /**
+     Handles the pan gesture and opens or closes the cell options.
+     
+     :sender: recognizer that triggered the action
+     */
 	func panAction(_ sender:UIPanGestureRecognizer) {
 		switch (sender.state) {
 		case .began:
@@ -164,6 +208,9 @@ class OneActivityCell: UITableViewCell, UIAlertViewDelegate {
 		}
 	}
 	
+    /**
+     Opens the cell options.
+     */
 	func openCellOptions() {
 		NotificationCenter.default.post(name: Notification.Name(rawValue: kAnotherActivityCellOpenedOptions), object: self)
 		optionsState = .open
@@ -176,6 +223,9 @@ class OneActivityCell: UITableViewCell, UIAlertViewDelegate {
 		}) 
 	}
 	
+    /**
+     Closes the cell options.
+     */
 	func closeCellOptions() {
 		NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeActivityCellSelectedStyleOn), object: nil)
 		parent?.aCellIsOpen = false

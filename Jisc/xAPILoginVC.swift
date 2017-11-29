@@ -27,10 +27,18 @@ class xAPILoginVC: BaseViewController, UIWebViewDelegate {
         login();
     }
     
+    /**
+     Closes the developer api login.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func close(_ sender:UIButton) {
         self.dismiss(animated: true, completion: {})
     }
     
+    /**
+     logs in the developer account.
+     */
     func login(){
         let UUID = UserDefaults.standard.string(forKey: "uuid")
         var urlString = "https://sp.data.alpha.jisc.ac.uk/Shibboleth.sso/Login?entityID=https://"

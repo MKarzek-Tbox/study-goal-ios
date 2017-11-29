@@ -49,6 +49,12 @@ class OneFeedItemCell: LocalizableCell {
             }
         }
     }
+    
+    /**
+     Gets executed if another cell opened the options so it closes the options of the current cell.
+     
+     :notification: notification object
+     */
     func anotherCellOpenedOptions(_ notification:Notification) {
         let senderCell = notification.object as? OneFeedItemCell
         if (senderCell != nil) {
@@ -58,15 +64,25 @@ class OneFeedItemCell: LocalizableCell {
         }
     }
     
+    /**
+     Sets selected style for on to gray.
+     */
     func changeSelectedStyleOn() {
         selectionStyle = .gray
     }
     
+    /**
+     Sets selected style for off the none.
+     */
     func changeSelectedStyleOff() {
         selectionStyle = .none
     }
     
-    
+    /**
+     Sets the font size to fit in the view.
+     
+     :button: button that triggered the action
+     */
     func changeFontSizeToFit(_ button:BigTitleButton) {
         if (button.titleLabel != nil) {
             resetFontSize(button)
@@ -81,6 +97,11 @@ class OneFeedItemCell: LocalizableCell {
         }
     }
     
+    /**
+     Resets the font size to its default font size.
+     
+     :button: button that triggered the action
+     */
     func resetFontSize(_ sender:BigTitleButton) {
         sender.titleLabel!.font = sender.titleLabel!.font.withSize(sender.defaultFontSize)
     }
@@ -95,10 +116,20 @@ class OneFeedItemCell: LocalizableCell {
         loadProfilePicture("")
     }
     
+    /**
+     Loads the profile picture.
+     
+     :link: path of the photo
+     */
     func loadProfilePicture(_ link:String) {
         userImage.loadImageWithLink(link, type: .profile, completion: nil)
     }
     
+    /**
+     Initialises the cell with the feed information.
+     
+     :feed: feed object to be displayed
+     */
     func loadFeedPost(_ feed:Feed) {
         theFeed = feed
         if feed.activityType == "temp_push_notification" {
@@ -158,18 +189,23 @@ class OneFeedItemCell: LocalizableCell {
         timeStamp.text = timeStampText
     }
     
+    /**
+     Shares the push notification.
+     
+     :button: button that triggered the action
+     */
     @IBAction func share(_ sender:UIButton) {
         let activityViewController = UIActivityViewController(activityItems: [theFeed!.shareText() as NSString], applicationActivities: nil)
         
         activityViewController.popoverPresentationController?.sourceView = sender
         activityViewController.popoverPresentationController?.sourceRect = sender.frame
         
-        
         navigationController?.present(activityViewController, animated: true, completion: nil)
-        
-        
     }
     
+    /**
+     Shows the share buttons.
+     */
     func showShareButtons() {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.shareButton.alpha = 0.0
@@ -177,6 +213,9 @@ class OneFeedItemCell: LocalizableCell {
         })
     }
     
+    /**
+     Hides the share buttons.
+     */
     func hideShareButtons() {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.shareButton.alpha = 1.0
@@ -184,6 +223,11 @@ class OneFeedItemCell: LocalizableCell {
         })
     }
     
+    /**
+     Shares the feed item to facebook.
+     
+     :button: button that triggered the action
+     */
     @IBAction func facebook(_ sender:UIButton) {
         hideShareButtons()
         if (theFeed != nil) {
@@ -191,6 +235,9 @@ class OneFeedItemCell: LocalizableCell {
         }
     }
     
+    /**
+     Shares the feed item to twitter.
+     */
     @IBAction func twitter(_ sender:UIButton) {
         hideShareButtons()
         if (theFeed != nil) {
@@ -198,6 +245,11 @@ class OneFeedItemCell: LocalizableCell {
         }
     }
     
+    /**
+     Shares the feed item via mail.
+     
+     :button: button that triggered the action
+     */
     @IBAction func mail(_ sender:UIButton) {
         hideShareButtons()
         if (theFeed != nil) {
@@ -205,26 +257,47 @@ class OneFeedItemCell: LocalizableCell {
         }
     }
     
+    /**
+     Calls the display of the options.
+     
+     :button: button that triggered the action
+     */
     @IBAction func options(_ sender:UIButton) {
         showOptions()
     }
     
+    /**
+     Displays the options.
+     */
     func showOptions() {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.optionsView.alpha = 1.0
         })
     }
     
+    /**
+     Hides the options.
+     */
     func hideOptions() {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.optionsView.alpha = 0.0
         })
     }
     
+    /**
+     Calls the method to hide the options.
+     
+     :button: button that triggered the action
+     */
     @IBAction func closeOptions(_ sender:UIButton) {
         hideOptions()
     }
     
+    /**
+     Hides the feed item.
+     
+     :button: button that triggered the action
+     */
     @IBAction func hidePost(_ sender:UIButton) {
         if demo() {
             let alert = UIAlertController(title: "", message: localized("demo_mode_postfeed"), preferredStyle: .alert)
@@ -254,6 +327,11 @@ class OneFeedItemCell: LocalizableCell {
         }
     }
     
+    /**
+     Hides the Friend displayed as feed item.
+     
+     :button: button that triggered the action
+     */
     @IBAction func hideFriend(_ sender:UIButton) {
         hideOptions()
         if (theFeed != nil) {
@@ -278,6 +356,12 @@ class OneFeedItemCell: LocalizableCell {
             AlertView.showAlert(false, message: kDefaultFailureReason, completion: nil)
         }
     }
+    
+    /**
+     Deletes the target displayed as feed item.
+     
+     :button: button that triggered the action
+     */
     @IBAction func deleteTarget(_ sender:UIButton) {
         let alert = UIAlertController(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_message"), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: localized("yes"), style: .destructive, handler: { (action) in
@@ -312,10 +396,13 @@ class OneFeedItemCell: LocalizableCell {
         }))
         alert.addAction(UIAlertAction(title: localized("no"), style: .cancel, handler: nil))
         navigationController?.present(alert, animated: true, completion: nil)
-        
-        
     }
     
+    /**
+     Removes the friend displayed as feed item.
+     
+     :button: button that triggered the action
+     */
     @IBAction func deleteFriend(_ sender:UIButton) {
         hideOptions()
         if (theFeed != nil) {
@@ -341,7 +428,11 @@ class OneFeedItemCell: LocalizableCell {
         }
     }
     
-    
+    /**
+     Starts gesture recognition.
+     
+     :gestureRecognizer: recognizer that triggered the action
+     */
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         var shouldBegin = true
         let panGesture = gestureRecognizer as? UIPanGestureRecognizer
@@ -355,6 +446,11 @@ class OneFeedItemCell: LocalizableCell {
         return shouldBegin
     }
     
+    /**
+     Handles the pan gesture and opens or closes the cell options.
+     
+     :sender: recognizer that triggered the action
+     */
     func panAction(_ sender:UIPanGestureRecognizer) {
         switch (sender.state) {
         case .began:
@@ -383,6 +479,9 @@ class OneFeedItemCell: LocalizableCell {
         }
     }
     
+    /**
+     Opens the cell options.
+     */
     func openCellOptions() {
         if(theFeed?.activityType != "temp_push_notification"){
             NotificationCenter.default.post(name: Notification.Name(rawValue: kAnotherActivityCellOpenedOptions), object: self)
@@ -397,6 +496,9 @@ class OneFeedItemCell: LocalizableCell {
         }
     }
     
+    /**
+     Closes the cell options.
+     */
     func closeCellOptions() {
         NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeActivityCellSelectedStyleOn), object: nil)
         parent?.aCellIsOpen = false
@@ -406,5 +508,4 @@ class OneFeedItemCell: LocalizableCell {
             self.layoutIfNeeded()
         }) 
     }
-    
 }

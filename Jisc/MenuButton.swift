@@ -27,6 +27,15 @@ class MenuButton: UIView {
     var type = MenuButtonType.Feed
     weak var parent:MenuView?
     
+    /**
+     Adds the view object to the menu view as a menu button.
+     
+     :view: view object
+     :buttonType: button type for the view
+     :previousButton: button that is located before this one
+     :isLastButton: if its the last button, its the logout button
+     :parent: the menu view parent
+     */
     class func insertSelfinView(_ view:UIView, buttonType: MenuButtonType, previousButton:MenuButton?, isLastButton:Bool, parent:MenuView) -> MenuButton {
         
         let button = Bundle.main.loadNibNamed("\(self.classForCoder())", owner: nil, options: nil)!.first as! MenuButton
@@ -102,6 +111,11 @@ class MenuButton: UIView {
         return button
     }
     
+    /**
+     Listens on the selection of the button.
+     
+     :notification: notification object from observer
+     */
     func selectedAButton(_ notification:Notification) {
         if let type = notification.object as? MenuButtonType {
             if self.type == type {
@@ -119,6 +133,11 @@ class MenuButton: UIView {
         }
     }
     
+    /**
+     Handles the different button actions.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func buttonAction(_ sender:UIButton?) {
         switch type {
         case .Feed:

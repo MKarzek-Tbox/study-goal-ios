@@ -31,7 +31,7 @@
             <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d4W-HG-xl4">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d4W-HG-xl4" userLabel="Header">
                     <rect key="frame" x="0.0" y="0.0" width="1024" height="124"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightBlue" translatesAutoresizingMaskIntoConstraints="NO" id="6jB-bh-AIN">
@@ -48,24 +48,13 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jisc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DpM-lO-Sxa" customClass="AppTitleLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="113" y="46" width="53.5" height="35"/>
+                            <rect key="frame" x="113" y="52" width="48.5" height="30"/>
                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="30"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tHB-SO-wvU">
-                            <rect key="frame" x="984" y="20" width="40" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="GmE-OJ-yHI"/>
-                                <constraint firstAttribute="width" constant="40" id="hkO-9P-MQ5"/>
-                            </constraints>
-                            <state key="normal" image="settingsButton"/>
-                            <connections>
-                                <action selector="settings:" destination="-1" eventType="touchUpInside" id="ahc-1p-8F5"/>
-                            </connections>
-                        </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check-in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVc-6s-nWA">
-                            <rect key="frame" x="438" y="42" width="149.5" height="43.5"/>
+                            <rect key="frame" x="442.5" y="48.5" width="139" height="37"/>
                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="37"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -75,20 +64,16 @@
                     <constraints>
                         <constraint firstItem="DpM-lO-Sxa" firstAttribute="centerY" secondItem="JVc-6s-nWA" secondAttribute="centerY" constant="-0.25" id="69l-To-uvN"/>
                         <constraint firstItem="pGw-C5-eF6" firstAttribute="top" secondItem="d4W-HG-xl4" secondAttribute="top" constant="35" id="93u-Wk-CUd"/>
-                        <constraint firstAttribute="trailing" secondItem="tHB-SO-wvU" secondAttribute="trailing" id="JeJ-rB-3Y6"/>
                         <constraint firstAttribute="bottom" secondItem="6jB-bh-AIN" secondAttribute="bottom" id="LZ4-2k-o9T"/>
                         <constraint firstItem="6jB-bh-AIN" firstAttribute="leading" secondItem="d4W-HG-xl4" secondAttribute="leading" id="MNc-Ie-rac"/>
                         <constraint firstItem="pGw-C5-eF6" firstAttribute="leading" secondItem="d4W-HG-xl4" secondAttribute="leading" constant="37" id="OUe-T9-Im7"/>
                         <constraint firstAttribute="trailing" secondItem="6jB-bh-AIN" secondAttribute="trailing" id="PCp-AN-9Kv"/>
                         <constraint firstAttribute="bottom" secondItem="JVc-6s-nWA" secondAttribute="bottom" constant="10" id="QOA-JV-gQu"/>
-                        <constraint firstAttribute="bottom" secondItem="tHB-SO-wvU" secondAttribute="bottom" constant="64" id="RSt-3K-EPr"/>
                         <constraint firstAttribute="bottom" secondItem="JVc-6s-nWA" secondAttribute="bottom" constant="38.5" id="UNE-5a-O9e"/>
                         <constraint firstAttribute="bottom" secondItem="pGw-C5-eF6" secondAttribute="bottom" constant="34" id="V8c-nK-zTK"/>
-                        <constraint firstItem="tHB-SO-wvU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JVc-6s-nWA" secondAttribute="trailing" constant="5" id="aGi-Vh-6Gn"/>
                         <constraint firstItem="DpM-lO-Sxa" firstAttribute="centerY" secondItem="d4W-HG-xl4" secondAttribute="centerY" id="dhR-Ex-c7c"/>
                         <constraint firstAttribute="height" constant="124" id="eMX-Xx-jAc"/>
                         <constraint firstItem="6jB-bh-AIN" firstAttribute="top" secondItem="d4W-HG-xl4" secondAttribute="top" id="hnm-pt-lcB"/>
-                        <constraint firstItem="JVc-6s-nWA" firstAttribute="centerY" secondItem="tHB-SO-wvU" secondAttribute="centerY" id="l6v-wc-1oY"/>
                         <constraint firstItem="DpM-lO-Sxa" firstAttribute="leading" secondItem="d4W-HG-xl4" secondAttribute="leading" constant="113" id="qTM-cJ-Klt"/>
                         <constraint firstItem="JVc-6s-nWA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DpM-lO-Sxa" secondAttribute="trailing" constant="5" id="s3i-Eq-TnJ"/>
                         <constraint firstItem="JVc-6s-nWA" firstAttribute="centerX" secondItem="d4W-HG-xl4" secondAttribute="centerX" id="xfr-Av-up9"/>
@@ -97,7 +82,6 @@
                         <mask key="constraints">
                             <exclude reference="dhR-Ex-c7c"/>
                             <exclude reference="QOA-JV-gQu"/>
-                            <exclude reference="l6v-wc-1oY"/>
                         </mask>
                     </variation>
                 </view>
@@ -105,7 +89,7 @@
                     <rect key="frame" x="0.0" y="124" width="1024" height="644"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NyA-cv-haY">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NyA-cv-haY" userLabel="Body">
                     <rect key="frame" x="0.0" y="124" width="1024" height="644"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FCH-SB-9dd">
@@ -350,6 +334,5 @@
         <image name="lightBlue" width="10" height="10"/>
         <image name="openMenuButton" width="22" height="22"/>
         <image name="purple2" width="10" height="10"/>
-        <image name="settingsButton" width="23" height="22"/>
     </resources>
 </document>

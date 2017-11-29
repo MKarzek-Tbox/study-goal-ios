@@ -27,6 +27,11 @@ class InstituteCell: UITableViewCell {
         }
     }
     
+    /**
+     Initialises cell with institute data.
+     
+     :institute: institute to be displayed
+     */
     func loadInstitute(_ institute:Institution) {
         self.institute = institute
         instituteName.textAlignment = .left
@@ -44,12 +49,18 @@ class InstituteCell: UITableViewCell {
         layoutIfNeeded()
     }
     
+    /**
+     Initialises cell without institute data.
+     */
     func noInstitute() {
         instituteName.textAlignment = .center
         instituteName.text = localized("institution_not_listed")
         layoutIfNeeded()
     }
     
+    /**
+     Initialises cell with demo institute data.
+     */
     func demoInstitute() {
         instituteName.textAlignment = .center
         instituteName.text = localized("demo")

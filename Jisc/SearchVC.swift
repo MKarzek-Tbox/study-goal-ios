@@ -62,6 +62,9 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         searchStudentsInputTextField.placeholder = localized("search_by_email")
     }
     
+    /**
+     Refreshs friends data.
+    */
     func refreshData() {
         searchStudentsInputTextField.text = ""
         searchStudentsInputTextField.resignFirstResponder()
@@ -74,6 +77,9 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         }
     }
     
+    /**
+     Refreshs request.
+    */
     func refreshRequests() {
         if dataManager.friendRequests().count == 0 {
             noRequestsMessage.alpha = 1.0
@@ -89,15 +95,20 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         return UIStatusBarStyle.lightContent
     }
     
+    /**
+     Opens the menu drawer.
+     
+     :sender: button that triggered the action
+    */
     @IBAction func goBack(_ sender:UIButton) {
         DELEGATE.menuView?.open()
     }
     
-    @IBAction func settings(_ sender:UIButton) {
-        let vc = SettingsVC()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
+    /**
+     Displays the search view.
+     
+     :sender: button that triggered the action
+    */
     @IBAction func search(_ sender:UIButton) {
         view.endEditing(true)
         searchButton.isSelected = true
@@ -110,6 +121,11 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         })
     }
     
+    /**
+     Displays the request view.
+     
+     :sender: button that triggered the action
+    */
     @IBAction func newRequests(_ sender:UIButton) {
         view.endEditing(true)
         searchButton.isSelected = false
@@ -122,6 +138,11 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         })
     }
     
+    /**
+     Displays the view for the student's friends.
+     
+     :sender: button that triggered the action
+    */
     @IBAction func myFriends(_ sender:UIButton) {
         view.endEditing(true)
         searchButton.isSelected = false
@@ -134,6 +155,11 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         })
     }
     
+    /**
+     Filters the students according to the parameter.
+     
+     :string: used to filter the students
+    */
     func filterStudents(_ string:String) {
         let fetchRequest:NSFetchRequest<Colleague> = NSFetchRequest(entityName: colleagueEntityName)
         fetchRequest.predicate = NSPredicate(format: "inTheSameCourseWith.id == %@ AND (firstName contains[c] %@ OR lastName contains[c] %@)", dataManager.currentStudent!.id, string, string)
@@ -159,6 +185,11 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         }
     }
     
+    /**
+     Filters the friends of the student according to the parameter.
+     
+     :string: used to filter the friends
+    */
     func filterFriends(_ string:String) {
         let fetchRequest:NSFetchRequest<Friend> = NSFetchRequest(entityName: friendEntityName)
         fetchRequest.predicate = NSPredicate(format: "friendOf.id == %@ AND (firstName contains[c] %@ OR lastName contains[c] %@)", dataManager.currentStudent!.id, string, string)
@@ -184,6 +215,11 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         }
     }
     
+    /**
+     Sends a friends request to the specified colleague.
+     
+     :colleague: used to set the target for the request
+    */
     func sendFriendRequestToColleague(_ colleague:Colleague) {
         privacyView.alpha = 0.0
         privacyTitleLabel.text = localized("friend_request")
@@ -208,6 +244,11 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         })
     }
     
+    /**
+     Accepts the friends request.
+     
+     :friendRequest: used to identify the friends request accepted
+    */
     func acceptThisFriendRequest(_ friendRequest:FriendRequest) {
         privacyView.alpha = 0.0
         privacyTitleLabel.text = localized("friend_request")
@@ -232,6 +273,11 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         })
     }
     
+    /**
+     Cancels a pending friends request that was send to a colleague.
+     
+     :colleague: used to determine which friends request got requested
+    */
     func cancelPendingFriendRequestToColleague(_ colleague:Colleague) {
         colleagueToTakeActionWith = colleague
         let myID = dataManager.currentStudent!.id
@@ -241,6 +287,11 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         }
     }
     
+    /**
+     Sets the privacy settings to "see everything".
+     
+     :sender: sending switch that triggered the action
+    */
     @IBAction func toggleSeeEverything(_ sender:UISwitch) {
         everythingSwitch.setOn(sender.isOn, animated: true)
         myResultSwitch.setOn(sender.isOn, animated: true)
@@ -248,6 +299,12 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         activityLogSwitch.setOn(sender.isOn, animated: true)
     }
     
+    /**
+     Sets the privacy settings to "see my results".
+     Sets it to "see everything" if after that all options are selected.
+     
+     :sender: sending switch that triggered the action
+    */
     @IBAction func toggleSeeMyResults(_ sender:UISwitch) {
         if (sender.isOn) {
             if (myResultSwitch.isOn && courseEngagementSwitch.isOn && activityLogSwitch.isOn) {
@@ -258,6 +315,12 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         }
     }
     
+    /**
+     Sets the privacy settings to "see course engagement".
+     Sets it to "see everything" if after that all options are selected.
+     
+     :sender: sending switch that triggered the action
+    */
     @IBAction func toggleSeeCourseEngagement(_ sender:UISwitch) {
         if (sender.isOn) {
             if (myResultSwitch.isOn && courseEngagementSwitch.isOn && activityLogSwitch.isOn) {
@@ -268,6 +331,12 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         }
     }
     
+    /**
+     Sets the privacy settings to "see activity log".
+     Sets it to "see everything" if after that all options are selected.
+     
+     :sender: sending switch that triggered the action
+    */
     @IBAction func toggleSeeActivityLog(_ sender:UISwitch) {
         if (sender.isOn) {
             if (myResultSwitch.isOn && courseEngagementSwitch.isOn && activityLogSwitch.isOn) {
@@ -278,6 +347,11 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         }
     }
     
+    /**
+     Sends or accepts a request depending on which current action is selected.
+     
+     :sender: button that triggered the action
+    */
     @IBAction func sendOrAcceptRequest(_ sender:UIButton) {
         if (currentAction == .sendFriendRequest) {
             sendFriendRequest({ (success, result, results, error) -> Void in
@@ -300,6 +374,11 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         })
     }
     
+    /**
+     Cancels a friend's request.
+     
+     :sender: sending switch that triggered the action
+    */
     @IBAction func cancelFriendRequest(_ sender:UIButton) {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.privacyView.alpha = 0.0
@@ -310,6 +389,11 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
     
     //MARK: Actions With Other Students
     
+    /**
+     Sends a friends request.
+     
+     :completion: completion block
+    */
     func sendFriendRequest(_ completion:@escaping downloadCompletionBlock) {
         if demo() {
             let alert = UIAlertController(title: "", message: localized("demo_mode_sendfriendrequest"), preferredStyle: .alert)
@@ -325,6 +409,11 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         }
     }
     
+    /**
+     Accepts a friend's request.
+     
+     :completion: completion block
+    */
     func acceptFriendRequest(_ completion:@escaping downloadCompletionBlock) {
         if (friendRequestToTakeActionWith != nil) {
             let privacy = FriendRequestPrivacyOptions(results: myResultSwitch.isOn, engagement: courseEngagementSwitch.isOn, activity: activityLogSwitch.isOn)
@@ -334,6 +423,11 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         }
     }
     
+    /**
+     Changes the view settings for a friend.
+     
+     :completion: completion block
+     */
     func changeFriendSettings(_ completion:@escaping downloadCompletionBlock) {
         if (friendToTakeActionWith != nil) {
             let privacy = FriendRequestPrivacyOptions(results: myResultSwitch.isOn, engagement: courseEngagementSwitch.isOn, activity: activityLogSwitch.isOn)
@@ -343,6 +437,11 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         }
     }
     
+    /**
+     Deletes a friends request.
+     
+     :completion: completion block
+    */
     func deleteFriendRequest(_ completion:@escaping downloadCompletionBlock) {
         if (friendRequestToTakeActionWith != nil) {
             let myID = dataManager.currentStudent!.id
@@ -351,6 +450,11 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         }
     }
     
+    /**
+     Hides a selected friend.
+     
+     :completion: completion block
+    */
     func hideFriend(_ completion:@escaping downloadCompletionBlock) {
         if (friendToTakeActionWith != nil) {
             let myID = dataManager.currentStudent!.id
@@ -359,6 +463,11 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         }
     }
     
+    /**
+     Unhides a selected friend.
+     
+     :completion: completion block
+    */
     func unhideFriend(_ completion:@escaping downloadCompletionBlock) {
         if (friendToTakeActionWith != nil) {
             let myID = dataManager.currentStudent!.id
@@ -367,6 +476,11 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         }
     }
     
+    /**
+     Removes a selected friend.
+     
+     :completion: completion block
+    */
     func deleteFriend(_ completion:@escaping downloadCompletionBlock) {
         if (friendToTakeActionWith != nil) {
             let myID = dataManager.currentStudent!.id
@@ -377,6 +491,12 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
     
     //MARK: UIAlertView Delegate
     
+    /**
+     Displays an alert view based on the class UIAlertView and handles its result.
+     
+     :alertView: the view object
+     :clickedButtonAt: selected index of the button
+    */
     func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         if (buttonIndex == 1) {
             if (MFMailComposeViewController.canSendMail()) {
@@ -394,6 +514,12 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
     
     //MARK: MFMailComposeViewController Delegate
     
+    /**
+     Displays a mail compose view based on the class MFMailComposeViewController and handles its actions.
+     
+     :controller: the view object
+     :didFinishWith: result value
+    */
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         switch (result) {
         case MFMailComposeResult.cancelled:
@@ -408,6 +534,11 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
         controller.dismiss(animated: true, completion: nil)
     }
     
+    /**
+     Sends a friends request though something failed.
+     
+     :sender: sending switch that triggered the action
+     */
     @IBAction func sendFriendRequestAnyway(_ sender:UIButton) {
         if let text = searchStudentsInputTextField.text {
             if (isValidEmail(text)) {

@@ -25,12 +25,22 @@ class TermsViewController: UIViewController {
         termsWebView.loadRequest(request)
     }
     
+    /**
+     Accepts the terms and conditions for the logged in user.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func agreeAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
         DELEGATE.menuView = MenuView.createView()
         
     }
     
+    /**
+     Declines the terms and conditions for the logged in user.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func disagreeAction(_ sender: Any) {
         let vc = LoginVC()
         self.navigationController?.present(vc, animated: true, completion: nil)

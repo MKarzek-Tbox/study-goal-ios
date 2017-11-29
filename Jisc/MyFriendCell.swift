@@ -28,6 +28,11 @@ class MyFriendCell: BasicSearchCell, UIAlertViewDelegate {
         loadProfilePicture("")
     }
     
+    /**
+     Initialises cell to display the current friend.
+     
+     :friend: friend to be displayed
+     */
     func loadFriend(_ friend:Friend) {
         theFriend = friend
         nameLabel.text = "\(friend.firstName) \(friend.lastName)"
@@ -35,6 +40,11 @@ class MyFriendCell: BasicSearchCell, UIAlertViewDelegate {
         hideButton.isSelected = friend.hidden.boolValue
     }
     
+    /**
+     Hides or unhides the selected friend.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func hideOrUnhideFriend(_ sender:UIButton) {
         if currentUserType() == .demo {
             sender.isSelected = !sender.isSelected
@@ -63,6 +73,11 @@ class MyFriendCell: BasicSearchCell, UIAlertViewDelegate {
         }
     }
     
+    /**
+     Removes the selected friend.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func deleteFriend(_ sender:UIButton) {
         if demo() {
             let alert = UIAlertController(title: "", message: localized("demo_mode_deletefriend"), preferredStyle: .alert)

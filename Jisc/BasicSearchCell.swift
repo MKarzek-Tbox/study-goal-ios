@@ -40,6 +40,11 @@ class BasicSearchCell: LocalizableCell {
         theColleague = nil
     }
     
+    /**
+     Loads the profile picture.
+     
+     :link: link providing the source of the image
+     */
     func loadProfilePicture(_ link:String) {
         profileImage.loadImageWithLink(link, type: .profile, completion: nil)
     }

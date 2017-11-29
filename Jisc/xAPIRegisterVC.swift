@@ -19,6 +19,11 @@ class xAPIRegisterVC: BaseViewController {
         register();
     }
     
+    /**
+     Closes the webview.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func close(_ sender:UIButton) {
         self.dismiss(animated: true, completion: {
             if let cookies = HTTPCookieStorage.shared.cookies {
@@ -29,6 +34,9 @@ class xAPIRegisterVC: BaseViewController {
         })
     }
     
+    /**
+     Registers the webview.
+     */
     func register(){
         let defaults = UserDefaults.standard
         let uuid = defaults.string(forKey: "uuid")

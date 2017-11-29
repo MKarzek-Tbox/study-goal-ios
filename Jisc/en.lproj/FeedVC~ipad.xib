@@ -40,7 +40,7 @@
             <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ukK-yt-Ndy">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ukK-yt-Ndy" userLabel="Header">
                     <rect key="frame" x="0.0" y="0.0" width="1024" height="124"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightBlue" translatesAutoresizingMaskIntoConstraints="NO" id="K7a-1n-psX">

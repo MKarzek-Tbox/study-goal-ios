@@ -702,8 +702,8 @@
 			children = (
 				977C69931F951C9200EC3D4F /* iPad */,
 				DA366D171BDE610E00EC555E /* SearchVC.swift */,
-				DA366D391BDE7C0C00EC555E /* searchCells */,
 				DAB0C7DF1C4CE8D200F7A3C6 /* SearchVC.xib */,
+				DA366D391BDE7C0C00EC555E /* searchCells */,
 			);
 			name = Friends;
 			sourceTree = "<group>";
@@ -948,6 +948,9 @@
 				DA7F1D271BD8CFB5004EA957 /* Utilities */,
 				DA425AA61BD4E76800C77D76 /* DownloadManager */,
 				DAA2AEEB1BCE854300ED796A /* MainViewControllers */,
+				DAC32DA81BCF945C00C4FBF5 /* BaseViewController.swift */,
+				DAE697B11BE3850D00760DE4 /* BigTitleButton.swift */,
+				DA425ABB1BD51ACE00C77D76 /* ViewWithRoundedCorners.swift */,
 				DAA2AEB01BCE785900ED796A /* Assets.xcassets */,
 				DAD66C641C52222800074B79 /* TrophiesGold.xcassets */,
 				DAD66C651C52222800074B79 /* TrophiesGoldBig.xcassets */,
@@ -988,20 +991,17 @@
 		DAA2AEEB1BCE854300ED796A /* MainViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				977C698F1F951C7000EC3D4F /* Friends */,
 				9766E2181F90CCC800963DD8 /* Menu */,
-				9766E2161F90CC9000963DD8 /* Terms */,
-				DAC32DA81BCF945C00C4FBF5 /* BaseViewController.swift */,
-				DAE697B11BE3850D00760DE4 /* BigTitleButton.swift */,
-				DA425ABB1BD51ACE00C77D76 /* ViewWithRoundedCorners.swift */,
-				DAD644DA1C623B3E00AA62E8 /* LocalizableClasses */,
 				DA425AB21BD5115500C77D76 /* Login */,
+				9766E2161F90CC9000963DD8 /* Terms */,
 				DAA2AEEF1BCE85AB00ED796A /* Feed */,
-				DA11B6A91E7164D800F823B8 /* CheckIn */,
+				977C698F1F951C7000EC3D4F /* Friends */,
 				DAA2AEEE1BCE85A600ED796A /* Stats */,
+				DA11B6A91E7164D800F823B8 /* CheckIn */,
 				DAA2AEED1BCE859F00ED796A /* Log */,
 				DAA2AEEC1BCE859200ED796A /* Target */,
 				DA76413F1BD7DD1D00A7D5C1 /* Settings */,
+				DAD644DA1C623B3E00AA62E8 /* LocalizableClasses */,
 			);
 			name = MainViewControllers;
 			sourceTree = "<group>";
