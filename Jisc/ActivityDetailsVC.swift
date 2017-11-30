@@ -37,6 +37,9 @@ class ActivityDetailsVC: BaseViewController, UIAlertViewDelegate, UITextViewDele
         refresh()
     }
     
+    /**
+     Loads the information for the activity to be displayed.
+     */
     func refresh() {
         titleLabel.text = theActivity.textForDisplay()
         dateFormatter.dateFormat = "d-MM-yyyy"
@@ -97,15 +100,20 @@ class ActivityDetailsVC: BaseViewController, UIAlertViewDelegate, UITextViewDele
         return UIStatusBarStyle.lightContent
     }
     
+    /**
+     Navigations back to the last view displayed.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func goBack(_ sender:UIButton) {
         _ = navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func settings(_ sender:UIButton) {
-        let vc = SettingsVC()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
+    /**
+     Starts edit log action.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func editLog(_ sender:UIButton!) {
         if demo() {
             let alert = UIAlertController(title: "", message: localized("demo_mode_editactivitylog"), preferredStyle: .alert)
@@ -122,6 +130,11 @@ class ActivityDetailsVC: BaseViewController, UIAlertViewDelegate, UITextViewDele
         }
     }
     
+    /**
+     Delets the displayed log.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func deleteLog(_ sender:UIButton!) {
         if demo() {
             let alert = UIAlertController(title: "", message: localized("demo_mode_deleteactivitylog"), preferredStyle: .alert)
@@ -132,6 +145,11 @@ class ActivityDetailsVC: BaseViewController, UIAlertViewDelegate, UITextViewDele
         }
     }
     
+    /**
+     Adds the entered note to the log.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func saveNote(_ sender:UIButton) {
         noteTextView.resignFirstResponder()
         theActivity.note = noteTextView.text

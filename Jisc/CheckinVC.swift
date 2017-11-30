@@ -51,7 +51,7 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
     /**
      Adds selected digit to entry field and checks if the field is completed now.
      
-     :button: button that triggered the action
+     :sender: button that triggered the action
      */
     @IBAction func digit(_ sender:UIButton) {
         currentPin = currentPin + "\(sender.tag)"
@@ -72,7 +72,7 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
     /**
      Deletes the last character from the entry field if there is one available.
      
-     :button: button that triggered the action
+     :sender: button that triggered the action
      */
     @IBAction func backspace(_ sender:UIButton?) {
         if let text = entryField.text {
@@ -95,7 +95,7 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
     /**
      Sends the PIN to the server.
      
-     :button: button that triggered the action
+     :sender: button that triggered the action
      */
     @IBAction func sendPin(_ sender:UIButton?) {
         sendButton.isEnabled = false
@@ -139,7 +139,7 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
     /**
      Opens the menu drawer.
      
-     :button: button that triggered the action
+     :sender: button that triggered the action
      */
     @IBAction func openMenu(_ sender: Any) {
         DELEGATE.menuView?.open()

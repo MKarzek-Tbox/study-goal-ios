@@ -81,7 +81,7 @@ class OneFeedItemCell: LocalizableCell {
     /**
      Sets the font size to fit in the view.
      
-     :button: button that triggered the action
+     :sender: button that triggered the action
      */
     func changeFontSizeToFit(_ button:BigTitleButton) {
         if (button.titleLabel != nil) {
@@ -100,7 +100,7 @@ class OneFeedItemCell: LocalizableCell {
     /**
      Resets the font size to its default font size.
      
-     :button: button that triggered the action
+     :sender: button that triggered the action
      */
     func resetFontSize(_ sender:BigTitleButton) {
         sender.titleLabel!.font = sender.titleLabel!.font.withSize(sender.defaultFontSize)
@@ -192,7 +192,7 @@ class OneFeedItemCell: LocalizableCell {
     /**
      Shares the push notification.
      
-     :button: button that triggered the action
+     :sender: button that triggered the action
      */
     @IBAction func share(_ sender:UIButton) {
         let activityViewController = UIActivityViewController(activityItems: [theFeed!.shareText() as NSString], applicationActivities: nil)
@@ -226,7 +226,7 @@ class OneFeedItemCell: LocalizableCell {
     /**
      Shares the feed item to facebook.
      
-     :button: button that triggered the action
+     :sender: button that triggered the action
      */
     @IBAction func facebook(_ sender:UIButton) {
         hideShareButtons()
@@ -248,7 +248,7 @@ class OneFeedItemCell: LocalizableCell {
     /**
      Shares the feed item via mail.
      
-     :button: button that triggered the action
+     :sender: button that triggered the action
      */
     @IBAction func mail(_ sender:UIButton) {
         hideShareButtons()
@@ -260,7 +260,7 @@ class OneFeedItemCell: LocalizableCell {
     /**
      Calls the display of the options.
      
-     :button: button that triggered the action
+     :sender: button that triggered the action
      */
     @IBAction func options(_ sender:UIButton) {
         showOptions()
@@ -287,7 +287,7 @@ class OneFeedItemCell: LocalizableCell {
     /**
      Calls the method to hide the options.
      
-     :button: button that triggered the action
+     :sender: button that triggered the action
      */
     @IBAction func closeOptions(_ sender:UIButton) {
         hideOptions()
@@ -296,7 +296,7 @@ class OneFeedItemCell: LocalizableCell {
     /**
      Hides the feed item.
      
-     :button: button that triggered the action
+     :sender: button that triggered the action
      */
     @IBAction func hidePost(_ sender:UIButton) {
         if demo() {
@@ -330,7 +330,7 @@ class OneFeedItemCell: LocalizableCell {
     /**
      Hides the Friend displayed as feed item.
      
-     :button: button that triggered the action
+     :sender: button that triggered the action
      */
     @IBAction func hideFriend(_ sender:UIButton) {
         hideOptions()
@@ -360,7 +360,7 @@ class OneFeedItemCell: LocalizableCell {
     /**
      Deletes the target displayed as feed item.
      
-     :button: button that triggered the action
+     :sender: button that triggered the action
      */
     @IBAction func deleteTarget(_ sender:UIButton) {
         let alert = UIAlertController(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_message"), preferredStyle: .alert)
@@ -401,7 +401,7 @@ class OneFeedItemCell: LocalizableCell {
     /**
      Removes the friend displayed as feed item.
      
-     :button: button that triggered the action
+     :sender: button that triggered the action
      */
     @IBAction func deleteFriend(_ sender:UIButton) {
         hideOptions()

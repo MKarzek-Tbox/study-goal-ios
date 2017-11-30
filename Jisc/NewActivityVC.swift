@@ -147,11 +147,19 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
         return UIStatusBarStyle.lightContent
     }
     
+    /**
+     Navigations back to the last view displayed.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func goBack(_ sender:UIButton) {
         timeActivityTimer?.invalidate()
         navigationController?.popViewController(animated: true)
     }
     
+    /**
+     Adds a custom module for social user.
+     */
     func addModule() {
         addModuleTextField.becomeFirstResponder()
         UIView.animate(withDuration: 0.25) {
@@ -159,6 +167,11 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
         }
     }
     
+    /**
+     Closes add module view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func closeAddModule(_ sender:UIButton?) {
         addModuleTextField.text = ""
         addModuleTextField.resignFirstResponder()
@@ -167,6 +180,11 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
         }
     }
     
+    /**
+     Displays reminder time picker.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func changeReminderTime(_ sender:UIButton) {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.closeReminderTimePickerButton.alpha = 1.0
@@ -175,14 +193,29 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
         })
     }
     
+    /**
+     Closes reminder time picker.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func closeReminderTimePicker(_ sender:UIButton) {
         animateReminderTimePickerClosing()
     }
     
+    /**
+     Calls the method animateReminderTimePickerClosing to close the reminder time picker animated.
+     
+     :sender: bar button item that triggered the action
+     */
     @IBAction func closeDatePickerFromToolbar(_ sender:UIBarButtonItem) {
         animateReminderTimePickerClosing()
     }
     
+    /**
+     Closes the reminder time picker animated.
+     
+     :sender: button that triggered the action
+     */
     func animateReminderTimePickerClosing() {
         reminderTimePicker.selectRow(reminderMinutes - 1, inComponent: 0, animated: false)
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
@@ -194,6 +227,11 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
     
     //MARK: Show/Close Selectors
     
+    /**
+     Displays the module selector view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func showModuleSelector(_ sender:UIButton) {
         if social() {
             if dataManager.modules().count == 1 {
@@ -219,6 +257,11 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
         }
     }
     
+    /**
+     Displays activity type selector view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func showActivityTypeSelector(_ sender:UIButton) {
         var array:[String] = [String]()
         for (_, item) in dataManager.activityTypes().enumerated() {
@@ -228,6 +271,11 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
         view.addSubview(activityTypeSelectorView)
     }
     
+    /**
+     Displays activity selector view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func showActivitySelector(_ sender:UIButton) {
         var array:[String] = [String]()
         for (index, _) in dataManager.activityTypes()[selectedActivityType].activities.enumerated() {
@@ -243,6 +291,11 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
     
     //MARK: CustomPickerView Delegate
     
+    /**
+     Initalises the view for selector view depending on which is supposed to be loaded.
+     
+     :sender: button that triggered the action
+     */
     func view(_ view: CustomPickerView, selectedRow: Int) {
         switch (view) {
         case moduleSelectorView:
@@ -280,6 +333,11 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
     
     //MARK: Start/Stop Activity
     
+    /**
+     Starts the logging of the new activity.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func startActivity(_ sender:UIButton) {
         var moduleIsOk = true
         if social() {
@@ -332,6 +390,11 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
         }
     }
     
+    /**
+     Displays the time for the new activity.
+     
+     :sender: timer that triggered the action
+     */
     func updateTimeLabel(_ sender:Timer) {
         if let activityPaused = theActivity?.isPaused.boolValue {
             if let activityDate = theActivity?.date {
@@ -348,6 +411,11 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
         }
     }
     
+    /**
+     Displays the current time passed for the new activity.
+     
+     :sender: timer that triggered the action
+     */
     func updateSpentTimeLabel() {
         if (theActivity != nil) {
             if (theActivity!.isRunning.boolValue) {
@@ -398,6 +466,11 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
         }
     }
     
+    /**
+     Stops the logging for the new activity.
+     
+     :sender: timer that triggered the action
+     */
     @IBAction func stopActivity(_ sender:UIButton) {
         if (theActivity != nil) {
             timeActivityTimer?.invalidate()

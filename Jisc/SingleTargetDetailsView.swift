@@ -63,6 +63,14 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
     var currentVisibleOptions:kVisibleOptions = .none
     var visibleOptionsBeforeShare:kVisibleOptions = .none
     
+    /**
+     Creates the subviews for the detail view.
+     
+     :position: position of the view
+     :superview: superview of the subview
+     
+     :returns: SingleTargetDetailsView - created View
+     */
     class func create(_ position:kDetailsPosition, superview:UIView) -> SingleTargetDetailsView {
         let view:SingleTargetDetailsView = Bundle.main.loadNibNamed("SingleTargetDetailsView", owner: nil, options: nil)!.first as! SingleTargetDetailsView
         view.height.constant = superview.frame.size.height
@@ -98,6 +106,11 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
         return view
     }
     
+    /**
+     Sets shadows for view.
+     
+     :view: view that shadows got set for
+     */
     func setShadow(_ view:UIView) {
         view.layer.shadowColor = UIColor.gray.cgColor
         view.layer.shadowOpacity = 0.5
@@ -107,6 +120,11 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
         view.layer.shouldRasterize = true
     }
     
+    /**
+     Loads the target to be displayed.
+     
+     :target: target object to be displayed
+     */
     func loadTarget(_ target:Target?) {
         contentScroll.contentOffset = CGPoint.zero
         theTarget = target
@@ -161,6 +179,9 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
         showPieChart()
     }
     
+    /**
+     Displays the pie chart.
+     */
     func showPieChart() {
         graphChart.removeFromSuperview()
         middleSection.addSubview(pieChart)
@@ -173,6 +194,9 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
         self.layoutIfNeeded()
     }
     
+    /**
+     Displays the graph chart.
+     */
     func showGraphChart() {
         graphChart.removeFromSuperview()
         pieChart.removeFromSuperview()
@@ -194,6 +218,11 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
         layoutIfNeeded()
     }
     
+    /**
+     Sets the view parts visible according to the visibility option selected.
+     
+     :options: visibility option selected
+     */
     func setVisibleOptions(_ options:kVisibleOptions) {
         currentVisibleOptions = options
         targetReachedView.removeFromSuperview()
@@ -250,6 +279,11 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
         }
     }
     
+    /**
+     Starts adding of a new activity action.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func startNewActivity(_ sender:UIButton) {
         var array:[String] = [String]()
         array.append(localized("report_activity"))
@@ -294,22 +328,47 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
         }
     }
     
+    /**
+     Displays pie chart switch.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func switchToPieChart(_ sender:UIButton) {
         pieChartSwitch(true)
     }
     
+    /**
+     Displays pie shart animated.
+     
+     :animated: value for animation
+     */
     func pieChartSwitch(_ animated:Bool) {
         showPieChart()
     }
     
+    /**
+     Displays switch to display graph.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func switchToGraph(_ sender:UIButton) {
         graphSwitch(true)
     }
     
+    /**
+     Displays the graph chart animated.
+     
+     :animated: value for animation
+     */
     func graphSwitch(_ animated:Bool) {
         showGraphChart()
     }
     
+    /**
+     Starts edit target action.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func editTarget(_ sender:UIButton) {
         closeCellOptions()
         if (theTarget != nil) {
@@ -318,6 +377,11 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
         }
     }
     
+    /**
+     Deletes selected target.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func deleteTarget(_ sender:UIButton) {
         closeCellOptions()
         if (theTarget != nil) {
@@ -333,27 +397,52 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
     
     //MARK: Share
     
+    /**
+     Switches display to show share options.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func shareTarget(_ sender:UIButton) {
         visibleOptionsBeforeShare = currentVisibleOptions
         setVisibleOptions(.share)
     }
     
+    /**
+     Hides share options
+     
+     :sender: button that triggered the action
+     */
     func closeShareView() {
         setVisibleOptions(visibleOptionsBeforeShare)
     }
     
+    /**
+     Provides share option facebook.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func shareOnFacebook(_ sender:UIButton) {
         closeShareView()
         let shareText = "\(localized("target_reached")): \(theTarget!.textForDisplay())"
         sharingManager.shareText(shareText, on: .facebook, nvc: navigationController, successText: nil)
     }
     
+    /**
+     Provides share option twitter.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func shareOnTwitter(_ sender:UIButton) {
         closeShareView()
         let shareText = "\(localized("target_reached")): \(theTarget!.textForDisplay())"
         sharingManager.shareText(shareText, on: .twitter, nvc: navigationController, successText: nil)
     }
     
+    /**
+     Provides share option mail.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func shareOnMail(_ sender:UIButton) {
         closeShareView()
         let shareText = "\(localized("target_reached")): \(theTarget!.textForDisplay())"
@@ -362,6 +451,11 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
     
     //MARK: Add Stretch Goal
     
+    /**
+     Starts add strech goal action.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func addStretchGoal(_ sender:UIButton) {
         if (superview != nil) {
             if (superview!.superview != nil) {
@@ -375,6 +469,11 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
         }
     }
     
+    /**
+     Closes view for strech targets.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func closeStretchTargetView(_ sender:UIButton) {
         stretchTargetHoursPicker.selectRow(selectedHours, inComponent: 0, animated: false)
         stretchTargetMinutesPicker.selectRow(selectedMinutes, inComponent: 0, animated: false)
@@ -385,6 +484,11 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
         })
     }
     
+    /**
+     Sets the strech target.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func setStretchTarget(_ sender:UIButton) {
         if (selectedHours == 0 && selectedMinutes == 0) {
             UIAlertView(title: localized("error"), message: localized("please_set_a_time_for_your_stretch_target"), delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
@@ -471,6 +575,11 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
     
     //MARK: UIGestureRecognizer Delegate
     
+    /**
+     Starts gesture recognition.
+     
+     :gestureRecognizer: recognizer that triggered the action
+     */
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         var shouldBegin = true
         let panGesture = gestureRecognizer as? UIPanGestureRecognizer
@@ -484,6 +593,11 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
         return shouldBegin
     }
     
+    /**
+     Handles the pan gesture and opens or closes the cell options.
+     
+     :sender: recognizer that triggered the action
+     */
     func panAction(_ sender:UIPanGestureRecognizer) {
         switch (sender.state) {
         case .began:
@@ -513,6 +627,9 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
         }
     }
     
+    /**
+     Opens the cell options.
+     */
     func openCellOptions() {
         NotificationCenter.default.post(name: Notification.Name(rawValue: kAnotherTargetCellOpenedOptions), object: self)
         optionsState = .open
@@ -523,6 +640,9 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
         })
     }
     
+    /**
+     Closes the cell options.
+     */
     func closeCellOptions() {
         optionsState = .closed
         UIView.animate(withDuration: 0.25, animations: { () -> Void in

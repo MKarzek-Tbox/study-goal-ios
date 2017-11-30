@@ -90,6 +90,9 @@ class TargetDetailsVC: BaseViewController, UIScrollViewDelegate {
         xAPIManager().checkMod(testUrl:urlString)
     }
     
+    /**
+     Loads the targets to be displayed.
+     */
     func loadTargetsInViews() {
         if (dataManager.targets().count == 1) {
             contentScrollView.isScrollEnabled = false
@@ -124,15 +127,18 @@ class TargetDetailsVC: BaseViewController, UIScrollViewDelegate {
         return UIStatusBarStyle.lightContent
     }
     
+    /**
+     Navigations back to the last view displayed.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func goBack(_ sender:UIButton) {
         _ = navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func settings(_ sender:UIButton) {
-        let vc = SettingsVC()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
+    /**
+     Checks the position of the scroll view to correct it if needed.
+     */
     func checkScrollViewPosition() {
         let offset = Int(contentScrollView.contentOffset.x / screenWidth.rawValue)
         let nextTargetOffset = Int((previousTargetView.width.constant + currentTargetView.width.constant) / screenWidth.rawValue)

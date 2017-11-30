@@ -22,6 +22,11 @@ class TargetGraphChart: UIView {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
+    /**
+     Loads the selected target to display it.
+     
+     :target: target object to be displayed
+     */
     func loadTarget(_ target:Target?) {
         graph?.removeFromSuperview()
         theTarget = target
@@ -64,6 +69,15 @@ class TargetGraphChart: UIView {
         }
     }
     
+    /**
+     Create string values for the interval.
+     
+     :min: minimum value
+     :max: maximum value
+     :pace: interval
+     
+     :returns: [String] - strings for interval
+     */
     func createStringValuesWithInterval(_ min:Int, max:Int, pace:Int) -> [String] {
         var values = [String]()
         for i in stride(from: min, through: max, by: pace) {
@@ -72,12 +86,25 @@ class TargetGraphChart: UIView {
         return values
     }
     
+    /**
+     Removes all subviews from the selected view.
+     
+     :view: view that needs to be cleaned
+     */
     func cleanSubviews(_ view:UIView) {
         while (view.subviews.count > 0) {
             view.subviews.first?.removeFromSuperview()
         }
     }
     
+    /**
+     Loads the selected target to display it.
+     
+     :view: view to be added
+     :firstAttribute: first attribute in the view
+     :secondAttribute: second attribute in the view
+     :superview: superview to add all the subviews to
+     */
     func addSubview(_ view:UIView, firstAttribute:NSLayoutAttribute, secondAttribute:NSLayoutAttribute, superview:UIView) {
         superview.addSubview(view)
         let firstConstraint = makeConstraint(superview, attribute1: firstAttribute, relation: .equal, item2: view, attribute2: firstAttribute, multiplier: 1.0, constant: 0.0)
@@ -85,6 +112,11 @@ class TargetGraphChart: UIView {
         superview.addConstraints([firstConstraint, secondConstraint])
     }
     
+    /**
+     Creates a label to display the legend.
+     
+     :returns: UILabel - label with legend
+     */
     func createLegendLabel() -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -95,6 +127,11 @@ class TargetGraphChart: UIView {
         return label
     }
     
+    /**
+     Sets the vertical values according.
+     
+     :values: values for the vertical settings
+     */
     func setVerticalValues(_ values:[String]) {
         cleanSubviews(viewWithVerticalLabels)
         var lastLabel:UILabel?
@@ -127,6 +164,11 @@ class TargetGraphChart: UIView {
         }
     }
     
+    /**
+     Sets the horizontal values according.
+     
+     :values: values for the horizontal settings
+     */
     func setHorizontalValues(_ values:[String]) {
         cleanSubviews(viewWithHorizontalLabels)
         var lastView:UIView?

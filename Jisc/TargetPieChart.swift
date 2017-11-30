@@ -26,6 +26,11 @@ class TargetPieChart: UIView {
         chartWebview.loadHTMLString("", baseURL: nil)
     }
     
+    /**
+     Loads the selected target to display it.
+     
+     :target: target object to be displayed
+     */
     func loadTarget(_ target:Target?) {
         let graphWidth = chartWebview.frame.size.width
         let graphHeight = chartWebview.frame.size.height
@@ -51,6 +56,11 @@ class TargetPieChart: UIView {
         }
     }
     
+    /**
+     Sets the targets completion status.
+     
+     :complete: complete or not complete set here
+     */
     func setTargetIsComplete(_ complete:Bool) {
         if (complete) {
             starContainerView.alpha = 1.0

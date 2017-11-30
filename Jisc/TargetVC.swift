@@ -17,6 +17,7 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var emptyScreenMessage:UIView!
     
     @IBOutlet weak var recurringTargetSegmentControl: UISegmentedControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         recurringTargetSegmentControl.selectedSegmentIndex = 1
@@ -47,20 +48,30 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
         targetsTableView.reloadData()
     }
     
+    /**
+     Opens menu drawer.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func openMenu(_ sender:UIButton?) {
         DELEGATE.menuView?.open()
     }
     
-    @IBAction func settings(_ sender:UIButton) {
-        let vc = SettingsVC()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
+    /**
+     Starts add recurring target action.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func newTarget(_ sender:UIButton) {
         let vc = NewTargetVC()
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    /**
+     Handles segment controller action.
+     
+     :sender: segment that triggered the action
+     */
     @IBAction func recurringTargetSegmentAction(_ sender: Any) {
         if (recurringTargetSegmentControl.selectedSegmentIndex == 0){
             let vc = SingleTargetVC()

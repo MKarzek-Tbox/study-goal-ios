@@ -5,6 +5,7 @@
 //  Created by Therapy Box on 10/28/15.
 //  Copyright © 2015 Therapy Box. All rights reserved.
 //
+//  New Single Target
 
 import UIKit
 import CoreData
@@ -178,6 +179,11 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
         return UIStatusBarStyle.lightContent
     }
     
+    /**
+     Navigations back to the last view displayed.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func goBack(_ sender:UIButton) {
         if (changesWereMade()) {
             UIAlertView(title: localized("confirmation"), message: localized("would_you_like_to_save_the_changes_you_made"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
@@ -187,6 +193,11 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
         }
     }
     
+    /**
+     Handles segment controller action.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func topSegmentControlAction(_ sender: Any) {
         if (topSegmentControl.selectedSegmentIndex == 1){
             let vc = RecurringTargetVC()
@@ -197,6 +208,11 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
         }
     }
     
+    /**
+     Handles segment controller action.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func recurringSegmentControlAction(_ sender: Any) {
         if (recurringSegmentControl.selectedSegmentIndex == 0){
             Bundle.main.loadNibNamed("RecurringTargetVC", owner: self, options: nil)
@@ -205,6 +221,9 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
         }
     }
     
+    /**
+     Displays the custom module for social user.
+     */
     func addModule() {
         addModuleTextField.becomeFirstResponder()
         UIView.animate(withDuration: 0.25) {
@@ -212,6 +231,11 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
         }
     }
     
+    /**
+     Closes add module view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func closeAddModule(_ sender:UIButton?) {
         addModuleTextField.text = ""
         addModuleTextField.resignFirstResponder()
@@ -220,6 +244,11 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
         }
     }
     
+    /**
+     Keeps track of the changed information for saving.
+     
+     :returns: Bool - true or false depending on whether changes were made or not
+     */
     func changesWereMade() -> Bool {
         var changesWereMade:Bool = false
         if (initialSelectedModule != selectedModule) {
@@ -238,15 +267,15 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
         return changesWereMade
     }
     
-    @IBAction func settings(_ sender:UIButton) {
-        let vc = SettingsVC()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
     func closeActiveTextEntries() {
         closeTextView(UIBarButtonItem())
     }
     
+    /**
+     Checks whether the selected target already exsists.
+     
+     :returns: Bool - true or false depending on whether the target already exsists or not
+     */
     func checkForTargetConflicts() -> Bool {
         var conflictExists:Bool = false
         let targets = dataManager.targets()
@@ -274,6 +303,11 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
         return conflictExists
     }
     
+    /**
+     Saves the recurring target.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func saveTarget(_ sender:UIButton) {
         print("saving recurring target")
         if(demo()){
@@ -340,6 +374,11 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
         }
     }
     
+    /**
+     Saves the single target.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func recurringSaveAction(_ sender: Any) {
         dateFormatter.dateFormat = "y-MM-dd"
         let somedateString = dateFormatter.string(from: self.recurringDatePicker.date)
@@ -372,7 +411,6 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
     
     @IBAction func datePickerAction(_ sender: Any) {
         recurringDatePicker.minimumDate = Date()
-        
     }
     
     //MARK: UIAlertView Delegate
@@ -389,6 +427,11 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
     
     //MARK: Show Selector Views
     
+    /**
+     Displays activity type selector view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func showActivityTypeSelector(_ sender:UIButton) {
         if (!isEditingTarget) {
             closeActiveTextEntries()
@@ -401,6 +444,11 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
         }
     }
     
+    /**
+     Displays activity selector view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func showActivitySelector(_ sender:UIButton) {
         var array:[String] = [String]()
         for (index, _) in dataManager.activityTypes()[selectedActivityType].activities.enumerated() {
@@ -414,6 +462,11 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
         view.addSubview(activitySelectorView)
     }
     
+    /**
+     Displays interval selector view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func showIntervalSelector(_ sender:UIButton) {
         closeActiveTextEntries()
         var array:[String] = [String]()
@@ -424,6 +477,11 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
         view.addSubview(intervalSelectorView)
     }
     
+    /**
+     Displays module selector view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func showModuleSelector(_ sender:UIButton) {
         if currentUserType() == .social {
             var array:[String] = [String]()
@@ -511,6 +569,11 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
     
     //MARK: Time Picker
     
+    /**
+     Displays the time picker view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func changeTime(_ sender:UIButton) {
         closeActiveTextEntries()
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
@@ -520,14 +583,28 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
         })
     }
     
+    /**
+     Closes the time picker view animated by calling the method animateTimepickerClosing.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func closeTimePicker(_ sender:UIButton) {
         animateTimePickerClosing()
     }
     
+    /**
+     Closes the time picker view from the toolbar animated by calling the method animateTimepickerClosing.
+     
+     :sender: bar button item that triggered the action
+     */
+
     @IBAction func closeTimePickerFromToolbar(_ sender:UIBarButtonItem) {
         animateTimePickerClosing()
     }
-    
+
+    /**
+     Closes the time picker view animated.
+     */
     func animateTimePickerClosing() {
         hoursPicker.selectRow(selectedHours, inComponent: 0, animated: false)
         minutesPicker.selectRow(selectedMinutes, inComponent: 0, animated: false)

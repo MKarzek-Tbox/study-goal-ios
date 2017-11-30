@@ -21,7 +21,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     var noHeight = 0.0
     var refreshTimer:Timer?
     
-    
     @IBOutlet weak var singleTargetSegmentControl: UISegmentedControl!
     
     override func viewDidLoad() {
@@ -47,7 +46,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         }
         xAPIManager().checkMod(testUrl:urlString)
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(doThisWhenNotify),
+                                               selector: #selector(navigateToEditSingleTarget),
                                                name: NSNotification.Name(rawValue: myNotificationKey),
                                                object: nil)
         NotificationCenter.default.addObserver(self,
@@ -56,18 +55,29 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                                                object: nil)
     }
     
+    /**
+     Reloads the single target data.
+     
+     :sender: refresh control that triggered the action
+     */
     func manuallyRefreshFeeds(_ sender:UIRefreshControl) {
         getTodoListData()
         self.singleTargetTableView.reloadData()
         sender.endRefreshing()
     }
     
-    func doThisWhenNotify(){
+    /**
+     Navigates to add single target view when notified.
+     */
+    func navigateToEditSingleTarget(){
         let vc = RecurringTargetVC()
         vc.cameFromEditing()
         navigationController?.pushViewController(vc, animated: false)
     }
     
+    /**
+     Reloads the single target data by calling getTodoListData.
+     */
     func callGetToDoList(){
         getTodoListData()
     }
@@ -83,26 +93,45 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         singleTargetTableView.reloadData()
     }
     
+    /**
+     Opens menu drawer.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func openMenuAction(_ sender: Any) {
         DELEGATE.menuView?.open()
     }
     
+    /**
+     Starts the add single target action.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func newTargetAction(_ sender: Any) {
         let vc = RecurringTargetVC()
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    /**
+     Handles segment controller action.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func singelTargetSegmentAction(_ sender: Any) {
         if (singleTargetSegmentControl.selectedSegmentIndex == 0){
             let vc = SingleTargetVC()
             navigationController?.pushViewController(vc, animated: false)
-            
         } else {
             let vc = TargetVC()
             navigationController?.pushViewController(vc, animated: false)
         }
     }
     
+    /**
+     Reloads the single target data.
+     
+     :sender: button that triggered the action
+     */
     private func getTodoListData(){
         self.arrayOfResponses.removeAll()
         self.arrayOfResponses2.removeAll()
@@ -145,19 +174,13 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                                 self.arrayOfResponses.append(object!)
                             }
                             print("it works \(status)");
-                            
-                            
                         }
                         for item in self.arrayOfResponses2{
                             self.arrayOfResponses.insert(item, at: 0)
-                            
                         }
                         let defaults = UserDefaults.standard
-                        
-                        defaults.set(self.arrayOfResponses, forKey: "AllTheSingleTargets") //My goal text
-                        
+                        defaults.set(self.arrayOfResponses, forKey: "AllTheSingleTargets")
                         self.singleTargetTableView.reloadData()
-                        
                     }
                 } catch {
                     print("Error deserializing JSON: \(error)")

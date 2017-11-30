@@ -184,11 +184,9 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         super.viewDidAppear(animated)
     }
     
-    
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }
-    
     
     @IBAction func goBack(_ sender:UIButton) {
         if (changesWereMade()) {
@@ -243,11 +241,6 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         return changesWereMade
     }
     
-    @IBAction func settings(_ sender:UIButton) {
-        let vc = SettingsVC()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
     func closeActiveTextEntries() {
         closeTextView(UIBarButtonItem())
     }
@@ -280,6 +273,7 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
     }
     
     @IBAction func saveTarget(_ sender:UIButton) {
+        print("real saving of single targets")
         if (selectedMinutes == 0 && selectedHours == 0) {
             UIAlertView(title: localized("error"), message: localized("please_enter_a_time_target"), delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
         } else if (checkForTargetConflicts()) {

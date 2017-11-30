@@ -5,6 +5,7 @@
 //  Created by Therapy Box on 10/28/15.
 //  Copyright © 2015 Therapy Box. All rights reserved.
 //
+//  Target cell
 
 import UIKit
 
@@ -45,6 +46,12 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(TargetCell.changeSelectedStyleOff), name: NSNotification.Name(rawValue: kChangeTargetCellSelectedStyleOff), object: nil)
     }
     
+    /**
+     Sets the target cell selected or unselected.
+     
+     :selected: state of selection
+     :animated: with or without animation
+     */
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         if (selected) {
@@ -52,6 +59,11 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
         }
     }
     
+    /**
+     Gets executed if another cell opened the options so it closes the options of the current cell.
+     
+     :notification: notification object
+     */
     func anotherCellOpenedOptions(_ notification:Notification) {
         let senderCell = notification.object as? TargetCell
         if (senderCell != nil) {
@@ -61,10 +73,16 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
         }
     }
     
+    /**
+     Sets selected style for on to gray.
+     */
     func changeSelectedStyleOn() {
         selectionStyle = .gray
     }
     
+    /**
+     Sets selected style for off the none.
+     */
     func changeSelectedStyleOff() {
         selectionStyle = .none
     }
@@ -79,6 +97,12 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
         tableView = nil
     }
     
+    /**
+     Initalises the cell with the target object provided.
+     
+     :target: target to be displayed
+     :isLast: true if its the last object in the list
+     */
     func loadTarget(_ target:Target, isLast:Bool) {
         titleLabel.text = target.textForDisplay()
         if (isLast) {
@@ -96,6 +120,11 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
         }
     }
     
+    /**
+     Marks the selected single target as done.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func markAsDoneAction(_ sender: Any) {
         if demo(){
             let alert = UIAlertController(title: "", message: localized("demo_mode_mark_as_done_target"), preferredStyle: .alert)
@@ -162,6 +191,11 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
         }
     }
     
+    /**
+     Starts the edit target action.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func editTarget(_ sender:UIButton) {
         if(kButtonsWidth > 200){
             if (indexPath != nil) {
@@ -201,6 +235,11 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
         }
     }
     
+    /**
+     Delets the target selected.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func deleteTarget(_ sender:UIButton) {
         if demo() {
             let alert = UIAlertController(title: "", message: localized("demo_mode_delete_target"), preferredStyle: .alert)
@@ -251,6 +290,11 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
     
     //MARK: UIGestureRecognizer Delegate
     
+    /**
+     Starts gesture recognition.
+     
+     :gestureRecognizer: recognizer that triggered the action
+     */
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         var shouldBegin = true
         let panGesture = gestureRecognizer as? UIPanGestureRecognizer
@@ -264,6 +308,11 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
         return shouldBegin
     }
     
+    /**
+     Handles the pan gesture and opens or closes the cell options.
+     
+     :sender: recognizer that triggered the action
+     */
     func panAction(_ sender:UIPanGestureRecognizer) {
         switch (sender.state) {
         case .began:
@@ -293,6 +342,9 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
         }
     }
     
+    /**
+     Opens the cell options.
+     */
     func openCellOptions() {
         NotificationCenter.default.post(name: Notification.Name(rawValue: kAnotherTargetCellOpenedOptions), object: self)
         optionsState = .open
@@ -307,6 +359,9 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
         })
     }
     
+    /**
+     Closes the cell options.
+     */
     func closeCellOptions() {
         NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeTargetCellSelectedStyleOn), object: nil)
         parent?.aCellIsOpen = false

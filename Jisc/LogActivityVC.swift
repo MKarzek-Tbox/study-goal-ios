@@ -140,6 +140,9 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
         return UIStatusBarStyle.lightContent
     }
     
+    /**
+     Displays the custom module for social user.
+     */
     func addModule() {
         addModuleTextField.becomeFirstResponder()
         UIView.animate(withDuration: 0.25) {
@@ -147,6 +150,11 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
         }
     }
     
+    /**
+     Closes add module view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func closeAddModule(_ sender:UIButton?) {
         addModuleTextField.text = ""
         addModuleTextField.resignFirstResponder()
@@ -155,6 +163,13 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
         }
     }
     
+    /**
+     Formats the date object into a readable string of format: weekday, day with extension, short month, year.
+     
+     :date: date object that needs to be completed
+     
+     :returns: String - formated date as string
+     */
     func completeDateString(_ date:Date) -> String {
         dateFormatter.dateFormat = "d"
         let day = Int(dateFormatter.string(from: date))
@@ -181,6 +196,11 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
         return completeDateString
     }
     
+    /**
+     Navigations back to the last view displayed.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func goBack(_ sender:UIButton) {
         if (changesWereMade()) {
             UIAlertView(title: localized("confirmation"), message: localized("would_you_like_to_save_the_changes_you_made"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
@@ -189,6 +209,11 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
         }
     }
     
+    /**
+     Keeps track of the changed information for saving.
+     
+     :returns: Bool - true or false depending on whether changes were made or not
+     */
     func changesWereMade() -> Bool {
         var changesWereMade:Bool = false
         if (initialSelectedModule != selectedModule) {
@@ -209,11 +234,9 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
         return changesWereMade
     }
     
-    @IBAction func settings(_ sender:UIButton) {
-        let vc = SettingsVC()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
+    /**
+     Formats the string to display n the time fields.
+     */
     func closeActiveTextEntries() {
         view.endEditing(true)
         hoursTextField.text = "0\(selectedHours)"
@@ -227,6 +250,11 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
     
     //MARK: Show/Close Selectors
     
+    /**
+     Displays the module selector view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func showModuleSelector(_ sender:UIButton) {
         if currentUserType() == .social {
             if dataManager.modules().count == 1 {
@@ -255,6 +283,11 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
         }
     }
     
+    /**
+     Displays activity type selector view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func showActivityTypeSelector(_ sender:UIButton) {
         if (!isEditingLog) {
             closeActiveTextEntries()
@@ -267,6 +300,11 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
         }
     }
     
+    /**
+     Displays activity selector view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func showActivitySelector(_ sender:UIButton) {
         if (!isEditingLog) {
             closeActiveTextEntries()
@@ -285,6 +323,11 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
     
     //MARK: CustomPickerView Delegate
     
+    /**
+     Initalises the view for selector view depending on which is supposed to be loaded.
+     
+     :sender: button that triggered the action
+     */
     func view(_ view: CustomPickerView, selectedRow: Int) {
         switch (view) {
         case moduleSelectorView:
@@ -324,6 +367,11 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
     
     //MARK: Change Date
     
+    /**
+     Displays the date picker view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func changeDate(_ sender:UIButton) {
         closeActiveTextEntries()
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
@@ -333,14 +381,27 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
         })
     }
     
+    /**
+     Closes the date picker view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func closeDatePicker(_ sender:UIButton) {
         animateDatePickerClosing()
     }
     
+    /**
+     Closes the date picker view from the tool bar animated by calling the method animateDatePickerClosing.
+     
+     :sender: bar button item that triggered the action
+     */
     @IBAction func closeDatePickerFromToolbar(_ sender:UIBarButtonItem) {
         animateDatePickerClosing()
     }
     
+    /**
+     Closes the date picker animated.
+     */
     func animateDatePickerClosing() {
         datePicker.setDate(datePicker.date, animated: false)
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
@@ -353,6 +414,11 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
     
     //MARK: Change Time
     
+    /**
+     Displays the time picker view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func changeTime(_ sender:UIButton) {
         closeActiveTextEntries()
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
@@ -362,14 +428,27 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
         })
     }
     
+    /**
+     Closes the time picker view animated by calling the method animateTimepickerClosing.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func closeTimePicker(_ sender:UIButton) {
         animateTimePickerClosing()
     }
     
+    /**
+     Closes the time picker view from the toolbar animated by calling the method animateTimepickerClosing.
+     
+     :sender: bar button item that triggered the action
+     */
     @IBAction func closeTimePickerFromToolbar(_ sender:UIBarButtonItem) {
         animateTimePickerClosing()
     }
     
+    /**
+     Closes the time picker view animated.
+     */
     func animateTimePickerClosing() {
         hoursPicker.selectRow(selectedHours, inComponent: 0, animated: false)
         minutesPicker.selectRow(selectedMinutes, inComponent: 0, animated: false)
@@ -382,6 +461,11 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
     
     //MARK: Save
     
+    /**
+     Saves the reported activity after checking for missing input fields.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func save(_ sender:UIButton) {
         closeActiveTextEntries()
         if (selectedMinutes == 0 && selectedHours == 0) {

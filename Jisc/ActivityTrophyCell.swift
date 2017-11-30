@@ -29,6 +29,11 @@ class ActivityTrophyCell: UITableViewCell {
         }
     }
     
+    /**
+     Initialises the cell with the selected throphy item.
+     
+     :trophy: trophy object to be displayed
+     */
     func loadTrophy(_ trophy:Trophy) {
         theTrophy = trophy
         let imageName = OneTrophyView.trophyIconForID(trophy.id)

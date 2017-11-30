@@ -45,7 +45,7 @@ class LogVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, Cus
     /**
      Opens menu drawer.
      
-     :button: button that triggered the action
+     :sender: button that triggered the action
      */
     @IBAction func openMenu(_ sender:UIButton?) {
         DELEGATE.menuView?.open()
@@ -66,7 +66,7 @@ class LogVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, Cus
     /**
      Manually refresh activity logs by the user.
      
-     :button: button that triggered the action
+     :sender: button that triggered the action
      */
     func manuallyRefreshLogs(_ sender:UIRefreshControl) {
         dataManager.silentActivityLogsRefresh { (success, failureReason) -> Void in
@@ -107,7 +107,7 @@ class LogVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, Cus
     /**
      Navigates to log new activity view.
      
-     :button: button that triggered the action
+     :sender: button that triggered the action
      */
     @IBAction func showNewActivitySelector(_ sender:UIButton) {
         if (dataManager.runningActivities().count > 0) {

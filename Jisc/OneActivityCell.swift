@@ -118,7 +118,7 @@ class OneActivityCell: UITableViewCell, UIAlertViewDelegate {
     /**
      Deletes the selected activity.
      
-     :button: button that triggered the action
+     :sender: button that triggered the action
      */
 	@IBAction func deleteActivity(_ sender:UIButton) {
 		if demo() {
@@ -133,7 +133,7 @@ class OneActivityCell: UITableViewCell, UIAlertViewDelegate {
     /**
      Navigates to the edit view for the selected activity.
      
-     :button: button that triggered the action
+     :sender: button that triggered the action
      */
 	@IBAction func editActivity(_ sender:UIButton) {
 		if demo() {
