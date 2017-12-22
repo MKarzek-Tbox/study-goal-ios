@@ -92,6 +92,11 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
         }
     }
     
+    /**
+     Notifies about another settings view.
+     
+     :notification: notification object
+     */
     func anotherSettingsViewWillAppear(_ notification:Notification) {
         let viewController = (notification as NSNotification).userInfo?["viewController"] as? SettingsVC
         let navigationController = (notification as NSNotification).userInfo?["navigationController"] as? UINavigationController
@@ -159,11 +164,21 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
         return UIStatusBarStyle.lightContent
     }
     
+    /**
+     Handles menu go back function.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func goBack(_ sender:UIButton) {
         _ = navigationController?.popViewController(animated: true)
         DELEGATE.menuView = MenuView.createView()
     }
     
+    /**
+     Adds the current view.
+     
+     :view: view do be added
+     */
     func addCurrentView(_ view:UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
         currentTrophyDetailsView?.removeFromSuperview()
@@ -173,11 +188,21 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
         addMarginConstraintsWithView(currentView!, toSuperView: currentContentView)
     }
     
+    /**
+     Adds profile to view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func profile(_ sender:UIButton) {
         titleLabel.text = localized("profile")
         addCurrentView(profileView)
     }
     
+    /**
+     Adds friends view to view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func friends(_ sender:UIButton) {
         if (iPad) {
             titleLabel.text = localized("friends")
@@ -190,6 +215,11 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
         }
     }
     
+    /**
+     Adds home screen settings to view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func homeScreen(_ sender:UIButton) {
         if (iPad) {
             titleLabel.text = localized("startup_screen")
@@ -202,6 +232,11 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
         }
     }
     
+    /**
+     Adds trophies page to view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func trophies(_ sender:UIButton) {
         if (iPad) {
             titleLabel.text = localized("trophies")
@@ -213,6 +248,11 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
         }
     }
     
+    /**
+     Adds language settings to view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func language(_ sender:UIButton) {
         if (iPad) {
             titleLabel.text = localized("language")
@@ -225,6 +265,11 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
         }
     }
     
+    /**
+     Adds consent page to view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func consent(_ sender:UIButton) {
         if (iPad) {
             titleLabel.text = localized("consent")
@@ -236,25 +281,49 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
         }
     }
     
+    /**
+     Adds privacy statement to view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func privacyStatement(_ sender: UIButton) {
         let vc = PrivacyWebViewVC()
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    /**
+     Adds terms and conditions page to view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func termsAndConditions(_ sender: Any) {
         let vc = TermsViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    /**
+     Toogles the analytics.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func toggleAnalytics(_ sender:UIButton) {
         sender.isSelected = !sender.isSelected
         changeConsentSettings()
     }
     
+    /**
+     Toggles the privacy.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func togglePrivacy(_ sender:UIButton) {
         sender.isSelected = !sender.isSelected
         changeConsentSettings()
     }
     
+    /**
+     Changes the consent settings.
+     */
     func changeConsentSettings() {
         let myID = dataManager.currentStudent!.id
         let analytics = acceptAnalyticsButton.isSelected
@@ -264,6 +333,11 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
         }
     }
     
+    /**
+     Sets the profile image file.
+     
+     :sender: button that triggered the action
+     */
     func setProfileImageFile(_ image:UIImage?) {
         DownloadManager().editProfile(dataManager.currentStudent!.id, image: image, alertAboutInternet: true) { (success, result, results, error) -> Void in
             if let jwt = xAPIToken() {
@@ -286,10 +360,20 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
         }
     }
     
+    /**
+     Logs out the user.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func logout(_ sender:UIButton) {
         UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_log_out"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
     }
     
+    /**
+     Shows details for selected trophy.
+     
+     :trophy: trophy to be displayed
+     */
     func showDetailsForTrophy(_ trophy:Trophy?) {
         currentTrophyDetailsView?.removeFromSuperview()
         if (trophy != nil) {
@@ -305,6 +389,9 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
         }
     }
     
+    /**
+     Highlights the selected start sreen.
+     */
     func highlightSelectedStartScreen() {
         feedCheckmark.alpha = 0.0
         statsCheckmark.alpha = 0.0
@@ -329,6 +416,11 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
         }
     }
     
+    /**
+     Selects the start screen for the app.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func selectScreen(_ sender:UIButton) {
         if currentUserType() == .demo {
             let alert = UIAlertController(title: "", message: localized("demo_mode_change_app_settings"), preferredStyle: .alert)
@@ -382,6 +474,11 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
         }
     }
     
+    /**
+     Switches view to trophies won.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func trophiesWon(_ sender:UIButton) {
         trophiesWonButton.isSelected = true
         trophiesAvailableButton.isSelected = false
@@ -391,6 +488,11 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
         })
     }
     
+    /**
+     Switches view to trophies available.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func trophiesAvailable(_ sender:UIButton) {
         trophiesWonButton.isSelected = false
         trophiesAvailableButton.isSelected = true
@@ -400,6 +502,9 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
         })
     }
     
+    /**
+     Highlights the selected language.
+     */
     func highlightSelectedLanguage() {
         englishCheckmark.alpha = 0.0
         welshCheckmark.alpha = 0.0
@@ -414,6 +519,11 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
         }
     }
     
+    /**
+     Selects the language chosen.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func selectLanguage(_ sender:UIButton) {
         if currentUserType() == .demo {
             let alert = UIAlertController(title: "", message: localized("demo_mode_change_app_settings"), preferredStyle: .alert)
@@ -449,6 +559,11 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
         }
     }
     
+    /**
+     Handles bug report.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func reportABug(_ sender:UIButton) {
         if (MFMailComposeViewController.canSendMail()) {
             let vc = MFMailComposeViewController()
@@ -677,6 +792,11 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
         supportedInterfaceOrientationsForIPad = UIInterfaceOrientationMask.landscape
     }
     
+    /**
+     Opens the menu drawer.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func openMenu(_ sender:UIButton?) {
         DELEGATE.menuView?.open()
     }

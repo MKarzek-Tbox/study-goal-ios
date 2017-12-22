@@ -26,6 +26,9 @@ class SelectHomeScreenVC: BaseViewController {
         return UIStatusBarStyle.lightContent
     }
     
+    /**
+     Highlights the selected item.
+     */
     func highlightSelectedItem() {
         feedCheckmark.alpha = 0.0
         friendsCheckmark.alpha = 0.0
@@ -52,10 +55,20 @@ class SelectHomeScreenVC: BaseViewController {
         }
     }
     
+    /**
+     Navigates back to settings.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func goBack(_ sender:UIButton) {
         _ = navigationController?.popViewController(animated: true)
     }
     
+    /**
+     Slects the item as home screen.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func selectScreen(_ sender:UIButton) {
         if currentUserType() == .demo {
             let alert = UIAlertController(title: "", message: localized("demo_mode_change_app_settings"), preferredStyle: .alert)

@@ -15,6 +15,11 @@ class NewTrophyAlert: LocalizableView {
     @IBOutlet weak var titleLabel:UILabel!
     @IBOutlet weak var trophyImage:UIImageView!
     
+    /**
+     Creates a new trophy alert.
+     
+     :trophy: trophy to be displayed
+     */
     class func showNewTrophy(_ trophy:Trophy) {
         let view:NewTrophyAlert = Bundle.main.loadNibNamed("NewTrophyAlert", owner: nil, options: nil)!.first as! NewTrophyAlert
         let imageName = OneTrophyView.trophyIconForID(trophy.id)
@@ -39,6 +44,11 @@ class NewTrophyAlert: LocalizableView {
         }
     }
     
+    /**
+     Closes the new trophy alert.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func close(_ sender:UIButton) {
         if (pendingTrophyAlerts.contains(self)) {
             pendingTrophyAlerts.remove(at: pendingTrophyAlerts.index(of: self)!)

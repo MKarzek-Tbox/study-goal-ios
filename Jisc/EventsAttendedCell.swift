@@ -34,6 +34,11 @@ class EventsAttendedCell: UITableViewCell {
         moduleLabel.text = ""
     }
     
+    /**
+     Loads the event data into the cell.
+     
+     :events: event object to be displayed
+     */
     func loadEvents(events:EventsAttendedObject){
         dateLabel.text = events.date
         timeLabel.text = events.time

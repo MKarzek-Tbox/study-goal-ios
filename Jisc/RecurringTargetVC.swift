@@ -11,6 +11,7 @@ import CoreData
 
 
 class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate, UIAlertViewDelegate, CustomPickerViewDelegate, UITextFieldDelegate  {
+    
     @IBOutlet weak var topSegmentControl: UISegmentedControl!
     
     @IBOutlet weak var myGoalTextField: UITextView!
@@ -33,6 +34,7 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
     @IBOutlet weak var hoursTextField:UITextField!
     @IBOutlet weak var minutesTextField:UITextField!
     @IBOutlet weak var toolbar:UIView!
+    
     var selectedHours:Int = 0
     var selectedMinutes:Int = 0
     var timeSpan:kTargetTimeSpan = .Weekly
@@ -74,9 +76,14 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    /**
+     Set editing mode to true.
+     */
     func cameFromEditing(){
         isInEditingMode = true
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -188,6 +195,11 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         return UIStatusBarStyle.lightContent
     }
     
+    /**
+     Handles menu back button.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func goBack(_ sender:UIButton) {
         if (changesWereMade()) {
             UIAlertView(title: localized("confirmation"), message: localized("would_you_like_to_save_the_changes_you_made"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
@@ -197,6 +209,11 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         }
     }
     
+    /**
+     Handles segment controller action.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func recurringSegmentControlAction(_ sender: Any) {
         if (recurringSegmentControl.selectedSegmentIndex == 0){
             let vc = RecurringTargetVC()
@@ -208,6 +225,9 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         }
     }
     
+    /**
+     Opens add module view for social users.
+     */
     func addModule() {
         addModuleTextField.becomeFirstResponder()
         UIView.animate(withDuration: 0.25) {
@@ -215,6 +235,9 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         }
     }
     
+    /**
+     Closes add module view for social users.
+     */
     @IBAction func closeAddModule(_ sender:UIButton?) {
         addModuleTextField.text = ""
         addModuleTextField.resignFirstResponder()
@@ -223,6 +246,11 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         }
     }
     
+    /**
+     Checks whether the entries were changes or not.
+     
+     :returns: whether the entries were changed or not
+     */
     func changesWereMade() -> Bool {
         var changesWereMade:Bool = false
         if (initialSelectedModule != selectedModule) {
@@ -241,10 +269,18 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         return changesWereMade
     }
     
+    /**
+     Closes the active text entries.
+     */
     func closeActiveTextEntries() {
         closeTextView(UIBarButtonItem())
     }
     
+    /**
+     Handles segment controller action.
+     
+     :sender: button that triggered the action
+     */
     func checkForTargetConflicts() -> Bool {
         var conflictExists:Bool = false
         let targets = dataManager.targets()
@@ -272,6 +308,11 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         return conflictExists
     }
     
+    /**
+     Saves the target.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func saveTarget(_ sender:UIButton) {
         print("real saving of single targets")
         if (selectedMinutes == 0 && selectedHours == 0) {
@@ -342,6 +383,11 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         }
     }
     
+    /**
+     Saves a recurring target.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func recurringSaveAction(_ sender: Any) {
         if demo(){
             let alert = UIAlertController(title: "", message: localized("demo_mode_add_target"), preferredStyle: .alert)
@@ -421,6 +467,11 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         }
     }
     
+    /**
+     Handles date picker.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func datePickerAction(_ sender: Any) {
         if (isInEditingMode){
             let defaults = UserDefaults.standard
@@ -458,8 +509,18 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         }
     }
     
+    /**
+     Notifies that the keyboard will show.
+     
+     :notification: notification object
+     */
     func keyboardWillShow(notification: NSNotification) { }
     
+    /**
+     Notifies that the keyboard will hide.
+     
+     :notification: notification object
+     */
     func keyboardWillHide(notification: NSNotification) { }
     
     //MARK: UIAlertView Delegate
@@ -476,6 +537,11 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
     
     //MARK: Show Selector Views
     
+    /**
+     Shows the activity type selector view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func showActivityTypeSelector(_ sender:UIButton) {
         if (!isEditingTarget) {
             closeActiveTextEntries()
@@ -488,6 +554,11 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         }
     }
     
+    /**
+     Shows the activity selector view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func showActivitySelector(_ sender:UIButton) {
         var array:[String] = [String]()
         for (index, _) in dataManager.activityTypes()[selectedActivityType].activities.enumerated() {
@@ -501,6 +572,11 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         view.addSubview(activitySelectorView)
     }
     
+    /**
+     Shows the interval selector view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func showIntervalSelector(_ sender:UIButton) {
         closeActiveTextEntries()
         var array:[String] = [String]()
@@ -511,6 +587,11 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         view.addSubview(intervalSelectorView)
     }
     
+    /**
+     Shows the module selector view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func showModuleSelector(_ sender:UIButton) {
         if currentUserType() == .social {
             var array:[String] = [String]()
@@ -598,6 +679,11 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
     
     //MARK: Time Picker
     
+    /**
+     Handles the time change of the date picker.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func changeTime(_ sender:UIButton) {
         closeActiveTextEntries()
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
@@ -607,14 +693,27 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         })
     }
     
+    /**
+     Closes time picker.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func closeTimePicker(_ sender:UIButton) {
         animateTimePickerClosing()
     }
     
+    /**
+     Closes the time picker from the toolbar.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func closeTimePickerFromToolbar(_ sender:UIBarButtonItem) {
         animateTimePickerClosing()
     }
     
+    /**
+     Animates the closing of the time picker.
+     */
     func animateTimePickerClosing() {
         hoursPicker.selectRow(selectedHours, inComponent: 0, animated: false)
         minutesPicker.selectRow(selectedMinutes, inComponent: 0, animated: false)

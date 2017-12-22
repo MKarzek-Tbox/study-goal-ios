@@ -85,10 +85,20 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         super.didReceiveMemoryWarning()
     }
     
+    /**
+     Opens the menu drawer.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func openMenu(_ sender:UIButton?) {
         DELEGATE.menuView?.open()
     }
     
+    /**
+     Handles segment controller action.
+     
+     :sender: segemnt control that triggered the action
+     */
     @IBAction func indexChanged(_ sender: UISegmentedControl) {
         switch segmentControl.selectedSegmentIndex {
         case 0:
@@ -128,6 +138,11 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    /**
+     Refreshes the attendance data.
+     
+     :sender: refresh control that triggered the action
+     */
     func refreshAttendanceData(_ sender:UIRefreshControl) {
         self.limit = 20
         getAttendance {
@@ -136,6 +151,11 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    /**
+     Gets the attendance data.
+     
+     :completion: completion block
+     */
     func getAttendance(completion:@escaping (() -> Void)){
         attendanceData.removeAll()
         attendanceDataUnique.removeAll()
@@ -202,6 +222,9 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    /**
+     Customizes the layout.
+     */
     func customizeLayout(){
         if(!iPad){
             startDateFieldSummary.layer.borderColor = UIColor(red: 192.0/255.0, green: 159.0/255.0, blue: 246.0/255.0, alpha: 1.0).cgColor
@@ -226,6 +249,9 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         endDateFieldAll.layer.masksToBounds = true
     }
     
+    /**
+     Sets up the date pickers.
+     */
     func setupDatePickers(){
         startDatePicker.datePickerMode = UIDatePickerMode.date
         startDatePicker.maximumDate = Date()
@@ -254,6 +280,9 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         endDateFieldAll.inputView = endDatePicker
     }
     
+    /**
+     Listens for the start date picker to be done.
+     */
     func startDatePickerDone(){
         if(endDateFieldAll.text != localized("end") && startDatePicker.date > endDatePicker.date) {
             //TODO nice message
@@ -277,6 +306,9 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    /**
+     Listens for the end data picker to be done.
+     */
     func endDatePickerDone(){
         if(startDateFieldAll.text != localized("start") && endDatePicker.date < startDatePicker.date) {
             //TODO nice message
@@ -300,6 +332,9 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    /**
+     Loads the high chart.
+     */
     private func loadHighChart() {
         var countArray:[Int] = []
         var dateArray:[String] = []
@@ -424,7 +459,11 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
-    
+    /**
+     Shows module selector view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func showModuleSelector(_ sender:UIButton) {
         var array:[String] = [String]()
         array.append(localized("all_modules"))

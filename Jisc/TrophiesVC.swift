@@ -31,6 +31,11 @@ class TrophiesVC: BaseViewController, UITableViewDataSource, UITableViewDelegate
         }
     }
     
+    /**
+     Navigates back to settings.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func goBack(_ sender:UIButton) {
         _ = navigationController?.popViewController(animated: true)
     }
@@ -39,6 +44,11 @@ class TrophiesVC: BaseViewController, UITableViewDataSource, UITableViewDelegate
         return UIStatusBarStyle.lightContent
     }
     
+    /**
+     Navigates to trophies won page.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func trophiesWon(_ sender:UIButton) {
         trophiesWonButton.isSelected = true
         trophiesAvailableButton.isSelected = false
@@ -53,6 +63,11 @@ class TrophiesVC: BaseViewController, UITableViewDataSource, UITableViewDelegate
         })
     }
     
+    /**
+     Navigates to trophies available place.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func trophiesAvailable(_ sender:UIButton) {
         trophiesWonButton.isSelected = false
         trophiesAvailableButton.isSelected = true
@@ -63,6 +78,11 @@ class TrophiesVC: BaseViewController, UITableViewDataSource, UITableViewDelegate
         })
     }
     
+    /**
+     Displays details for selected trophy.
+     
+     :trophy: trophy selected
+     */
     func showDetailsForTrophy(_ trophy:Trophy?) {
         if (trophy != nil) {
             let details = TrophyDetailsView.create(trophy)

@@ -50,6 +50,9 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 		refreshData()
 	}
 	
+    /**
+     Refreshes the data.
+     */
 	func refreshData() {
 		searchStudentsInputTextField.text = ""
 		searchStudentsInputTextField.resignFirstResponder()
@@ -62,6 +65,9 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 		}
 	}
 	
+    /**
+     Refreshes the requests.
+     */
 	func refreshRequests() {
 		if dataManager.friendRequests().count == 0 {
 			noRequestsMessage.alpha = 1.0
@@ -73,6 +79,11 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 		newRequestsTable.reloadData()
 	}
 	
+    /**
+     Handles the search in the friends.
+     
+     :sender: button that triggered the action
+     */
 	@IBAction func search(_ sender:UIButton) {
 		endEditing(true)
 		searchButton.isSelected = true
@@ -85,6 +96,11 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 		}) 
 	}
 	
+    /**
+     Handles the new friends request view.
+     
+     :sender: button that triggered the action
+     */
 	@IBAction func newRequests(_ sender:UIButton) {
 		endEditing(true)
 		searchButton.isSelected = false
@@ -97,6 +113,11 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 		}) 
 	}
 	
+    /**
+     Shows my friends view.
+     
+     :sender: button that triggered the action
+     */
 	@IBAction func myFriends(_ sender:UIButton) {
 		endEditing(true)
 		searchButton.isSelected = false
@@ -109,6 +130,11 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 		}) 
 	}
 	
+    /**
+     Filters the students by the parameter given.
+     
+     :string: filter text
+     */
 	func filterStudents(_ string:String) {
 		let fetchRequest:NSFetchRequest<Colleague> = NSFetchRequest(entityName: colleagueEntityName)
 		fetchRequest.predicate = NSPredicate(format: "inTheSameCourseWith.id == %@ AND (firstName contains[c] %@ OR lastName contains[c] %@)", dataManager.currentStudent!.id, string, string)
@@ -124,6 +150,11 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 		searchStudentsResultsTable.reloadData()
 	}
 	
+    /**
+     Filters the students by the parameter given.
+     
+     :string: filter string
+     */
 	func filterFriends(_ string:String) {
 		let fetchRequest:NSFetchRequest<Friend> = NSFetchRequest(entityName: friendEntityName)
 		fetchRequest.predicate = NSPredicate(format: "friendOf.id == %@ AND (firstName contains[c] %@ OR lastName contains[c] %@)", dataManager.currentStudent!.id, string, string)
@@ -139,6 +170,11 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 		myFriendsTable.reloadData()
 	}
 	
+    /**
+     Handles the friends request to the specified colleague.
+     
+     :colleague: object to send the request to
+     */
 	func sendFriendRequestToColleague(_ colleague:Colleague) {
 		privacyView.alpha = 0.0
 		privacyTitleLabel.text = localized("friend_request")
@@ -163,6 +199,11 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 		}) 
 	}
 	
+    /**
+     Handles the accept action for a friends request.
+     
+     :friendsRequest: friends request object
+     */
 	func acceptThisFriendRequest(_ friendRequest:FriendRequest) {
 		privacyView.alpha = 0.0
 		privacyTitleLabel.text = localized("friend_request")
@@ -187,6 +228,11 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 		}) 
 	}
 	
+    /**
+     Calcels a pending friends request.
+     
+     :colleague: colleague the request went to
+     */
 	func cancelPendingFriendRequestToColleague(_ colleague:Colleague) {
 		colleagueToTakeActionWith = colleague
 		let myID = dataManager.currentStudent!.id
@@ -196,6 +242,11 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 		}
 	}
 	
+    /**
+     Handles visible data to friends to see all data.
+     
+     :sender: switch that triggered the action
+     */
 	@IBAction func toggleSeeEverything(_ sender:UISwitch) {
 		everythingSwitch.setOn(sender.isOn, animated: true)
 		myResultSwitch.setOn(sender.isOn, animated: true)
@@ -203,6 +254,11 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 		activityLogSwitch.setOn(sender.isOn, animated: true)
 	}
 	
+    /**
+     Handles visible data to friends to see all my results.
+     
+     :sender: switch that triggered the action
+     */
 	@IBAction func toggleSeeMyResults(_ sender:UISwitch) {
 		if (sender.isOn) {
 			if (myResultSwitch.isOn && courseEngagementSwitch.isOn && activityLogSwitch.isOn) {
@@ -213,6 +269,11 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 		}
 	}
 	
+    /**
+     Handles visible data to friends to see all course engagment.
+     
+     :sender: switch that triggered the action
+     */
 	@IBAction func toggleSeeCourseEngagement(_ sender:UISwitch) {
 		if (sender.isOn) {
 			if (myResultSwitch.isOn && courseEngagementSwitch.isOn && activityLogSwitch.isOn) {
@@ -223,6 +284,11 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 		}
 	}
 	
+    /**
+     Handles visible data to friends to see all activity logs.
+     
+     :sender: switch that triggered the action
+     */
 	@IBAction func toggleSeeActivityLog(_ sender:UISwitch) {
 		if (sender.isOn) {
 			if (myResultSwitch.isOn && courseEngagementSwitch.isOn && activityLogSwitch.isOn) {
@@ -233,6 +299,11 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 		}
 	}
 	
+    /**
+     Handles sending or accepting a friends request.
+     
+     :sender: button that triggered the action
+     */
 	@IBAction func sendOrAcceptRequest(_ sender:UIButton) {
 		if (currentAction == .sendFriendRequest) {
 			sendFriendRequest({ (success, result, results, error) -> Void in
@@ -255,6 +326,11 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 		}) 
 	}
 	
+    /**
+     Cancels a friends request.
+     
+     :sender: button that triggered the action
+     */
 	@IBAction func cancelFriendRequest(_ sender:UIButton) {
 		UIView.animate(withDuration: 0.25, animations: { () -> Void in
 			self.privacyView.alpha = 0.0
@@ -265,6 +341,11 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 	
 	//MARK: Actions With Other Students
 	
+    /**
+     Sends a friends request.
+     
+     :completion: completion block
+     */
 	func sendFriendRequest(_ completion:@escaping downloadCompletionBlock) {
 		if (colleagueToTakeActionWith != nil) {
 			let privacy = FriendRequestPrivacyOptions(results: myResultSwitch.isOn, engagement: courseEngagementSwitch.isOn, activity: activityLogSwitch.isOn)
@@ -274,6 +355,11 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 		}
 	}
 	
+    /**
+     Accepts a friends request.
+     
+     :completion: completion block
+     */
 	func acceptFriendRequest(_ completion:@escaping downloadCompletionBlock) {
 		if (friendRequestToTakeActionWith != nil) {
 			let privacy = FriendRequestPrivacyOptions(results: myResultSwitch.isOn, engagement: courseEngagementSwitch.isOn, activity: activityLogSwitch.isOn)
@@ -283,6 +369,11 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 		}
 	}
 	
+    /**
+     Changes friends settings.
+     
+     :completion: completion block
+     */
 	func changeFriendSettings(_ completion:@escaping downloadCompletionBlock) {
 		if (friendToTakeActionWith != nil) {
 			let privacy = FriendRequestPrivacyOptions(results: myResultSwitch.isOn, engagement: courseEngagementSwitch.isOn, activity: activityLogSwitch.isOn)
@@ -292,6 +383,11 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 		}
 	}
 	
+    /**
+     Deletes friend request.
+     
+     :completion: completion block
+     */
 	func deleteFriendRequest(_ completion:@escaping downloadCompletionBlock) {
 		if (friendRequestToTakeActionWith != nil) {
 			let myID = dataManager.currentStudent!.id
@@ -300,6 +396,11 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 		}
 	}
 	
+    /**
+     Hides a friend.
+     
+     :completion: completion block
+     */
 	func hideFriend(_ completion:@escaping downloadCompletionBlock) {
 		if (friendToTakeActionWith != nil) {
 			let myID = dataManager.currentStudent!.id
@@ -308,6 +409,11 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 		}
 	}
 	
+    /**
+     Unhides friend.
+     
+     :completion: completion block
+     */
 	func unhideFriend(_ completion:@escaping downloadCompletionBlock) {
 		if (friendToTakeActionWith != nil) {
 			let myID = dataManager.currentStudent!.id
@@ -316,6 +422,11 @@ class MyFriendsView: LocalizableView, UIAlertViewDelegate, MFMailComposeViewCont
 		}
 	}
 	
+    /**
+     Delete friend.
+     
+     :completion: completion block
+     */
 	func deleteFriend(_ completion:@escaping downloadCompletionBlock) {
 		if (friendToTakeActionWith != nil) {
 			let myID = dataManager.currentStudent!.id

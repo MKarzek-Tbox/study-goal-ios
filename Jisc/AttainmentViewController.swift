@@ -61,6 +61,11 @@ class AttainmentViewController: UIViewController, UITableViewDataSource, UITable
         super.didReceiveMemoryWarning()
     }
     
+    /**
+     Open menu drawer.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func openMenu(_ sender:UIButton?) {
         DELEGATE.menuView?.open()
     }
@@ -98,12 +103,22 @@ class AttainmentViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    /**
+     Refreshes attainment data
+     
+     :sender: refresh control that triggered the action
+     */
     func refreshAttainmentData(_ sender:UIRefreshControl) {
         getAttainmentData {
             sender.endRefreshing()
         }
     }
     
+    /**
+     Gets the attainment data.
+     
+     :completion: completion block
+     */
     func getAttainmentData(_ completion:@escaping (() -> Void)) {
         attainmentData.removeAll()
         tableView.reloadData()
@@ -147,6 +162,11 @@ class AttainmentViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    /**
+     Shows module selector view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func showModuleSelector(_ sender:UIButton) {
         var array:[String] = [String]()
         array.append(localized("all_modules"))

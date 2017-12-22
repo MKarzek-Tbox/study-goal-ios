@@ -36,10 +36,18 @@ class AppUsageViewController: UIViewController {
         loadData()
     }
     
+    /**
+     Opens menu drawer.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func openMenu(_ sender: Any) {
         DELEGATE.menuView?.open()
     }
     
+    /**
+     Customizes the layout.
+     */
     func customiseLayout(){
         startDateField.layer.borderColor = UIColor(red: 192.0/255.0, green: 159.0/255.0, blue: 246.0/255.0, alpha: 1.0).cgColor
         startDateField.layer.borderWidth = 1.5
@@ -71,6 +79,9 @@ class AppUsageViewController: UIViewController {
         
     }
     
+    /**
+     Listens of the end of the start date picker.
+     */
     func startDatePickerDone(){
         if(endDateField.text != localized("end") && startDatePicker.date > endDatePicker.date) {
             //TODO nice message
@@ -88,6 +99,9 @@ class AppUsageViewController: UIViewController {
         }
     }
     
+    /**
+     Listens on the end of the end date picker.
+     */
     func endDatePickerDone(){
         if(startDateField.text != localized("start") && endDatePicker.date < startDatePicker.date) {
             //TODO nice message
@@ -105,6 +119,9 @@ class AppUsageViewController: UIViewController {
         }
     }
     
+    /**
+     Loads app usage data from server.
+     */
     func loadData(){
         let manager = xAPIManager()
         if(startDateField.text != localized("start") && endDateField.text != localized("end")) {

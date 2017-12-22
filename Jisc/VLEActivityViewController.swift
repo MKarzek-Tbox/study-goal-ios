@@ -65,6 +65,9 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         super.didReceiveMemoryWarning()
     }
     
+    /**
+     Gets vle activity data.
+     */
     func getEngagementData() {
         self.webViewNullMessage.isHidden = true
         
@@ -140,6 +143,15 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         }
     }
     
+    /**
+     Call to the server for vle activity data.
+     
+     :period: period to display
+     :moduleID: module id to display if not all
+     :studentID: student id to display
+     :result: result to display
+     :returns: data object
+     */
     func xAPIEngagementDataValues(_ period:kXAPIEngagementScope, moduleID:String?, studentID:String?, result:NSDictionary?, results:NSArray?) -> (me:[Double]?, myMax:Double, otherStudent:[Double]?, otherStudentMax:Double, columnNames:[String]?)? {
         var values:([Double]?, Double, [Double]?, Double, [String]?)? = nil
         var myValues:[Double]? = nil
@@ -457,6 +469,9 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         return values
     }
     
+    /**
+     Loads the vle chart.
+     */
     private func loadVLEChart(){
         do {
             guard let filePath = Bundle.main.path(forResource: self.graphTypePath, ofType: "html")
@@ -575,6 +590,11 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         }
     }
     
+    /**
+     Gets the friends in the same course.
+     
+     :returns: friends list
+     */
     func friendsInTheSameCourse() -> [Friend] {
         var array:[Friend] = [Friend]()
         
@@ -587,6 +607,9 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         return array
     }
     
+    /**
+     Customizes the layout.
+     */
     func customizeLayout(){
         startDateField.layer.borderColor = UIColor(red: 192.0/255.0, green: 159.0/255.0, blue: 246.0/255.0, alpha: 1.0).cgColor
         startDateField.layer.borderWidth = 1
@@ -599,6 +622,9 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         endDateField.layer.masksToBounds = true
     }
     
+    /**
+     Sets up the date pickers.
+     */
     func setupDatePickers(){
         startDatePicker.datePickerMode = UIDatePickerMode.date
         startDatePicker.maximumDate = Date()
@@ -619,6 +645,9 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         endDateField.inputView = endDatePicker
     }
     
+    /**
+     Listens on the start date pickers end.
+     */
     func startDatePickerDone(){
         if(endDateField.text != localized("end") && startDatePicker.date > endDatePicker.date) {
             //TODO nice message
@@ -636,6 +665,9 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         }
     }
     
+    /**
+     Listens on the end date picker end.
+     */
     func endDatePickerDone(){
         if(startDateField.text != localized("start") && endDatePicker.date < startDatePicker.date) {
             //TODO nice message
@@ -653,6 +685,11 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         }
     }
     
+    /**
+    Opens menu drawer
+     
+     :sender: button that triggered the action
+     */
     @IBAction func openMenu(_ sender:UIButton?) {
         DELEGATE.menuView?.open()
     }
@@ -672,6 +709,11 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         getEngagementData()
     }
     
+    /**
+     Shows module selector view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func showModuleSelector(_ sender:UIButton) {
         var array:[String] = [String]()
         array.append(localized("all_modules"))
@@ -711,6 +753,11 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         xAPIManager().checkMod(testUrl:urlString)
     }
     
+    /**
+     Shows compare to slector view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func showCompareToSelector(_ sender:UIButton) {
         if (selectedModule == 0) {
             var array:[String] = [String]()
@@ -798,6 +845,11 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         }
     }
     
+    /**
+     Calls for the period data.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func callPeriodData(_ sender:UIButton){
         switch (sender){
         case sevenDaysSelectorButton:
@@ -816,6 +868,11 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         }
     }
     
+    /**
+     Gets the colum name for the high chart
+     
+     :returns: array of date strings
+     */
     func columnNamesXAPI30Days() -> [String] {
         var names:[String] = [String]()
         dateFormatter.dateFormat = "yyyy/M"

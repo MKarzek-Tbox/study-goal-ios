@@ -16,6 +16,12 @@ class TrophyDetailsView: UIView {
     @IBOutlet weak var trophyImage:UIImageView!
     @IBOutlet weak var trophyReasonLabel:UILabel!
     
+    /**
+     Creates the view with the given trophy.
+     
+     :trophy: trophy to be shown
+     :returns: created trophy details view
+     */
     class func create(_ trophy:Trophy?) -> TrophyDetailsView {
         let view:TrophyDetailsView = Bundle.main.loadNibNamed("TrophyDetailsView", owner: nil, options: nil)!.first as! TrophyDetailsView
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -39,6 +45,11 @@ class TrophyDetailsView: UIView {
         return view
     }
     
+    /**
+     Closes the trophy details view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func closeTrophyDetails(_ sender:UIButton) {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.alpha = 0.0

@@ -22,6 +22,9 @@ class SelectLanguageVC: BaseViewController {
         return UIStatusBarStyle.lightContent
     }
     
+    /**
+     Highlights the selected item.
+     */
     func highlightSelectedItem() {
         englishCheckmark.alpha = 0.0
         welshCheckmark.alpha = 0.0
@@ -36,10 +39,20 @@ class SelectLanguageVC: BaseViewController {
         }
     }
     
+    /**
+     Navigates back to settings.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func goBack(_ sender:UIButton) {
         _ = navigationController?.popViewController(animated: true)
     }
     
+    /**
+     Sets the selected item as language for the app.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func selectLanguage(_ sender:UIButton) {
         if currentUserType() == .demo {
             let alert = UIAlertController(title: "", message: localized("demo_mode_change_app_settings"), preferredStyle: .alert)

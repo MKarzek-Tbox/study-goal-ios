@@ -26,6 +26,12 @@ class OneTrophyView: UIView {
         super.awakeFromNib()
     }
     
+    /**
+     Loads the data of the trophy into the cell.
+     
+     :trophy: trophy to be displayed
+     :trophyCount: trophy value
+     */
     func loadTrophy(_ trophy:Trophy?, trophyCount:Int) {
         count = trophyCount
         if (trophy != nil) {
@@ -54,6 +60,12 @@ class OneTrophyView: UIView {
         }
     }
     
+    /**
+     Gets the trophy icon according to its id.
+     
+     :ID: id of the trophy
+     :returns: icon name
+     */
     class func trophyIconForID(_ ID:String) -> String? {
         var icon:String? = nil
         for (_, item) in trophyDataArray.enumerated() {
@@ -69,6 +81,11 @@ class OneTrophyView: UIView {
         return icon
     }
     
+    /**
+     Selects the trophy.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func selectTrophy(_ sender:UIButton) {
         ownerCell?.parent?.showDetailsForTrophy(theTrophy)
         ownerCelliPad?.parent?.showDetailsForTrophy(theTrophy)
@@ -97,6 +114,13 @@ class TrophiesCell: UITableViewCell {
         rightTrophy.loadTrophy(nil, trophyCount: 0)
     }
     
+    /**
+     Loads the trophy data into the cell.
+     
+     :left: left trophy
+     :middle: middle trophy
+     :right: right trophy
+     */
     func loadTrophies(_ left:(trophy:Trophy?, total:Int), middle:(trophy:Trophy?, total:Int), right:(trophy:Trophy?, total:Int)) {
         leftTrophy.loadTrophy(left.trophy, trophyCount: left.total)
         leftTrophy.ownerCell = self

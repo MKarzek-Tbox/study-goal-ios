@@ -30,20 +30,38 @@ class ConsentVC: BaseViewController {
         return UIStatusBarStyle.lightContent
     }
     
+    /**
+     Navigates back to settings.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func goBack(_ sender:UIButton) {
         _ = navigationController?.popViewController(animated: true)
     }
     
+    /**
+     Toggles the analytics.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func toggleAnalytics(_ sender:UIButton) {
         sender.isSelected = !sender.isSelected
         changeConsentSettings()
     }
     
+    /**
+     Toggles the privacy.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func togglePrivacy(_ sender:UIButton) {
         sender.isSelected = !sender.isSelected
         changeConsentSettings()
     }
     
+    /**
+     Changes the consent settings.
+     */
     func changeConsentSettings() {
         let myID = dataManager.currentStudent!.id
         let analytics = acceptAnalyticsButton.isSelected

@@ -31,6 +31,11 @@ class PrivacyWebViewVC: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    /**
+     Navigates back to the previous page.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func backToPreviousPage(_ sender: UIButton) {
         _ = navigationController?.popViewController(animated: true)
     }

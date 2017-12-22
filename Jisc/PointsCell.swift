@@ -29,8 +29,14 @@ class PointsCell: UITableViewCell {
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
+        
     }
     
+    /**
+     Loads point data into the cell.
+     
+     :points: points object to be displayed
+     */
     func loadPoints(points:PointsObject) {
         if (points.activity == "Loggedin"){
             activityLabel.text = localized("logged_in")

@@ -34,7 +34,14 @@ class TrophiesCelliPad: UITableViewCell {
         middleRightTrophy.loadTrophy(nil, trophyCount: 0)
         rightTrophy.loadTrophy(nil, trophyCount: 0)
     }
-    
+
+    /**
+     Loads the trophy data into the cell.
+     
+     :left: left trophy
+     :middle: middle trophy
+     :right: right trophy
+     */
     func loadTrophies(_ left:(trophy:Trophy?, total:Int), middleLeft:(trophy:Trophy?, total:Int), middleRight:(trophy:Trophy?, total:Int), right:(trophy:Trophy?, total:Int)) {
         leftTrophy.loadTrophy(left.trophy, trophyCount: left.total)
         leftTrophy.ownerCelliPad = self

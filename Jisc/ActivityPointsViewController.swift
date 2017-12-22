@@ -95,6 +95,12 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
         }
     }
     
+    /**
+     Gets activity points from the server.
+     
+     :perios: period selected
+     :completion: completion block
+     */
     func getActivityPoints(period:kXAPIActivityPointsPeriod, completion:@escaping (() -> Void)) {
         webViewNullMessage.isHidden = true
         activityPointsData.removeAll()
@@ -147,6 +153,9 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
         }
     }
     
+    /**
+     Loads pie chart.
+     */
     private func loadPieChart() {
         if(activityPointsData.count == 0){
             webViewNullMessage.isHidden = true
@@ -189,6 +198,9 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
         }
     }
     
+    /**
+     Customizes the layout.
+     */
     func customizeLayout(){
         startDateField.layer.borderColor = UIColor(red: 192.0/255.0, green: 159.0/255.0, blue: 246.0/255.0, alpha: 1.0).cgColor
         startDateField.layer.borderWidth = 1
@@ -201,6 +213,9 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
         endDateField.layer.masksToBounds = true
     }
     
+    /**
+     Sets up the date pickers.
+     */
     func setupDatePickers(){
         startDatePicker.datePickerMode = UIDatePickerMode.date
         startDatePicker.maximumDate = Date()
@@ -221,6 +236,9 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
         endDateField.inputView = endDatePicker
     }
     
+    /**
+     Listens on the start date picker to be done.
+     */
     func startDatePickerDone(){
         if(endDateField.text != localized("end") && startDatePicker.date > endDatePicker.date) {
             //TODO nice message
@@ -240,6 +258,9 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
         }
     }
     
+    /**
+     Listens on the end date picker to be done.
+     */
     func endDatePickerDone(){
         if(startDateField.text != localized("start") && endDatePicker.date < startDatePicker.date) {
             //TODO nice message
@@ -259,10 +280,18 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
         }
     }
     
+    /**
+     Opens the menu drawer.
+     */
     @IBAction func openMenu(_ sender:UIButton?) {
         DELEGATE.menuView?.open()
     }
     
+    /**
+     Handles segment controller action.
+     
+     :sender: segment control that triggered the action
+     */
     @IBAction func indexChanged(_ sender: UISegmentedControl) {
         switch segmentControl.selectedSegmentIndex {
         case 0:
@@ -276,6 +305,11 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
         }
     }
     
+    /**
+     Shows module selector view.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func showModuleSelector(_ sender:UIButton) {
         var array:[String] = [String]()
         array.append(localized("all_modules"))
@@ -323,6 +357,11 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
         }
     }
     
+    /**
+     Calls period data.
+     
+     :sender: button that triggered the action
+     */
     @IBAction func callPeriodData(_ sender:UIButton){
         switch (sender){
         case thisWeekSelectorButton:

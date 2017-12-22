@@ -22,8 +22,14 @@ class AttainmentCell: UITableViewCell {
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
+        
     }
     
+    /**
+     Loads attainment data into the cell
+     
+     :object: attainment data object to be displayed
+     */
     func loadAttainmentObject(_ object:AttainmentObject?) {
         if let object = object {
             dateFormatter.dateFormat = "dd/MM/yy"

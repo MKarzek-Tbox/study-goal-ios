@@ -22,16 +22,32 @@ class OneFriendCell: LocalizableCell, UIAlertViewDelegate {
 		super.awakeFromNib()
 	}
 	
+    /**
+     Sets the cell selected and unselected.
+     
+     :selected: selected status
+     :animated: animation for selection
+     */
 	override func setSelected(_ selected: Bool, animated: Bool) {
 		super.setSelected(selected, animated: animated)
 	}
 	
+    /**
+     Loads the friend data for this cell.
+     
+     :friend: friend data
+     */
 	func loadFriend(_ friend:Friend) {
 		theFriend = friend
 		friendNameLabel.text = "\(friend.firstName) \(friend.lastName)"
 		hideFriendButton.isSelected = friend.hidden.boolValue
 	}
 	
+    /**
+     Hides the selected friend.
+     
+     :sender: button that triggered the action
+     */
 	@IBAction func hideFriend(_ sender:UIButton) {
 		if (theFriend != nil) {
 			if (sender.isSelected) {
@@ -68,6 +84,11 @@ class OneFriendCell: LocalizableCell, UIAlertViewDelegate {
 		}
 	}
 	
+    /**
+     Delets the selected friend.
+     
+     :sender: button that triggered the action
+     */
 	@IBAction func deleteFriend(_ sender:UIButton) {
 		UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_friend"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
 	}
